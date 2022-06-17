@@ -1,0 +1,55 @@
+body {
+    background-color: rgba(255,255,255,0.8);    /* Couleur par Défaut */
+    color: #000000;
+  }
+  
+  html { 
+    margin:0;
+    padding:0;
+    background: url(DrapeauBreton.png) no-repeat center fixed; 
+    -webkit-background-size: cover;
+    background-size: cover;
+    text-align: left;
+    font-size: 16px;
+    font-family:Arial;
+  }
+  
+  h1 {
+    text-align:center;  /*  H1 = TITRE*/
+    color:#FF0000
+  }
+  
+  p1 {
+      border: 1px solid rgba(0, 0, 0, 0);
+      display: block;
+      text-align: left;
+        margin-block-start: 1em; /* Espace Conjugaison/Texte */
+        margin-block-end: 50em; /* Permet de descendre encore plus bas pour voir le drapeau breton*/
+        margin-inline-start: 20px; /* Horizontal Début */
+        margin-inline-end: 20px; /* Horizontal Fin */
+      }
+
+
+
+/* Infinitifs */
+#infinitif{
+    display: flex;
+    justify-content:space-around;
+    text-align: center;
+  }
+  #verberadicaux, #verbessuffixes{
+    display: block;
+      margin-inline-start: 20px; /* Horizontal Début */
+      margin-inline-end: 20px; /* Horizontal Fin */
+  }
+  #verberadicaux div{   
+    border: 2px solid rgba(255, 0, 0, 0);
+  }
+  #verbesuffixes div{
+    border: 2px solid rgba(255, 0, 255, 0);
+  }
+  
+  p4{
+    text-align:justify;
+  }
+  /* Infinitifs */
