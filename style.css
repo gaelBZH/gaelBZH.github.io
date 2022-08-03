@@ -1,106 +1,107 @@
 body {
-  background-color: rgba(255,255,255,0.8);    /* Couleur par Défaut */
-  color: #000000;
+  background-color: rgba(255,255,255,0.8); /* Couleur de Fond */
+  color: #000000; /* Couleur Texte */
 }
+
+
 
 html { 
-  margin:0;
-  padding:0;
-  background: url(DrapeauBreton.png) no-repeat center fixed; 
-  -webkit-background-size: cover;
-  background-size: cover;
-  text-align: left;
-  font-size: 16px;
-  font-family:Arial;
+  background: url(DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+  background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+  font-size: 16px; /* Taille Texte par Défaut */
+  font-family:Arial; /* Police par Défaut */
 }
 
-/* Titre */
-h1 {
-  text-align:center; 
-  color:#FF0000
+
+
+/* Sélection de Texte Violette */
+::selection {
+  background-color: rgb(88, 101, 242); /* Fond Violet */
+  color: rgb(255,255,255) /* Texte Blanc */
 }
-/* Titre */
+/* Sélection de Texte Violette */
+
+
 
 /* Texte de la Page */
 p1 {
-    border: 1px solid rgba(0, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0); /* Aucune Bordure */
     display: block;
-    text-align: left;
-      margin-block-start: 1em; /* Espace Conjugaison/Texte */
       margin-block-end: 50em; /* Permet de descendre encore plus bas pour voir le drapeau breton*/
       margin-inline-start: 20px; /* Horizontal Début */
       margin-inline-end: 20px; /* Horizontal Fin */
-    }
+}
 /* Texte de la Page */
 
-/* Description Embed - P2 */
-p2 {
-  color: #000000;
-  font-size: 17px;
-  }
-/* Description Embed - P2 */
-    
 
 
-/* EMBED DISCORD & MAPS */
-#Embeds{
-  display: flex;
-  justify-content:space-around;
-}
-#Discord{
-    width:20%;
-    display: block;
-      margin-inline-start: 1100px; /* Horizontal Début */
-      margin-inline-end: 0px; /* Horizontal Fin */
-      text-align: center;
-      color: #fff;
-      font-size: 25px;
-      font-family: Impact;
-      background-color:  rgb(248, 248, 248,0.8);
-      margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(32, 34, 37)
-    }
-#Maps{
-    width:20%;
-    display: block;
-      margin-inline-start: 1050px; /* Horizontal Début */
-      margin-inline-end: 0px; /* Horizontal Fin */
-      text-align: center;
-      font-size: 15px;
-      background-color:  rgb(248, 248, 248,0.8);
-      margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(248, 248, 248,0.8)
-    }
-#Description{
-  width:20%;
-  display: block;
-    margin-inline-start: 0px; /* Horizontal Début */
-    margin-inline-end: 0px; /* Horizontal Fin */
-    text-align: center;
-    font-size: 15px;
-    background-color:  rgb(248, 248, 248,0.8);
-    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(248, 248, 248,0.8)
-  }
-#Discord, #Maps, #Description{
-  display: block;
-    margin-inline-start: 20px; /* Horizontal Début */
-    margin-inline-end: 20px; /* Horizontal Fin */
-    
-}
-/* EMBED DISCORD & MAPS*/
+/* Styles des Classes de Boutons */
+.BoutonBleu {
 
-/* Barre du Bas */
-#bottomBar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height:25px;
-  padding-top: 5px;
-  text-align: center;
-  vertical-align: middle;
-  background: rgba(0,0,0,0.8);
-  color: #fff;
-  z-index: 2;
-}
-/* Barre du Bas */
+                        /* Style Texte */
+                        font-size: 16px; /* Taille */
+                        font-weight: bold; /* Gras */
+                        line-height: 1; /* Hauteur Ligne */
+                        text-decoration: none; /* Pas de Soulignage */
+                        color: #ffffff; /* Couleur */
+                        text-shadow: 0 -1px 0 rgba(0,0,0,0.5); /* Ombre Décalée de 0px à droite, 1px en haut, un Flou de 0px, de couleur noir et d'opacité 50% */
+                        /* Style Texte */
+                      
+                        /* Fond Dégradé */
+                        background: -moz-linear-gradient(top, rgb(0, 0, 181), rgb(0, 0, 109));                            /* Firefox */
+                        background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(0, 0, 181)), to(rgb(0, 0, 109)));      /* Safari et Chrome*/
+                        /* Fond Dégradé */
+                      
+                        /* Style Général du Bouton */
+                        display: inline-block;
+                        padding: 8px 10px 8px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
+                        -moz-border-radius: 4px; /* Coins arrondis pour Firefox */
+                        -webkit-border-radius: 4px; /* Coins arrondis pour Safari et Chrome */
+                        border-radius: 4px;
+                        border-bottom: 1px solid rgba(0,0,0,0.5);
+                        -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                        box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+                        margin: 2px;
+                        /* Style Général du Bouton */
+                      }
+
+                      .BoutonViolet {
+                        /* Style Texte */
+                        font-size: 16px; /* Taille */
+                        font-weight: bold; /* Gras */
+                        line-height: 1; /* Hauteur Ligne */
+                        text-decoration: none; /* Pas de Soulignage */
+                        color: #ffffff; /* Couleur */
+                        text-shadow: 0 -1px 0 rgba(0,0,0,0.5); /* Ombre Décalée de 0px à droite, 1px en haut, un Flou de 0px, de couleur noir et d'opacité 50% */
+                        /* Style Texte */
+                      
+                        /* fond dégradé pour le bouton */
+                        background: -moz-linear-gradient(top, rgb(181, 0, 181), rgb(109, 0, 109));                        /* Firefox */
+                        background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(181, 0, 181)), to(rgb(109, 0, 109)));  /* Safari et Chrome*/
+                      
+                        /* Style Général du Bouton */
+                        display: inline-block;
+                        padding: 4px 5px 4px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
+                        /* Style Général du Bouton */
+} /* Styles des Classes de Boutons */
+
+/* ---------------------------------------------------------------- */
+/* PARAMÈTRES GÉNÉRAUX */
+
+
+
+
+
+
+
+
+
+
+/* PARAMÈTRES SPÉCIFIQUES */
+/* ---------------------------------------------------------------- */
+
+
 
 /* Bouton Menu*/
 #BoutonMenu{
@@ -113,75 +114,84 @@ p2 {
       background-color:  rgb(2486 248, 248,0.8);
        box-shadow:0 0 10px #9f00e7; border-radius:0em 0em 0em 0.5em; background-color: rgba(255, 255, 255,0.5)
 }
-
-.BoutonPurple {
-	/* style du texte */
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1;
-	text-decoration: none;
-	color: #ffffff;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.5); /* ombre décalée de 0px à droite, 1px en haut, un flou de 0px, de couleur noir et d'opacité 50% */
-
-	/* fond dégradé pour le bouton */
-	background: -moz-linear-gradient(top, rgb(181, 0, 181), rgb(109, 0, 109)); /* Firefox */
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(181, 0, 181)), to(rgb(109, 0, 109))); /* Safari et Chrome*/
-
-	/* style général du bouton */
-	display: inline-block;
-	padding: 4px 5px 4px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
-
-
-}
 /* Bouton Menu*/
 
 
 
-/* Boutons */
-.BoutonBleu {
-	padding: 10px 40px 30px 40px;
+/* Titre "Accueil" */
+h1 {
+  text-align:center; 
+  color:#FF0000
 }
-.BoutonBlue {
-	/* style du texte */
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1;
-	text-decoration: none;
-	color: #ffffff;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.5); /* ombre décalée de 0px à droite, 1px en haut, un flou de 0px, de couleur noir et d'opacité 50% */
+/* Titre "Accueil" */
 
-	/* fond dégradé pour le bouton */
-	background: -moz-linear-gradient(top, rgb(0, 0, 181), rgb(0, 0, 109)); /* Firefox */
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(0, 0, 181)), to(rgb(0, 0, 109))); /* Safari et Chrome*/
 
-	/* style général du bouton */
-	display: inline-block;
-	padding: 8px 10px 8px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
-	-moz-border-radius: 4px; /* coins arrondi pour Firefox */
-	-webkit-border-radius: 4px; /* coins arrondi pour Safari et Chrome */
-	border-radius: 4px;
-	border-bottom: 1px solid rgba(0,0,0,0.5);
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-	margin: 2px;
+
+/* Embed Description - P2 */
+p2 {
+  font-size: 17px;
+}
+/* Embed Description - P2 */
+    
+
+
+
+/* Embeds */
+#Embeds{display:flex}
+
+#Discord, #Maps, #Description{
+  display: block;
+    margin-inline-start: 20px; /* Horizontal Début */
+    margin-inline-end: 20px; /* Horizontal Fin */
+    text-align: center; /* Alignement des Textes des 3 Embeds */
+    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border-radius:0.5em 0.5em 0.5em 0.5em;
+    border:5px solid rgb(255, 255, 255); /* Bordure Blanche */
+    background-color: rgba(255, 255, 255, 0.8) /* Couleur de Fond */
 }
 
-#Boutons{
+#Discord{
+    color: rgb(255, 255, 255); /* Couleur Texte Empire Breton */
+    font-size: 25px; /* Taille Texte Empire Breton */
+    font-family: Impact; /* Police Texte Empire Breton */
+    background-color: rgb(32, 34, 37) /* Dérogation Fond Gris Discord au Lieu de Fond Blanc par défaut */
+}
+/* Embeds */
+
+
+
+/* Navigation */
+#BoutonsNavigation{
   display: flex;
   justify-content:space-around;
 }
-/* Boutons */
+/* Navigation */
 
+
+
+/* Commentaires de Membres */
 #Commentaire{
-text-align: center;
-font-size: 24px;
-color: rgb(0,0,0);
-margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; 
-
-
+text-align: center; /* Texte Centré */
+font-size: 24px; /* Taille du Texte */
+margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; /* Paramètres Bordure */
 margin-left: auto;
 margin-right: auto;
-
-background-color: rgba(255, 255, 255, 0.8);
+background-color: rgba(255, 255, 255, 0.8); /* Couleur de Fond */
 }
+/* Commentaires de Membres */
+
+
+
+/* Barre du Bas */
+#BarreDuBas {
+  position: fixed; /* Immobile */
+  bottom: 0; /* Bas de l'écran */
+  width: 100%; /* Taille à 100% */
+  height:25px; /* Extension de 25px vers le Bas */
+  padding-top: 5px; /* Extension de 5px vers le Haut */
+  text-align: center; /* Centrage Horizontal */
+  vertical-align: middle; /* Centrage Vertical */
+  background: rgba(0,0,0,0.8); /* Couleur Fond Barre */
+  color: #fff; /* Couleur Texte Barre */
+  z-index: 2;
+}
+/* Barre du Bas */
