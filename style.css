@@ -23,6 +23,27 @@ html {
 
 
 
+/* Barre de Scroll */
+
+  ::-webkit-scrollbar {width: auto;}
+  /* Taille Automatique */
+
+  ::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}
+  /* Fond Grise Clair */
+
+  ::-webkit-scrollbar-thumb{background: url(Barre.png); border-radius: 50px}
+  /* Image Barre de Scroll */
+
+  ::-webkit-scrollbar-button{background: #a8a8a8;}
+  /* Boutons Barre de Scroll */
+
+  ::-webkit-scrollbar-corner{background: #f8f4f4}
+  /* Coin Inférieur Droit */
+
+/* Barre de Scroll*/
+
+
+
 /* Texte de la Page */
 p1 {
   border: 1px solid rgba(0, 0, 0, 0); /* Aucune Bordure */
@@ -84,7 +105,26 @@ p1 {
                         display: inline-block;
                         padding: 4px 5px 4px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
                         /* Style Général du Bouton */
-} /* Styles des Classes de Boutons */
+                        cursor: pointer;
+                        }
+
+                        
+                      .BoutonBleu:hover {
+                        background:linear-gradient(to bottom, #00006d 5%, #0000b5 100%);
+                        background-color:#00006d;
+                      }
+
+                      .BoutonViolet:hover {
+                        background:linear-gradient(to bottom, rgb(109, 0, 109) 5%, rgb(181, 0, 181) 100%);
+                        background-color:rgb(109, 0, 109);
+                      }
+
+                      .BoutonBleu:active, .BoutonViolet:active {
+                        position:relative;
+                        top:1px;
+                      }
+
+/* Styles des Classes de Boutons */
 
 /* ---------------------------------------------------------------- */
 /* PARAMÈTRES GÉNÉRAUX */
