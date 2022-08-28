@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Épidémie - Empire Breton</title>
+    <link rel="stylesheet" href="Epidemie.css"> <!--Feuille de Style CSS-->
+    <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style Boutons-->
+    <link rel="icon" href="Icone.png"> <!--Icône du Site-->
+    <style>a { color: rgb(0, 0, 238); } /* Couleur des Liens */</style>
+
+</head>
+<body>
+  <h1><u>Aventure II - Panique à Lorient</u></h1>
+  <h2><u>1) Fabriquer le Remède</u></h2>
+    <div id="Quiz">
+        <form name="Quiz">
+            Aidez nous à guérir la Créature Mystère de Lorient ! Avec les traces qu'elle a laissé dans toute la ville de Lorient (Sur le Serveur), nous pourons la localiser et la guérir grâce aux empreintes ADN que vous avez récupéré ! Si vous n'avez pas encore récupéré les <u>4 échantillons d'ADN</u>, retournez à Lorient. Sinon, entrez la <u>Somme des échantillons</u> ci-dessous pour aider le Docteur Oriant à guérir la créature.</i>
+           <br><input type="text" name="q1" value="0">
+        
+          <input type="button" value="Envoyer" onclick="myfun()">
+        </form><br>
+        </body>
+        <!--Tricheur ;-; Essaie de trouver la réponse sans regarder le code ;)-->
+        <script type="text/javascript">
+        
+        function myfun(){
+          var v1 = document.getElementsByName('q1')[0].value;
+          
+          var score=0; var adn=0;
+          
+          if(v1==191.5*8)
+          {score++;}
+          
+          if (score == 1) {
+              alert("Bravo ! Tu as trouvé le code ADN exact de la créature ! Cela devrait grandement aider le Docteur Oriant à soigner la créature.");
+              document.write("Code Secret : _A_E_T_R. Pour avoir le reste du Code, faites la seconde partie de l'Aventure en revenant sur la page précédente ;) (Actualise la Page)");
+
+            } 
+          else {
+              alert("Raté. L'ADN ne correspond pas.");
+          }
+          
+        }
+        </script>
+        </div>
+<h2><u>2) Retrouver la Créature</u></h2>
+
+<img src="Map_lorient.png" style="height: 20em;">
+
+<div id="Quiz">
+  <form name="Quiz">
+      Aide le Docteur Oriant à trouver la créature pour lui injecter le remède ! Trouve sur la carte où est la créature, puis <u>multiplie la valeur horizontale par la valeur verticale</u> pour trouver ses coordonnées.
+     <br><input type="text" name="q2" value="0">
+  
+    <input type="button" value="Envoyer" onclick="myfun2()">
+  </form><br>
+  </body>
+  <!--Tricheur ;-; Essaie de trouver la réponse sans regarder le code ;)-->
+  <script type="text/javascript">
+  
+  function myfun2(){
+    var v1 = document.getElementsByName('q2')[0].value;
+    
+    var score=0; var adn=0;
+    
+    if(v1==0.4*75)
+    {score++;}
+    
+    if (score == 1) {
+        alert("Bravo ! Tu as trouvé le code ADN exact de la créature ! Cela devrait grandement aider le Docteur Oriant à soigner la créature.");
+        document.write("Code Secret : L_N_S_E_. Si tu as les deux parties du Code, envoie le code en MP à gaelBZH !;)");
+
+      } 
+    else {
+        alert("Raté. La créature n'a pas été trouvée dans ce secteur.");
+    }
+    
+  }
+  
+  </script>
+<br> <br> <br> <br> <br>        <i>Un problème est survenu ? Dis le nous sur le <a href="https://discord.gg/Zaw7bB2bnj">Seveur Support Discord</a></i>
+
+</body>
+</html>
