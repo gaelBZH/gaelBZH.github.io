@@ -1,134 +1,79 @@
 body {
-  background-color: rgba(255,255,255,0.8);    /* Couleur par Défaut */
-  color: #000000;
+  background-color: rgba(255,255,255,0.8); /* Couleur de Fond */
+  color: #000000; /* Couleur Texte */
 }
+
+
 
 html { 
-  margin:0;
-  padding:0;
-  background: url(DrapeauBreton.png) no-repeat center fixed; 
-  -webkit-background-size: cover;
-  background-size: cover;
-  text-align: left;
-  font-size: 16px;
-  font-family:Arial;
+  background: url(DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+  background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+  font-size: 16px; /* Taille Texte par Défaut */
+  font-family:Arial; /* Police par Défaut */
 }
 
-h1 {
-  text-align:center;  /*  H1 = TITRE*/
-  color:#FF0000
-}
 
+
+/* Sélection de Texte Violette */
+::selection {
+  background-color: rgb(88, 101, 242); /* Fond Violet */
+  color: rgb(255,255,255) /* Texte Blanc */
+}
+/* Sélection de Texte Violette */
+
+
+
+/* Barre de Scroll */
+
+  ::-webkit-scrollbar {width: auto;}
+  /* Taille Automatique */
+
+  ::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}
+  /* Fond Grise Clair */
+
+  ::-webkit-scrollbar-thumb{background-image: url(Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}
+  /* Image Barre de Scroll */
+
+  ::-webkit-scrollbar-button{background: #a8a8a8;}
+  /* Boutons Barre de Scroll */
+
+  ::-webkit-scrollbar-corner{background: #f8f4f4}
+  /* Coin Inférieur Droit */
+
+/* Barre de Scroll*/
+
+
+
+/* Texte de la Page */
 p1 {
-  border: 1px solid rgba(0, 0, 0, 0);
-  display: block;
-    margin-block-start: 1em; /* Espace Conjugaison/Texte */
-    margin-block-end: 50em; /* Permet de descendre encore plus bas pour voir le drapeau breton*/
-    margin-inline-start: 20px; /* Horizontal Début */
-    margin-inline-end: 20px; /* Horizontal Fin */
-  }
-
-p2 {
-  background-color: #202225;
-  color: #bcc6c0;
+  border: 1px solid rgba(0, 0, 0, 0); /* Aucune Bordure */
+    display: block;
+      margin-block-end: 50em; /* Permet de descendre encore plus bas pour voir le drapeau breton*/
+      margin-inline-start: 20px; /* Horizontal Début */
+      margin-inline-end: 20px; /* Horizontal Fin */
 }
+/* Texte de la Page */
 
-/* Noms de Balises p Utilisées :  p1;p2;p3 */
+/* STYLE DES BOUTONS SUR LA FEUILLE CSS 'StyleBoutons.css' */
+
+/* ---------------------------------------------------------------- */
+/* PARAMÈTRES GÉNÉRAUX */
 
 
-/* VERBES = p3*/
-#verbes{
-  display: flex;
-  justify-content:space-around;
-}
-#etre, #avoir, #savoir, #aller, #faire{
-  width:20%;
-  display: block;
-    margin-inline-start: 20px; /* Horizontal Début */
-    margin-inline-end: 20px; /* Horizontal Fin */
-    text-align: center;
-    font-size: 15px;
-    /* background-color: #e0181800; */
-    background-color:  rgb(248, 248, 248,0.8);
-}
-#etre div{   
-  border: 2px solid rgb(255, 0, 0);
-}
-#avoir div{
-  border: 2px solid rgb(255, 0, 255);
-}
-#savoir div{
-  border: 2px solid rgb(0, 0, 255);
-}
-#aller div{
-  border: 2px solid rgb(0, 255, 0);
-}
-#faire div{
-  border: 2px solid rgb(255, 255, 0);
-}
-p3{
-  text-align:justify;
-}
-/* VERBES = p3*/
-
-#bottomBar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height:25px;
-  padding-top: 5px;
-  text-align: center;
-  vertical-align: middle;
-  background: rgba(0,0,0,0.8);
-  color: #fff;
-  z-index: 2;
-} 
 
 
-h3{
-  color:#000000
-}
 
-/* Infinitifs */
-#infinitif{
-  display: flex;
-  justify-content:space-around;
-}
-#verberadicaux, #verbessuffixes{
-  display: block;
-    margin-inline-start: 20px; /* Horizontal Début */
-    margin-inline-end: 20px; /* Horizontal Fin */
-}
-#verberadicaux div{   
-  border: 2px solid rgba(255, 0, 0, 0);
-}
-#verbesuffixes div{
-  border: 2px solid rgba(255, 0, 255, 0);
-}
 
-p4{
-  text-align:justify;
-}
-/* Infinitifs */
 
-/* Pronoms Personnels*/
-#pronomspersonnelspp{
-  width:20%;
-  display: block;
-    margin-inline-start: 10px; /* Horizontal Début */
-    margin-inline-end: 10px; /* Horizontal Fin */
-    text-align: left;
-    font-size: 15px;
-    background-color:  rgb(248, 248, 248,0.8);
-    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px rgb(255, 0, 255); width:auto; display:table; border:10px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(248, 248, 248,0.8);
-}
-p5{
-  text-align:justify;
-}
 
-/* Pronoms Personnels*/
 
-/* Bouton Menu*/
+
+/* PARAMÈTRES SPÉCIFIQUES */
+/* ---------------------------------------------------------------- */
+
+
+
+/* Bouton Retourner au Menu*/
 #BoutonMenu{
   float: right;
   padding: 5px;
@@ -139,55 +84,153 @@ p5{
       background-color:  rgb(2486 248, 248,0.8);
        box-shadow:0 0 10px #9f00e7; border-radius:0em 0em 0em 0.5em; background-color: rgba(255, 255, 255,0.5)
 }
-
-.BoutonPurple {
-	/* style du texte */
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 1;
-	text-decoration: none;
-	color: #ffffff;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.5); /* ombre décalée de 0px à droite, 1px en haut, un flou de 0px, de couleur noir et d'opacité 50% */
-
-	/* fond dégradé pour le bouton */
-	background: -moz-linear-gradient(top, rgb(181, 0, 181), rgb(109, 0, 109)); /* Firefox */
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(181, 0, 181)), to(rgb(109, 0, 109))); /* Safari et Chrome*/
-
-	/* style général du bouton */
-	display: inline-block;
-	padding: 4px 5px 4px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
+/* Bouton Retourner au Menu*/
 
 
+
+/* Titre "Cours de Breton" */
+h1 {
+  text-align:center; 
+  color:#FF0000
 }
-/* Bouton Menu*/
+/* Titre "Cours de Breton" */
 
+/* Emoji Menu - P2 */
+p2{
+  background-color: rgb(255,175,0);
+  cursor:pointer;
+  font-size: 75%;
+  vertical-align:text-top;
+}
+/* Emoji Menu - P2 */
+
+
+/* Boutons Catégories */
+#BoutonsCatégories{
+  display: flex;
+  justify-content:left;
+}
+/* Boutons Catégories */
+
+
+
+/* Catégories */
+h2 {
+  color:#000000
+}
+/* Catégories */
+
+
+
+/* Sous-Catégories */
+h3 {
+  color:#000000
+}
+/* Sous-Catégories */
+
+
+/* Pronoms Personnels*/
+#PronomsPersonnels{
+  width:20%;
+  display: block;
+    margin-inline-start: 10px; /* Horizontal Début */
+    margin-inline-end: 10px; /* Horizontal Fin */
+    text-align: left;
+    font-size: 15px;
+    background-color:  rgb(248, 248, 248,0.8);
+    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px rgb(255, 0, 255); width:auto; display:table; border:10px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(248, 248, 248,0.8); 
+  }
+/* Pronoms Personnels*/
+
+
+
+/* Texte Surligné - P3 */
+p3 {
+  background-color: #202225;
+  color: #bcc6c0;
+}
+/* Texte Surligné - P3 */
+
+
+
+/* Verbes Irréguliers */
+#VerbesIrréguliers{
+  display: flex;
+  justify-content:space-around;
+}
+
+#Être, #Avoir, #Savoir, #Aller, #Faire{
+  width:20%; 
+  margin-inline-start: 20px; /* Pré-Espacement */
+  margin-inline-end: 20px; /* Post-Espacement */
+  text-align: center; /* Alignement du Texe */
+  font-size: 15px; /* Taille de Police 15 au lieu de 16. */
+  background-color:  rgb(248, 248, 248,0.8); /* Fond des Blocs */
+}
+
+#Être   div{border: 2px solid rgb(255, 0, 0)  ;}  /* Être - Rouge    */
+#Avoir  div{border: 2px solid rgb(255, 0, 255);}  /* Avoir - Magenta */
+#Savoir div{border: 2px solid rgb(0, 0, 255)  ;}  /* Savoir - Bleu   */
+#Aller  div{border: 2px solid rgb(0, 255, 0)  ;}  /* Aller - Vert    */
+#Faire  div{border: 2px solid rgb(255, 255, 0);}  /* Faire - Jaune   */
+/* Verbes Irréguliers */
+
+
+
+/* Infinitifs */
+#Infinitif{
+  display: flex;
+  justify-content:space-around;
+}
+/* Infinitifs */
+
+
+/* Nombres */
 .NombresZéroNeuf, .NombresDixDixDeuf, .NombresVingtQuaranteDeux, .NombresCinquanteQuatreVingtDixNeuf, .NombresCentMilliard {
-  background-color: rgba(255, 255, 255, 0.8);
-  margin: 1em 0;
-  border: 1px solid #a2a9b1;
-  border-collapse: collapse;
-  text-align: left;
+  margin: 1em 0; /* Saut de Ligne */
+  border: 1px solid #a2a9b1; /* Bordure */
+  border-collapse: collapse; /* Modèle de Bordure */
+  text-align: left; /* Alignement Texte */
 }
 
-.NombresZéroNeuf{
-  background-color: rgba(0, 0, 255,0.15);
-}
-.NombresDixDixDeuf{
-  background-color: rgba(0, 255, 0,0.15);
-}
-.NombresVingtQuaranteDeux{
-  background-color: rgba(255, 0, 0,0.15);
-}
-.NombresCinquanteQuatreVingtDixNeuf{
-  background-color: rgba(255, 255, 0,0.15);
-}
-.NombresCentMilliard{
-  background-color: rgba(255, 0, 255,0.15);
-}
+.NombresZéroNeuf{                   background-color: rgba( 0 ,  0 , 255,0.15);}
+.NombresDixDixDeuf{                 background-color: rgba( 0 , 255,  0 ,0.15);}
+.NombresVingtQuaranteDeux{          background-color: rgba(255,  0 ,  0 ,0.15);}
+.NombresCinquanteQuatreVingtDixNeuf{background-color: rgba(255, 255,  0 ,0.15);}
+.NombresCentMilliard{               background-color: rgba(255,  0 , 255,0.15);}
+/* Nombres */
 
+
+/* Quiz */
 #Quiz{
-  float: right;
-  border: 2px solid rgba(212, 33, 33, 1);
-  background-color: rgba(150, 150, 150, 0.5);
-  text-align: center;
+  float: right; /* Position */
+  border: 2px solid rgba(212, 33, 33, 1); /* Bordure */
+  background-color: rgba(150, 150, 150, 0.5); /* Couleur de Fond*/
+  text-align: center; /* Alignement Texte */
 }
+/* Quiz */
+
+
+
+/* Image Famille */
+img.Famille{
+    border: 7px solid #999999; /* Bordure */
+    float: right; /* Position */
+}
+/* Image Famille */
+
+
+/* Barre du Bas */
+#BarreDuBas {
+  position: fixed; /* Immobile */
+  bottom: 0; /* Bas de l'écran */
+  width: 100%; /* Taille à 100% */
+  height:25px; /* Extension de 25px vers le Bas */
+  padding-top: 5px; /* Extension de 5px vers le Haut */
+  text-align: center; /* Centrage Horizontal */
+  vertical-align: middle; /* Centrage Vertical */
+  background: rgba(0,0,0,0.8); /* Couleur Fond Barre */
+  color: #fff; /* Couleur Texte Barre */
+  z-index: 2;
+}
+/* Barre du Bas */
