@@ -1,0 +1,46 @@
+body {
+    background-color: rgba(255,255,255,0.8); /* Couleur de Fond */
+    color: #000000; /* Couleur Texte */
+  }
+  
+  
+  
+  html { 
+    background: url(DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+    background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+    font-size: 16px; /* Taille Texte par Défaut */
+    font-family:Arial; /* Police par Défaut */
+  }
+  
+  
+  
+  /* Sélection de Texte Violette */
+  ::selection {
+    background-color: rgb(88, 101, 242); /* Fond Violet */
+    color: rgb(255,255,255) /* Texte Blanc */
+  }
+  /* Sélection de Texte Violette */
+  
+  
+  
+  /* Barre de Scroll */
+  
+    ::-webkit-scrollbar {width: auto;}
+    /* Taille Automatique */
+  
+    ::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}
+    /* Fond Grise Clair */
+  
+    ::-webkit-scrollbar-thumb{background-image: url(Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}
+    /* Image Barre de Scroll */
+  
+    ::-webkit-scrollbar-button{background: #a8a8a8;}
+    /* Boutons Barre de Scroll */
+  
+    ::-webkit-scrollbar-corner{background: #f8f4f4}
+    /* Coin Inférieur Droit */
+  
+  /* Barre de Scroll*/
+  
+  
+#q1, #q2, #q3, #q4, #q5{height: 200px;}

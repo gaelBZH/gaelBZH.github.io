@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Épidémie - Empire Breton</title>
+    <link rel="stylesheet" href="Epidemie.css"> <!--Feuille de Style CSS-->
+    <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style Boutons-->
+    <link rel="icon" href="Icone.png"> <!--Icône du Site-->
+    <style>a { color: rgb(0, 0, 238); } /* Couleur des Liens */</style>
+
+</head>
+<body>
+  <h1><u>Aventure IV - L'Officier de Nantes</u></h1>
+  <h2><u>1) Construire le Bouclier</u></h2>
+
+  Le Virus d'Hervela a atteint son apogée ! Un Ancien Soldat Nazi membre d'une société secrète pour l'Indépendance de la Bretagne allié du Troisième Reich s'est reveillé dans un cimetière Nantais ! L'ancien officier ayant fait des études d'ingénieur chimiste, il était mort en Irlande et était sur le point de finir la construction d'une bombe chimique. Il serait en train de préparer un attentat à Nantes. Construisez une machine contrant le Gaz Chimique que dégagerait la bombe. Une fois que vous aurez évité l'attentat, retrouvez la trace de cet officier nazi breton et arrêtez le.
+
+<br><br>&nbsp;&nbsp;&nbsp;<u>Protocol Expérimental :</u><br>
+<br>&nbsp;&nbsp;&nbsp;- Verser 15mL de Liquide Bleu dans une Fiole.
+<br>&nbsp;&nbsp;&nbsp;- Verser 20 mL de Liquides Rouge et Vert de façon équilibrée.
+<br>&nbsp;&nbsp;&nbsp;- Mélanger le tout.
+<br>&nbsp;&nbsp;&nbsp;- Ajouter une cuillère à café (5mL) de Liquide Orange.
+<br>&nbsp;&nbsp;&nbsp;- Ajouter 10mL d'eau avec une pipette.
+<br><br><strong>&nbsp;&nbsp;&nbsp;Désormais, determine le pourcentage de chaque liquide anti-gaz dans la solution finale.</strong><br><br>
+<div id="Quiz1"><form name="Quiz1"><br>&nbsp;&nbsp;&nbsp;<strong style="color:blue">Liquide Bleu (%)    </strong><br>&nbsp;&nbsp;&nbsp;<input type="number" style="width:130px" min="0" max="100" name="q1" value="0">&nbsp;
+<img src="Fioles.jpg" alt="Fioles de Chimie" width="300px" style="border: 1px solid #000000; float: right;">
+<div id="Quiz2"><form name="Quiz2"><br>&nbsp;&nbsp;&nbsp;<strong style="color:green">Liquide Vert (%)   </strong><br>&nbsp;&nbsp;&nbsp;<input type="number" style="width:130px" min="0" max="100" name="q2" value="0">&nbsp;
+<div id="Quiz3"><form name="Quiz3"><br>&nbsp;&nbsp;&nbsp;<strong style="color:red">Liquide Rouge (%)    </strong><br>&nbsp;&nbsp;&nbsp;<input type="number" style="width:130px" min="0" max="100" name="q3" value="0">&nbsp;
+<div id="Quiz4"><form name="Quiz4"><br>&nbsp;&nbsp;&nbsp;<strong style="color:purple">Liquide Violet (%)</strong><br>&nbsp;&nbsp;&nbsp;<input type="number" style="width:130px" min="0" max="100" name="q4" value="0">&nbsp;
+<div id="Quiz5"><form name="Quiz5"><br>&nbsp;&nbsp;&nbsp;<strong style="color:orange">Liquide Orange (%)</strong><br>&nbsp;&nbsp;&nbsp;<input type="number" style="width:130px" min="0" max="100" name="q5" value="0">&nbsp;
+
+<br><br>&nbsp;&nbsp;&nbsp;<input type="button" value="Envoyer" onclick="myfun()"></form><br></body><!--Tricheur ;-; Essaie de trouver la réponse sans regarder le code ;)--><script type="text/javascript">function myfun(){  var v1 = document.getElementsByName('q1')[0].value; var v2 = document.getElementsByName('q2')[0].value; var v3 = document.getElementsByName('q3')[0].value; var v4 = document.getElementsByName('q4')[0].value; var v5 = document.getElementsByName('q5')[0].value;    var score=0;  if(v1==30&&v2==20&&v3==20&&v4==0&&v5==10)  {score++;}    if (score == 1) {      alert("Bravo ! Les doses de liquides sont parfaites ! Le liquide à intégrer dans la bombe chimique permettra de sauver la population Nantaise !");      document.write("Code Secret : _e_t_c'_ M_r_e_. Pour avoir le reste du Code, faites la seconde partie de l'Aventure en revenant sur la page précédente ;) (Actualise la Page)")    }   else {      alert("Raté. Les doses ne sont pas correctes. Pense bien à les mettre en pourcentage de la solution finale.");  }  }</script></div>
+
+  <h2><u>2) Localiser le lieu d'Attaque</u></h2>
+
+  &nbsp;&nbsp;&nbsp;<img src="Rébus.jpg" style="height: 7.45em; border: 1px solid #000000;">
+
+
+<div id="Quiz9">
+  <form name="Quiz9">
+    &nbsp;&nbsp;&nbsp;Résous le rébus pour trouver le lieu où se trouve l'officier nazi afin de l'arrêter et de désamorcer la bombe avec le liquide préparé précédemment et sauver Nantes !      
+<br><br>&nbsp;&nbsp;&nbsp;<i>Tout en minuscule, sans accent.<br></i>&nbsp;&nbsp;&nbsp;<input type="text" name="q9" value="Lieu">
+  
+<input type="button" value="Envoyer" onclick="myfun9()">
+</form><br>
+</body>
+<!--Tricheur ;-; Essaie de trouver la réponse sans regarder le code ;)-->
+<script type="text/javascript">
+ 
+function myfun9(){
+var v9 = document.getElementsByName('q9')[0].value;
+    
+var score9=0;
+    
+if(v9=="chateau des ducs de bretagne")  {score9++;}
+
+    
+if (score9 == 1) {
+    alert("Bravo ! Tu as trouvé le l'officier nazi et désamorcé la bombe au Château des Ducs de Bretagne !");
+    document.write("Code Secret : K_n_o_'h _e_v_l. Si tu as les deux parties du Code, envoie le code en MP à gaelBZH !;)");
+   } 
+else {
+    alert("Raté. Le lieu n'est pas correct.");
+}  
+}
+   </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br> <br> <br> <br> <br>        <i>Un problème est survenu ? Dis le nous sur le <a href="https://discord.gg/Zaw7bB2bnj">Seveur Support Discord</a></i>
+
+</body>
+</html>
