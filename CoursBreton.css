@@ -95,14 +95,14 @@ h1 {
 }
 /* Titre "Cours de Breton" */
 
-/* Emoji Menu - P2 */
+/* Ancre Menu - P2 */
 p2{
   background-color: rgb(255,175,0);
   cursor:pointer;
   font-size: 75%;
   vertical-align:text-top;
 }
-/* Emoji Menu - P2 */
+/* Ancre Menu - P2 */
 
 
 /* Boutons Catégories */
@@ -146,8 +146,8 @@ h3 {
 
 /* Texte Surligné - P3 */
 p3 {
-  background-color: #202225;
-  color: #bcc6c0;
+  background-color: rgb(255, 0, 255);
+  color: rgb(255, 255, 255);
 }
 /* Texte Surligné - P3 */
 
@@ -168,11 +168,11 @@ p3 {
   background-color:  rgb(248, 248, 248,0.8); /* Fond des Blocs */
 }
 
-#Être   div{border: 2px solid rgb(255, 0, 0)  ;}  /* Être - Rouge    */
-#Avoir  div{border: 2px solid rgb(255, 0, 255);}  /* Avoir - Magenta */
-#Savoir div{border: 2px solid rgb(0, 0, 255)  ;}  /* Savoir - Bleu   */
-#Aller  div{border: 2px solid rgb(0, 255, 0)  ;}  /* Aller - Vert    */
-#Faire  div{border: 2px solid rgb(255, 255, 0);}  /* Faire - Jaune   */
+#Être   {border: 2px solid rgb(255, 0, 0)  ;}  /* Être - Rouge    */
+#Avoir  {border: 2px solid rgb(255, 0, 255);}  /* Avoir - Magenta */
+#Savoir {border: 2px solid rgb(0, 0, 255)  ;}  /* Savoir - Bleu   */
+#Aller  {border: 2px solid rgb(0, 255, 0)  ;}  /* Aller - Vert    */
+#Faire  {border: 2px solid rgb(255, 255, 0);}  /* Faire - Jaune   */
 /* Verbes Irréguliers */
 
 
@@ -183,6 +183,15 @@ p3 {
   justify-content:space-around;
 }
 /* Infinitifs */
+
+
+
+/* Texte Multicolore - P4 */
+p4 {
+  color: rgb(6, 6, 208) /* Couleur par Défaut */
+}
+/* Texte Multicolore - P4 */
+
 
 
 /* Nombres */
