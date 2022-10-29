@@ -6,7 +6,7 @@ body {
 
 
 html { 
-  background: url(DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+  background: url(DrapeauBretonH.png) no-repeat center fixed;  /* Fond Drapeau Breton */
   background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
   font-size: 16px; /* Taille Texte par Défaut */
   font-family:Arial; /* Police par Défaut */
