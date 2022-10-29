@@ -28,13 +28,13 @@ html {
   ::-webkit-scrollbar {width: auto;}
   /* Taille Automatique */
 
-  ::-webkit-scrollbar-track-piece{rgba(226,111,55,0.8); border-radius: 50px;}
+  ::-webkit-scrollbar-track-piece{rgb(255 183 148 / 80%); border-radius: 50px;}
   /* Fond Grise Clair */
 
   ::-webkit-scrollbar-thumb{background-image: url(Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}
   /* Image Barre de Scroll */
 
-  ::-webkit-scrollbar-button{background: rgba(226,111,55,0.8);}
+  ::-webkit-scrollbar-button{background: rgb(255 183 148 / 80%);}
   /* Boutons Barre de Scroll */
 
   ::-webkit-scrollbar-corner{background: #f8f4f4}
@@ -81,7 +81,7 @@ p1 {
       margin-inline-end: 0px; /* Horizontal Fin */
       text-align: center;
       color: #fff;
-      background-color:  rgba(226,111,55,0.8);
+      background-color: rgb(255 183 148 / 80%);
        box-shadow:0 0 10px #9f00e7; border-radius:0em 0em 0em 0.5em; background-color: rgba(226,111,55,0.8))
 }
 /* Bouton Menu*/
@@ -116,14 +116,14 @@ p2 {
     text-align: center; /* Alignement des Textes des 3 Embeds */
     margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border-radius:0.5em 0.5em 0.5em 0.5em;
     border:5px solid rgb(255, 255, 255); /* Bordure Blanche */
-    background-color: rgba(226,111,55,0.8) /* Couleur de Fond */
+    background-color: rgb(255 183 148 / 80%) /* Couleur de Fond */
 }
 
 #Discord{
     color: rgb(255, 255, 255); /* Couleur Texte Empire Breton */
     font-size: 25px; /* Taille Texte Empire Breton */
     font-family: Impact; /* Police Texte Empire Breton */
-    background-color: rgb(32, 34, 37) /* Dérogation Fond Gris Discord au Lieu de Fond Blanc par défaut */
+    background-color: rgb(255 183 148 / 80%) /* Dérogation Fond Gris Discord au Lieu de Fond Blanc par défaut */
 }
 /* Embeds */
 
@@ -145,7 +145,7 @@ font-size: 24px; /* Taille du Texte */
 margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; /* Paramètres Bordure */
 margin-left: auto;
 margin-right: auto;
-background-color: rgba(226,111,55,0.8); /* Couleur de Fond */
+background-color: rgb(255 183 148 / 80%); /* Couleur de Fond */
 }
 /* Commentaires de Membres */
 
