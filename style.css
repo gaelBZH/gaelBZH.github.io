@@ -123,7 +123,7 @@ p2 {
     color: rgb(255, 255, 255); /* Couleur Texte Empire Breton */
     font-size: 25px; /* Taille Texte Empire Breton */
     font-family: Impact; /* Police Texte Empire Breton */
-    background-color: rgb(255 183 148 / 80%) /* Dérogation Fond Gris Discord au Lieu de Fond Blanc par défaut */
+    background-color: rgb(32, 34, 37) /* Dérogation Fond Gris Discord au Lieu de Fond Blanc par défaut */
 }
 /* Embeds */
 
