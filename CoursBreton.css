@@ -1,5 +1,5 @@
 body {
-  background-color: rgba(255,255,255,0.8); /* Couleur de Fond */
+  background-color: rgba(226,111,55,0.8); /* Couleur de Fond */
   color: #000000; /* Couleur Texte */
 }
 
@@ -28,7 +28,7 @@ html {
   ::-webkit-scrollbar {width: auto;}
   /* Taille Automatique */
 
-  ::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}
+  ::-webkit-scrollbar-track-piece{background: rgba(226,111,55,0.8); border-radius: 50px;}
   /* Fond Grise Clair */
 
   ::-webkit-scrollbar-thumb{background-image: url(Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}
@@ -37,7 +37,7 @@ html {
   ::-webkit-scrollbar-button{background: #a8a8a8;}
   /* Boutons Barre de Scroll */
 
-  ::-webkit-scrollbar-corner{background: #f8f4f4}
+  ::-webkit-scrollbar-corner{background: rgba(226,111,55,0.8)}
   /* Coin Inférieur Droit */
 
 /* Barre de Scroll*/
@@ -137,8 +137,8 @@ h3 {
     margin-inline-end: 10px; /* Horizontal Fin */
     text-align: left;
     font-size: 15px;
-    background-color:  rgb(248, 248, 248,0.8);
-    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px rgb(255, 0, 255); width:auto; display:table; border:10px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(248, 248, 248,0.8); 
+    background-color: rgba(226,111,55,0.8);
+    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px rgb(255, 0, 255); width:auto; display:table; border:10px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgba(226,111,55,0.8); 
   }
 /* Pronoms Personnels*/
 
@@ -146,7 +146,7 @@ h3 {
 
 /* Texte Surligné - P3 */
 p3 {
-  background-color: rgb(255, 0, 255);
+  background-color: rgb(255, 100, 200);
   color: rgb(255, 255, 255);
 }
 /* Texte Surligné - P3 */
@@ -165,7 +165,7 @@ p3 {
   margin-inline-end: 20px; /* Post-Espacement */
   text-align: center; /* Alignement du Texe */
   font-size: 15px; /* Taille de Police 15 au lieu de 16. */
-  background-color:  rgb(248, 248, 248,0.8); /* Fond des Blocs */
+  background-color:  rgba(226,111,55,0.8); /* Fond des Blocs */
 }
 
 #Être   {border: 2px solid rgb(255, 0, 0)  ;}  /* Être - Rouge    */
@@ -223,7 +223,7 @@ p4 {
 
 /* Image Famille */
 img.Famille{
-    border: 7px solid #999999; /* Bordure */
+    border: 7px solid rgba(226,111,55,0.8); /* Bordure */
     float: right; /* Position */
 }
 /* Image Famille */
