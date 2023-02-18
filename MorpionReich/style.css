@@ -1,0 +1,16 @@
+/* Compléter le code CSS ici ! */
+
+table{
+	border-collapse:collapse;	
+	background-color:silver;
+	border:5px solid silver;
+}
+
+img{
+	vertical-align:bottom;
+	
+}
+
+.BoutonBleu {font-size: 16px;font-weight: bold;line-height: 1;text-decoration: none;color: #ffffff;text-shadow: 0 -1px 0 rgba(0,0,0,0.5);background: -moz-linear-gradient(top, rgb(0, 0, 181), rgb(0, 0, 109));                            /* Firefox */background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(0, 0, 181)), to(rgb(0, 0, 109)));display: inline-block;padding: 8px 10px 8px;-moz-border-radius: 4px; /* Coins arrondis pour Firefox */-webkit-border-radius: 4px;border-radius: 4px;border-bottom: 1px solid rgba(0,0,0,0.5);-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);box-shadow: 0 1px 3px rgba(0,0,0,0.5);margin: 2px}
+.BoutonBleu:hover {background:linear-gradient(to bottom, #00006d 5%, #0000b5 100%);background-color:#00006d}
+.BoutonBleu:active{position:relative;top:1px}
