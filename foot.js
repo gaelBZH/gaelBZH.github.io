@@ -1,12 +1,12 @@
 Nation = [
-    "Bretagne", 
     "Finlande", 
     "Union Soviétique", 
-    "Ukraine", 
     "Irlande", 
-    "France", 
+    "Japon", 
+    "Ukraine", 
+    "Bretagne", 
     "Émirats Arabes Unis", 
-    "Japon"
+    "France"
 ]
 
 Gagnants= [
