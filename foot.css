@@ -1,7 +1,7 @@
 #Phases{
     background-color: rgb(41, 50, 91);
     margin: 30px;
-    width: 50%;
+    width: 45%;
     font-size: larger;
     border: 10px solid rgb(41, 50, 91);
     text-align: center;
@@ -23,8 +23,8 @@
 }
 
 #PouleA, #PouleB{
-    margin: 10px 0px 10px 150px;
-    width:15%;
+    margin: 10px 0px 10px 10px;
+    width:49%;
     text-align: center;
 }
 
@@ -66,3 +66,8 @@ h1 {
     color:#FF0000
   }
   /* Titre "Cours de Breton" */
+
+  .no{background-color: #373737;}
+  .victoire{color: green;font-weight: bold;}
+  .defaite{color: red;font-weight: bold;}
+  .nul{color: orange;font-weight: bold;}
