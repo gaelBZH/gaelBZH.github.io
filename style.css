@@ -77,13 +77,10 @@ p1 {
 #BoutonMenu{
   float: right;
   padding: 5px;
-  display: block;
-      margin-inline-end: 0px; /* Horizontal Fin */
-      text-align: center;
-      color: #fff;
-      background-color:  rgb(2486 248, 248,0.8);
-       box-shadow:0 0 10px #9f00e7; border-radius:0em 0em 0em 0.5em; background-color: rgba(255, 255, 255,0.5)
+  box-shadow:0 0 10px #9f00e7; border-radius:0em 0em 0em 0.5em; background-color: rgba(255, 255, 255,0.5)
 }
+#BoutonMenu a::selection{
+  background-color: transparent; /* Fond Violet */}
 /* Bouton Menu*/
 
 
@@ -111,13 +108,14 @@ p2 {
 
 #Discord, #Maps, #Description{
   display: block;
-    margin-inline-start: 20px; /* Horizontal Début */
-    margin-inline-end: 20px; /* Horizontal Fin */
+    margin-inline-start: 1.75%; /* Horizontal Début */
+    margin-inline-end: 1.75%; /* Horizontal Fin */
     text-align: center; /* Alignement des Textes des 3 Embeds */
     margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px #1a88e7; width:auto; display:table; border-radius:0.5em 0.5em 0.5em 0.5em;
     border:5px solid rgb(255, 255, 255); /* Bordure Blanche */
-    background-color: rgba(255, 255, 255, 0.8) /* Couleur de Fond */
-}
+    background-color: rgba(255, 255, 255, 0.8); /* Couleur de Fond */
+    font-size : 100%
+  }
 
 #Discord{
     color: rgb(255, 255, 255); /* Couleur Texte Empire Breton */
@@ -165,3 +163,4 @@ background-color: rgba(255, 255, 255, 0.8); /* Couleur de Fond */
   z-index: 2;
 }
 /* Barre du Bas */
+
