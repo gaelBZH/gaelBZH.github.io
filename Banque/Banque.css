@@ -43,6 +43,8 @@ p{
 }
 
 /* Titre Principal */
+.dixpourcent{width: 10%}
+#TitrePrincipal{width: 10%;}
 h1{
 	background-color: #030219;
 	color:rgb(230, 230, 230);
