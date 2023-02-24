@@ -1,0 +1,245 @@
+body {
+  background-color: rgba(255,255,255,0.8); /* Couleur de Fond */
+  color: #000000; /* Couleur Texte */
+}
+
+
+
+html { 
+  background: url(../Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+  background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+  font-size: 16px; /* Taille Texte par Défaut */
+  font-family:Arial; /* Police par Défaut */
+}
+
+
+
+/* Sélection de Texte Violette */
+::selection {
+  background-color: rgb(88, 101, 242); /* Fond Violet */
+  color: rgb(255,255,255) /* Texte Blanc */
+}
+/* Sélection de Texte Violette */
+
+
+
+/* Barre de Scroll */
+
+  ::-webkit-scrollbar {width: auto;}
+  /* Taille Automatique */
+
+  ::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}
+  /* Fond Grise Clair */
+
+  ::-webkit-scrollbar-thumb{background-image: url(../Images/Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}
+  /* Image Barre de Scroll */
+
+  ::-webkit-scrollbar-button{background: #a8a8a8;}
+  /* Boutons Barre de Scroll */
+
+  ::-webkit-scrollbar-corner{background: #f8f4f4}
+  /* Coin Inférieur Droit */
+
+/* Barre de Scroll*/
+
+
+
+/* Texte de la Page */
+p1 {
+  border: 1px solid rgba(0, 0, 0, 0); /* Aucune Bordure */
+    display: block;
+      margin-block-end: 50em; /* Permet de descendre encore plus bas pour voir le drapeau breton*/
+      margin-inline-start: 20px; /* Horizontal Début */
+      margin-inline-end: 20px; /* Horizontal Fin */
+}
+/* Texte de la Page */
+
+/* STYLE DES BOUTONS SUR LA FEUILLE CSS 'StyleBoutons.css' */
+
+/* ---------------------------------------------------------------- */
+/* PARAMÈTRES GÉNÉRAUX */
+
+
+
+
+
+
+
+
+
+
+/* PARAMÈTRES SPÉCIFIQUES */
+/* ---------------------------------------------------------------- */
+
+
+
+/* Bouton Retourner au Menu*/
+#BoutonMenu{
+  float: right;
+  padding: 5px;
+  display: block;
+      margin-inline-end: 0px; /* Horizontal Fin */
+      text-align: center;
+      color: #fff;
+      background-color:  rgb(2486 248, 248,0.8);
+       box-shadow:0 0 10px #9f00e7; border-radius:0em 0em 0em 0.5em; background-color: rgba(255, 255, 255,0.5)
+}
+/* Bouton Retourner au Menu*/
+
+
+
+/* Titre "Cours de Breton" */
+h1 {
+  text-align:center; 
+  color:#FF0000
+}
+/* Titre "Cours de Breton" */
+
+/* Ancre Menu - P2 */
+p2{
+  background-color: rgb(255,175,0);
+  cursor:pointer;
+  font-size: 75%;
+  vertical-align:text-top;
+}
+/* Ancre Menu - P2 */
+
+
+/* Boutons Catégories */
+#BoutonsCatégories{
+  display: flex;
+  justify-content:left;
+}
+/* Boutons Catégories */
+
+
+
+/* Catégories */
+h2 {
+  color:#000000
+}
+/* Catégories */
+
+
+
+/* Sous-Catégories */
+h3 {
+  color:#000000
+}
+/* Sous-Catégories */
+
+
+/* Pronoms Personnels*/
+#PronomsPersonnels{
+  width:20%;
+  display: block;
+    margin-inline-start: 10px; /* Horizontal Début */
+    margin-inline-end: 10px; /* Horizontal Fin */
+    text-align: left;
+    font-size: 15px;
+    background-color:  rgb(248, 248, 248,0.8);
+    margin-top:15px; margin-bottom:15px; box-shadow:0 0 10px rgb(255, 0, 255); width:auto; display:table; border:10px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; background-color: rgb(248, 248, 248,0.8); 
+  }
+/* Pronoms Personnels*/
+
+
+
+/* Texte Surligné - P3 */
+p3 {
+  background-color: rgb(255, 30, 0);;
+  color: rgb(255, 255, 255);
+}
+/* Texte Surligné - P3 */
+
+
+
+/* Verbes Irréguliers */
+#VerbesIrréguliers{
+  display: flex;
+  justify-content:space-around;
+}
+
+#Être, #Avoir, #Savoir, #Aller, #Faire{
+  width:20%; 
+  margin-inline-start: 20px; /* Pré-Espacement */
+  margin-inline-end: 20px; /* Post-Espacement */
+  text-align: center; /* Alignement du Texe */
+  font-size: 15px; /* Taille de Police 15 au lieu de 16. */
+  background-color:  rgb(248, 248, 248,0.8); /* Fond des Blocs */
+}
+
+#Être   {border: 2px solid rgb(255, 0, 0)  ;}  /* Être - Rouge    */
+#Avoir  {border: 2px solid rgb(255, 0, 255);}  /* Avoir - Magenta */
+#Savoir {border: 2px solid rgb(0, 0, 255)  ;}  /* Savoir - Bleu   */
+#Aller  {border: 2px solid rgb(0, 255, 0)  ;}  /* Aller - Vert    */
+#Faire  {border: 2px solid rgb(255, 255, 0);}  /* Faire - Jaune   */
+/* Verbes Irréguliers */
+
+
+
+/* Infinitifs */
+#Infinitif{
+  display: flex;
+  justify-content:space-around;
+}
+/* Infinitifs */
+
+
+
+/* Texte Multicolore - P4 */
+p4 {
+  color: rgb(6, 6, 208) /* Couleur par Défaut */
+}
+/* Texte Multicolore - P4 */
+
+
+
+/* Nombres */
+.NombresZéroNeuf, .NombresDixDixDeuf, .NombresVingtQuaranteDeux, .NombresCinquanteQuatreVingtDixNeuf, .NombresCentMilliard {
+  margin: 1em 0; /* Saut de Ligne */
+  border: 1px solid #a2a9b1; /* Bordure */
+  border-collapse: collapse; /* Modèle de Bordure */
+  text-align: left; /* Alignement Texte */
+}
+
+.NombresZéroNeuf{                   background-color: rgba( 0 ,  0 , 255,0.15);}
+.NombresDixDixDeuf{                 background-color: rgba( 0 , 255,  0 ,0.15);}
+.NombresVingtQuaranteDeux{          background-color: rgba(255,  0 ,  0 ,0.15);}
+.NombresCinquanteQuatreVingtDixNeuf{background-color: rgba(255, 255,  0 ,0.15);}
+.NombresCentMilliard{               background-color: rgba(255,  0 , 255,0.15);}
+/* Nombres */
+
+
+/* Quiz */
+#Quiz{
+  float: right; /* Position */
+  border: 2px solid rgba(212, 33, 33, 1); /* Bordure */
+  background-color: rgba(150, 150, 150, 0.5); /* Couleur de Fond*/
+  text-align: center; /* Alignement Texte */
+}
+/* Quiz */
+
+
+
+/* Image Famille */
+img.Famille{
+    border: 7px solid #999999; /* Bordure */
+    float: right; /* Position */
+}
+/* Image Famille */
+
+
+/* Barre du Bas */
+#BarreDuBas {
+  position: fixed; /* Immobile */
+  bottom: 0; /* Bas de l'écran */
+  width: 100%; /* Taille à 100% */
+  height:25px; /* Extension de 25px vers le Bas */
+  padding-top: 5px; /* Extension de 5px vers le Haut */
+  text-align: center; /* Centrage Horizontal */
+  vertical-align: middle; /* Centrage Vertical */
+  background: rgba(0,0,0,0.8); /* Couleur Fond Barre */
+  color: #fff; /* Couleur Texte Barre */
+  z-index: 2;
+}
+/* Barre du Bas */
