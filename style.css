@@ -1,0 +1,167 @@
+html{
+	background-color : #030219;background: url(Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+	font-size: 100%; /* Taille Texte par Défaut */
+	font-family:Arial; /* Police par Défaut */
+}
+
+/* Corps de la Page */
+body{
+	/*background-color: rgba(255, 255, 255, 0.8);*/
+	background-image: linear-gradient(rgba(200,200,200,0.9),rgba(198, 198, 198, 0.9) ), url("");
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 50%;
+	border: 3px solid #EEEEEE;
+}
+
+/* Sélection de Texte Violette */
+::selection {
+	background-color: rgb(88, 101, 242); /* Fond Violet */
+	color: rgb(255,255,255) /* Texte Blanc */
+  }
+  /* Sélection de Texte Violette */
+  
+  
+  
+/* Barre de Scroll */
+	::-webkit-scrollbar {width: auto;}					 /* Taille Automatique */
+	::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}	/* Fond Grise Clair */
+	::-webkit-scrollbar-thumb{background-image: url(Images/Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}	/* Image Barre de Scroll */
+	::-webkit-scrollbar-button{background: #a8a8a8;}	/* Boutons Barre de Scroll */
+	::-webkit-scrollbar-corner{background: #f8f4f4}	/* Coin Inférieur Droit */
+/* Barre de Scroll*/
+
+/* Texte de la Page */
+p{
+	color:#111111;
+	padding: 5px;
+}
+
+/* Titre Principal */
+.dixpourcent{width: 10%}
+#TitrePrincipal{width: 10%;}
+h1{
+	background-color: #a13e3c;
+	color:rgb(230, 230, 230);
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Texte de la Page */
+p{
+	color:#111111;
+	padding: 5px;
+}
+
+/* Sous-Titre Principal*/
+h2{
+	background-color:rgba(230, 230, 230,0.5);
+    color: #030219;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+/* Style Partie des Liens */
+#LiensUtiles{
+	border-style: solid none;
+	background-color: rgba(0, 0, 0, 0.1);
+	margin: 5px 5px 10px 5px;
+}
+
+/* Couleur des Liens */
+#LiensUtiles a{color:rgb(0, 0, 113)}
+#LiensUtiles a:visited{color:rgb(0, 0, 113)}
+#LiensUtiles a:hover {color:green}
+
+/* Alignement Images */
+tr{text-align: right}
+td{width : 33%;text-align :center}
+
+#Flamme{width: 100%}
+.Tiers{width: 33%;}
+.DeuxTiers{width: 67%;}
+#LiensUtiles td{color: black;text-align: left;}
+
+#Discord, #Maps, #Description{
+	box-shadow:0 0 10px #1a88e7;
+	border:5px solid rgb(255, 255, 255); /* Bordure Blanche */
+    background-color: rgba(250, 250, 250, 0.8); /* Couleur de Fond */
+	border-radius:0.5em 0.5em 0.5em 0.5em;
+	margin: 5px;
+}
+
+
+#Discord{
+    color: rgb(255, 255, 255); /* Couleur Texte Empire Breton */
+    font-size: 25px; /* Taille Texte Empire Breton */
+    font-family: Impact; /* Police Texte Empire Breton */
+    background-color: rgb(32, 34, 37); /* Dérogation Fond Gris Discord au Lieu de Fond Blanc par défaut */
+	
+}
+
+#Embeds{padding: 10px;}
+#Description{font-size:92% ; padding: 5px;}
+/* Navigation */
+#BoutonsNavigation{
+  display: flex;
+  justify-content:space-around;
+}
+/* Navigation */
+
+
+/* Commentaires de Membres */
+#Commentaire{
+	text-align: center; /* Texte Centré */
+	font-size: 24px; /* Taille du Texte */
+	margin-top:15px;
+	margin-bottom:15px;
+	box-shadow:0 0 10px #1a88e7; width:auto; display:table; border:5px solid rgb(248, 248, 248,0);; border-radius:0.5em 0.5em 0.5em 0.5em; /* Paramètres Bordure */
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(255, 255, 255, 0.8);; /* Couleur de Fond */
+	}
+	/* Commentaires de Membres */
+	#Commentaire p{padding: 0;margin-top: 3px;margin-bottom: 0;}
+	
+	
+	/* Barre du Bas */
+	#BarreDuBas {
+	  position: fixed; /* Immobile */
+	  bottom: 0; /* Bas de l'écran */
+	  width: 100%; /* Taille à 100% */
+	  height:25px; /* Extension de 25px vers le Bas */
+	  padding-top: 5px; /* Extension de 5px vers le Haut */
+	  text-align: center; /* Centrage Horizontal */
+	  vertical-align: middle; /* Centrage Vertical */
+	  background: rgba(0,0,0,0.8); /* Couleur Fond Barre */
+	  color: #fff; /* Couleur Texte Barre */
+	  z-index: 2;
+	}
+	/* Barre du Bas */
+	
+	/* Bouton Menu*/
+#BoutonMenu{
+	float: right;
+	padding: 5px;
+	box-shadow:0 0 10px rgb(231, 159, 159); border-radius:0em 0em 0em 0.5em; background-color: rgba(255, 255, 255,0.5)
+  }
+#BoutonMenu::selection{
+	background-color: transparent; /* Fond Violet */}
+  /* Bouton Menu*/
+
+  #IndicateurDirect{
+	margin:0px 0px 20px 20px;
+}
+
+#IndicateurDirect p{color:#000000}
+
+#Actualisation{
+	background-color: silver;
+	width: 35px;
+	cursor: pointer;
+}
+button img{width: 120%;vertical-align: bottom;}
+#AuteurCitation{font-style: italic;}
