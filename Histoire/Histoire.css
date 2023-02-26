@@ -1,0 +1,120 @@
+html{
+	background-color : #030219;background: url(../Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+	font-size: 100%; /* Taille Texte par Défaut */
+	font-family:Arial; /* Police par Défaut */
+}
+
+/* Corps de la Page */
+body{
+	background-image: linear-gradient(rgba(200,200,255,0.9),rgba(95, 95, 198, 0.9) ), url("");
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid #EEEEEE;
+}
+
+/* Sélection de Texte Violette */
+::selection {
+	background-color: rgb(88, 101, 242); /* Fond Violet */
+	color: rgb(255,255,255) /* Texte Blanc */
+  }
+  /* Sélection de Texte Violette */
+  
+  
+  
+/* Barre de Scroll */
+	::-webkit-scrollbar {width: auto;}					 /* Taille Automatique */
+	::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}	/* Fond Grise Clair */
+	::-webkit-scrollbar-thumb{background-image: url(../Images/Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}	/* Image Barre de Scroll */
+	::-webkit-scrollbar-button{background: #a8a8a8;}	/* Boutons Barre de Scroll */
+	::-webkit-scrollbar-corner{background: #f8f4f4}	/* Coin Inférieur Droit */
+/* Barre de Scroll*/
+
+
+
+
+
+
+
+
+
+
+/* Titre Principal */
+.dixpourcent{width: 10%}
+#TitrePrincipal{width: 10%;}
+h1{
+	
+	background-color: #00004c;
+	color:rgb(230, 230, 230);
+	font-weight: bold;
+	
+	text-align: center;
+}
+/* Titre Principal */
+
+/* Sous-Titre Principal*/
+h2{
+	background-color:rgba(230, 230, 230,0.5);
+    color: #030219;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+/* Style des Grandes Parties */
+#Partie{
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 5px solid #000064;
+	padding: 5px 5px 40px 5px;
+	margin: 5px 15px 40px 15px;
+}
+/* Style des Grandes Parties */
+
+
+/* Titres de Parties */
+.TitrePartie{font-weight: bold;text-align: left;font-size: 1.17em;}
+
+
+
+/* Texte de la Page */
+.text{
+	color:#111111;
+	padding: 5px;
+	text-decoration: none;
+	text-align: center;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* Texte de la Page */
+
+
+
+/* Images */
+.image{text-align: center}
+#AnneDeBretagne{	width: 25%}
+#Royaume{			width: 35%}
+#Guerre{			width: 35%;}
+#Armoiries{width:35%}
+.loupe {transition: transform .2s}
+.loupe:hover{transform: scale(1.1)}
+/* Images */
+
+
+
+/* Style de la Partie des Liens */
+#LiensUtiles{
+	border-style: solid none;
+	background-color: rgba(0, 0, 0, 0.1);
+	margin: 5px 5px 10px 5px;
+}
+#Flamme{width: 100%}
+.Tiers{width: 33%;}
+.DeuxTiers{width: 67%;}
+#LiensUtiles td{color: black;text-align: left;}
+
+/* Couleur des Liens */
+#Partie a			, #LiensUtiles a			{color:rgb(0, 0, 113)}
+#Partie a:visited	, #LiensUtiles a:visited	{color:rgb(0, 0, 113)}
+#Partie a:hover 	, #LiensUtiles a:hover 	{color:green}
+/* Style de la Partie des Liens */
