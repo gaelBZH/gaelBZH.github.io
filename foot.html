@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupe des Nations 🏆</title>
+    <link rel="stylesheet" href="foot.css"> <!--Feuille de Style CSS-->
+    <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
+    <script>Nation = [
+        "Finlande", 
+        "Russie", 
+        "Irlande", 
+        "Japon", 
+        "Ukraine", 
+        "Bretagne", 
+        "Émirats Arabes Unis", 
+        "France"
+    ]
+    
+    Gagnants= [
+        "Finlande", 
+        "Bretagne", 
+        "Ukraine", 
+        "Russie"
+    ]
+    Finale=[
+    "Vainqueur Demi-Finale A", 
+    "Vainqueur Demi-Finale B",
+    "Vainqueur Finale"
+    ]</script>
+<style>
+#Phases{
+    background-color: rgb(41, 50, 91);
+    margin: 30px;
+    width: 45%;
+    font-size: larger;
+    border: 10px solid rgb(41, 50, 91);
+    text-align: center;
+    float: right;
+
+}
+
+
+#Phases td{padding: 10px 50px 10px 20px;}
+.case{background-color: rgb(132, 199, 132);width: 50%;}
+.casehead{background-color: rgb(86, 156, 86);width: 50%;vertical-align: bottom;}
+
+#PouleA{
+    background-color: rgba(0, 0, 255, 0.5);
+
+}
+
+#PouleB{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#PouleA, #PouleB{
+    margin: 10px 0px 10px 10px;
+    width:49%;
+    text-align: center;
+}
+
+th{padding-bottom: 10px;}
+
+#Gagnant{text-align: center;background-color: gold;width: 75%;margin: auto;}
+
+/* Fond de la Page */
+html{
+	background-color : #030219;background: url(../Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+	font-size: 100%; /* Taille Texte par Défaut */
+	font-family:Arial; /* Police par Défaut */
+}
+
+/* Corps de la Page */
+body{
+	/*background-color: rgba(255, 255, 255, 0.8);*/
+	background-image: linear-gradient(rgba(200,200,255,0.9),rgba(95, 95, 198, 0.9) ), url("");
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid #EEEEEE;
+}
+
+
+/* Sélection de Texte Violette */
+::selection {
+    background-color: rgb(88, 101, 242); /* Fond Violet */
+    color: rgb(255,255,255) /* Texte Blanc */
+  }
+  /* Sélection de Texte Violette */
+
+  
+/* Titre "Cours de Breton" */
+h1 {
+    text-align:center; font-style: bold;
+    color:#FF0000
+  }
+  /* Titre "Cours de Breton" */
+
+  .no{background-color: #373737;}
+  .victoire{background-color: rgb(0, 176, 0);font-weight: bold;}
+  .defaite{background-color: red;font-weight: bold;}
+  .nul{background-color: orange;font-weight: bold;}
+  
+  .premierpoule{color: gold;font-weight: bold;}
+  .secondpoule{color: silver;font-weight: bold;}
+</style>
+
+
+</head>
+<body>
+<h1><strong><u>Coupe des Nations 🏆⚽️</u></strong></h1>
+    <table id="Phases"><tbody>
+        <th class="casehead">Demi-Finale A</th>
+        <tr>
+            <td class="case"><script>document.write(Gagnants[0])</script></td>
+        </tr>
+        <tr>
+            <td class="case"><script>document.write(Gagnants[1])</script></td>
+        </tr>
+        <tr>
+            <td><br></td><th class="casehead">Finale</th>
+        <tr>
+            <td><br></td>   <td class="case">Vainqueur Demi-Finale A</td>
+        </tr>
+        <tr>
+            <td><br></td>   <td class="case">Vainqueur Demi-Finale B</td>
+        </tr>
+        <th class="casehead">Demi-Finale B</th>
+        <tr>
+            <td class="case"><script>document.write(Gagnants[2])</script></td>
+        </tr>
+        <tr>
+            <td class="case"><script>document.write(Gagnants[3])</script></td>
+        </tr>
+    </tbody>
+    </table>
+<br><br><br>
+    
+    <table id="PouleA">
+        <tr>
+          <th><strong>Poule A</strong></th>
+          <th>Match 1</th>
+          <th>Match 2</th>
+          <th>Match 3</th>
+          <th>Match 4</th>
+          <th>Match 5</th>
+          <th>Match 6</th>
+          <th>Points</th>
+
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[0])</script></td>
+          <td class="victoire">2-1</td>
+          <td class="no"></td>
+          <td class="victoire">1-0</td>
+          <td class="no"></td>
+          <td class="defaite">0-1</td>
+          <td class="no"></td>
+          <td class="premierpoule">6</td>
+        </tr>
+  
+        <tr>
+          <td><script>document.write(Nation[1])</script></td>
+          <td class="defaite">2-1</td>
+          <td class="no"></td>
+          <td class="no"></td>
+          <td class="victoire">3-2</td>
+          <td class="no"></td>
+          <td class="victoire">3-1</td>
+          <td class="secondpoule">6</td>
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[2])</script></td>
+            <td class="no"></td>
+            <td class="victoire">3-0</td>
+            <td class="defaite">1-0</td>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="defaite">3-1</td>
+            <td>3</td>
+
+        </tr>
+          <tr>
+            <td><script>document.write(Nation[3])</script></td>
+            <td class="no"></td>
+            <td class="defaite">3-0</td>
+            <td class="no"></td>
+            <td class="defaite">3-2</td>
+            <td class="victoire">0-1</td>
+            <td class="no"></td>
+            <td>3</td>
+        </tr>
+      </table>
+<br><br>
+      <table id="PouleB">
+        <tr>
+            <th><strong>Poule B</strong></th>
+            <th>Match 1</th>
+            <th>Match 2</th>
+            <th>Match 3</th>
+            <th>Match 4</th>
+            <th>Match 5</th>
+            <th>Match 6</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[4])</script></td>
+            <td class="victoire">2-0</td>
+            <td class="no"></td>
+            <td class="victoire">1-0</td>
+            <td class="no"></td>
+            <td class="defaite">1-3</td>
+            <td class="no"></td>
+            <td class="premierpoule">6</td>
+        </tr>
+  
+        <tr>
+          <td><script>document.write(Nation[5])</script></td>
+          <td class="defaite">2-0</td>
+          <td class="no"></td>
+          <td class="no"></td>
+          <td class="victoire">2-0</td>
+          <td class="no"></td>
+          <td class="victoire">2-0</td>
+          <td class="secondpoule">6</td>
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[6])</script></td>
+            <td class="no"></td>
+            <td class="nul">0-0</td>
+            <td class="defaite">1-0</td>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td class="defaite">2-0</td>
+            <td>1</td>
+
+        </tr>
+          <tr>
+            <td><script>document.write(Nation[7])</script></td>
+            <td class="no"></td>
+            <td class="nul">0-0</td>
+            <td class="no"></td>
+            <td class="defaite">2-0</td>
+            <td class="victoire">1-3</td>
+            <td class="no"></td>
+            <td>4</td>
+        </tr>
+      </table>
+      <br><br><br><br><br><br><br><br>
+
+<div id="Gagnant">
+    <img src="https://gaelbzh.github.io/Coupe.png" alt="Coupe du Monde" width="20%"><br>
+    <strong style="font-size: larger;"><script>document.write(Finale[2])</script></strong>
+</div>
+
+</body>
+</html>
