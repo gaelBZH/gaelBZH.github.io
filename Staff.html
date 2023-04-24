@@ -9,6 +9,24 @@
     <link rel="stylesheet" href="Staff/Staff.css"> <!--Feuille de Style CSS-->
     <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style CSS-->
     <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
+    <script>
+        function playpause()
+        {
+            let element = document.getElementById("Admin1");
+
+            if (element.src.includes("png") == true)
+            {
+                element.src = element.src.replace("png", "gif");
+                LinkAdmin1.href="Staff/gaelBZH.gif"
+            }
+
+            else
+            { 
+                element.src = element.src.replace("gif", "png");
+                LinkAdmin1.href="Staff/gaelBZH.png"
+            }
+        }
+    </script>
 </head>
 <body>
     <h1><table style="margin: auto;"><tbody><tr>
@@ -31,16 +49,16 @@
             </p>
 
             <table><tbody><tr>
-                <td><strong>gaelBZH</strong><br><small style="font-size: 75%">gaelBZH<code>#0060</code></small></td>
-                <td><strong>Yukilo</strong><br><small style="font-size: 75%">yukilo<code>#1130</code></small></td>
+                <td><strong>gaelBZH</strong> <button onclick="playpause()" style="background-color: #354E98 ;"><img alt="Play Pause" src="Staff/PlayPause.png" id="PlayPause"></button><br><small style="font-size: 75%">gaelBZH<code>#0060</code></small></td>
+                <td><strong>Yukilo</strong><br><small style="font-size: 75%">yukilo<code>#4691</code></small></td>
             </tr><tr>
-                <td><a target="_blank" href="Staff/gaelBZH.png"><img id="Admin1" class="loupe" src="Staff/gaelBZH.png" alt="gaelBZH"></a></td>
+                <td><a id="LinkAdmin1" target="_blank" href="Staff/gaelBZH.png"><img id="Admin1" class="loupe" src="Staff/gaelBZH.png" alt="gaelBZH"></a></td>
                 <td><a target="_blank" href="Staff/yukilo.png"><img  id="Admin2" class="loupe" src="Staff/yukilo.png"  alt="yukilo"> </a></td>
             </tr><tr>
                 <td><font color="#ff0000">@Empereur 🚨</font></td>
                 <td><font color="#ff200d">@Duc de Bretagne 🚨</font></td>
             </tr><tr>
-                <td><a target="_blank" href="https://discord.gg/Zaw7bB2bnj"><img alt="LogoDiscord" class="Logo" src="Staff/Discord.png"></a>&nbsp;<a target="_blank" href="https://www.instagram.com/gaelbzh42/"><img alt="LogoInstagram" class="Logo" src="Staff/Instagram.png"></a></td>
+                <td><a target="_blank" href="https://discord.gg/Zaw7bB2bnj"><img alt="LogoDiscord" class="Logo" src="Staff/Discord.png"></a>&nbsp;<a target="_blank" href="https://www.instagram.com/gaelbzh42/"><img alt="LogoInstagram" class="Logo" src="Staff/Instagram.png"></a>&nbsp;<a target="_blank" href="https://twitter.com/gaelBZH29"><img alt="LogoTwitter" class="Logo" src="Staff/Twitter.jpg"></a></td>
                 <td><a target="_blank" href="https://discord.gg/Zaw7bB2bnj"><img alt="LogoDiscord" class="Logo" src="Staff/Discord.png"></a></td>
             </tr></tbody></table>
             <br><br>
