@@ -7,7 +7,6 @@ html{
 
 /* Corps de la Page */
 body{
-	/*background-color: rgba(255, 255, 255, 0.8);*/
 	background-image: linear-gradient(rgba(200,200,255,0.9),rgba(95, 95, 198, 0.9) ), url("");
 	width: 90%;
 	margin: auto;
@@ -21,10 +20,8 @@ body{
 	background-color: rgb(88, 101, 242); /* Fond Violet */
 	color: rgb(255,255,255) /* Texte Blanc */
   }
-  /* Sélection de Texte Violette */
-  
-  
-  
+/* Sélection de Texte Violette */
+
 /* Barre de Scroll */
 	::-webkit-scrollbar {width: auto;}					 /* Taille Automatique */
 	::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}	/* Fond Grise Clair */
@@ -33,11 +30,7 @@ body{
 	::-webkit-scrollbar-corner{background: #f8f4f4}	/* Coin Inférieur Droit */
 /* Barre de Scroll*/
 
-/* Texte de la Page */
-p{
-	color:#111111;
-	padding: 5px;
-}
+
 
 /* Titre Principal */
 .dixpourcent{width: 10%}
@@ -49,12 +42,6 @@ h1{
 	text-align: center;
 }
 
-/* Texte de la Page */
-p{
-	color:#111111;
-	padding: 5px;
-}
-
 /* Sous-Titre Principal*/
 h2{
 	background-color:rgba(230, 230, 230,0.5);
@@ -63,82 +50,104 @@ h2{
 	text-align: center;
 }
 
+/* Texte de la Page */
+p{
+	color:#111111;
+	padding: 5px;
+}
 
 /* Styles des Grandes Parties */
 .Partie{
 	background-color: rgba(0, 0, 0, 0.1);
 	border: 5px solid #000064;
 	margin: 5px 5px 40px 5px;
+	padding: 5px 10px 20px 10px;
+
 }
 
 /* Titres de Parties */
 .TitrePartie{font-weight: bold;}
 
-/* Effet de Loupe */
-.loupe {
-	transition: transform .2s; /* Animation */
-	width: 90%;
-  }
-  
-.loupe:hover {
-	transform: scale(1.1); /* Zoom 125% */
-  }
+/* Effet de Loupe (115%) */
+.loupe{transition: transform .2s}
+.loupe:hover{transform: scale(1.15)}
 
-/* Style Partie des Liens */
+/* Style Partie des Liens et Couleur des Liens */
 #LiensUtiles{
 	border-style: solid none;
 	background-color: rgba(0, 0, 0, 0.1);
 	margin: 5px 5px 10px 5px;
-}
-
-/* Couleur des Liens */
+	padding: 0 10px 0 10px;}
 #LiensUtiles a{color:rgb(0, 0, 113)}
 #LiensUtiles a:visited{color:rgb(0, 0, 113)}
 #LiensUtiles a:hover {color:green}
-
-/* Alignement Images */
-tr{text-align: right}
-td{width : 33%;text-align :center}
-
+#LiensUtiles td{text-align: left;}
+.Tiers{width: 33%}
+.DeuxTiers{width: 67%}
 #Flamme{width: 100%}
-.Tiers{width: 33%;}
-.DeuxTiers{width: 67%;}
-#LiensUtiles td{color: black;text-align: left;}
+
+/* Alignement Images (Max=100)*/
+td{width : 1%;text-align :center}
+
+
+
+
 
 /* GUERRE DE BRETAGNE */
-#DrapeauBZH, #Carte, #DrapeauFR	{width : 80%;}
-#DrapeauSERG, #DrapeauANG		{width: 25px}
-#DrapeauRCA						{width: 15px}
-#Anne, #Max						{width : 60%;}
-#Carte1488						{width: 100%;}
-#CarteBreizh					{width: 50%;}
+#guerrebzh_DrapeauBZH	{width: 80% }
+#guerrebzh_Carte		{width: 80% }
+#guerrebzh_DrapeauFR	{width: 80% }
+#guerrebzh_DrapeauSERG	{width: 25px}
+#guerrebzh_DrapeauANG	{width: 25px}
+#guerrebzh_DrapeauRCA	{width: 15px}
+#guerrebzh_Anne			{width: 60% }
+#guerrebzh_Max			{width: 60% }
+#guerrebzh_Carte1488	{width: 100%}
+#guerrebzh_CarteBreizh	{width: 40% }
 
 /* ANNE DE BRETAGNE */
-#DrapeauNantes  {width: 90%;} 
-#Écusson        {width: 70%;} 
-#Anne			{width : 60%;}
-#Maximilien     {width: 80%;}
-#Europe 		{width: 69%;}
-#CarteBreizh	{width: 35%;}
-#DrapeauRCA		{width: 15px}
+#anne_DrapeauNantes  {width: 90% } 
+#anne_Écusson        {width: 70% } 
+#anne_Anne			 {width: 60% }
+#anne_Maximilien     {width: 80% }
+#anne_Europe 		 {width: 69% }
+#anne_CarteBreizh	 {width: 35% }
+#anne_DrapeauRCA	 {width: 15px}
 
 /* DUCHÉ DE BRETAGNE */
-#Armoiries{width: 90%;}
-#AlainII{width: 50%;}
-#Vikings{width: 100%;}
-#JeanDeMonfort{width: 65%;}
-#GuerreDeBretagne{width: 30%;}
+#duche_DrapeauBretagne	{width: 80%	}
+#duche_Carte			{width: 80%	}
+#duche_Armoiries		{width: 90%	}
+#duche_AlainII			{width: 50%	}
+#duche_Vikings			{width: 100%}
+#duche_JeanDeMonfort	{width: 65%	}
+#duche_GuerreDeBretagne	{width: 30%	}
 
 /* ROYAUME DE BRETAGNE */
-#Nominoe{width: 55%;}
-#Espiroe{width: 35%;}
-#AlainI {width: 50%;}
-#Nominoe2{width: 65%;}
-#Marches{width: 100%;}
-#Dol{width: 70%;}
-#Salomon{width: 90%;}
-#CarteRoyaume{width: 75%;}
-#Blason{width: 60%;}
+#royaume_Nominoe		{width: 65% }
+#royaume_Erispoe		{width: 100%}
+#royaume_AlainI 		{width: 50% }
+#royaume_Nominoe2		{width: 65% }
+#royaume_Marches		{width: 100%}
+#royaume_Dol			{width: 70% }
+#royaume_Salomon		{width: 90% }
+#royaume_CarteRoyaume	{width: 75% }
+#royaume_Blason			{width: 60% }
+
+/* NOMINOË */
+#nominoe_Vannes				{width: 60% }
+#nominoe_Nominoe			{width: 55% }
+#nominoe_BlasonBreton		{width: 60% }
+#nominoe_Marche				{width: 100%}
+#nominoe_Dolois				{width: 60% }
+#nominoe_Quimper			{width: 60% }
+#nominoe_BlasonRennes		{width: 60% }
+#nominoe_BlasonNantes		{width: 60% }
+#nominoe_CarteNominoeMarches{width: 100%}
+
+
+
+
 
 /* Barre du Bas */
 #BarreDuBas {
@@ -149,5 +158,5 @@ td{width : 33%;text-align :center}
 	text-align: center; /* Centrage Horizontal */
 	vertical-align: middle; /* Centrage Vertical */
 	background: rgba(0, 0, 10, 0.8); /* Couleur Fond Barre */
-  }
-  /* Barre du Bas */
+}
+/* Barre du Bas */
