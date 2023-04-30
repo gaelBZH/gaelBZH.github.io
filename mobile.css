@@ -1,0 +1,20 @@
+@media only screen and (max-width: 1000px) {
+  
+
+    #ListeChapitres td, .Partie td, #Boutique td, #LiensUtiles td {
+        display: block;
+		width: 95%;
+    }
+	#Embeds td{    margin: 5% 0 5% 0;}
+	#BoutonsNavigation td{    margin: -30px 0;width: 100%;}
+    #Commentaire{    margin: 30px 10px 0 10px;width: 90%;}
+	.Partie td[data-th]:before  {
+        content: attr(data-th);
+    }
+	#Flamme{margin-top: 5%;}
+	p2{font-size: 0.9em;}
+    #IndicateurDirect, #Bourse{width: 90%;}
+    #ListeChapitres td{    margin: auto auto 60px auto;
+    }
+    #ListeChapitres td img{width: 95%;}
+}
