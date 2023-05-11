@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff - Empire Breton</title> <!--Titre de la Page-->
-    <link rel="stylesheet" href="Staff/Staff.css"> <!--Feuille de Style CSS-->
+    <link rel="stylesheet" href="ssb.css"> <!--Feuille de Style CSS-->
     <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style CSS-->
     <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
     <script>function passwordshow() {
@@ -20,15 +20,22 @@
       function verifiermdp(){
         let x = document.getElementById("password");
         let y = document.getElementById("boutonacces");
+        let z = "motdepassessb"
         x.style.color = "white";
-        if (x.value === "motdepassessb") {
+        if (x.value == z) {
             x.style.backgroundColor = "green";
             y.disabled = false;
+            x.readOnly = true;
         } else {
           x.style.backgroundColor = "red";
           y.disabled = true;
         }
-      }</script>
+      }
+      function afficherpage(){
+        document.getElementById("verrouille").open = true;
+
+      }
+      </script>
 </head>
 <body>
     <h1><table style="margin: auto;"><tbody><tr>
@@ -38,10 +45,18 @@
     </tr></tbody></table></h1>
     <h2><i>Bienvenue en Bretagne • Degemer mat e Breizh</i></h2>
     
-    <label for="pass">Password :</label><br>
-    <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()"><button onclick="php()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button><br>
-    <input type="checkbox" onclick="<php include ('script.php '); ?>">Show Password<br>
-    
+    <label for="pass">Mot de Passe :</label><br>
+    <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
+    <input type="checkbox" onclick="passwordshow()">Afficher le Mot de Passe<br>
+    <button onclick="afficherpage()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button>
+
+    <details class="verrou" id="verrouille" disabled>
+        <summary style="color: transparent;" tabindex="-1"></summary>
+    Bonjour
+    </details>
+      
+   
+      
 
     <!--Liens Utiles-->
     <div id="LiensUtiles">
