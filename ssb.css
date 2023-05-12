@@ -1,11 +1,4 @@
 
-        .verrou[disabled] summary,
-        .verrou.disabled summary {
-          pointer-events: none; /* prevents click events */
-          user-select: none; /* prevents text selection */
-        }
-      
-        /* Fond de la Page */
 html{
 	background-color : #030219;background: url(Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
 	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
