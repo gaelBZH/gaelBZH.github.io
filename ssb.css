@@ -15,7 +15,7 @@ html{
 
 /* Corps de la Page */
 body{
-	background-image: linear-gradient(rgba(186, 157, 184, 0.9),rgba(196, 87, 189, 0.9) ), url("");
+	background-image: linear-gradient(rgba(179, 206, 215, 0.9),rgba(115, 167, 174, 0.9) ), url("");
 	width: 90%;
 	margin: auto;
 	margin-top: 20px;
@@ -53,7 +53,7 @@ p{
 .dixpourcent{width: 10%}
 #TitrePrincipal{width: 10%;}
 h1{
-	background-color: #920097;
+	background-color: #0d535e;
 	color:rgb(230, 230, 230);
 	font-weight: bold;
 	text-align: center;
@@ -76,6 +76,18 @@ h2{
 
 /* Titres de Parties */
 .TitrePartie{font-weight: bold;font-size: 120%;}
+
+#PartieMotDePasse{
+	background-color: rgba(3, 4, 31, 0.25);
+	margin-right:60%;
+	margin-left: 1%;
+	text-align: left;
+	padding: 1% 2%;
+	border: #030219 1px solid;
+}
+
+
+#Logo{width: 100%;text-align: right;}
 
 /* Style Partie des Liens */
 #LiensUtiles{
@@ -100,15 +112,6 @@ h2{
 	opacity: 95%;
 }
 
-/* Styles Tableaux */
-table{margin-bottom: 30px}
-td{width : 25%;text-align :center;color:#e0e1e5} /* Centrer Éléments */
-.Partie td img{border-radius: 50%;width: 40%;}
-.Partie table{background-color: rgba(72, 72, 72, 0.4);margin: 0 3%;}
-.Partie .Logo{width: 30px;}
-#PlayPause{width: 30px;}
-.Partie #Admin1, .Partie #Admin2{width: 30%;}
-
 /* Effet de Loupe */
 .loupe {
 	transition: transform .2s; /* Animation */
@@ -121,19 +124,7 @@ td{width : 25%;text-align :center;color:#e0e1e5} /* Centrer Éléments */
 	border-radius: 25%;
   }
 
-
-/* Bouton Lien Externe */
-.LienExterne{
-	padding: 4px 5px 4px;
-	border-radius: 4px;
-	background-color: #1b4c77;
-	color:white;
-	font-weight: bold;
-	margin-left: 10px;
-	text-decoration: none;
-}
-#IconeLienExterne{width: 12px;}
-.LienExterne:active{position:relative;top:1px}
+#boutonacces:hover{cursor: pointer;}
 
 .Tiers{width: 33%;}
 .DeuxTiers{width: 67%;}

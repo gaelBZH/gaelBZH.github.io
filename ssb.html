@@ -5,7 +5,7 @@
     <meta charset="UTF-8"> <!--Encodage UTF-8-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff - Empire Breton</title> <!--Titre de la Page-->
+    <title>SSB - Empire Breton</title> <!--Titre de la Page-->
     <link rel="stylesheet" href="ssb.css"> <!--Feuille de Style CSS-->
     <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style CSS-->
     <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
@@ -33,30 +33,37 @@
       }
       function afficherpage(){
         document.getElementById("verrouille").open = true;
-
+        document.getElementById("Logo").src = "SSB/BlasonSSB.png";
+        document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
+        document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
       }
       </script>
 </head>
 <body>
     <h1><table style="margin: auto;"><tbody><tr>
         <td class="dixpourcent"></td>
-        <td id="TitrePrincipal">Liste des Membres du Staff</td>
-        <td class="dixpourcent"><a href="index.html" class="BoutonViolet" style="float: right;">Menu Principal</a></td>
+        <td id="TitrePrincipal">Empire Breton - SSB</td>
+        <td class="dixpourcent"><a href="index.html" class="BoutonCyan" style="float: right;">Menu Principal</a></td>
     </tr></tbody></table></h1>
     <h2><i>Bienvenue en Bretagne • Degemer mat e Breizh</i></h2>
     
-    <label for="pass">Mot de Passe :</label><br>
-    <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
-    <input type="checkbox" onclick="passwordshow()">Afficher le Mot de Passe<br>
-    <button onclick="afficherpage()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button>
-
+    <div id="PartieMotDePasse">
+      <table><tbody><tr><td>
+      <label for="pass">Mot de Passe :</label><br>
+      <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
+      <input type="checkbox" onclick="passwordshow()">Afficher le Mot de Passe<br>
+      <button onclick="afficherpage()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button>
+      </td><td width=20%>
+        <img id="Logo" alt="LogoSSB" src="Histoire/Blason.png">
+      </td></tr></tbody></table>
+    </div>
     <details class="verrou" id="verrouille" disabled>
         <summary style="color: transparent;" tabindex="-1"></summary>
-    Bonjour
-    </details>
-      
+    
+    
+      Easter Egg : Ma crush est sur le serveur<br><small>-gaelBZH.</small>
    
-      
+      <br>
 
     <!--Liens Utiles-->
     <div id="LiensUtiles">
@@ -83,5 +90,6 @@
         </a>
     </div>
     <!--Barre du Bas-->
+  </details>
 </body>
 </html>
