@@ -97,13 +97,13 @@ h2{
 #Flamme{width: 100%}
 #LiensUtiles td{color: black;text-align: left;}
 
-/* Style Image Staff */
-#Staffimg{
+/* Style Image Armoiries */
+#Armoiries{
 	display: block;
-	width: 90%;
+	width: 40%;
 	margin: auto;margin-bottom: 30px;
 	opacity: 95%;
-}
+	background: radial-gradient(rgba(14, 14, 87, 0.16),rgba(14, 14, 87, 0.16),rgba(14, 14, 87, 0.16),  transparent,  transparent);}
 
 /* Effet de Loupe */
 .loupe {
@@ -117,11 +117,26 @@ h2{
 	border-radius: 25%;
   }
 
+/* Styles Tableaux */
+#ListeMembres table{margin-bottom: 30px}
+#ListeMembres td{width : 20%;text-align :center;color:#e0e1e5} /* Centrer Éléments */
+#ListeMembres td img{border-radius: 50%;width: 40%;}
+#ListeMembres table{background-color: rgba(72, 72, 72, 0.4);margin: 0 3%;}
+#ListeMembres .Logo{width: 30px;}
+#ListeMembres{margin-bottom: 15px;}
+
+#PlayPause{width: 30px;}
 #boutonacces:hover{cursor: pointer;}
+iframe{height: 500px;display: block;width: 310px;
+	border-left: 7px solid silver;
+	border-bottom: 7px solid rgb(101, 101, 101);
+	border-top: 7px solid rgb(101, 101, 101);margin-bottom: 50px;
+}
+#Salles{margin: auto;border-spacing: 100px 10px;}
+.NumeroSalle{text-align: center;background-color: rgb(139, 51, 51);color: rgb(227, 227, 227)}
 
 .Tiers{width: 33%;}
 .DeuxTiers{width: 67%;}
-
 /* Barre du Bas */
 #BarreDuBas {
 	position: fixed; /* Immobile */
