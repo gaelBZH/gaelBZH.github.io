@@ -36,15 +36,18 @@
         }
       }
       function afficherpage(){
-        if (verifiermdp()){
+        if (verifiermdp()||1==1){
         document.getElementById("verrouille").open = true;
         document.getElementById("Logo").src = "SSB/BlasonSSB.png";
         document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
         document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
       }
-        }      </script>
+        }
+
+          </script>
 </head>
 <body>
+  <button class="BoutonNoir" onclick="afficherpage()">Mode dev</button>
 
     <h1><table style="margin: auto;"><tbody><tr>
         <td class="dixpourcent"></td>
@@ -98,8 +101,8 @@
           <td><big><strong><font color="#7c0033">Agent 💫</font></strong></big></td>
         </tr><tr>
           <td><font color="#ff401b">@Prince 🚨</font></td>
-          <td><small><font color="#31f369">@50 - Commandant</font></small></td>
-          <td><small><font color="#31f399">@40 - Capitaine</font></small></td>
+          <td><small><font color="#31f369">@40 - Commandant</font></small></td>
+          <td><small><font color="#31f399">@30 - Capitaine</font></small></td>
           <td><font color="#ff401b">@Prince 🚨</font></td>
           <td><font color="#ff401b">@Prince 🚨</font></td>
         </tr></tbody></table>
@@ -110,8 +113,8 @@
       <div class="Partie">
           <p class="TitrePartie">II - Salles d'Interrogatoire <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
           <p>
-            Les Membres du SSB ne se distinguent pas des autres membres pour se fondre dans la masse.
-            Cependant, ils possèdent tous le rôle <font color="#7c0033">@☘️</font>, dont le trèfle rappelle le symbole de l'Irlande.
+            Les membres du SSB peuvent à tout moment décider d'un Interrogatoire envers un membre. Les conditions nécéssaires sont d'une part d'avoir un motif, comme par exemple une preuve d'un message visant à promouvoir la Normandie,
+            et d'autre part de faire cela dans le respect des règles, sans insultes. Les motifs d'Interrogatoire ne sont pas des motifs de Modération. Vous pouvez toujours demander des détails et des confirmations d'Interrogatoire à <font color="#ff401b">@Hans Friess</font>.
           </p>
         <table id="Salles"><tbody><tr>
           <td class="NumeroSalle"><big><strong>Salle d'Interrogatoire 1</strong></big><br>Interrogé : Breizhdemon<br>Interrogateur : Hans Friess</td>
@@ -123,7 +126,7 @@
           <td><iframe src="SSB/salle3.html"></iframe></td>    
         </tr><tr>
           <td class="NumeroSalle"><big><strong>Salle d'Interrogatoire 4</strong></big><br>Interrogé : MortdeKaiser<br>Interrogateur : Hans Friess</td>
-          <td class="NumeroSalle"><big><strong>Salle d'Interrogatoire 5</strong></big><br>Interrogé : x<br>Interrogateur : y</td>
+          <td class="NumeroSalle"><big><strong>Salle d'Interrogatoire 5</strong></big><br>Interrogé : mf107<br>Interrogateur : Hans Friess</td>
           <td class="NumeroSalle"><big><strong>Salle d'Interrogatoire 6</strong></big><br>Interrogé : x<br>Interrogateur : y</td>
         </tr><tr>
           <td><iframe src="SSB/salle4.html"></iframe></td>    
@@ -136,9 +139,62 @@
     <div class="Partie">
       <p class="TitrePartie">III - Liste Noire <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
       <p>
-        Les Membres du SSB ne se distinguent pas des autres membres pour se fondre dans la masse.
-        Cependant, ils possèdent tous le rôle <font color="#7c0033">@☘️</font>, dont le trèfle rappelle le symbole de l'Irlande.
+        Le SSB dispose d'une liste noire répertoriant tous les membres ayant tenu publiquement un discours anti-breton, pro-normand, ou autres discours du même type.
+        Beaucoup de ces preuves proviennent de missions de renseignements sur d'autres serveurs.
       </p>
+      <table id="ListeNoire"><thead><tr><th>Pseudo</th><th>Nom d'Utilisateur</th><th>ID</th><th>Date</th><th>Motif</th><th>Source</th><th>Preuves</th><th>Interrogatoire</th></tr></thead><tbody>
+        <tr class="Impair">
+          <td>Cryptaux</td>
+          <td>Cryptaux<small>#6065</small></td>
+          <td>000</td>
+          <td>21/01/2023</td>
+          <td>Pro-Normand</td>
+          <td>Opération Raptor</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651445295366185/Cryptaux.png" width="200px"></td>
+          <td>NON</td>
+        </tr><tr class="Pair">
+          <td>Lassassain</td>
+          <td>Lassassain<small>#1780</small></td>
+          <td>000</td>
+          <td>21/01/2023</td>
+          <td>Pro-Normand</td>
+          <td>Opération Raptor</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651508734201936/Lassassain.png" width="200px"><br><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651509162025043/Lassassain_2.png" width="200px"></td>
+          <td>NON</td>
+        </tr><tr class="Impair">
+          <td>LéoM59</td>
+          <td>LéoM59<small>#25195</small></td>
+          <td>000</td>
+          <td>21/01/2023</td>
+          <td>Pro-Normand</td>
+          <td>Opération Raptor</td>
+          <td>
+            <img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651576509960222/LeoM59.png"   width="200px"><br>
+            <img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651592720941157/LeoM59_2.png" width="200px"><br>
+            <img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651592976797777/LeoM59_3.png" width="200px"><br>
+            <img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651593245241426/LeoM59_4.png" width="200px"></td>
+          <td>NON</td>
+        </tr><tr class="Pair">
+          <td>TPS.7567</td>
+          <td>TPS.7567<small>#2557</small></td>
+          <td>000</td>
+          <td>21/01/2023</td>
+          <td>Normand</td>
+          <td>Opération Raptor</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651619749036132/TPS7567.png" width="200px"><br>
+          <img src="https://cdn.discordapp.com/attachments/1003231098458877993/1077651619979735211/TPS7567_2.png" width="200px"><br></td>
+          <td>NON</td>
+        </tr><tr class="Impair">
+          <td>𝑬𝒎𝒎𝒂 𝒐𝒇 𝑵𝒐𝒓𝒎𝒂𝒏𝒅</td>
+          <td>𝑬𝒎𝒎𝒂 𝒐𝒇 𝑵𝒐𝒓𝒎𝒂𝒏𝒅<small>#8912</small></td>
+          <td>226002818912223234</td>
+          <td>20/01/2023</td>
+          <td>Normande</td>
+          <td>Raptor SW</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1065925529271816232/image.png" width="200px"><br></td>
+          <td>NON</td>
+        </tr>
+        </tbody></table>
     </div>
 
     <!--Partie II - Salles d'Interrogatoire-->
@@ -148,6 +204,22 @@
         Les Membres du SSB ne se distinguent pas des autres membres pour se fondre dans la masse.
         Cependant, ils possèdent tous le rôle <font color="#7c0033">@☘️</font>, dont le trèfle rappelle le symbole de l'Irlande.
       </p>
+      <section class="doc">
+        <img alt="SSB Breizhdemon" class="doc__poster" src="SSB/Breizhdemon SSB.png" />
+        <div class="doc__instructions">
+          <p><a download href="SSB/Breizhdemon SSB.pdf">Télécharger PDF</a></p>
+          <p><a download href="SSB/Breizhdemon SSB.odt">Télécharger ODT</a></p>
+          <p class="doc__download-duration">
+            <small>2.51 Mo. Feuille de Recrutement de l'Agent Breizhdemon le 18/10/2022.</small>
+          </p>
+          
+        </div>
+      </section>
+    <p>Autres docs avec flemme de faire joli :
+      <a href="SSB/SSB.odt">SSB.odt</a>
+      <a href="SSB/Traîté Belgique.odt">Traîté Belgique.odt</a>
+      <a href="SSB/Visa Angèle.odt">Visa Angèle.odt</a>
+    </p>
     </div>
 
         <!--Liens Utiles-->

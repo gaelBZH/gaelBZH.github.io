@@ -127,13 +127,20 @@ h2{
 
 #PlayPause{width: 30px;}
 #boutonacces:hover{cursor: pointer;}
-iframe{height: 500px;display: block;width: 310px;
+iframe{height: 500px;display: block;
 	border-left: 7px solid silver;
 	border-bottom: 7px solid rgb(101, 101, 101);
 	border-top: 7px solid rgb(101, 101, 101);margin-bottom: 50px;
 }
 #Salles{margin: auto;border-spacing: 100px 10px;}
+#Salles td{width : 1%;text-align :center}
 .NumeroSalle{text-align: center;background-color: rgb(139, 51, 51);color: rgb(227, 227, 227)}
+
+#ListeNoire{text-align: center;margin: auto auto 10px auto;    border-spacing:0}
+#ListeNoire td{padding: 30px 10px;border: #ffffff1b 1px solid;}
+#ListeNoire thead{height: 75px ;background-color: rgb(28, 27, 27);color: #e0e1e5;}
+#ListeNoire tbody .Pair{background-color: rgba(9, 12, 55, 0.6) ;color: #e0e1e5;}
+#ListeNoire tbody .Impair{background-color: rgba(1, 3, 17, 0.6);color: #e0e1e5;}
 
 .Tiers{width: 33%;}
 .DeuxTiers{width: 67%;}
@@ -148,3 +155,24 @@ iframe{height: 500px;display: block;width: 310px;
 	background: rgba(0, 0, 10, 0.8); /* Couleur Fond Barre */
 }
 /* Barre du Bas */
+
+
+ 
+
+.doc__poster{
+	box-shadow: 0 10px 30px -15px rgba(30, 33, 36, 0.85);
+	height: 8rem;
+	width: auto;
+	transform: rotate(-3deg);
+	transition: transform ease-in-out 125ms;
+	margin: 0 0 10px 10px
+}
+.doc__instructions {display: flex;flex-direction: column;justify-content: center;line-height: 1.25;margin-left: 1.5rem;max-width: 30ch;}
+.doc__download-duration{padding-top: 0.75em}
+.doc small{font-size: 0.85em}
+.doc p{margin: 0}
+a[download] {background-color: transparent;color: #ae2323;font-size: 1.25em;font-weight: 500;letter-spacing: 0.025em;text-decoration: none;transition: box-shadow ease-in-out 125ms;}
+a[download]:focus, a[download]:hover {color: #c84d4d;border-bottom: none;box-shadow: none;transition: box-shadow ease-in-out 125ms;}
+abbr[title]{cursor: help;text-decoration: none;border-bottom: 1px dotted currentColor;}
+.doc {display: flex;width: 90vw}
+.doc:hover .doc__poster{transform: rotate(0);transform: scale(1.15);transition: transform ease-in-out 500ms;}
