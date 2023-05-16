@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="mobile.css"> <!--Feuille de Style CSS-->
     <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style CSS-->
     <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
-    <script>function passwordshow() {
+    <script>
+      function passwordshow(){
         let x = document.getElementById("password");
         if (x.type === "password") {
           x.type = "text";
-        } else {
-          x.type = "password";
         }
-      }
+        else {
+          x.type = "password";
+         }
+        }
       function verifiermdp(){
         let x = document.getElementById("password");
         let y = document.getElementById("boutonacces");
@@ -29,51 +31,50 @@
             y.disabled = false;
             x.readOnly = true;
             return true
-        } else {
+        }
+        else {
           x.style.backgroundColor = "red";
           y.disabled = true;
           return false
         }
       }
-      function afficherpage(){
-        if (verifiermdp()||1==1){
-        document.getElementById("verrouille").open = true;
-        document.getElementById("Logo").src = "SSB/BlasonSSB.png";
-        document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
-        document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
+        function afficherpage(){
+          if (verifiermdp()){
+          document.getElementById("verrouille").open = true;
+          document.getElementById("Logo").src = "SSB/BlasonSSB.png";
+          document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
+          document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
       }
         }
 
-          </script>
+    </script>
 </head>
 <body>
-  <button class="BoutonNoir" onclick="afficherpage()">Mode dev</button>
+  <h1><table style="margin: auto;"><tbody><tr>
+      <td class="dixpourcent"></td>
+      <td id="TitrePrincipal">Empire Breton - SSB</td>
+      <td class="dixpourcent"><a href="index.html" class="BoutonCyan" style="float: right;">Menu Principal</a></td>
+  </tr></tbody></table></h1>
+  <h2><i>Bienvenue en Bretagne • Degemer mat e Breizh</i></h2>
+  
+  <div id="PartieMotDePasse">
+    <table><tbody><tr><td>
+    <label for="pass">Mot de Passe :</label><br>
+    <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
+    <input type="checkbox" tabindex="-1" onclick="passwordshow()">Afficher le Mot de Passe<br>
+    <button onclick="afficherpage()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button>
+    </td><td width=20%>
+      <img id="Logo" alt="LogoSSB" src="Histoire/Blason.png">
+    </td></tr></tbody></table>
+  </div>
+  <details class="verrou" id="verrouille" disabled><summary style="color: transparent;" tabindex="-1"></summary>
 
-    <h1><table style="margin: auto;"><tbody><tr>
-        <td class="dixpourcent"></td>
-        <td id="TitrePrincipal">Empire Breton - SSB</td>
-        <td class="dixpourcent"><a href="index.html" class="BoutonCyan" style="float: right;">Menu Principal</a></td>
-    </tr></tbody></table></h1>
-    <h2><i>Bienvenue en Bretagne • Degemer mat e Breizh</i></h2>
-    
-    <div id="PartieMotDePasse">
-      <table><tbody><tr><td>
-      <label for="pass">Mot de Passe :</label><br>
-      <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
-      <input type="checkbox" onclick="passwordshow()">Afficher le Mot de Passe<br>
-      <button onclick="afficherpage()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button>
-      </td><td width=20%>
-        <img id="Logo" alt="LogoSSB" src="Histoire/Blason.png">
-      </td></tr></tbody></table>
-    </div>
-    <details class="verrou" id="verrouille" disabled><summary style="color: transparent;" tabindex="-1"></summary>
+  <!--Introduction SSB-->
+  <p style="margin: 1%;">Bienvenue au Bureau et archives du SSB. Le SSB, en forme longue les Services Secrets Bretons, <i>Servijoù Kuzh Breizh (<small>br</small>)</i>, est un grade secret dans l'Empire Breton qui donne le privilège à ses agents,  <a href="https://discord.com/channels/892079170388099134/1003231098458877993" target="_blank" style="background-color: #3d4270;color:#c0cdfb">#🎖-ssb <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> et <a href="https://discord.com/channels/892079170388099134/1021038570275872829" target="_blank" style="background-color: #3d4270;color:#c0cdfb">🔊🎖 SSB <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> sur le serveur discord de l'Empire Breton.</p>
+  <img src="SSB/Armoiries.png" alt="Armoiries" id="Armoiries">
 
-      <!--Introduction SSB-->
-      <p style="margin: 1%;">Bienvenue au Bureau et archives du SSB. Le SSB, en forme longue les Services Secrets Bretons, <i>Servijoù Kuzh Breizh (<small>br</small>)</i>, est un grade secret dans l'Empire Breton qui donne le privilège à ses agents,  <a href="https://discord.com/channels/892079170388099134/1003231098458877993" target="_blank" style="background-color: #3d4270;color:#c0cdfb">#🎖-ssb <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> et <a href="https://discord.com/channels/892079170388099134/1021038570275872829" target="_blank" style="background-color: #3d4270;color:#c0cdfb">🔊🎖 SSB <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> sur le serveur discord de l'Empire Breton.</p>
-      <img src="SSB/Armoiries.png" alt="Armoiries" id="Armoiries">
-
-      <!--Partie I - Liste des Membres du SSB-->
-      <div class="Partie">
+  <!--Partie I - Liste des Membres du SSB-->
+  <div class="Partie">
         <p class="TitrePartie">I - Liste des Membres du SSB <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
         <p>
           Les Membres du SSB ne se distinguent pas des autres membres pour se fondre dans la masse.
@@ -107,10 +108,10 @@
           <td><font color="#ff401b">@Prince 🚨</font></td>
         </tr></tbody></table>
       </div>
-      </div>
+  </div>
 
-      <!--Partie II - Salles d'Interrogatoire-->
-      <div class="Partie">
+  <!--Partie II - Salles d'Interrogatoire-->
+  <div class="Partie">
           <p class="TitrePartie">II - Salles d'Interrogatoire <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
           <p>
             Les membres du SSB peuvent à tout moment décider d'un Interrogatoire envers un membre. Les conditions nécéssaires sont d'une part d'avoir un motif, comme par exemple une preuve d'un message visant à promouvoir la Normandie,
@@ -133,10 +134,10 @@
           <td><iframe src="SSB/salle5.html"></iframe></td>    
           <td><iframe src="SSB/salle6.html"></iframe></td>    
         </tr></tbody></table>
-    </div>
+  </div>
 
-    <!--Partie II - Liste Noire-->
-    <div class="Partie">
+  <!--Partie III - Liste Noire-->
+  <div class="Partie">
       <p class="TitrePartie">III - Liste Noire <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
       <p>
         Le SSB dispose d'une liste noire répertoriant tous les membres ayant tenu publiquement un discours anti-breton, pro-normand, ou autres discours du même type.
@@ -146,7 +147,7 @@
         <tr class="Impair">
           <td>Cryptaux</td>
           <td>Cryptaux<small>#6065</small></td>
-          <td>000</td>
+          <td>668155813499502608</td>
           <td>21/01/2023</td>
           <td>Pro-Normand</td>
           <td>Opération Raptor</td>
@@ -155,7 +156,7 @@
         </tr><tr class="Pair">
           <td>Lassassain</td>
           <td>Lassassain<small>#1780</small></td>
-          <td>000</td>
+          <td>796035217822842911</td>
           <td>21/01/2023</td>
           <td>Pro-Normand</td>
           <td>Opération Raptor</td>
@@ -163,8 +164,8 @@
           <td>NON</td>
         </tr><tr class="Impair">
           <td>LéoM59</td>
-          <td>LéoM59<small>#25195</small></td>
-          <td>000</td>
+          <td>LéoM59<small>#2519</small></td>
+          <td>400350796685770752</td>
           <td>21/01/2023</td>
           <td>Pro-Normand</td>
           <td>Opération Raptor</td>
@@ -177,7 +178,7 @@
         </tr><tr class="Pair">
           <td>TPS.7567</td>
           <td>TPS.7567<small>#2557</small></td>
-          <td>000</td>
+          <td>803318492815425557</td>
           <td>21/01/2023</td>
           <td>Normand</td>
           <td>Opération Raptor</td>
@@ -193,60 +194,139 @@
           <td>Raptor SW</td>
           <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1065925529271816232/image.png" width="200px"><br></td>
           <td>NON</td>
-        </tr>
+        </tr><tr class="Pair">
+          <td>Nassim*</td>
+          <td><i>[Comptes Multiples]</i></td>
+          <td></td>
+          <td>11/05/2022<br>à<br>13/03/2023</td>
+          <td>Raideur Connu,<br>Parfois Anti-Breton</td>
+          <td>Empire Breton</td>
+          <td></td>
+          <td>Anciennement</td>
         </tbody></table>
-    </div>
+        <p><i>* L'ajout de Nassim à la Liste Noire a été demandé par le Kommisar Hans Friess le 15/05/2023. Nassim est un membre alsacien qui possède plusieurs comptes et est un raideur connu. Il est recommandé de le garder à l'oeil sans toutefois intervenir trop brusquement.</i></p>
+  </div>
 
-    <!--Partie II - Salles d'Interrogatoire-->
-    <div class="Partie">
-      <p class="TitrePartie">IV - Documents du SSB <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <!--Partie IV - Liste Blanche-->
+  <div class="Partie">
+      <p class="TitrePartie">IV - Liste Blanche <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
       <p>
-        Les Membres du SSB ne se distinguent pas des autres membres pour se fondre dans la masse.
-        Cependant, ils possèdent tous le rôle <font color="#7c0033">@☘️</font>, dont le trèfle rappelle le symbole de l'Irlande.
+        Le SSB dispose d'une liste noire répertoriant tous les membres ayant tenu publiquement un discours anti-breton, pro-normand, ou autres discours du même type.
+        Beaucoup de ces preuves proviennent de missions de renseignements sur d'autres serveurs.
       </p>
-      <section class="doc">
-        <img alt="SSB Breizhdemon" class="doc__poster" src="SSB/Breizhdemon SSB.png" />
-        <div class="doc__instructions">
-          <p><a download href="SSB/Breizhdemon SSB.pdf">Télécharger PDF</a></p>
-          <p><a download href="SSB/Breizhdemon SSB.odt">Télécharger ODT</a></p>
-          <p class="doc__download-duration">
-            <small>2.51 Mo. Feuille de Recrutement de l'Agent Breizhdemon le 18/10/2022.</small>
-          </p>
-          
-        </div>
-      </section>
-    <p>Autres docs avec flemme de faire joli :
-      <a href="SSB/SSB.odt">SSB.odt</a>
-      <a href="SSB/Traîté Belgique.odt">Traîté Belgique.odt</a>
-      <a href="SSB/Visa Angèle.odt">Visa Angèle.odt</a>
-    </p>
-    </div>
-
-        <!--Liens Utiles-->
-    <div id="LiensUtiles">
-        <p class="TitrePartie"><u>Liens Utiles :</u></p>
-
-        <table><tbody><tr>
-            <td class="Tiers">
-                <ul>
-                    <li>Questionnaire de Satisfaction : <a href="QuestionnaireDeSatisfaction.html"><i>QuestionnaireDeSatisfaction.html</i></a></li>
-                    <li>Site Web de l'Empire Breton : <a  href="https://gaelbzh.github.io"><i>gaelbzh.github.io</i></a></li>
-                    <li>Notre Serveur Discord <a href="https://discord.gg/Zaw7bB2bnj"><i>discord.gg</i></a></li>
-                </ul>    
-            </td>
-            <td class="DeuxTiers">
-                <img src="Images/Flamme.png" alt="Flamme Ducale Bretonne" id="Flamme">
-            </td>
+      <table id="ListeBlanche"><thead><tr><th>Avatar</th><th>Pseudo</th><th>Nom d'Utilisateur</th><th>ID</th><th width="25%">Rôle</th><th width="15%">Note</th></tr></thead><tbody>
+        <tr class="Impair">
+          <td class="CaseAvatar"><img src="https://cdn.discordapp.com/avatars/846322333820125185/cacd89df085b5c0efefffd72c4e804cd.png?size=2048s" class="loupe"></td>
+          <td>Marius-sgweier/bonheddigChevrier</td>
+          <td>mf107<small>#9928</small></td>
+          <td>846322333820125185</td>
+          <td><strong><font style="background-color: #31f3c9;" color="#0f0f0f">@20 - Lieutenant-Commandant</font></strong></td>
+          <td></td>
+        </tr><tr class="Pair">
+          <td class="CaseAvatar"><img src="https://cdn.discordapp.com/avatars/689118752008175646/091fb9b2aa01f8727b55461046fdc4c9.png?size=2048" class="loupe"></td>
+          <td>Tylt</td>
+          <td>tylt<small>#5582</small></td>
+          <td>689118752008175646</td>
+          <td><strong><font style="background-color: #31b9f3;" color="#0f0f0f">@10 - Lieutenant</font></strong></td>
+          <td></td>
+        </tr><tr class="Impair">
+          <td class="CaseAvatar"><img src="Staff/Ano.png" class="loupe"></td>
+          <td>𝐀𝐧𝐨𝐫 𝟏𝐞𝐫・Roi de St Brieuc</td>
+          <td>Arthurus Rex Britonum<small>#0140</small></td>
+          <td>400350796685770752</td>
+          <td><strong><font style="background-color: #31f399;" color="#0f0f0f">@30- Capitaine</font></strong></td>
+          <td>Ancien <font color="#ff401b">@Prince 🚨</font></td>
         </tr></tbody></table>
-    </div>
+  </div>
 
-    <!--Barre du Bas-->
-    <div id="BarreDuBas">
-        <a href="https://discord.gg/Zaw7bB2bnj" style="color:white;  text-decoration: none;">
-        © <script>document.write(new Date().getFullYear());</script> Empire Breton
-        </a>
-    </div>
-    <!--Barre du Bas-->
+  <!--Partie V - Conseil de Sécurité-->
+  <div class="Partie">
+          <p class="TitrePartie">V - Conseil de Sécurité <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+          <p>
+            Le Conseil de Sécurité est un groupe limité de personnes qui donne aux membres de confiance la possibilité de cliquer sur un bouton dans le salon <a href="https://discord.com/channels/892079170388099134/1020994576317698058" target="_blank" style="background-color: #3d4270;color:#c0cdfb">#🚨-conseil-urgence <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> pour obtenir la Permission de Réduire au Silence les membres. Cela permet aux membres de confiance de pouvoir protéger l'Empire Breton en cas de Raid où les Modérateurs et Administrateurs seraient inactifs. Ce conseil a été initialement créé pour contrer un potentiel Raid de Nassim (<i>Voir <a href="#ListeNoire" style="color: rgb(39, 39, 39);">#ListeNoire</a></i>)
+            Tous les agents du SSB ont accès à ce conseil d'urgence, auxquels s'ajoutent d'autres membres hors-Staff et hors-SSB.
+          </p>
+        <table id="ConseilSecurite"><tbody>
+          <tr><td><img src="https://i.imgur.com/XNhb77l.png" alt="Logo du Conseil de Sécurité"></td></tr>
+          <tr><td>Logo du Conseil de Sécurité</td></tr>
+        </tbody></table>
+  </div>
+
+  <!--Partie VI - Documents du SSB-->
+  <div class="Partie">
+      <p class="TitrePartie">VI - Documents du SSB <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+      <p>
+        Les Membres du SSB peuvent accéder ici aux documents joints ci-dessous. Il s'agit des archives documentaires du SSB qui sont ici pour but de consultation ou d'enquête. Cliquez sur les Icônes pour avoir un aperçu.
+      </p>
+
+      <table><tbody><tr>
+        <td><section class="doc">
+            <a href="SSB/Breizhdemon SSB.pdf" target="_blank"><img alt="SSB Breizhdemon" class="docapercu" src="SSB/Breizhdemon SSB.png"></a>
+            <div class="docdownload">
+              <p><a download href="SSB/Breizhdemon SSB.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Breizhdemon SSB.odt">Télécharger .ODT</a></p>
+              <p><small><abbr title="pour la version .odt">2.51 Mo</abbr>. Feuille de Recrutement de l'Agent Breizhdemon le 18/10/2022.</small></p>
+            </div>
+        </section></td>
+        <td><section class="doc">
+          <a href="SSB/LettreSSB.pdf" target="_blank"><img alt="SSB Lettre" class="docapercu" src="SSB/LettreSSB.png"></a>
+            <div class="docdownload">
+              <p><a download href="SSB/LettreSSB.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/LettreSSB.odt">Télécharger .ODT</a></p>
+              <p><small><abbr title="pour la version .odt">872 Ko</abbr>. Lettre du Gouvernement Breton au Bureau du SSB le 26/08/2022.</small></p>
+            </div>
+        </section></td>
+        <td><section class="doc">
+          <a href="SSB/Visa Angèle.pdf" target="_blank"><img alt="SSB VISA" class="docapercu" src="SSB/Visa Angèle.png"></a>
+            <div class="docdownload">
+              <p><a download href="SSB/Visa Angèle.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Visa Angèle.odt">Télécharger .ODT</a></p>
+              <p><small><abbr title="pour la version .odt">1,89 Mo</abbr>. Visa d'Angèle de nationalité américaine pour la Bretagne avec le motif travail le 29/07/2022.</small></p>
+            </div>
+        </section></td></tr><tr>
+        <td><section class="doc">
+          <a href="SSB/Traîté Belgique.pdf" target="_blank"><img alt="SSB Belgique" class="docapercu" src="SSB/Traîté Belgique.png"></a>
+            <div class="docdownload">
+              <p><a download href="SSB/Traîté Belgique.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Traîté Belgique.odt">Télécharger .ODT</a></p>
+              <p><small><abbr title="pour la version .odt">4.92 Mo</abbr>. Traîté entre l'Empire Breton et le Royaume de Belgique sous le nom de Traîté de Lorient le 09/08/2022.</small></p>
+            </div>
+        </section></td>
+        <td><section class="doc">
+          <a href="SSB/Crypte.pdf" target="_blank"><img alt="SSB VISA" class="docapercu" src="SSB/Crypte.png"></a>
+            <div class="docdownload">
+              <p><a download href="SSB/Crypte.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Crypte.odt">Télécharger .ODT</a></p>
+              <p><small><abbr title="pour la version .odt">872 Ko</abbr>. Version cryptée de la lettre du Gouvernement Breton au Bureau du SSB du 26/08/2022, le document date cependant du 2 septembre.</small></p>
+            </div>
+        </section></td>
+        </tr></tbody></table>
+  </div>
+
+  <!--Liens Utiles-->
+  <div id="LiensUtiles">
+      <p class="TitrePartie"><u>Liens Utiles :</u></p>
+      <table><tbody><tr>
+          <td class="Tiers">
+              <ul>
+                  <li>Membres du Staff : <a href="Staff"><i>Staff.html</i></a></li>
+                  <li>Banque : <a href="Banque.html"><i>Banque.html</i></a></li>
+                  <li>Histoire : <a href="Histoire/Histoire.html"><i>Histoire.html</i></a></li>
+              </ul>    
+          </td>
+          <td class="DeuxTiers">
+              <img src="Images/Flamme.png" alt="Flamme Ducale Bretonne" id="Flamme">
+          </td>
+      </tr></tbody></table><br><br>
+  </div>
+    
+  <!--Barre du Bas-->
+  <div id="BarreDuBas">
+      <a href="https://discord.gg/Zaw7bB2bnj" style="color:white;  text-decoration: none;">
+      © <script>document.write(new Date().getFullYear());</script> Empire Breton
+      </a>
+  </div>
+  <!--Barre du Bas-->
   </details>
 </body>
 </html>

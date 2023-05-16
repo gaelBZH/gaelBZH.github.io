@@ -127,20 +127,32 @@ h2{
 
 #PlayPause{width: 30px;}
 #boutonacces:hover{cursor: pointer;}
-iframe{height: 500px;display: block;
+iframe{height: 500px;width: auto ;display: block;
 	border-left: 7px solid silver;
 	border-bottom: 7px solid rgb(101, 101, 101);
-	border-top: 7px solid rgb(101, 101, 101);margin-bottom: 50px;
+	border-top: 7px solid rgb(176, 192, 255);margin-bottom: 50px;
 }
-#Salles{margin: auto;border-spacing: 100px 10px;}
+#Salles{margin: auto;border-spacing: 100px 10px;width: 100% ;}
 #Salles td{width : 1%;text-align :center}
 .NumeroSalle{text-align: center;background-color: rgb(139, 51, 51);color: rgb(227, 227, 227)}
 
-#ListeNoire{text-align: center;margin: auto auto 10px auto;    border-spacing:0}
-#ListeNoire td{padding: 30px 10px;border: #ffffff1b 1px solid;}
-#ListeNoire thead{height: 75px ;background-color: rgb(28, 27, 27);color: #e0e1e5;}
-#ListeNoire tbody .Pair{background-color: rgba(9, 12, 55, 0.6) ;color: #e0e1e5;}
-#ListeNoire tbody .Impair{background-color: rgba(1, 3, 17, 0.6);color: #e0e1e5;}
+#ListeNoire{border: rgb(218, 218, 218) 2px ridge;width: 90%;font-size: 90%;text-align: center;margin: auto auto 10px auto;  border-spacing:0}
+#ListeBlanche td, #ListeNoire td{padding: 30px 10px;border: #ffffff1b 1px solid;}
+#ListeNoire thead{height: 75px ;background-color: rgb(0, 0, 0);color: #e0e1e5;}
+#ListeNoire th{border: #ffffff1b 1px solid}
+#ListeNoire tbody .Pair{background-color: rgba(10, 14, 63, 0.7) ;color: #e0e1e5;}
+#ListeNoire tbody .Impair{background-color: rgba(2, 6, 35, 0.7);color: #e0e1e5;}
+
+#ListeBlanche{border: rgb(0, 0, 0) 2px ridge;width: 75%;font-size: 90%;text-align: center;margin: auto auto 10px auto;  border-spacing:0}
+#ListeBlanche thead{height: 60px ;background-color: rgb(84, 99, 156);color: #0f0f0f;}
+#ListeBlanche th{border: #ffffff1b 1px solid}
+#ListeBlanche tbody .Pair{background-color: rgba(167, 170, 192, 0.85) ;color: #0f0f0f;}
+#ListeBlanche tbody .Impair{background-color: rgba(201, 203, 218, 0.85);color: #0f0f0f;}
+#ListeBlanche img{border-radius:50%;width: 100%;}
+#ListeBlanche .CaseAvatar{width: 10%;}
+
+#ConseilSecurite td{width : 1%;text-align :center}
+#ConseilSecurite img{background: radial-gradient(rgba(14, 14, 87, 0.10), rgba(14, 14, 87, 0.10),rgba(14, 14, 87, 0.10),rgba(14, 14, 87, 0.10),  transparent, transparent,  transparent);}
 
 .Tiers{width: 33%;}
 .DeuxTiers{width: 67%;}
@@ -159,7 +171,7 @@ iframe{height: 500px;display: block;
 
  
 
-.doc__poster{
+.docapercu{
 	box-shadow: 0 10px 30px -15px rgba(30, 33, 36, 0.85);
 	height: 8rem;
 	width: auto;
@@ -167,12 +179,12 @@ iframe{height: 500px;display: block;
 	transition: transform ease-in-out 125ms;
 	margin: 0 0 10px 10px
 }
-.doc__instructions {display: flex;flex-direction: column;justify-content: center;line-height: 1.25;margin-left: 1.5rem;max-width: 30ch;}
-.doc__download-duration{padding-top: 0.75em}
+.docdownload {display: flex;flex-direction: column;justify-content: center;line-height: 1.25;margin-left: 1.5rem;max-width: 30ch;}
+
 .doc small{font-size: 0.85em}
 .doc p{margin: 0}
 a[download] {background-color: transparent;color: #ae2323;font-size: 1.25em;font-weight: 500;letter-spacing: 0.025em;text-decoration: none;transition: box-shadow ease-in-out 125ms;}
 a[download]:focus, a[download]:hover {color: #c84d4d;border-bottom: none;box-shadow: none;transition: box-shadow ease-in-out 125ms;}
 abbr[title]{cursor: help;text-decoration: none;border-bottom: 1px dotted currentColor;}
-.doc {display: flex;width: 90vw}
-.doc:hover .doc__poster{transform: rotate(0);transform: scale(1.15);transition: transform ease-in-out 500ms;}
+.doc {display: flex; margin-bottom: 10px;}
+.doc img:hover{transform: rotate(0);transform: scale(1.25);transition: transform ease-in-out 500ms;}
