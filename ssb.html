@@ -41,9 +41,10 @@
         function afficherpage(){
           if (verifiermdp()){
           document.getElementById("verrouille").open = true;
-          document.getElementById("Logo").src = "SSB/BlasonSSB.png";
+          document.getElementsByClassName("Logo")[0].src = "SSB/BlasonSSB.png";
           document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
           document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
+          document.getElementById("Sommaire").style.visibility="visible";
       }
         }
 
@@ -57,27 +58,36 @@
   </tr></tbody></table></h1>
   <h2><i>Bienvenue en Bretagne • Degemer mat e Breizh</i></h2>
   
-  <div id="PartieMotDePasse">
-    <table><tbody><tr><td>
-    <label for="pass">Mot de Passe :</label><br>
-    <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
-    <input type="checkbox" tabindex="-1" onclick="passwordshow()">Afficher le Mot de Passe<br>
-    <button onclick="afficherpage()" id="boutonacces" href="index" disabled>Accéder au Site SSB</button>
-    </td><td width=20%>
-      <img id="Logo" alt="LogoSSB" src="Histoire/Blason.png">
-    </td></tr></tbody></table>
-  </div>
-  <details class="verrou" id="verrouille" disabled><summary style="color: transparent;" tabindex="-1"></summary>
+  <div class="box">
+    <div id="PartieMotDePasse">
+      <table><tbody><tr><td>
+      <label for="pass">Mot de Passe :</label><br>
+      <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
+      <input type="checkbox" tabindex="-1" onclick="passwordshow()">Afficher le Mot de Passe<br>
+      <button onclick="afficherpage()" id="boutonacces" href="index" disabled tabindex="0">Accéder au Site SSB</button>
+      </td><td width=20%>
+        <img class="Logo" alt="LogoSSB" src="Histoire/Blason.png">
+      </td></tr></tbody></table>
+    </div>
 
+    <div id="Sommaire">
+      <table><tbody><tr><td>
+      <ol type="I"><a href="#Partie1"><li>Liste des Membres du SSB</li></a><a href="#Partie2"><li>Salles d'Interrogatoire</li></a><a href="#Partie3"><li>Liste Noire</li></a><a href="#Partie4"><li>Liste Blanche</li></a><a href="#Partie5"><li>Conseil de Sécurité</li></a><a href="#Partie6"><li>Documents du SSB</li></a></ol>
+      </td></tr></tbody></table>
+    </div>
+  </div>
+
+  <details class="verrou" id="verrouille" disabled=""><summary style="color: transparent;" tabindex="-1"></summary>
+    
   <!--Introduction SSB-->
-  <p style="margin: 1%;">Bienvenue au Bureau et archives du SSB. Le SSB, en forme longue les Services Secrets Bretons, <i>Servijoù Kuzh Breizh (<small>br</small>)</i>, est un grade secret dans l'Empire Breton qui donne le privilège à ses agents,  <a href="https://discord.com/channels/892079170388099134/1003231098458877993" target="_blank" style="background-color: #3d4270;color:#c0cdfb">#🎖-ssb <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> et <a href="https://discord.com/channels/892079170388099134/1021038570275872829" target="_blank" style="background-color: #3d4270;color:#c0cdfb">🔊🎖 SSB <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> sur le serveur discord de l'Empire Breton.
+  <p style="margin: 1%;">Bienvenue au Bureau et archives du SSB. Le SSB, en forme longue les Services Secrets Bretons, <i>Servijoù Kuzh Breizh (<small><abbr title="brezhoneg - breton">br</abbr></small>)</i>, est un grade secret dans l'Empire Breton qui donne le privilège à ses agents,  <a href="https://discord.com/channels/892079170388099134/1003231098458877993" target="_blank" style="background-color: #3d4270;color:#c0cdfb">#🎖-ssb <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> et <a href="https://discord.com/channels/892079170388099134/1021038570275872829" target="_blank" style="background-color: #3d4270;color:#c0cdfb">🔊🎖 SSB <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> sur le serveur discord de l'Empire Breton.
   Ils participent entre autres à des missions de renseignements.
   </p>
   <img src="SSB/Armoiries.png" alt="Armoiries" id="Armoiries">
 
   <!--Partie I - Liste des Membres du SSB-->
-  <div class="Partie">
-        <p class="TitrePartie">I - Liste des Membres du SSB <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <div class="Partie" id="Partie1">
+        <p class="TitrePartie">I - Liste des Membres du SSB <a href="#"><img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></a></p>
         <p>
           Les Membres du SSB ne se distinguent pas des autres membres pour se fondre dans la masse.
           Cependant, ils possèdent tous le rôle <font color="#7c0033">@☘️</font>, dont le trèfle rappelle le symbole de l'Irlande.
@@ -113,8 +123,8 @@
   </div>
 
   <!--Partie II - Salles d'Interrogatoire-->
-  <div class="Partie">
-          <p class="TitrePartie">II - Salles d'Interrogatoire <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <div class="Partie" id="Partie2">
+          <p class="TitrePartie">II - Salles d'Interrogatoire <a href="#"><img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></a></p>
           <p>
             Les membres du SSB peuvent à tout moment décider d'un Interrogatoire envers un membre. Les conditions nécéssaires sont d'une part d'avoir un motif, comme par exemple une preuve d'un message visant à promouvoir la Normandie,
             et d'autre part de faire cela dans le respect des règles, sans insultes. Les motifs d'Interrogatoire ne sont pas des motifs de Modération. Vous pouvez toujours demander des détails et des confirmations d'Interrogatoire à <font color="#ff401b">@Hans Friess</font>.
@@ -139,8 +149,8 @@
   </div>
 
   <!--Partie III - Liste Noire-->
-  <div class="Partie">
-      <p class="TitrePartie">III - Liste Noire <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <div class="Partie" id="Partie3">
+      <p class="TitrePartie">III - Liste Noire <a href="#"><img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></a></p>
       <p>
         Le SSB dispose d'une liste noire répertoriant tous les membres ayant tenu publiquement un discours anti-breton, pro-normand, ou autres discours du même type.
         Beaucoup de ces preuves proviennent de missions de renseignements sur d'autres serveurs.
@@ -204,14 +214,59 @@
           <td>Raideur Connu,<br>Parfois Anti-Breton</td>
           <td>Empire Breton</td>
           <td></td>
-          <td>Anciennement</td>
-        </tbody></table>
+          <td>OUI</td>
+        </tr><tr class="Impair">
+          <td>Giga chad</td>
+          <td>?<small>#????</small></td>
+          <td>??????????????????</td>
+          <td>??/??/????</td>
+          <td>Anti-Breton</td>
+          <td>Empire Halgoron ?</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1096134656476315749/image.png" width="200px"><br></td>
+          <td>NON</td>
+        </tr><tr class="Pair">
+          <td>Admin | Alix<br>Spectre.</td>
+          <td>.🗿<small>#9501</small></td>
+          <td>1061372899233116161</td>
+          <td></td>
+          <td>Pro-Normand</td>
+          <td>Empire Halgoron</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1095412406890536960/image.png" width="200px"></td>
+          <td>NON</td>
+        </tr><tr class="Impair">
+          <td>Lieutenant commandant G...</td>
+          <td>?<small>#????</small></td>
+          <td>??????????????????</td>
+          <td>??/??/????</td>
+          <td>Pro-Normand</td>
+          <td>Empire Halgoron ?</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1058859860084670595/Screenshot_20221231-223052_Discord.png" width="200px"><br></td>
+          <td>NON</td>
+        </tr><tr class="Pair">
+          <td>Halgoron</td>
+          <td>Halgoron<small>#7519</small></td>
+          <td>1009574688760025173</td>
+          <td>06/04/2023</td>
+          <td>Pro-Normand, Pro-Breton Mitigé</td>
+          <td>Empire Halgoron</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1068304956035178536/1108685488975528027/image.png" width="200px"><br><img src="https://cdn.discordapp.com/attachments/1068304956035178536/1108685489181032478/image.png" width="200px"></td>
+          <td>NON</td>
+        </tr><tr class="Impair">
+          <td>K7odio</td>
+          <td>K7odio<small>#2011</small></td>
+          <td>383504890191675394</td>
+          <td>19/04/2023</td>
+          <td>Pro-Normand</td>
+          <td>Empire Halgoron</td>
+          <td><img src="https://cdn.discordapp.com/attachments/1059073973972901939/1108686794758819881/image.png" width="200px"></td>
+          <td>NON</td>
+        </tr></tbody></table>
         <p><i>* L'ajout de Nassim à la Liste Noire a été demandé par le Kommisar Hans Friess le 15/05/2023. Nassim est un membre alsacien qui possède plusieurs comptes et est un raideur connu. Il est recommandé de le garder à l'œil  sans toutefois intervenir trop brusquement.</i></p>
   </div>
 
   <!--Partie IV - Liste Blanche-->
-  <div class="Partie">
-      <p class="TitrePartie">IV - Liste Blanche <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <div class="Partie" id="Partie4">
+      <p class="TitrePartie">IV - Liste Blanche <a href="#"><img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></a></p>
       <p>
         Le SSB possède également une Liste Blanche, sur laquelle est notée la liste des membres de confiance dont le SSB n'a pas besoin de soupsonner quoi que ce soit en rapport avec les missions du SSB.
       </p>
@@ -241,8 +296,8 @@
   </div>
 
   <!--Partie V - Conseil de Sécurité-->
-  <div class="Partie">
-          <p class="TitrePartie">V - Conseil de Sécurité <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <div class="Partie" id="Partie5">
+          <p class="TitrePartie">V - Conseil de Sécurité <a href="#"><img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></a></p>
           <p>
             Le Conseil de Sécurité est un groupe limité de personnes qui donne aux membres de confiance la possibilité de cliquer sur un bouton dans le salon <a href="https://discord.com/channels/892079170388099134/1020994576317698058" target="_blank" style="background-color: #3d4270;color:#c0cdfb">#🚨-conseil-urgence <img src="Images/LienExterne.png" alt="LienExterne" width="10px"></a> pour obtenir la Permission de Réduire au Silence les membres. Cela permet aux membres de confiance de pouvoir protéger l'Empire Breton en cas de Raid où les Modérateurs et Administrateurs seraient inactifs. Ce conseil a été initialement créé pour contrer un potentiel Raid de Nassim (<i>Voir <a href="#ListeNoire" style="color: rgb(39, 39, 39);">#ListeNoire</a></i>)
             Tous les agents du SSB ont accès à ce conseil d'urgence, auxquels s'ajoutent d'autres membres hors-Staff et hors-SSB.
@@ -254,8 +309,8 @@
   </div>
 
   <!--Partie VI - Documents du SSB-->
-  <div class="Partie">
-      <p class="TitrePartie">VI - Documents du SSB <img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></p>
+  <div class="Partie" id="Partie6">
+      <p class="TitrePartie">VI - Documents du SSB <a href="#"><img src="SSB/BlasonSSB.png" width="15px" alt='Badge'></a></p>
       <p>
         Les Membres du SSB peuvent accéder ici aux documents joints ci-dessous. Il s'agit des archives documentaires du SSB qui sont ici pour but de consultation ou d'enquête. Cliquez sur les Icônes pour avoir un aperçu.
       </p>
