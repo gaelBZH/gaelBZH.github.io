@@ -61,10 +61,10 @@
   <div class="box">
     <div id="PartieMotDePasse">
       <table><tbody><tr><td>
-      <label for="pass">Mot de Passe :</label><br>
-      <input type="password" id="password" name="MotDePasse" onchange="verifiermdp()">
-      <input type="checkbox" tabindex="-1" onclick="passwordshow()">Afficher le Mot de Passe<br>
-      <button onclick="afficherpage()" id="boutonacces" href="index" disabled tabindex="0">Accéder au Site SSB</button>
+      <label for="password">Mot de Passe :</label><br>
+      <input type="password" onkeypress="if (event.keyCode == 13) afficherpage()" id="password" name="MotDePasse" onchange="verifiermdp()">
+      <input type="checkbox" tabindex="-1" onclick="passwordshow()"><span class="MinMob">Afficher le Mot de Passe</span><br>
+      <button onclick="afficherpage()" id="boutonacces" disabled tabindex="0">Accéder au Site SSB</button>
       </td><td width=20%>
         <img class="Logo" alt="LogoSSB" src="Histoire/Blason.png">
       </td></tr></tbody></table>
@@ -72,7 +72,14 @@
 
     <div id="Sommaire">
       <table><tbody><tr><td>
-      <ol type="I"><a href="#Partie1"><li>Liste des Membres du SSB</li></a><a href="#Partie2"><li>Salles d'Interrogatoire</li></a><a href="#Partie3"><li>Liste Noire</li></a><a href="#Partie4"><li>Liste Blanche</li></a><a href="#Partie5"><li>Conseil de Sécurité</li></a><a href="#Partie6"><li>Documents du SSB</li></a></ol>
+      <ol type="I">
+        <li><a href="#Partie1">Liste des Membres du SSB</a></li>
+        <li><a href="#Partie2">Salles d'Interrogatoire </a></li>
+        <li><a href="#Partie3">Liste Noire             </a></li>
+        <li><a href="#Partie4">Liste Blanche           </a></li>
+        <li><a href="#Partie5">Conseil de Sécurité     </a></li>
+        <li><a href="#Partie6">Documents du SSB        </a></li>
+      </ol>
       </td></tr></tbody></table>
     </div>
   </div>
@@ -101,11 +108,11 @@
           <td><strong>[Prince] RLRGC</strong><br><small style="font-size: 75%">RLRGC<code>#3701</code></small></td>
           <td><strong>[Prince] Sir Ghostjoker</strong><br><small style="font-size: 75%">GhostJoker95<code>#2966</code></small></td>
         </tr><tr>
-          <td><a target="_blank" href="SSB/Gunter.png"><img id="Admin2" class="loupe" src="SSB/Gunter.png"  alt="Gunter"> </a></td>
-          <td><a target="_blank" href="SSB/Breizhdemon.png"><img  id="Admin2" class="loupe" src="SSB/Breizhdemon.png"  alt="Breizhdemon"> </a></td>
-          <td><a target="_blank" href="SSB/Snurf.png"><img id="Admin2" class="loupe" src="SSB/Snurf.png"  alt="Snurf"> </a></td>
-          <td><a target="_blank" href="SSB/RLRGC.png"><img id="Admin2" class="loupe" src="SSB/RLRGC.png"  alt="RLRGC"> </a></td>
-          <td><a target="_blank" href="SSB/GhostJoker95.png"><img  id="Admin2" class="loupe" src="SSB/GhostJoker95.png"  alt="GhostJoker95"> </a></td>
+          <td><a target="_blank" href="SSB/Gunter.png"><img class="loupe" src="SSB/Gunter.png"  alt="Gunter"> </a></td>
+          <td><a target="_blank" href="SSB/Breizhdemon.png"><img  class="loupe" src="SSB/Breizhdemon.png"  alt="Breizhdemon"> </a></td>
+          <td><a target="_blank" href="SSB/Snurf.png"><img class="loupe" src="SSB/Snurf.png"  alt="Snurf"> </a></td>
+          <td><a target="_blank" href="SSB/RLRGC.png"><img class="loupe" src="SSB/RLRGC.png"  alt="RLRGC"> </a></td>
+          <td><a target="_blank" href="SSB/GhostJoker95.png"><img  class="loupe" src="SSB/GhostJoker95.png"  alt="GhostJoker95"> </a></td>
         </tr><tr>
           <td><big><strong><font color="#7c0033">Kommisar 🌟</font></strong></big></td>
           <td><big><strong><font color="#7c0033">Lieutenant ⭐</font></strong></big></td>
@@ -233,15 +240,6 @@
           <td>Empire Halgoron</td>
           <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1095412406890536960/image.png" width="200px"></td>
           <td>NON</td>
-        </tr><tr class="Impair">
-          <td>Lieutenant commandant G...</td>
-          <td>?<small>#????</small></td>
-          <td>??????????????????</td>
-          <td>??/??/????</td>
-          <td>Pro-Normand</td>
-          <td>Empire Halgoron ?</td>
-          <td><img src="https://cdn.discordapp.com/attachments/1003231098458877993/1058859860084670595/Screenshot_20221231-223052_Discord.png" width="200px"><br></td>
-          <td>NON</td>
         </tr><tr class="Pair">
           <td>Halgoron</td>
           <td>Halgoron<small>#7519</small></td>
@@ -317,10 +315,10 @@
 
       <table><tbody><tr>
         <td><section class="doc">
-            <a href="SSB/Breizhdemon SSB.pdf" target="_blank"><img alt="SSB Breizhdemon" class="docapercu" src="SSB/Breizhdemon SSB.png"></a>
+            <a href="SSB/Breizhdemon%20SSB.pdf" target="_blank"><img alt="SSB Breizhdemon" class="docapercu" src="SSB/Breizhdemon%20SSB.png"></a>
             <div class="docdownload">
-              <p><a download href="SSB/Breizhdemon SSB.pdf">Télécharger .PDF</a></p>
-              <p><a download href="SSB/Breizhdemon SSB.odt">Télécharger .ODT</a></p>
+              <p><a download href="SSB/Breizhdemon%20SSB.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Breizhdemon%20SSB.odt">Télécharger .ODT</a></p>
               <p><small><abbr title="pour la version .odt">2.51 Mo</abbr>. Feuille de Recrutement de l'Agent Breizhdemon le 18/10/2022.</small></p>
             </div>
         </section></td>
@@ -333,18 +331,18 @@
             </div>
         </section></td>
         <td><section class="doc">
-          <a href="SSB/Visa Angèle.pdf" target="_blank"><img alt="SSB VISA" class="docapercu" src="SSB/Visa Angèle.png"></a>
+          <a href="SSB/Visa%20Angèle.pdf" target="_blank"><img alt="SSB VISA" class="docapercu" src="SSB/Visa%20Angèle.png"></a>
             <div class="docdownload">
-              <p><a download href="SSB/Visa Angèle.pdf">Télécharger .PDF</a></p>
-              <p><a download href="SSB/Visa Angèle.odt">Télécharger .ODT</a></p>
+              <p><a download href="SSB/Visa%20Angèle.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Visa%20Angèle.odt">Télécharger .ODT</a></p>
               <p><small><abbr title="pour la version .odt">1,89 Mo</abbr>. Visa d'Angèle de nationalité américaine pour la Bretagne avec le motif travail le 29/07/2022.</small></p>
             </div>
         </section></td></tr><tr>
         <td><section class="doc">
-          <a href="SSB/Traîté Belgique.pdf" target="_blank"><img alt="SSB Belgique" class="docapercu" src="SSB/Traîté Belgique.png"></a>
+          <a href="SSB/Traîté%20Belgique.pdf" target="_blank"><img alt="SSB Belgique" class="docapercu" src="SSB/Traîté%20Belgique.png"></a>
             <div class="docdownload">
-              <p><a download href="SSB/Traîté Belgique.pdf">Télécharger .PDF</a></p>
-              <p><a download href="SSB/Traîté Belgique.odt">Télécharger .ODT</a></p>
+              <p><a download href="SSB/Traîté%20Belgique.pdf">Télécharger .PDF</a></p>
+              <p><a download href="SSB/Traîté%20Belgique.odt">Télécharger .ODT</a></p>
               <p><small><abbr title="pour la version .odt">4.92 Mo</abbr>. Traité  entre l'Empire Breton et le Royaume de Belgique sous le nom de Traité  de Lorient le 09/08/2022.</small></p>
             </div>
         </section></td>
@@ -367,7 +365,7 @@
               <ul>
                   <li>Membres du Staff : <a href="Staff"><i>Staff.html</i></a></li>
                   <li>Banque : <a href="Banque.html"><i>Banque.html</i></a></li>
-                  <li>Histoire : <a href="Histoire/Histoire.html"><i>Histoire.html</i></a></li>
+                  <li>Histoire : <a href="Histoire.html"><i>Histoire.html</i></a></li>
               </ul>    
           </td>
           <td class="DeuxTiers">
