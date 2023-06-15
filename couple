@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couples</title>
+    <link rel="icon" href="https://fsymbols.com/images/heart.png"> <!--Icône du Site-->
+    <meta name="theme-color" content="#ff0000">
+
+    <script>
+        function lov(){
+            
+            
+const Gars = ["Gaël", "Victor", "Noé", "Ronan", "Jean-Baptiste", "Lilian", "Mattéo", "Dorian"];
+const Fille = ["Uliana", "Gabrièle", "Gwenaëlle", "Diane", "Amphitrite", "Clarisse", "Isabella", "Barbara"];
+
+const Couple = [];
+const maxIterations = Math.max(Fille.length, Gars.length);
+
+for (let love = 0; love < maxIterations; love++) {
+  const a = Math.floor(Math.random() * Gars.length);
+  const b = Math.floor(Math.random() * Fille.length);
+  Couple.push([Gars[a], Fille[b]]);
+  Gars.splice(a, 1);
+  Fille.splice(b, 1);
+}
+
+console.log(Couple);
+var indiceAleatoire = Math.floor(Math.random() * Couple.length);
+document.getElementById("resultat").textContent = Couple[indiceAleatoire][0];
+document.getElementById("resultat2").textContent = Couple[indiceAleatoire][1];
+}
+
+
+    </script>
+    <style>body{background: url(https://img.freepik.com/free-vector/blurred-valentine-s-day-wallpaper_23-2148819570.jpg) no-repeat center fixed;	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+        ;}
+        
+        .BoutonRouge:hover {
+    background:linear-gradient(to bottom, rgb(109, 0, 0) 5%, rgb(181, 0, 0) 100%);
+}
+.BoutonRouge{
+    background:linear-gradient(to bottom, rgb(181, 0, 0) 5%, rgb(109, 0, 0) 100%);
+}
+
+
+/* ------------ Style des Boutons au Click ------------ */
+.BoutonBleu:active, .BoutonViolet:active, .BoutonVert:active, .BoutonJaune:active, .BoutonRouge:active, .BoutonCyan:active, .BoutonOrange:active, .BoutonGris:active, .BoutonBlanc:active, .BoutonNoir:active {
+    position:relative;
+    top:2px;
+}
+/* ------------ Style des Boutons au Click ------------ */
+.BoutonBleu, .BoutonViolet, .BoutonVert, .BoutonJaune,.BoutonRouge, .BoutonCyan, .BoutonOrange, .BoutonGris, .BoutonBlanc, .BoutonNoir{
+    /* Style Texte */
+    font-size: 16px; /* Taille */
+    font-weight: bold; /* Gras */
+    line-height: 1; /* Hauteur Ligne */
+    text-decoration: none; /* Pas de Soulignage */
+    color: #ffffff; /* Couleur */
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5); /* Ombre Décalée de 0px à droite, 1px en haut, un Flou de 0px, de couleur noir et d'opacité 50% */
+    /* Style Texte */
+
+    /* Style Général du Bouton */
+    display: inline-block;
+    padding: 8px 10px 8px; /* 1er = Longueur de Plus Verticale (Haut) ; 2ème = Longueur de Plus Horizontale ; 3ème = Longueur de Plus Verticale (Bas)*/
+    -moz-border-radius: 4px; /* Coins arrondis pour Firefox */
+    -webkit-border-radius: 4px; /* Coins arrondis pour Safari et Chrome */
+    border-radius: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    margin: 2px;
+    /* Style Général du Bouton */
+}
+/* ------------ Style des Boutons Général ------------ */
+#mob{font-size: 500%;}
+@media only screen and (max-width: 1000px){
+#mob{font-size: 200%;}
+}
+@media only screen and (max-width: 750px){
+#mob{font-size: 100%;}
+}
+
+</style>
+
+</head>
+<body>
+    <h1 style="text-align: center;font-size: 300%;background-color: rgb(181, 60, 60);color: rgb(255, 255, 255);">Couple Aléatoire</h1>
+    <button class="BoutonRouge" onclick="lov()">Cliquez ici 💕</button>
+    <div id="mob" style="text-align: center;">
+        <table style="width: 100%; border-spacing: 10px; "><tbody><tr>
+            <td style="width:50%; background-color:  rgb(236, 187, 234);border: 1px solid black;" id="resultat">    <span style="color: transparent;">Gars    </span></td>
+            <td style="width:50%; background-color:  rgb(236, 187, 234);border: 1px solid black;" id="resultat2">   <span style="color: transparent;">Fille   </span></td>
+        </tr></tbody></table>
+    </div>
+</body>
+</html>
