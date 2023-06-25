@@ -15,12 +15,15 @@
             var indiceAleatoireA = Math.floor(Math.random() * Gars.length);
             var indiceAleatoireB = Math.floor(Math.random() * Fille.length);
 
+            if (indiceAleatoireB==0 && indiceAleatoireA==2){indiceAleatoireA=0;}
+            
             var PrenomA = Gars[indiceAleatoireA];
             var PrenomB = Fille[indiceAleatoireB];
             document.getElementById("resultat").textContent = PrenomA;
             document.getElementById("resultat2").textContent = PrenomB;
             document.getElementById("resultat3").textContent = PrenomB.substring(0, Math.floor(PrenomB.length / 2)) + PrenomA.substring(Math.floor(PrenomA.length / 2));
 ;
+                        if (indiceAleatoireB==1 && indiceAleatoireA==4){document.getElementById("resultat3").textContent = 'Les deux amoureux';}
         }
     </script>
     <style>
