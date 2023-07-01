@@ -1,0 +1,140 @@
+html{
+	background-color : #ffffff;
+    background: url(../Animation/Quiz.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+	font-size: 100%; /* Taille Texte par Défaut */
+	font-family:Arial; /* Police par Défaut */
+	scroll-behavior: smooth;
+}
+body{margin: 0;padding: 0;}
+
+
+
+/* Sélection de Texte Violette */
+::selection {
+	background-color: rgb(88, 101, 242); /* Fond Violet */
+	color: rgb(255,255,255) /* Texte Blanc */
+  }
+/* Sélection de Texte Violette */
+
+/* Barre de Scroll */
+::-webkit-scrollbar {width: auto;background-color: rgb(241, 241, 241);}					 /* Taille Automatique */
+::-webkit-scrollbar-thumb{border: 1px solid rgb(241, 241, 241); background-color: #072d5b;}	/* Image Barre de Scroll */
+/* Barre de Scroll*/
+
+header{
+    background-color: #072d5b;
+    text-align: center;
+    width: 100%;
+    }
+header a{
+    font-family: Georgia, serif;
+    color: white;
+    text-decoration: none;
+    font-size: 120px;
+    font-weight: 600;
+}
+header img{width: 115px;
+    vertical-align: -15px;}
+
+nav{
+    font-family: Arial,sans-serif;
+    background-color: #193f6c;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #1c3a5f;
+    width: 100%;
+
+}
+nav a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center
+}
+nav li {
+    display: inline-block;
+    margin: 10px 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 4px solid transparent;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    font-size: .875rem;
+    line-height: 1.5rem;
+    text-transform: uppercase
+}
+nav li:hover {
+    border-bottom-color: rgba(255, 255, 255,0.8)
+}
+    
+footer{    background-color: #072d5b;
+}
+#barre{
+    text-align: left;
+    width: 100%;
+    position: sticky; /* Immobile */
+	bottom: 0; /* Bas de l'écran */
+    border-bottom: 1px solid rgba(255, 255, 255,0.3);
+}
+
+#barre a{
+    font-family: Georgia, serif;
+    color: white;
+    text-decoration: none;
+    font-size: 45px;
+    font-weight: 600;
+}
+
+#barre img{
+    width: 40px;
+    vertical-align: -5px;
+}
+
+#reste{
+    border-bottom: 1px solid rgba(255, 255, 255,0.3);
+}
+
+#TableauFooter{
+    width: 90%;
+    margin: auto auto auto 10%;
+    text-align: left;
+    color: #fff;
+}
+#TableauFooter th{
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    font-size: 1rem;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    opacity: .3;
+
+}
+#TableauFooter td{
+    font-size: .75rem;
+    line-height: 26px;
+    text-decoration: none;
+    width: 10%;
+}
+
+#Slogan {
+    
+    text-transform: uppercase;
+    font-size: 1.875rem;
+    padding-left: 50px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+
+}
+
+#Copyright{    font-size: .6875rem;
+    padding: 20px 35px;
+    margin: auto;
+    line-height: 22px;
+    color: rgb(255, 255, 255,0.3);
+    text-align: center;
+   ;}
