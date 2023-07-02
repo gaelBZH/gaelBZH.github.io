@@ -1,32 +1,33 @@
+/* STYLES GLOBAUX */
 html{
 	background-color : #ffffff;
-    background: url(../Animation/Quiz.png) no-repeat center fixed;  /* Fond Drapeau Breton */
-	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
 	font-size: 100%; /* Taille Texte par Défaut */
 	font-family:Arial; /* Police par Défaut */
 	scroll-behavior: smooth;
 }
 body{margin: 0;padding: 0;}
-
-
-
-/* Sélection de Texte Violette */
 ::selection {
 	background-color: rgb(88, 101, 242); /* Fond Violet */
 	color: rgb(255,255,255) /* Texte Blanc */
-  }
-/* Sélection de Texte Violette */
-
-/* Barre de Scroll */
+}
 ::-webkit-scrollbar {width: auto;background-color: rgb(241, 241, 241);}					 /* Taille Automatique */
 ::-webkit-scrollbar-thumb{border: 1px solid rgb(241, 241, 241); background-color: #072d5b;}	/* Image Barre de Scroll */
-/* Barre de Scroll*/
+/* STYLES GLOBAUX */
 
+
+
+
+
+
+
+
+
+/* HEADER */
 header{
     background-color: #072d5b;
     text-align: center;
     width: 100%;
-    }
+}
 header a{
     font-family: Georgia, serif;
     color: white;
@@ -37,28 +38,25 @@ header a{
 header img{width: 115px;
     vertical-align: -15px;}
 
-nav{
+#Themes{
     font-family: Arial,sans-serif;
     background-color: #193f6c;
     display: block;
     width: 100%;
     border-bottom: 1px solid #1c3a5f;
-    width: 100%;
-
 }
-nav a{
+#Themes a{
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
-
 }
-nav ul {
+#Themes ul {
     display: flex;
     justify-content: center;
     width: 50%;
     margin: 0 auto;
     text-align: center
 }
-nav li {
+#Themes li {
     display: inline-block;
     margin: 10px 10px 0;
     padding-bottom: 6px;
@@ -66,39 +64,222 @@ nav li {
     font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
     font-size: .875rem;
     line-height: 1.5rem;
-    text-transform: uppercase
+    text-transform: uppercase;
 }
-nav li:hover {
+#Themes li:hover {
     border-bottom-color: rgba(255, 255, 255,0.8)
 }
-    
+/* HEADER */
+
+
+
+
+
+
+
+
+
+
+
+/* MAIN */
+#News{
+    margin: 30px auto 0;
+    width: 1220px;
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 55px;
+    text-shadow: none;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 1em #193f6c;
+}
+#News p{
+    z-index: 1;
+    display:none;
+    position: absolute;
+    top:70%;
+    left: 13%;
+}
+
+#News img{transition: 0.3s;}
+
+#Direct{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-right: 0;
+    margin-left: 10%;
+}
+.Heure{color:orangered}
+.HeureEvent{font-weight: 600;margin-left: 7px;}
+#Villes a{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.8);
+}
+#Villes ul {
+    display: flex;
+    width: 50%;
+    margin: 0 55px;
+}
+#Villes li {
+    margin: 0 5px;
+    padding-bottom: 6px;
+    font-weight: 600;
+
+    border-radius: 50px;
+    border: 2px solid #d9d9d9;
+    background-color: #f8f8f8;
+    display: block;
+    padding: 10px 15px;
+    color: #000;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    font-size: .875rem;
+    line-height: .8125rem;
+    white-space: nowrap;
+}
+#Villes li:hover {
+    border-color: #0b2bf7;
+    cursor: pointer;
+}
+
+
+.ListeArticles{
+  display: flex;
+  flex-wrap: wrap;  
+  color:black;
+  width: 90%;
+  text-align: left;
+  margin: 1% auto;
+}
+
+.Article{
+  width: calc(1200px/3);
+  margin: 10px auto ;
+  transition: 0.3s;
+}
+.Article:hover{color: rgb(102, 102, 102);transform: scale(1.01);}
+
+
+.Article a{
+    color: inherit;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.Article img{
+    border-radius: 3%;
+    display: flex;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+
+}
+
+
+.Article h3{
+    margin: 8px auto;
+    font-size: 1.25rem;
+    line-height: 120%;
+    font-family: "Source Serif Pro Bold","Source Serif Pro Bold-fallback",sans-serif
+}
+
+#NumPage{margin: 10px auto;width: 10%;border-spacing: 12px;}
+#NumPage td{text-align: center;vertical-align: middle;cursor: pointer;}
+#NumPageNonSelect, #NumPageNext{
+    border: 1px solid grey;
+}
+#NumPageSelect{
+    background-color: #1c3a5f;
+    color: white;
+    font-weight: 500;
+    transform: scale(1.15);
+    border-radius: 10%;
+}
+#NumPageNext{background-color: rgba(128, 128, 128, 0.2);}
+/* MAIN */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
 footer{    background-color: #072d5b;
 }
-#barre{
+#Barre{
     text-align: left;
     width: 100%;
     position: sticky; /* Immobile */
 	bottom: 0; /* Bas de l'écran */
     border-bottom: 1px solid rgba(255, 255, 255,0.3);
 }
-
-#barre a{
+#Barre a{
     font-family: Georgia, serif;
     color: white;
     text-decoration: none;
     font-size: 45px;
     font-weight: 600;
 }
-
-#barre img{
+#Barre #Glosbe{
     width: 40px;
     vertical-align: -5px;
 }
-
-#reste{
+#Barre ul {
+    display: flex;
+    width: 10%;
+    text-align: center
+}
+#Barre li {
+    display: inline-block;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    text-transform: uppercase
+    
+}
+.SocialMedia{
+    width: 30px;
+    vertical-align: 0px;
+    margin-right: 10px;
+    transition: transform .2s
+    }
+.SocialMedia:hover{
+    transform: scale(1.25);}
+.round{border-radius: 50%;}
+#Resaux{
+    float: right;
+    margin-right: 10px;
+}
+#FooterLinks{
     border-bottom: 1px solid rgba(255, 255, 255,0.3);
 }
-
 #TableauFooter{
     width: 90%;
     margin: auto auto auto 10%;
@@ -111,7 +292,6 @@ footer{    background-color: #072d5b;
     line-height: 1.875rem;
     text-transform: uppercase;
     opacity: .3;
-
 }
 #TableauFooter td{
     font-size: .75rem;
@@ -119,22 +299,26 @@ footer{    background-color: #072d5b;
     text-decoration: none;
     width: 10%;
 }
-
+#TableauFooter td:hover{
+    cursor: pointer;
+    color: rgb(195, 195, 195);
+    text-decoration: underline;
+}
 #Slogan {
-    
     text-transform: uppercase;
     font-size: 1.875rem;
     padding-left: 50px;
-    text-transform: uppercase;
     color: #fff;
     font-weight: 700;
-
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
 }
-
-#Copyright{    font-size: .6875rem;
+#Copyright{
+    font-size: .6875rem;
     padding: 20px 35px;
     margin: auto;
     line-height: 22px;
     color: rgb(255, 255, 255,0.3);
     text-align: center;
-   ;}
+}
+/* FOOTER */
+
