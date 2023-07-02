@@ -321,4 +321,35 @@ footer{    background-color: #072d5b;
     text-align: center;
 }
 /* FOOTER */
-
+#close{
+    color:#000;
+    background-color: #fff;
+    position: relative;
+    top: 0;
+    left: 94%;
+}
+#pub{
+    display: block;
+    width: 400px;
+    height: 300px;
+    margin: 10px auto 20px;
+    box-shadow: 0px 15px 10px -5px #777;
+    background-color: #EDEDED;
+    background-size: contain;
+    animation: fondu 40s ease-in-out infinite;
+}
+#pub:hover{
+    animation-play-state: paused;
+    cursor:pointer
+}
+@keyframes fondu{
+    0%      {background-image: url("Pub1.jpg");}
+    12.5%   {background-image: url("Pub2.jpg");}
+    25%     {background-image: url("Pub3.jpg");}
+    37.5%   {background-image: url("Pub4.jpg");}
+    50%     {background-image: url("Pub5.jpg");}
+    62.5%   {background-image: url("Pub6.jpg");}
+    75%     {background-image: url("Pub7.jpg");}
+    87.25%  {background-image: url("Pub8.jpg");}  
+    100%    {background-image: url("Pub9.jpg");}
+}
