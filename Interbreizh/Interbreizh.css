@@ -384,10 +384,6 @@ footer{    background-color: #072d5b;
 
 @media screen and (max-width: 1300px)
 {
-    header a{font-size: 70px}
-    header img{
-        width: 60px;
-        vertical-align: -4px
-    }
+  
     #News{display: none}
 }
