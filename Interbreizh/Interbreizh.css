@@ -382,20 +382,12 @@ footer{    background-color: #072d5b;
 
 
 
-@media screen and (max-width: 600px)
+@media screen and (max-width: 1300px)
 {
-    header a{
-        font-size: 60px;
-    }
+    header a{font-size: 60px}
     header img{
         width: 50px;
-        vertical-align: -4px;
-       }
-
-
-
-#News{display: none;}
-
-
-
+        vertical-align: -4px
+    }
+    #News{display: none}
 }
