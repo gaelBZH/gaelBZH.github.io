@@ -22,18 +22,17 @@
         <img src="Interbreizh/Globe.svg">
         <a href="#">Interbreizh</a>
     </header>
-    <nav id="Themes">   
-        <ul>
-            <li><a href="#" title="Société">      Société      </a></li>
-            <li><a href="#" title="Politique">    Politique    </a></li>
-            <li><a href="#" title="International">International</a></li>
-            <li><a href="#" title="Culture">      Culture      </a></li>
-            <li><a href="#" title="Science">      Science      </a></li>
-            <li><a href="#" title="Économie">     Économie     </a></li>
-            <li><a href="#" title="Santé">        Santé        </a></li>
-            <li><a href="#" title="Sport">        Sport        </a></li>
-        </ul>
+    <nav class="Themes">   
+        <div><a href="#" title="Société">      Société      </a></div>
+        <div><a href="#" title="Politique">    Politique    </a></div>
+        <div><a href="#" title="International">International</a></div>
+        <div><a href="#" title="Culture">      Culture      </a></div>
+        <div><a href="#" title="Science">      Science      </a></div>
+        <div><a href="#" title="Économie">     Économie     </a></div>
+        <div><a href="#" title="Santé">        Santé        </a></div>
+        <div><a href="#" title="Sport">        Sport        </a></div>
     </nav>
+
     <main>
     <a id="News" href="#"
         onmouseover="document.getElementById('imgnews').style.filter='brightness(50%)';document.getElementById('Replay').style.display='block'"
@@ -50,19 +49,18 @@
         <span class="Heure">◼<time>12:24</time></span><span class="HeureEvent">Pays Nantais : Le maire de Nantes démisionne après qu'on ait découvert que c'était lui, l'homme ivre de Brest.</span><br>
     </div>
 
-    <nav id="Villes">   
-        <ul>
-            <li onclick="Select(this)">Rennes       </li>
-            <li onclick="Select(this)">Brest        </li>
-            <li onclick="Select(this)">Lorient      </li>
-            <li onclick="Select(this)">Nantes       </li>
-            <li onclick="Select(this)">Quimper      </li>
-            <li onclick="Select(this)">Saint-Brieuc </li>
-            <li onclick="Select(this)">Saint-Malo   </li>
-            <li onclick="Select(this)">Vannes       </li>
-            <li onclick="Select(this)">Fougères     </li>
-            <li onclick="Select(this)">International</li>
-        </ul></li>
+
+    <nav class="ListeVilles">
+        <div onclick="Select(this)"><span>Rennes       </span></div>
+        <div onclick="Select(this)"><span>Brest        </span></div>
+        <div onclick="Select(this)"><span>Lorient      </span></div>
+        <div onclick="Select(this)"><span>Nantes       </span></div>
+        <div onclick="Select(this)"><span>Quimper      </span></div>
+        <div onclick="Select(this)"><span>Saint-Brieuc </span></div>
+        <div onclick="Select(this)"><span>Saint-Malo   </span></div>
+        <div onclick="Select(this)"><span>Vannes       </span></div>
+        <div onclick="Select(this)"><span>Fougères     </span></div>
+        <div onclick="Select(this)"><span>International</span></div>
     </nav>
 
     <div class="ListeArticles">
@@ -348,7 +346,7 @@
     </main>
     
     
-    <div id="pub"><button onclick="document.getElementById('pub').style.display='none'" id="close">X</button></div>
+    <div id="pub">Publicité (1/8)<button style="cursor: pointer;" onmouseover="document.getElementById('close').style.backgroundColor='silver'" onmouseout="document.getElementById('close').style.backgroundColor='white'" onclick="document.getElementById('pub').style.display='none'" id="close">X</button></div>
 
 
     <footer id="Barre">
@@ -360,7 +358,7 @@
             <a title="Twitter"   href="#"><img alt="Twitter"   class="SocialMedia round" src="Staff/Twitter.jpg"></a>
             <a title="Instagram" href="#"><img alt="Instagram" class="SocialMedia round" src="Staff/Instagram.png"></a>
             <a title="WhatsApp"  href="#"><img alt="WhatsApp"  class="SocialMedia round" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
-            <a title="YouTube"   href="#"><img alt="YouTube"   class="SocialMedia      " src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png"></a>
+            <a title="YouTube"   href="#"><img alt="YouTube"   class="SocialMedia      " src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c545.png"></a>
             <a title="TikTok"    href="#"><img alt="TikTok"    class="SocialMedia round" src="https://img.freepik.com/vecteurs-premium/logo-tik-tok_578229-290.jpg"></a>
             <a title="Pinterest" href="#"><img alt="Pinterest" class="SocialMedia round" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Pinterest.svg"></a>
             <a title="Snapchat"  href="#"><img alt="Snapchat"  class="SocialMedia round" src="https://upload.wikimedia.org/wikipedia/fr/a/ad/Logo-Snapchat.png"></a>
