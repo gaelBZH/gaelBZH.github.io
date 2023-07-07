@@ -8,14 +8,7 @@
     <link rel="stylesheet" href="Interbreizh/Interbreizh.css"> <!--Feuille de Style CSS-->
     <link rel="icon" href="Interbreizh/Logo.png"> <!--Icône du Site-->
     <title>Interbreizh - Empire Breton</title>
-    <script>
-        function Select(item)
-        {
-            if(item.style.color=='black')
-            {item.style.color='white';item.style.backgroundColor='#193f6c'}
-            else{item.style.color='black';item.style.backgroundColor='#f8f8f8'}
-        }
-    </script>
+    <script src="Interbreizh/Interbreizh.js"></script>
 </head>
 <body>
     <header>
@@ -35,11 +28,8 @@
 
     <main>
     <a id="News" href="#"
-        onmouseover="document.getElementById('imgnews').style.filter='brightness(50%)';document.getElementById('Replay').style.display='block'"
-        onmouseout="document.getElementById('imgnews').style.filter='brightness(100%)';document.getElementById('Replay').style.display='none'">
-        <p id="Replay">
-            Replay disponible sur interbreizh.tv
-        </p>
+        onmouseover="document.getElementById('imgnews').src='Interbreizh/News2.png'"
+        onmouseout="document.getElementById('imgnews').src='Interbreizh/News.png'">
         <img src="Interbreizh/News.png" id="imgnews" alt="News">
     </a>
         
@@ -277,7 +267,7 @@
             </a></div>
 
             <div class="Article"><a href="#">
-                <img src="https://i.ytimg.com/vi/bq-RdBypEk4/maxresdefault.jpg">
+                <img src="https://cdn-europe1.lanmedia.fr/var/europe1/storage/images/europe1/coupe-du-monde/videos-coupe-du-monde-2018-la-ceremonie-douverture-en-images-3681635/48745067-4-fre-FR/VIDEOS-Coupe-du-monde-2018-la-ceremonie-d-ouverture-en-images.jpg">
                 <h3>Match d'Ouverture de la Coupe du Monde</h3>
             </a></div>
 
@@ -358,7 +348,7 @@
             <a title="Twitter"   href="#"><img alt="Twitter"   class="SocialMedia round" src="Staff/Twitter.jpg"></a>
             <a title="Instagram" href="#"><img alt="Instagram" class="SocialMedia round" src="Staff/Instagram.png"></a>
             <a title="WhatsApp"  href="#"><img alt="WhatsApp"  class="SocialMedia round" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
-            <a title="YouTube"   href="#"><img alt="YouTube"   class="SocialMedia      " src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c545.png"></a>
+            <a title="YouTube"   href="#"><img alt="YouTube"   class="SocialMedia      " src="Interbreizh/YouTube.png"></a>
             <a title="TikTok"    href="#"><img alt="TikTok"    class="SocialMedia round" src="https://img.freepik.com/vecteurs-premium/logo-tik-tok_578229-290.jpg"></a>
             <a title="Pinterest" href="#"><img alt="Pinterest" class="SocialMedia round" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Pinterest.svg"></a>
             <a title="Snapchat"  href="#"><img alt="Snapchat"  class="SocialMedia round" src="https://upload.wikimedia.org/wikipedia/fr/a/ad/Logo-Snapchat.png"></a>
