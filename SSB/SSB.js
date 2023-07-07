@@ -37,7 +37,7 @@ function afficherpage(u){
     if (verifiermdp()||u==29)
     {
         document.getElementById("verrouille").open = true;
-        document.getElementsByClassName("Logo")[0].src = "SSB/BlasonSSB.png";
+        document.getElementsByClassName("Logo")[0].src = "SSB/BlasonSSB2.png";
         document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
         document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
         document.getElementById("Sommaire").style.visibility="visible";
