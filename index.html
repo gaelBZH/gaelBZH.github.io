@@ -7,154 +7,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Empire Breton</title> <!--Titre de la Page-->
     <link rel="stylesheet" href="style.css"> <!--Feuille de Style CSS-->
-    <link rel="stylesheet" href="mobile.css"> <!--Feuille de Style Mobile CSS-->
     <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style CSS-->
+    <link rel="stylesheet" href="StylesGlobaux.css"> <!--Feuille de Style CSS-->
     <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
     <meta name="theme-color" content="#a13e3c">
     <script>
-        function citation()
-        {
-            var r_text = new Array ();
-            var r_textautor = new Array ();
+    function citation()
+    {
+    var text = new Array ();
+    var auteur = new Array ();
 
-     r_text[0] = "\"J ’aime bien cet esprit de fraternité avec nos camarades bretons.\"                                                                                                                                                             ";
-     r_textautor[0] = "Gunter";
+    text[0] = "J ’aime bien cet esprit de fraternité avec nos camarades bretons.";
+    auteur[0] = "Gunter";
 
-     r_text[1] = "\"Une bonne ambiance chaleureuse et décontractée.\"                                                                                                                                                                               ";
-     r_textautor[1] = "Gunter";
+    text[1] = "Une bonne ambiance chaleureuse et décontractée.";
+    auteur[1] = "Gunter";
 
-     r_text[2] = "\"J'adore le Serveur.\"                                                                                                                                                                                                           ";
-     r_textautor[2] = "Yukilo";
+    text[2] = "J'adore le Serveur.";
+    auteur[2] = "Yukilo";
 
-     r_text[3] = "\"L'ambiance est superbe pas de prise de tête et desfois on rigole bien.\"                                                                                                                                                        ";
-     r_textautor[3] = "Yukilo";
+    text[3] = "L'ambiance est superbe pas de prise de tête et desfois on rigole bien.";
+    auteur[3] = "Yukilo";
 
-     r_text[4] = "\"Il y a des petites animations en rapport avec la Bretagne pour nous faire découvrir de nouvelles choses ce qui est super cool.\"                                                                                                ";
-     r_textautor[4] = "Yukilo";
+    text[4] = "Il y a des petites animations en rapport avec la Bretagne pour nous faire découvrir de nouvelles choses ce qui est super cool.";
+    auteur[4] = "Yukilo";
 
-     r_text[5] = "\"L'Empire Breton, serveur riche, membres actifs et agréables, en bref, un excellent serveur discord ou l'on peut s'amuser avec les membres et les bots\"                                                                         ";
-     r_textautor[5] = "Snurf";
+    text[5] = "L'Empire Breton, serveur riche, membres actifs et agréables, en bref, un excellent serveur discord ou l'on peut s'amuser avec les membres et les bots";
+    auteur[5] = "Snurf";
 
-     r_text[6] = "\"Super serveur où vous pouvez montez en grade avec des levels, vous pouvez achetez des boost d'XP, vous pouvez apprendre des bases du breton, un serveur semi-rp et en réalité tellement de contenus que je peux pas tout dire.\"";
-     r_textautor[6] = "Snurf";
+    text[6] = "Super serveur où vous pouvez montez en grade avec des levels, vous pouvez achetez des boost d'XP, vous pouvez apprendre des bases du breton, un serveur semi-rp et en réalité tellement de contenus que je peux pas tout dire.";
+    auteur[6] = "Snurf";
 
-     r_text[7] = "\"L'Empire Breton, l'essayer c'est l'adopter.\"                                                                                                                                                                                   ";
-     r_textautor[7] = "Snurf";
+    text[7] = "L'Empire Breton, l'essayer c'est l'adopter.";
+    auteur[7] = "Snurf";
 
-     r_text[8] = "\"Bien mais avec modération, comme le cidre.\"                                                                                                                                                                                    ";
-     r_textautor[8] = "RLRGC";
+    text[8] = "Bien mais avec modération, comme le cidre.";
+    auteur[8] = "RLRGC";
 
-     r_text[9] = "\"Serveur agréable, convivial et sympathique, le fait que vous soyez breton ou non n'est pas dérangeant, au contraire, vous pouvez en apprendre sur la Bretagne, discuter avec des bretons et profiter d'une économie virtuelle et d'animations. Deut mat out !\"                                                                                                                                                                                    ";
-     r_textautor[9] = "Just Nassim";
-    
-     
-     var i = Math.floor(r_text.length * Math.random());    
-     document.getElementById("Citation").textContent = (r_text[i]);
-     document.getElementById("AuteurCitation").textContent = ("- " + r_textautor[i]);
-        }
+    text[9] = "Serveur agréable, convivial et sympathique, le fait que vous soyez breton ou non n'est pas dérangeant, au contraire, vous pouvez en apprendre sur la Bretagne, discuter avec des bretons et profiter d'une économie virtuelle et d'animations. Deut mat out !";
+    auteur[9] = "Just Nassim";
+
+
+    var i = Math.floor(text.length * Math.random());    
+    document.getElementById("Citation").textContent = (text[i]);
+    document.getElementById("AuteurCitation").textContent = ("- " + auteur[i]);
+    }
     </script>
 </head>
 <body>
     <h1><table style="margin: auto;"><tbody><tr>
-        <td id="BoutonLangue" class="dixpourcent"><a style="cursor: pointer;float: left;" class="BoutonRouge">E Galleg <img width="17px%" src="Images/EmojiFR.png" alt="Drapeau Français"></a><a href="brezhoneg.html" style="float: left;" class="BoutonRouge">E Brezhoneg <img width="17px%" src="Images/EmojiBZH.png" alt="Drapeau Breton"></a></td>
+        <td id="BoutonLangue" class="dixpourcent"><a style="cursor: pointer;float: left;" class="BoutonRouge">E Galleg <img width="17px%" src="Images/EmojiFR.png" alt="Drapeau Français"></a><a href="Brezhoneg.html" style="float: left;" class="BoutonRouge">E Brezhoneg <img width="17px%" src="Images/EmojiBZH.png" alt="Drapeau Breton"></a></td>
         <td id="TitrePrincipal"><img src="Images/EmojiBZH.png" alt="Emoji" width="36px"> Empire Breton <img src="Images/EmojiBZH.png" alt="Emoji" width="36px"></td>
         <td class="dixpourcent"><a id="BoutonMenu" style="cursor: pointer;float: right;" class="BoutonRouge">Menu Principal</a></td>
     </tr></tbody></table></h1>
     <h2>Bienvenue en Bretagne • Degemer mat e Breizh</h2>
     
-    <!--Partie I - Introduction Contexte-->
-		<div class="Partie" id="Embeds">
-            <table><tbody><tr>
-				<td>
-                    <iframe width="100%" height="605" src="https://discord.com/widget?id=892079170388099134&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                </td>
-                <td>
-                <p2>
-                    <strong>Salut à toi, jeune breton<small>(ne)</small>, sois le<small>(la)</small> bienvenue sur l'empire breton.</strong><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Gwenn_ha_Du_%2811_mouchetures%29.svg/langfr-1280px-Gwenn_ha_Du_%2811_mouchetures%29.svg.png" alt="Emoji Drapeau Breton" width="20px"><br><br>
+    <main>
+        <section class="Embeds">
+            <div id="Embed1">
+                <iframe width="100%" height="100%" style="min-height: 500px;" src="https://discord.com/widget?id=892079170388099134&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+            </div>
+            <div id="Embed2"><p>
+                <strong>Salut à toi, jeune breton<small>(ne)</small>, sois le<small>(la)</small> bienvenue sur l'empire breton.</strong><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Gwenn_ha_Du_%2811_mouchetures%29.svg/langfr-1280px-Gwenn_ha_Du_%2811_mouchetures%29.svg.png" alt="Emoji Drapeau Breton" width="20px"><br><br>
                     
-                    L'Empire Breton est une communauté bretonne, et qui retrace toute l'histoire et la culture de la Bretagne de 
-                    Brest à Nantes, en passant par Lorient et le Mont Saint Michel inclus. Fondé initialement par gaelBZH et Yukilo, 
-                    il a permis de rassembler plus de 150 bretons et bretonnes passionnés de notre belle Bretagne. 
-                    Principalement actif sur Discord, l'empire breton a permis de passer de superbes moments entre bretons. 
-                    L'Humour et l'amusement sont les principales activités du serveur. Autour d'activités diverses, tels que des 
-                    tournois, sondages, quiz ou évènements, et de nombreux sujets de discussions autour de la culture bretonne et 
-                    des autres cultures celtiques d'Irlande, d'Écosse ou du Pays de Galles, vous trouverez forcément quelque chose 
-                    qui vous intéresse. Les membres sont d'accords sur le fait qu'on s'y intègre très vite. La Bretagne est le centre 
-                    de cette communauté Discord qu'est l'Empire Breton, mais de nombreux sujets variés ont aussi leur place ici, 
-                    Star Wars, la musique, ou les trains... c'est bien les trains !
-                    Sur l'Empire Breton, tu pourras même apprendre le Breton sur notre site ou notre Discord ! 
-                    Discuter de la culture Celtique avec des membres actifs ou apprendre cette Culture avec nos références 
-                    et nos articles sur le Sujet. Il y a aussi des nouveautés très régulièrement ! 
-                    Comme par exemple très bientôt une Bande Dessinée faite par l'Empire Breton spécialement pour vous ! 
-                    
-                    <br><br>
-                    À tout de suite dans L'Empire Breton, Degemer Mat !
-                </p2>
-                </div>
+                L'Empire Breton est une communauté bretonne, et qui retrace toute l'histoire et la culture de la Bretagne de 
+                Brest à Nantes, en passant par Lorient et le Mont Saint Michel inclus. Fondé initialement par gaelBZH et Yukilo, 
+                il a permis de rassembler plus de 150 bretons et bretonnes passionnés de notre belle Bretagne. 
+                Principalement actif sur Discord, l'empire breton a permis de passer de superbes moments entre bretons. 
+                L'Humour et l'amusement sont les principales activités du serveur. Autour d'activités diverses, tels que des 
+                tournois, sondages, quiz ou évènements, et de nombreux sujets de discussions autour de la culture bretonne et 
+                des autres cultures celtiques d'Irlande, d'Écosse ou du Pays de Galles, vous trouverez forcément quelque chose 
+                qui vous intéresse. Les membres sont d'accords sur le fait qu'on s'y intègre très vite. La Bretagne est le centre 
+                de cette communauté Discord qu'est l'Empire Breton, mais de nombreux sujets variés ont aussi leur place ici, 
+                Star Wars, la musique, ou les trains... c'est bien les trains !
+                Sur l'Empire Breton, tu pourras même apprendre le Breton sur notre site ou notre Discord ! 
+                Discuter de la culture Celtique avec des membres actifs ou apprendre cette Culture avec nos références 
+                et nos articles sur le Sujet. Il y a aussi des nouveautés très régulièrement ! 
+                Comme par exemple très bientôt une Bande Dessinée faite par l'Empire Breton spécialement pour vous ! 
+                
+                <br><br>
+                À tout de suite dans L'Empire Breton, Degemer Mat !
+        </p></div>
+            <div id="Embed3">
+                <iframe width="100%" height="49%" style="min-height: 200px;" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1027855.8878294284!2d-3.044630302287603!3d48.05495282082855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1654420887051!5m2!1sfr!2sfr" allowfullscreen="none" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe width="100%" height="49%" style="min-height: 200px;" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1283650.8072296167!2d-3.044630302287603!3d48.05495282082855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2sfr!4v1654420920105!5m2!1sfr!2sfr" allowfullscreen="none" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
 
-                </td>
-                    <td>
-                        <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1027855.8878294284!2d-3.044630302287603!3d48.05495282082855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1654420887051!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1283650.8072296167!2d-3.044630302287603!3d48.05495282082855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2sfr!4v1654420920105!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </td>
-			</tr></tbody></table>
-		</div>
-<div class="Partie">
-    <!--Boutons-->
-<div id="BoutonsNavigation">
-    <table style="width: 100%;">
-        <tbody>
-        <tr>
-        <td><p><a href="CoursBreton.html" class="BoutonBleu">Cours de Breton</a></p></td>
-        <td><p><a href="https://discord.gg/Zaw7bB2bnj" class="BoutonBleu" target="_blank">Lien du Discord <img src="Images/LienExterne.png" alt="Lien Externe" width="12px"></a></p></td>
-        <td><p><a href="Histoire/Histoire.html" class="BoutonBleu">Histoire de la Bretagne</a></p></td>
-        <td><p><a href="Banque.html" class="BoutonBleu">Banque de Bretagne</a></p></td>
-        <td><p><a href="QuestionnaireDeSatisfaction.html" class="BoutonBleu">Questionnaire De Satisfaction</a></p></td>
-        </tr>
-        </tbody>
-        </table>
-</div>
-<!--Boutons-->
-</div>
+        <!--Partie II - Boutons de Navigation -->
+        <nav id="BoutonsNavigation">
+            <div><a href="CoursBreton.html"                 class="BoutonBleu">Cours de Breton</a></div>
+            <div><a href="https://discord.gg/Zaw7bB2bnj"    class="BoutonBleu" target="_blank">Lien du Discord <img src="Images/LienExterne.png" alt="Lien Externe" width="12px"></a></div>
+            <div><a href="Histoire.html"                    class="BoutonBleu">Histoire de la Bretagne</a></div>
+            <div><a href="Banque.html"                      class="BoutonBleu">Banque de Bretagne</a></div>
+            <div><a href="QuestionnaireDeSatisfaction.html" class="BoutonBleu">Questionnaire De Satisfaction</a></div>
+            <div><a href="Staff.html"                       class="BoutonVert">Staff</a></div>
+            <div><a href="SSB.html"                         class="BoutonRouge">SSB</a></div>
+            <div><a href="Animation.html"                   class="BoutonVert">Animation</a></div>
+            <div><a href="Interbreizh.html"                 class="BoutonVert" target="_blank">Interbreizh <img src="Images/LienExterne.png" alt="Lien Externe" width="12px"></a></div>
+            <div><a href="Musique.html"                     class="BoutonVert">Musique</a></div>
+        </nav>
 
 
         <!--Partie III - Commentaires de Membres-->
-        <div id="Commentaire">
-            <strong>Commentaires de Membres
-            <button id="Actualisation" onclick="citation();"><img src="Images/Actualiser.png" alt="Bouton Actualisation"></button>
-            </strong><br>------------------------<br>
-            <div id="IndicateurDirect">
-                <p id="Citation"><script>citation();</script></p>
-                <p id="AuteurCitation"><i><script>citation();</script></i></p>
-            </div>
-        </div>
-
+        <section id="Commentaire">
+            <span id="CommentaireTitre">Commentaires de Membres
+                <button id="Actualisation" onclick="citation();"><img src="Images/Actualiser.png" alt="Bouton Actualisation"></button>
+            </span>
+            <hr>
+            <p id="Citation"><script>citation();</script></p>
+            <p id="AuteurCitation"><script>citation();</script></p>
+        </section>
+    </main>
 
     <!--Liens Utiles-->
-    <div id="LiensUtiles">
-        <p class="TitrePartie"><u>Liens Utiles :</u></p>
-
-        <table><tbody><tr>
-            <td class="Tiers">
+    <footer id="FooterLinks">
+        <p><u>Liens Utiles :</u></p>
+        <div>
+            <div class="Tiers">
                 <ul>
                     <li>Membres du Staff : <a href="Staff.html"><i>Staff.html</i></a></li>
                     <li>Cours de Breton <a href="CoursBreton.html"><i>CoursBreton.html</i></a></li>
-                    <li>Histoire : <a href="Histoire/Histoire.html"><i>Histoire.html</i></a></li>
+                    <li>Histoire : <a href="Histoire.html"><i>Histoire.html</i></a></li>
                 </ul>    
-            </td>
-            <td class="DeuxTiers">
+            </div>
+            <div class="DeuxTiers">
                 <img src="Images/Flamme.png" alt="Flamme Ducale Bretonne" id="Flamme">
-            </td>
-        </tr></tbody></table><br><br>
+            </div>
+        </div>
+    </footer>
+    <!--Barre du Bas-->
+    <div id="BarreDuBas">
+        <a href="https://discord.gg/Zaw7bB2bnj" style="color:white;  text-decoration: none;">
+        © <script>document.write(new Date().getFullYear());</script> Empire Breton
+        </a>
     </div>
-    
-<!--Barre du Bas-->
-<div id="BarreDuBas">
-    <a href="https://discord.gg/Zaw7bB2bnj" style="color:white;  text-decoration: none;">
-    © <script>document.write(new Date().getFullYear());</script> Empire Breton
-    </a>
-</div>
-<!--Barre du Bas-->
-   </div>
+    <!--Barre du Bas-->
 </body>
 </html>

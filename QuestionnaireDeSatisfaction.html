@@ -7,67 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire De Satisfaction - Empire Breton</title> <!--Titre de la Page-->
     <link rel="stylesheet" href="StyleBoutons.css"> <!--Feuille de Style CSS-->
-    <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
+	<link rel="stylesheet" href="StylesGlobaux.css"> <!--Feuille de Style CSS-->
+	<link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
     <meta name="theme-color" content="#a13e3c">
     <style>
-    
-    html{
-	background-color : #030219;background: url(Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
-	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
-	font-size: 100%; /* Taille Texte par Défaut */
-	font-family:Arial; /* Police par Défaut */
-}
-
-/* Corps de la Page */
+  
+/* Fond de Page */
 body{
-	/*background-color: rgba(255, 255, 255, 0.8);*/
-	background-image: linear-gradient(rgba(200,200,200,0.9),rgba(198, 198, 198, 0.9) ), url("");
-	width: 90%;
-	margin: auto;
-	margin-top: 20px;
-	margin-bottom: 50%;
-	border: 3px solid #EEEEEE;
+	background-image: linear-gradient(
+		rgba(200,200,200,0.9)	,
+		rgba(198, 198, 198, 0.9))	, url("");
 }
 
-/* Sélection de Texte Violette */
-::selection {
-	background-color: rgb(88, 101, 242); /* Fond Violet */
-	color: rgb(255,255,255) /* Texte Blanc */
-  }
-  /* Sélection de Texte Violette */
-  
-  
-  
-/* Barre de Scroll */
-	::-webkit-scrollbar {width: auto;}					 /* Taille Automatique */
-	::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}	/* Fond Grise Clair */
-	::-webkit-scrollbar-thumb{background-image: url(Images/Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}	/* Image Barre de Scroll */
-	::-webkit-scrollbar-button{background: #a8a8a8;}	/* Boutons Barre de Scroll */
-	::-webkit-scrollbar-corner{background: #f8f4f4}	/* Coin Inférieur Droit */
-/* Barre de Scroll*/
-
-/* Titre Principal */
-    .dixpourcent{width: 10%}
-    #TitrePrincipal{width: 10%;}
 h1{
 	background-color: #a13e3c;
 	color:rgb(230, 230, 230);
-	font-weight: bold;
-	text-align: center;
 }
 
-/* Texte de la Page */
-p{
-	color:#111111;
-	padding: 5px;
-}
 
 /* Sous-Titre Principal*/
 h2{
 	background-color:rgba(230, 230, 230,0.5);
     color: #030219;
-	font-weight: bold;
-	text-align: center;
 }
 
 #Embeds td{
@@ -77,18 +38,6 @@ h2{
 	border-radius:0.5em 0.5em 0.5em 0.5em;
 }
 #Embeds table{border-spacing: 15px;}
-	
-/* Barre du Bas */
-#BarreDuBas {
-	position: fixed; /* Immobile */
-	bottom: 0; /* Bas de l'écran */
-	width: 90%; /* Taille à 100% */
-	padding: 2px 0px 2px 0px; /* Extension de 5px vers le Haut */
-	text-align: center; /* Centrage Horizontal */
-	vertical-align: middle; /* Centrage Vertical */
-	background: rgba(0, 0, 10, 0.8); /* Couleur Fond Barre */
-}
-/* Barre du Bas */
 	
 	
     </style>

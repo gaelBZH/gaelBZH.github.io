@@ -103,3 +103,8 @@
     top:2px;
 }
 /* ------------ Style des Boutons au Click ------------ */
+
+@media only screen and (max-width: 1000px){
+.BoutonBleu, .BoutonViolet, .BoutonVert, .BoutonJaune, .BoutonRouge, .BoutonCyan, .BoutonOrange, .BoutonGris, .BoutonBlanc, .BoutonNoir
+{font-size: 10px;}
+}

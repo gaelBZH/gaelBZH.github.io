@@ -56,20 +56,30 @@ p{
 .loupe{transition: transform .2s}
 .loupe:hover{transform: scale(1.25)}
 
+/* Nouvelle Version */
+#FooterLinks div{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 10px auto;
+}
+#FooterLinks .Tiers{
+	width: calc(1300px/3);
+}
+#FooterLinks .DeuxTiers{
+	width: calc((1300px/3)*2);
+}
 /* Style de la Partie des Liens */
-#LiensUtiles{
+#FooterLinks{
 	border-style: solid none;
 	background-color: rgba(0, 0, 0, 0.1);
 	margin: 5px 5px 10px 5px;
 }
-#LiensUtiles img{width: 100%}
-#LiensUtiles td{color: black;text-align: left;}
-#LiensUtiles a			{color:#00008e}
-#LiensUtiles a:visited	{color:#00008e}
-#LiensUtiles a:hover 	{color:#008000}
-.Tiers{width: 33%;}
-.DeuxTiers{width: 67%;}
-/* Style de la Partie des Liens */
+#FooterLinks img{width: 100%}
+#FooterLinks a			{color:#00008e}
+#FooterLinks a:visited	{color:#00008e}
+#FooterLinks a:hover 	{color:#008000}
+/* Nouvelle Version */
+
 
 /* Barre du Bas */
 #BarreDuBas {
