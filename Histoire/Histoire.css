@@ -1,0 +1,57 @@
+/* Fond de Page */
+body{
+	background-image: linear-gradient(
+		rgba(200,200,255,0.9)	,
+		rgba(95, 95, 198, 0.9))	, url("");
+}
+
+/* Titre Principal */
+h1{
+	background-color: #00004c;
+	color:rgb(230, 230, 230);
+}
+
+
+/* Sous-Titre Principal*/
+h2{
+	background-color:rgba(230, 230, 230,0.5);
+    color: #030219;
+}
+
+/* Style des Grandes Parties */
+.Chapitre{
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 5px solid #000064;
+	padding: 5px 10px 20px 10px;
+	margin: 10px auto;
+	width: calc(1250px/2); /* 1% signifie ici qu'on peut aligner jusqu'à 100 cours sur la même ligne */
+}
+/* Style des Grandes Parties */
+
+#ListeChapitres2{
+	display: flex;
+	flex-wrap: wrap;
+}
+.TitrePartie{
+	font-weight: bold;
+	text-align: left;
+	font-size: 1.25em;}
+.Chapitre li{margin-bottom: 10px;}
+
+/* Images */
+.Chapitre img{display: block;margin: auto;}
+
+#AnneDeBretagne{	width: 45%	}
+#Royaume{			width: 55%	}
+#Guerre{			width: 55%	}
+#Armoiries{			width: 55%	}
+#Nominoe{			width: 40%	}
+#Erispoe{			width: 65%	}
+#Salomon{			width: 65%	}
+#Rois{			width: 30%	}
+
+/* Couleur des Liens */
+.Chapitre a		   {color:rgb(0, 0, 142)}
+.Chapitre a:visited{color:rgb(0, 0, 142)}
+.Chapitre a:hover  {color:green}
+/* Couleur des Liens */
