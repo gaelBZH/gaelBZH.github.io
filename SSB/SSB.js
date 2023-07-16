@@ -39,7 +39,7 @@ function afficherpage(u){
         document.getElementById("verrouille").open = true;
         document.getElementsByClassName("Logo")[0].src = "SSB/BlasonSSB2.png";
         document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
-        document.getElementsByTagName("h2")[0].textContent="Bureau et Archives des Services Secrets Bretons";
+        document.getElementsByTagName("h2")[0].textContent="Meus honor vocatur fides";
         document.getElementById("Sommaire").style.visibility="visible";
     }
 }
