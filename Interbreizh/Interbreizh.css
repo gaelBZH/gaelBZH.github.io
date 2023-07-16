@@ -113,7 +113,7 @@ header img{width: 115px;
     font-size: .875rem;
     line-height: .8125rem;
     white-space: nowrap;
-  transition: 0.3s;
+    transition: 0.3s;
 }
 .ListeVilles div:hover {
     border-color: #0b2bf7;
@@ -171,19 +171,19 @@ header img{width: 115px;
     font-family: "Source Serif Pro Bold","Source Serif Pro Bold-fallback",sans-serif
 }
 
-#NumPage{margin: 10px auto;width: 10%;border-spacing: 12px;}
-#NumPage td{text-align: center;vertical-align: middle;cursor: pointer;}
-#NumPageNonSelect, #NumPageNext{
+.NumPage{margin: 10px auto;width: 10%;border-spacing: 12px;}
+.NumPage td{text-align: center;vertical-align: middle;cursor: pointer;}
+.NumPageNonSelect, .NumPageNext{
     border: 1px solid grey;
 }
-#NumPageSelect{
+.NumPageSelect{
     background-color: #1c3a5f;
     color: white;
     font-weight: 500;
     transform: scale(1.15);
     border-radius: 10%;
 }
-#NumPageNext{background-color: rgba(128, 128, 128, 0.2);}
+.NumPageNext{background-color: rgba(128, 128, 128, 0.2);}
 
 #close{
     color:#000;
