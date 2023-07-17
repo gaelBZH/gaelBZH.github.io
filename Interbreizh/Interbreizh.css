@@ -132,7 +132,7 @@ header img{width: 115px;
 }
 
 .Article{
-  width: calc(1200px/3);
+  width: max(calc(1050px/3), 30%);
   margin: 10px auto ;
   transition: 0.3s;
 }
