@@ -63,10 +63,10 @@ p{
 	margin: 10px auto;
 }
 #FooterLinks .Tiers{
-	width: calc(1300px/3);
+	width: max(calc(1050px/3), 30%);
 }
 #FooterLinks .DeuxTiers{
-	width: calc((1300px/3)*2);
+	width: max(calc((1050px/3)*2), 60%);
 }
 /* Style de la Partie des Liens */
 #FooterLinks{
