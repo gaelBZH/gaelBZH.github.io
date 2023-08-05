@@ -10,3 +10,11 @@ function Select(item)
         item.style.backgroundColor='#f8f8f8'
     }
 }
+
+function StopPub()
+{
+    document.getElementById('pub').style.display='none'
+}
+
+document.getElementById('close').addEventListener('click', StopPub);
+document.getElementById("year").innerHTML=(new Date().getFullYear());

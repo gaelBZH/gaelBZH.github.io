@@ -84,9 +84,17 @@ header img{width: 115px;
 /* MAIN */
 #News{
     margin: 30px auto 0;
-    width: 1220px;
-    display: block;
+    width: 1280px;
+    aspect-ratio: 16/9;
+    background-color: #000;
+    background-image: url(News.png);
+    transition: 0.5s;
 }
+#News a{display: block;height: 100%;}
+#News:hover{
+    background-image: url(News2.png);
+    transition: 0.5s;}
+
 
 #Direct{
     margin: 10px 10% 30px 10%;
@@ -185,20 +193,27 @@ header img{width: 115px;
     top:0;
 }
 .IconesArticles div:nth-child(2){
-    top:50px;
+    top:40px;
 }
-.IconeNew, .IconeArticle {
+.IconesArticles div:nth-child(3){
+    top:80px;
+}
+.IconeNew, .IconeArticle, .IconeVrai {
     position: absolute;
     right: 0;
     width: 44px;
     fill: var(--bleuinterbreizh);
     stroke:rgb(255, 255, 255);
 }
+.IconesArticles div:hover{fill: rgb(149, 31, 31);transition: 0.3s;}
 
 .NumPage{margin: 10px auto;width: 10%;border-spacing: 12px;}
 .NumPage td{text-align: center;vertical-align: middle;cursor: pointer;}
-.NumPageNonSelect, .NumPageNext{
-    border: 1px solid grey;
+.NumPageNonSelect{
+    border: 1px solid silver;
+}
+.NumPageNonSelect:hover{
+    border-color: var(--bleuinterbreizh);
 }
 .NumPageSelect{
     background-color: var(--bleuinterbreizh);
@@ -207,15 +222,18 @@ header img{width: 115px;
     transform: scale(1.15);
     border-radius: 10%;
 }
-.NumPageNext{background-color: rgba(128, 128, 128, 0.2);}
 
 #close{
     fill:#fff;
     background-color: var(--bleuinterbreizh);
     position: relative;
+    cursor: pointer;
     width: 6%;
     top: 0;
     left: 94%;
+}
+#close:hover{
+    background-color: var(--bleuinterbreizhclair);
 }
 #pub{
     display: block;
@@ -232,9 +250,10 @@ header img{width: 115px;
     animation-play-state: paused;
     cursor:pointer
 }
-#pub button{
-    cursor: pointer;
+#close:active::before{
+    display: none;
 }
+
 @keyframes fondu{
     0%      {background-image: url("Pub1.jpg");}
     12%   {background-image: url("Pub2.jpg");}
