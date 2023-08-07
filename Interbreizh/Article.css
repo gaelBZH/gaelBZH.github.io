@@ -14,7 +14,8 @@ body{margin: 0;padding: 0;}
 :root{
     --bleuinterbreizh: #072d5b;
     --bleuinterbreizhclair: #193f6c;
-    --texte: #000000;
+    --texte: black;
+    --highlightedtexte: white;
 }
 /* STYLES GLOBAUX */
 
@@ -34,7 +35,7 @@ header{
 }
 header a{
     font-family: Georgia, serif;
-    color: white;
+    color: var(--highlightedtexte);
     text-decoration: none;
     font-size: 120px;
     font-weight: 600;
@@ -63,7 +64,7 @@ main{
     text-transform: uppercase;
     background-color: var(--bleuinterbreizh);
     transform: skewX(-15deg);
-    color: white;
+    color: var(--highlightedtexte);
     padding: 3px;
     font-weight: 600;
     font-family: 'PT Serif',sans-serif;
@@ -108,7 +109,7 @@ main{
 
 #ImageArticle figcaption {
     background-color: var(--bleuinterbreizh);
-    color: #fff;
+    color: var(--highlightedtexte);
     font: italic smaller sans-serif;
     padding: 3px;
     text-align: center;
@@ -119,7 +120,10 @@ main{
 /* Article Principal */
 /* Balises Utilisables : Liens, Citations, Tweet*/
 main article{
-    margin: 0 400px 0 0;
+    color: var(--texte);
+}
+main article p{
+    width: min(100%, 1000px);
     line-height: 1.25em;
 }
 main article blockquote{
@@ -165,7 +169,7 @@ main article a{
 .Sujets a:hover {
     border-color: var(--bleuinterbreizh);
     background-color: var(--bleuinterbreizh);
-    color: white;
+    color: var(--highlightedtexte);
 }
 
 #RedacConseils{
@@ -181,7 +185,7 @@ main article a{
     text-transform: uppercase;
     background-color: var(--bleuinterbreizh);
     transform: skewX(-15deg);
-    color: white;
+    color: var(--highlightedtexte);
     padding: 3px;
     font-weight: 600;
     font-family: 'PT Serif',sans-serif;
@@ -304,7 +308,7 @@ footer{
 }
 #Barre a{
     font-family: Georgia, serif;
-    color: white;
+    color: var(--highlightedtexte);
     text-decoration: none;
     font-size: 45px;
     font-weight: 600;
@@ -329,7 +333,7 @@ footer{
     vertical-align:middle;
     margin-right: 10px;
     transition: transform .2s
-    }
+}
 .SocialMedia:hover{
     transform: scale(1.25);}
 .round{border-radius: 50%;}
@@ -344,7 +348,7 @@ footer{
     width: 90%;
     margin: auto auto auto 10%;
     text-align: left;
-    color: #fff;
+    color: var(--highlightedtexte);
 }
 #TableauFooter th{
     font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
@@ -368,7 +372,7 @@ footer{
     text-transform: uppercase;
     font-size: 1.875rem;
     padding-left: 50px;
-    color: #fff;
+    color: var(--highlightedtexte);
     font-weight: 700;
     font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
 }
