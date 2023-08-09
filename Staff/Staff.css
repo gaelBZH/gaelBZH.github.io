@@ -1,0 +1,57 @@
+/* Fond de Page */
+body{
+	background-image: linear-gradient(
+		rgba(186, 157, 184, 0.9)	,
+		rgba(196, 87, 189, 0.9))	, url("");
+}
+
+h1{
+	background-color: #920097;
+	color:rgb(230, 230, 230);
+}
+
+/* Sous-Titre Principal*/
+h2{
+	background-color:rgba(230, 230, 230,0.5);
+    color: #030219;
+}
+
+/* Styles des Grandes Parties */
+.Partie{
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 5px solid #1b4c77;
+	margin: 5px 5px 40px 5px;
+}
+
+/* Titres de Parties */
+.TitrePartie{font-weight: bold;font-size: 120%;}
+
+/* Style Image Staff */
+#Staffimg{
+	display: block;
+	width: 90%;
+	margin: auto;margin-bottom: 30px;
+	opacity: 95%;
+}
+
+/* Styles Tableaux */
+table{margin-bottom: 30px}
+td{width : 25%;text-align :center;color:#e0e1e5} /* Centrer Éléments */
+.Partie td img{border-radius: 50%;width: 40%;}
+.Partie table{background-color: rgba(72, 72, 72, 0.4);margin: 0 3%;}
+.Partie .Logo{width: 30px;}
+#PlayPause{width: 30px;}
+.Partie #Admin1, .Partie #Admin2{width: 30%;}
+
+/* Bouton Lien Externe */
+.LienExterne{
+	padding: 4px 5px 4px;
+	border-radius: 4px;
+	background-color: #1b4c77;
+	color:white;
+	font-weight: bold;
+	margin-left: 10px;
+	text-decoration: none;
+}
+#IconeLienExterne{width: 12px;}
+.LienExterne:active{position:relative;top:1px}
