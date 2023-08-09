@@ -1,0 +1,94 @@
+html{
+	background-color : #030219;
+	background: url(Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+	font-size: 100%; /* Taille Texte par Défaut */
+	font-family:Arial; /* Police par Défaut */
+	scroll-behavior: smooth;
+}
+
+/* Corps de la Page */
+body{
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 800px;
+	border: 3px solid #EEEEEE;
+}
+
+
+/* Sélection de Texte Violette */
+::selection {
+	background-color: rgb(88, 101, 242); /* Fond Violet */
+	color: rgb(255,255,255) /* Texte Blanc */
+  }
+/* Sélection de Texte Violette */
+
+/* Barre de Scroll */
+::-webkit-scrollbar {width: auto;}					 /* Taille Automatique */
+::-webkit-scrollbar-track-piece{background: #f8f4f4; border-radius: 50px;}	/* Fond Grise Clair */
+::-webkit-scrollbar-thumb{background-image: url(Images/Barre.png); background-position: center; background-repeat: no-repeat; background-size: cover;   border-radius: 50px; height: 35%;}	/* Image Barre de Scroll */
+::-webkit-scrollbar-button{background: #a8a8a8;}	/* Boutons Barre de Scroll */
+::-webkit-scrollbar-corner{background: #f8f4f4}	/* Coin Inférieur Droit */
+/* Barre de Scroll*/
+
+/* Titre Principal */
+h1{
+	text-align: center;
+}
+#TitrePrincipal{width: 10%}
+.dixpourcent{width: 10%;}
+/* Titre Principal */
+
+/* Sous-Titre Principal*/
+h2{
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+/* Texte de la Page */
+p{
+	color:#111111;
+	padding: 5px;
+}
+
+.loupe{transition: transform .2s}
+.loupe:hover{transform: scale(1.25)}
+
+/* Nouvelle Version */
+#FooterLinks div{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 10px auto;
+}
+#FooterLinks .Tiers{
+	width: max(calc(1050px/3), 30%);
+}
+#FooterLinks .DeuxTiers{
+	width: max(calc((1050px/3)*2), 60%);
+}
+/* Style de la Partie des Liens */
+#FooterLinks{
+	border-style: solid none;
+	background-color: rgba(0, 0, 0, 0.1);
+	margin: 5px 5px 10px 5px;
+}
+#FooterLinks img{width: 100%}
+#FooterLinks a			{color:#00008e}
+#FooterLinks a:visited	{color:#00008e}
+#FooterLinks a:hover 	{color:#008000}
+/* Nouvelle Version */
+
+
+/* Barre du Bas */
+#BarreDuBas {
+	position: sticky; /* Immobile */
+	bottom: 0; /* Bas de l'écran */
+	width: 100%; /* Taille à 100% */
+	padding: 5px 0px 5px 0px; /* Extension de 5px vers le Haut */
+	text-align: center; /* Centrage Horizontal */
+	vertical-align: middle; /* Centrage Vertical */
+	background: rgba(0, 0, 10, 0.8); /* Couleur Fond Barre */
+  }
+/* Barre du Bas */
