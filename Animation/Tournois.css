@@ -1,0 +1,58 @@
+/* Fond de Page */
+body{
+	background-image: linear-gradient(
+		rgba(150, 192, 152, 0.9)	,
+		rgba(95, 198, 97, 0.9))	, url("");
+}
+
+/* Titre Principal */
+h1{
+	background-color: rgb(0, 160, 64);
+	color:rgb(230, 230, 230);
+}
+/* Titre Principal */
+
+/* Sous-Titre Principal*/
+h2{
+	background-color:rgba(230, 230, 230,0.5);
+    color: #030219;
+}
+
+#ImageTournoi{width: 40%;margin: auto;	display: block;}
+td{width : 33%;text-align :center}
+
+/* Style des Grandes Parties */
+.Tournoi{
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 5px solid #012426;
+	padding: 5px 10px 20px 10px;
+	margin: 5px 15px 40px 15px;
+	vertical-align: top;
+}
+/* Style des Grandes Parties */
+
+.TitrePartie{font-weight: bold;text-align: left;font-size: 1.25em;}
+
+/* Images */
+.image{text-align: center;}
+
+#Participants1{width: 80%;}
+#Participants2{width: 80%;}
+#Participants3{width: 80%;}
+#Participants4{width: 80%;}
+#Participants5{width: 80%;}
+
+#Phases1{width: 500px;}
+#Phases2{width: 500px;}
+#Phases3{width: 500px;}
+#Phases4{width: 500px;}
+#Phases5{width: 500px;}
+
+#Phases1:hover{transform: scale(1.75);transition: transform .5s}
+
+#Podium1{width: 80%;}
+#Podium2{width: 80%;}
+#Podium3{width: 80%;}
+#Podium4{width: 80%;}
+#Podium5{width: 80%;}
+/* Images */
