@@ -216,7 +216,7 @@ main article a{
   padding: 0 5px;
   width: 30%;
   min-width: 350px;
-  max-width: 500px;
+  max-width: 600px;
   margin: 10px auto ;
   transition: 0.3s;
   color: var(--texte);
