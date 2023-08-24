@@ -77,6 +77,17 @@ main{
     color: var(--texte);
     opacity: 80%;
 }
+#Intro .Source{
+    text-decoration: none;
+    color: var(--bleuinterbreizh);
+    font-weight: 600;
+}
+#Intro .Source:hover{
+    text-decoration: underline;
+}
+#Intro .Source svg{
+    vertical-align: -5px;
+}
 
 #Auteur{margin: 10px 0}
 #Auteur img{
