@@ -5,7 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+    <script>if (window.location.pathname.startsWith("/Interbreizh/")) {
+        window.location.href = "/Interbreizh/404.html";
+      }
+      </script>
     <style>
+        html{
+            font-size: 100%; /* Taille Texte par Défaut */
+            font-family:Arial; /* Police par Défaut */
+            scroll-behavior: smooth;
+        }
+        body{margin: 0;padding: 0;}
+        ::selection {
+            background-color: rgb(88, 101, 242); /* Fond Violet */
+            color: rgb(255,255,255) /* Texte Blanc */
+        }
+        ::-webkit-scrollbar {width: auto;background-color: rgb(241, 241, 241);}
+        ::-webkit-scrollbar-thumb{border: 1px solid rgb(241, 241, 241); background-color: var(--bleuinterbreizh);}
+        :root{
+            --bleuinterbreizh: #072d5b;
+            --bleuinterbreizhclair: #193f6c;
+            --texte: black;
+            --highlightedtexte: white;
+        }
+        header{
+            background-color: var(--bleuinterbreizh);
+            text-align: center;
+            width: 100%;
+        }
+        header a{
+            font-family: Georgia, serif;
+            color: var(--highlightedtexte);
+            text-decoration: none;
+            font-size: 120px;
+            font-weight: 600;
+        }
+        header img{width: 115px;
+            vertical-align: -15px;
+        }
         .Page404{
             text-align: center;
             padding:40px 0 0;
@@ -23,6 +60,7 @@
         .QuatreCentQuatre h1{
             margin-top: 0;
             font-size:80px;
+            color: var(--bleuinterbreizh);
          }
         .QuatreCentQuatre h3{
             font-size:80px;
@@ -33,7 +71,7 @@
             color: #fff!important;
             text-decoration: none;
             padding: 10px 20px;
-            background: #39ac31;
+            background: var(--bleuinterbreizh);
             margin: 20px 0;
             display: inline-block;
         }
@@ -41,6 +79,10 @@
     </style>
 </head>
 <body>
+    <header>
+        <img alt="Globe" src="Globe.svg">
+        <a href="../Interbreizh.html">Interbreizh</a>
+    </header>
     <section class="Page404">
         <div class="QuatreCentQuatre">
             <h1 class="text-center ">404</h1>
