@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.cdnfonts.com/css/army-rust" rel="stylesheet">
+    <link rel="icon" href="gwennhadu.png">
+    <title>Cryptage Morse · gaelBZH</title>
+    <style>
+        body{margin-bottom: 100px;}
+        code{background-color: rgba(224, 224, 224, 0.5);}
+        #morseInput, #textInput,
+        #morseOutput, #textOutput{
+            width: 100%;
+            display: inline-block;
+            padding: 10px;
+            font-size: 2.5em;
+            border: 1px solid rgb(222, 222, 222);
+            background-color: rgb(238, 238, 238);
+            font-family: 'ARMY RUST', sans-serif;
+            margin: auto auto 10px;
+            height: 50%;
+            align-items: start;
+        }
+        span{cursor: help;}
+        ul{display: none;background-color: rgb(198, 131, 131);}
+        h1{background-color: rgb(164, 89, 89);color: white;text-align: center;}
+        
+    </style>
+</head>
+<body> <audio id="audioPlayer" src="sound.mp3"></audio>
+
+    <header>
+        <div>
+        <h1>Algorithme de Transcription Texte/Morse de gaelBZH.         <span
+            onmouseover="document.querySelector('ul').style.display='block'"
+            onmouseout="document.querySelector('ul').style.display='none'"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M11 17h2v-6h-2v6Zm1-8q.425 0 .713-.288T13 8q0-.425-.288-.713T12 7q-.425 0-.713.288T11 8q0 .425.288.713T12 9Zm0 13q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg></span>
+    </h1></div>
+    <div>
+        <ul>
+            <li>Les <code>$</code> représentent les lettres non-reconnues.</li>
+            <li>Les lettres morses sont séparées par un espace <code>&nbsp;</code>.</li>
+            <li>Les mots en morse sont séparés par trois espaces <code>&nbsp;&nbsp;&nbsp;</code>.</li>
+            <li>Toutes les formes de ponctuation sont cryptées en <code>⠀/</code> et décryptées en <code>.</code></li>
+            <li>Les lettres minuscules et majuscules sont cryptées de la même façon et sont décryptées en majuscule.</li>
+            <li>Les caracètres morse utilisés sont <code>.</code> et <code>_</code>.</li>
+        </ul>
+    </div>
+    </header>
+
+    <h2>I- Texte en Morse</h2>
+    <div id="textToMorse">
+        <div><textarea id="textInput" placeholder="Entrez du texte..."></textarea><br></div>
+        <div id="morseOutput">&nbsp;</div><br>
+    <h2>II- Morse en Texte</h2>
+    <div id="morseToText">
+        <div><textarea id="morseInput" placeholder="Entrez du morse..."></textarea><br></div>  
+        <div id="textOutput">&nbsp;</div><br>    
+    </div>
+    <script>
+        function textToMorse(text, Dict) {
+            const trans = [];
+            const Conv = Dict;
+            Conv['!'] = '⠀/';
+            Conv["'"] = '⠀/';
+            Conv['?'] = '⠀/';
+            Conv['('] = '⠀/';
+            Conv[')'] = '⠀/';
+            Conv['-'] = '⠀/';
+            Conv['_'] = '⠀/';
+            Conv['"'] = '⠀/';
+            Conv[','] = '⠀/';
+            Conv['#'] = '⠀/';
+            Conv['€'] = '⠀/';
+            Conv['$'] = '⠀/';
+            Conv['£'] = '⠀/';
+            Conv['%'] = '⠀/';
+            Conv['{'] = '⠀/';
+            Conv['}'] = '⠀/';
+            Conv[';'] = '⠀/';
+            Conv[':'] = '⠀/';
+            Conv['.'] = '⠀/';
+            Conv[' '] = '⠀';
+
+            for (let i = 0; i < text.length; i++) {
+                try {trans.push(Conv[text[i]])}
+                catch(error){trans.push('$')}
+            }
+
+            let reponse = '';
+            for (let i=0; i<trans.length; i++)
+            {
+                reponse = reponse + trans[i] + ' ';
+            }
+            document.getElementById("audioPlayer").play();
+            return reponse.replace(/undefined/g, '$');
+        }
+
+        function morseToText(morse, Dict) {
+            const trans = [];
+            const Conv = {};
+            for (const [key, value] of Object.entries(Dict))
+            {
+                Conv[value] = key;
+            }
+            Conv['/'] = '.';
+            Conv[''] = ' ';
+            const morseArray = morse.split(' ');
+
+            for (let i = 0; i < morseArray.length; i++) {
+                try {trans.push(Conv[morseArray[i]])}
+                catch(error){trans.push('$')}
+            }
+
+            let reponse = '';
+            for (let i=0; i<trans.length; i++)
+            {
+                reponse = reponse + trans[i];
+            }
+
+            document.getElementById("audioPlayer").play();
+            return reponse.replace(/undefined/g, '$');   
+        }
+
+        const Base = {
+            'é': ".",
+            'É': ".",
+            'è': ".",
+            'È': ".",
+            'ë': ".",
+            'Ë': ".",
+            'ê': ".",
+            'Ê': ".",
+            'à': "._",
+            'À': "._",
+            'ç': "_._.",
+            'Ç': "_._.",
+            'ù': ".._",
+            'Ù': ".._",
+            "a": "._",
+            "b": "_...",
+            "c": "_._.",
+            "d": "_..",
+            "e": ".",
+            "f": ".._.",
+            "g": "__.",
+            "h": "....",
+            "i": "..",
+            "j": ".___",
+            "k": "_._",
+            "l": "._..",
+            "m": "__",
+            "n": "_.",
+            "o": "___",
+            "p": ".__.",
+            "q": "__._",
+            "r": "._.",
+            "s": "...",
+            "t": "_",
+            "u": ".._",
+            "v": "..._",
+            "w": ".__",
+            "x": "_.._",
+            "y": "_.__",
+            "z": "__..",
+            "A": "._",
+            "B": "_...",
+            "C": "_._.",
+            "D": "_..",
+            "E": ".",
+            "F": ".._.",
+            "G": "__.",
+            "H": "....",
+            "I": "..",
+            "J": ".___",
+            "K": "_._",
+            "L": "._..",
+            "M": "__",
+            "N": "_.",
+            "O": "___",
+            "P": ".__.",
+            "Q": "__._",
+            "R": "._.",
+            "S": "...",
+            "T": "_",
+            "U": ".._",
+            "V": "..._",
+            "W": ".__",
+            "X": "_.._",
+            "Y": "_.__",
+            "Z": "__..",
+            "1": ".____",
+            "2": "..___",
+            "3": "...__",
+            "4": "...._",
+            "5": ".....",
+            "6": "_....",
+            "7": "__...",
+            "8": "___..",
+            "9": "____.",
+        };
+
+        document.getElementById("textInput").addEventListener("input", function(){
+        document.getElementById("morseOutput").textContent = textToMorse(this.value, Base)});
+        document.getElementById("morseInput").addEventListener("input", function(){
+        document.getElementById("textOutput").textContent = morseToText(this.value, Base)});
+    </script>
+</body>
+</html>
