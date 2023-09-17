@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- Tu veux pas sortir avec moi ? UwU -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Oui j'ai rien à faire en NSI mais osef</title>
+    		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Liked.svg"> <!--Icône du Site-->
+		<script>
+			var variable = 0;
+			function Fonction(elt)
+			{let divs = document.getElementsByClassName("BoutonNon");
+			for (let i=0; i<divs.length; i++)
+			{variable++;
+				if (divs[i].style.float=="left")
+					{
+						divs[i].style.float="right";
+						
+					}
+					
+				else
+					{divs[i].style.float="left";}
+
+					if (variable==1){
+					document.querySelector("#plus").innerHTML='EH !'}	
+					
+					if (variable==3){
+					document.querySelector("#plus").innerHTML='Pourquoi tu veux pas ? ;-;'}	
+
+					if (variable==5){
+					document.querySelector("#plus").innerHTML="Arrêtes d'essayer d'appuyer sur non !"}	
+
+					if (variable==8){
+					document.querySelector("#plus").innerHTML="Tu t'ammuses hein Uliana ._."}
+					
+					if (variable==10){
+					document.querySelector("#plus").innerHTML='Uliana ...'}	
+
+					if (variable==12){
+					document.querySelector("#plus").innerHTML="Y'aura des crêpes-"}	
+
+					if (variable==15){
+					document.querySelector("#plus").innerHTML='Allez dis oui ;-;'}	
+
+					if (variable==17){
+					document.querySelector("#plus").innerHTML='Respectes au moins le temps passé à programmer ça ;-;'}	
+
+					if (variable==20){
+					document.querySelector("#plus").innerHTML="Il t'ammuses ce bouton ?"}	
+
+					if (variable==21){
+					document.querySelector("#plus").innerHTML='Le bouton est têtu comme un Breton laisse tomber'}	
+
+					if (variable==23){
+					document.querySelector("#plus").innerHTML='On peut se faire un ciné amicalement ?'}	
+
+					if (variable==25){
+					document.querySelector("#plus").innerHTML="T'as mon discord pour dit oui ou nan-"}	
+
+					if (variable==26){
+					document.querySelector("#plus").innerHTML='Sinon mon numero 07 67 18 01 46 !'}	
+
+					if (variable==28){
+					document.querySelector("#plus").innerHTML="C'était bien avatar 2 pourquoi pas en refaire un maintenant que j'ai tourné la page"}
+					
+					if (variable==30){
+					document.querySelector("#plus").innerHTML="Et à avatar t'avais promis qu'on se referait un ciné à deux un jour-"}
+					
+					if (variable==35){
+					document.querySelector("#plus").innerHTML='Sinon on se fait autre chose ?'}	
+
+					if (variable==37){
+					document.querySelector("#plus").innerHTML='On va en Bretagne'}
+					
+					if (variable==38){
+					document.querySelector("#plus").innerHTML='Nan?'}	
+					
+					if (variable==39){
+					document.querySelector("#plus").innerHTML='Toujours pas ?'}	
+
+					if (variable==40){
+					document.querySelector("#plus").innerHTML="Bon bah tans pis si tu changes d'avis tu m'envoies un message"}	
+
+					if (variable==43){
+					document.querySelector("#plus").innerHTML='Fier de toi ! Tu es têtue comme une vraie bretonne !'}	
+
+					if (variable==45){
+					document.querySelector("#plus").innerHTML='KENAVO !'}
+					
+					if (variable==49){
+					document.querySelector("#plus").innerHTML=''}	
+
+
+					if (variable==59){
+					document.querySelector("#plus").innerHTML="Y'a plus rien tu peux appuyer sur oui"}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+			}}
+		</script>
+		<style>
+			body{font-family: Arial, Helvetica, sans-serif;}
+			.BoutonNon{
+				float: left;
+				background-color:rgb(206, 99, 99);
+				border: 2px solid rgb(206, 99, 99);
+
+				color:white;
+				width: 10%;
+			}
+			#BoutonOui{
+				background-color:rgb(33, 178, 74);
+				border: 2px solid rgb(33, 178, 74);
+				color:black;
+				width: 10%;}
+		</style>
+	</head>
+	<body>
+
+
+		<!-- Tu veux pas sortir avec moi ? UwU -->
+		<h1>Salut Uliana !</h1>
+		<h4>Tu as envie qu'on se refasse un ciné ? <span id="plus"></span></h4>
+		<button id="BoutonOui" onclick='alert("YES ! Je savais que tu dirais oui ! (Envoies moi un message sur discord ;^;")'><strong>OUI</strong></button><br><br>
+		<button tabindex="-1" onclick='alert("Ah bah rip ;-; UwU")' class="BoutonNon" onMouseOver="Fonction(this)">NON</button>
+		<!-- Tu veux pas sortir avec moi ? UwU -->
+	</body>
+</html>
