@@ -11,14 +11,15 @@
 			{let divs = document.getElementsByClassName("BoutonNon");
 			for (let i=0; i<divs.length; i++)
 			{variable++;
-				if (divs[i].style.float=="left")
+
+				if (divs[i].style.float=="right")
 					{
-						divs[i].style.float="right";
+						divs[i].style.float="left";
 						
 					}
 					
 				else
-					{divs[i].style.float="left";}
+					{divs[i].style.float="right";}
 
 					if (variable==1){
 					document.querySelector("#plus").innerHTML='EH !'}	
