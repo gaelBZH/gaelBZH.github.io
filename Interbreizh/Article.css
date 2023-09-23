@@ -141,13 +141,17 @@ main article p, main article blockquote{
 main article blockquote{
     border-left: 8px solid var(--bleuinterbreizh);
     margin: 0;
-    padding: 0 40px;
+    padding: 0 35px;
 }
 main article q{display: block;margin-bottom: 5px;}
-main article q::before{content: '“';}
-main article q::after{content: '”';}
+main article q::before{content: '«';}
+main article q::after{content: '»';} /* Guillemets Anglais :   “ ”   */
 main article cite::before{
     content: "- ";
+}
+main article cite{
+    font-style: oblique 6deg;
+    margin: 0 -9px;
 }
 main article a{
     text-decoration: none;
