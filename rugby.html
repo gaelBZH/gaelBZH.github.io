@@ -1,11 +1,263 @@
 <!DOCTYPE html>
-<html lang="Fr">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rugby | Coupe du monde</title>   
+    <title>Coupe du Monde de Rugby 🏆</title>
+    <link rel="stylesheet" href="foot.css"> <!--Feuille de Style CSS-->
+    <link rel="icon" href="Images/Icone.png"> <!--Icône du Site-->
+    <script>Nation = [
+        "Finlande", 
+        "Russie", 
+        "Irlande", 
+        "Japon", 
+        "Ukraine", 
+        "Bretagne", 
+        "Émirats Arabes Unis", 
+        "France"
+    ]
+    
+    Gagnants= [
+        "1er Poule A", 
+        "2eme Poule B", 
+        "1er Poule B", 
+        "2eme Poule A"
+    ]
+    Finale=[
+    "", 
+    "",
+    ""
+    ]</script>
+<style>
+#Phases{
+    background-color: rgb(41, 50, 91);
+    margin: 30px;
+    width: 45%;
+    font-size: larger;
+    border: 10px solid rgb(41, 50, 91);
+    text-align: center;
+    float: right;
+
+}
+
+
+#Phases td{padding: 10px 50px 10px 20px;}
+.case{background-color: rgb(132, 199, 132);width: 50%;}
+.casehead{background-color: rgb(86, 156, 86);width: 50%;vertical-align: bottom;}
+
+#PouleA{
+    background-color: rgba(0, 0, 255, 0.5);
+
+}
+
+#PouleB{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#PouleA, #PouleB{
+    margin: 10px 0px 10px 10px;
+    width:49%;
+    text-align: center;
+}
+
+th{padding-bottom: 10px;}
+
+#Gagnant{text-align: center;background-color: gold;width: 75%;margin: auto;}
+
+/* Fond de la Page */
+html{
+	background-color : #030219;background: url(../Images/DrapeauBreton.png) no-repeat center fixed;  /* Fond Drapeau Breton */
+	background-size: cover; /* Agrandir Drapeau à la taille de l'écran */
+	font-size: 100%; /* Taille Texte par Défaut */
+	font-family:Arial; /* Police par Défaut */
+}
+
+/* Corps de la Page */
+body{
+	/*background-color: rgba(255, 255, 255, 0.8);*/
+	background-image: linear-gradient(rgba(200,200,255,0.9),rgba(95, 95, 198, 0.9) ), url("");
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 3px solid #EEEEEE;
+}
+
+
+/* Sélection de Texte Violette */
+::selection {
+    background-color: rgb(88, 101, 242); /* Fond Violet */
+    color: rgb(255,255,255) /* Texte Blanc */
+  }
+  /* Sélection de Texte Violette */
+
+  
+/* Titre "Cours de Breton" */
+h1 {
+    text-align:center; font-style: bold;
+    color:#FF0000
+  }
+  /* Titre "Cours de Breton" */
+
+  .no{background-color: #373737;}
+  .victoire{background-color: rgb(0, 176, 0);font-weight: bold;}
+  .defaite{background-color: red;font-weight: bold;}
+  .nul{background-color: orange;font-weight: bold;}
+  
+  .premierpoule{color: gold;font-weight: bold;}
+  .secondpoule{color: silver;font-weight: bold;}
+</style>
+
+
 </head>
 <body>
-    <iframe src="https://challonge.com/fr/471yduuc/module" width="100%" height="750px"  frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+<h1><strong><u>Coupe des Nations 🏆⚽️</u></strong></h1>
+    <table id="Phases"><tbody>
+        <th class="casehead" COLSPAN="40">Demi-Finale A</th><td COLSPAN="40"></td>
+        <tr>
+            <td class="case" COLSPAN="39"><script>document.write(Gagnants[0])</script></td><td class="case"></td><td COLSPAN="40"></td>
+        </tr>
+        <tr>
+            <td class="case" COLSPAN="39"><script>document.write(Gagnants[1])</script></td><td class="case"></td><td COLSPAN="40"></td>
+        </tr>
+
+        <tr>
+            <td COLSPAN="40"></td><th COLSPAN="40" class="casehead">Finale</th>
+        <tr>
+            <td COLSPAN="40"></td><td COLSPAN="39" class="case"><script>document.write(Finale[0])</script></td><td class="case"></td>
+        </tr>
+        <tr>
+            <td COLSPAN="40"></td><td COLSPAN="39" class="case"><script>document.write(Finale[1])</script></td><td class="case"></td>
+        </tr>
+
+        <th class="casehead" COLSPAN="40">Demi-Finale B</th><td COLSPAN="40"></td>
+        <tr>
+            <td class="case" COLSPAN="39"><script>document.write(Gagnants[2])</script></td><td class="case"></td><td COLSPAN="40"></td>
+        </tr>
+        <tr>
+            <td class="case" COLSPAN="39"><script>document.write(Gagnants[3])</script></td><td class="case"></td><td COLSPAN="40"></td>
+        </tr>
+    </tbody>
+    </table>
+<br><br><br>
+    
+    <table id="PouleA">
+        <tr>
+          <th><strong>Poule A</strong></th>
+          <th>Match 1</th>
+          <th>Match 2</th>
+          <th>Match 3</th>
+          <th>Match 4</th>
+          <th>Match 5</th>
+          <th>Match 6</th>
+          <th>Points</th>
+
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[0])</script></td>
+          <td class="">en attente</td>
+          <td class="no"></td>
+          <td>en attente</td>
+          <td class="no"></td>
+          <td>en attente</td>
+          <td class="no"></td>
+          <td>0</td>
+        </tr>
+  
+        <tr>
+          <td><script>document.write(Nation[1])</script></td>
+          <td>en attente</td>
+          <td class="no"></td>
+          <td class="no"></td>
+          <td>en attente</td>
+          <td class="no"></td>
+          <td>en attente</td>
+          <td>0</td>
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[2])</script></td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td>0</td>
+
+        </tr>
+          <tr>
+            <td><script>document.write(Nation[3])</script></td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>0</td>
+        </tr>
+      </table>
+<br><br>
+      <table id="PouleB">
+        <tr>
+            <th><strong>Poule B</strong></th>
+            <th>Match 1</th>
+            <th>Match 2</th>
+            <th>Match 3</th>
+            <th>Match 4</th>
+            <th>Match 5</th>
+            <th>Match 6</th>
+            <th>Points</th>
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[4])</script></td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>0</td>
+        </tr>
+  
+        <tr>
+          <td><script>document.write(Nation[5])</script></td>
+          <td>en attente</td>
+          <td class="no"></td>
+          <td class="no"></td>
+          <td>en attente</td>
+          <td class="no"></td>
+          <td>en attente</td>
+          <td>0</td>
+        </tr>
+        <tr>
+            <td><script>document.write(Nation[6])</script></td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td>0</td>
+
+        </tr>
+          <tr>
+            <td><script>document.write(Nation[7])</script></td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>en attente</td>
+            <td>en attente</td>
+            <td class="no"></td>
+            <td>0</td>
+        </tr>
+      </table>
+      <br><br><br><br><br><br><br><br>
+
+<div id="Gagnant">
+    <img src="Coupe.png" alt="Coupe du Monde" width="20%"><br>
+    <strong style="font-size: larger;"><script>document.write(Finale[2])</script></strong>
+</div>
+
 </body>
 </html>
