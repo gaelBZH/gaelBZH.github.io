@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>/* STYLES GLOBAUX */
+        html{
+            font-size: 100%; /* Taille Texte par Défaut */
+            font-family:Arial; /* Police par Défaut */
+            scroll-behavior: smooth;
+        }
+        body{margin: 0;padding: 0;}
+        ::selection {
+            background-color: rgb(88, 101, 242); /* Fond Violet */
+            color: rgb(255,255,255) /* Texte Blanc */
+        }
+        ::-webkit-scrollbar {width: auto;background-color: rgb(241, 241, 241);}					 /* Taille Automatique */
+        ::-webkit-scrollbar-thumb{border: 1px solid rgb(241, 241, 241); background-color: var(--bleuinterbreizh);}	/* Image Barre de Scroll */
+        :root{
+            --bleuinterbreizh: #312459;
+            --bleuinterbreizhclair: #514779;
+            --texte: #000000;
+        }
+        /* STYLES GLOBAUX */
+        
+
+        /* HEADER */
+header{
+    background-color: var(--bleuinterbreizh);
+    text-align: center;
+    width: 100%;
+}
+header a{
+    font-family: Georgia, serif;
+    color: white;
+    text-decoration: none;
+    font-size: 120px;
+    font-weight: 600;
+}
+header img{width: 115px;
+    vertical-align: -15px;}
+
+.Themes{
+    display: flex;
+    flex-wrap: wrap;  
+    color:black;
+    width: 100%;
+    font-family: Arial,sans-serif;
+    background-color: var(--bleuinterbreizhclair);
+    border-bottom: 1px solid var(--bleuinterbreizh);
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center
+}
+
+.Themes a{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+    margin: 10px 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 4px solid transparent;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    font-size: .875rem;
+    line-height: 1.45rem;
+    text-transform: uppercase;
+}
+.Themes a:hover {
+    border-bottom-color: rgba(255, 255, 255,0.8)
+}
+/* HEADER */
+
+        .wrapper * {
+  box-sizing: border-box;
+}
+
+main{
+  margin-top: 10px;margin-bottom: 50px;
+  background-color: #51477930;
+  border: 4px solid var(--bleuinterbreizh);width: 95%;margin: auto;
+}
+
+.wrapper {
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  padding: 50px 0 0;
+}
+
+.card {
+  width: 240px;
+  aspect-ratio: 7/9;
+  border-radius: 15px;
+  padding: 1.5rem;
+  background: white;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  transition: 0.4s ease-out;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+  margin: 20px 20px 20px;
+}
+.card:hover {
+  transform: translateY(20px);
+}
+.card:hover:before {
+  opacity: 1;
+}
+.card:hover .info {
+  opacity: 1;
+  transform: translateY(0px);
+}
+.card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  transition: 0.5s;
+  opacity: 0;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+}
+.card .info {
+  position: relative;
+  z-index: 3;
+  color: white;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.5s;
+}
+.card .info h1 {
+  margin: 0px;
+}
+.card .info p {
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-top: 8px;
+}
+.card .info a {
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s ease;
+  text-decoration: none;
+}
+.card .info #buttonA:hover {
+  background: #4ccde0;
+  color: white;
+}
+.card .info #buttonB:hover {
+  background: #31a29e;
+  color: white;
+}
+.card .info #buttonC:hover {
+  background: #520b59;
+  color: white;
+}
+.card .info #buttonD:hover {
+  background: #82a933;
+  color: white;
+}
+.card .info #buttonE:hover {
+  background: #ff006a;
+  color: white;
+}
+
+.NumPage{margin: 10px auto;width: 10%;border-spacing: 12px;color: var(--texte);}
+.NumPage td{text-align: center;vertical-align: middle;cursor: pointer;}
+.NumPageNonSelect{
+    border: 1px solid silver;
+}
+.NumPageNonSelect:hover{
+    border-color: var(--bleuinterbreizh);
+}
+.NumPageSelect{
+    background-color: var(--bleuinterbreizh);
+    color: white;
+    font-weight: 500;
+    transform: scale(1.15);
+    border-radius: 10%;
+}
+/* FOOTER */
+footer{    background-color: var(--bleuinterbreizh);
+}
+#Barre{
+    text-align: left;
+    width: 100%;
+    position: sticky; /* Immobile */
+	bottom: 0; /* Bas de l'écran */
+    border-bottom: 1px solid rgba(255, 255, 255,0.3);
+}
+#Barre a{
+    font-family: Georgia, serif;
+    color: white;
+    text-decoration: none;
+    font-size: 45px;
+    font-weight: 600;
+}
+#Barre #Tonyz{
+    width: 40px;
+    vertical-align: -5px;
+}
+#Barre ul {
+    display: flex;
+    width: 10%;
+    text-align: center
+}
+#Barre li {
+    display: inline-block;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    text-transform: uppercase
+    
+}
+.SocialMedia{
+    width: 30px;
+    vertical-align:middle;
+    margin-right: 10px;
+    transition: transform .2s
+    }
+.SocialMedia:hover{
+    transform: scale(1.25);}
+.round{border-radius: 50%;}
+#Resaux{
+    float: right;
+    margin-right: 10px;
+}
+#FooterLinks{
+    border-bottom: 1px solid rgba(255, 255, 255,0.3);
+}
+#TableauFooter{
+    width: 90%;
+    margin: auto auto auto 10%;
+    text-align: left;
+    color: #fff;
+}
+#TableauFooter th{
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    font-size: 1rem;
+    line-height: 1.875rem;
+    text-transform: uppercase;
+    opacity: .3;
+}
+#TableauFooter td{
+    font-size: .75rem;
+    line-height: 26px;
+    text-decoration: none;
+    width: 10%;
+}
+#TableauFooter td:hover{
+    cursor: pointer;
+    color: rgb(195, 195, 195);
+    text-decoration: underline;
+}
+#Slogan {
+    text-transform: uppercase;
+    font-size: 1.875rem;
+    padding-left: 50px;
+    color: #fff;
+    font-weight: 700;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+}
+#Copyright{
+    font-size: .6875rem;
+    padding: 20px 35px;
+    margin: auto;
+    line-height: 22px;
+    color: rgb(255, 255, 255,0.3);
+    text-align: center;
+}
+/* FOOTER */
+
+.sep{margin: 25px 0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1300px)
+{
+    #News{display: none}
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img alt="Logo" src="Tonyz_exe.png">
+        <a href="#">Toyzexe</a>
+    </header>
+    <nav class="Themes">   
+        <a target="_blank" href="https://discord.com/channels/931296210973769729/1026100526334607410" title="Nintendo">     Nintendo    </a>
+        <a target="_blank" href="https://discord.com/channels/931296210973769729/1026101983653937162" title="Microsoft">    Microsoft   </a>
+        <a target="_blank" href="https://discord.com/channels/931296210973769729/1026102037231968306" title="Sony">         Sony        </a>
+        <a target="_blank" href="https://discord.com/channels/931296210973769729/1026854417103847464" title="Indépendants"> Indépendants</a>
+        <a target="_blank" href="https://discord.com/channels/931296210973769729/934502085985173616"  title="Règlement">    Règlement   </a>
+        <a target="_blank" href="https://discord.com/channels/931296210973769729/942439000772337694"  title="Rôles">        Rôles       </a>
+        <a target="_blank" href="https://www.youtube.com/@Toniz_exe"                                  title="YouTube">      YouTube     </a>
+        <a target="_blank" href="https://discord.gg/P7yypppPha"                                       title="Discord">      Discord     </a>
+    </nav>
+<br>
+<div class="sep"></div>
+    <main>
+    <div class="wrapper">
+        <div class="card"><img src="https://e0.pxfuel.com/wallpapers/280/534/desktop-wallpaper-moon-on-pokemon-pokemon-alola-cute-pokemon-pokemon.jpg"/>
+          <div class="info">
+            <h1>Pokémon</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora ex, praesentium saepe magni velit.</p>
+            <a target="_blank" href="https://discord.com/channels/931296210973769729/969605096931463199" id="buttonA">Voir Plus</a target="_blank" href="#">
+          </div>
+        </div>
+        <div class="card"><img src="https://m.media-amazon.com/images/M/MV5BNmZiNDM4NjktMGY2NC00ZTM0LWI5MmQtMDdkZDcxYzRmMmYzXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_.jpg"/>
+          <div class="info">
+            <h1>The Legend of Zelda</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora ex, praesentium saepe magni velit.</p>
+            <a target="_blank" href="https://discord.com/channels/931296210973769729/977679957931221023" id="buttonB">Voir Plus</a target="_blank" href="#">
+          </div>
+        </div>
+        <div class="card"><img src="1.jpg"/>
+          <div class="info">
+            <h1>FNAF</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora ex, praesentium saepe magni velit.</p>
+            <a target="_blank" href="https://discord.com/channels/931296210973769729/1002987539902242887" id="buttonC">Voir Plus</a target="_blank" href="#">
+          </div>
+        </div>
+        <div class="card"><img src="https://wallpapercave.com/dwp1x/wp7414755.jpg"/>
+            <div class="info">
+              <h1>Minecraft</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora ex, praesentium saepe magni velit.</p>
+              <a target="_blank" href="https://discord.com/channels/931296210973769729/985845832353992755" id="buttonD">Voir Plus</a target="_blank" href="#">
+            </div>
+          </div>  
+        <div class="card"><img src="2.jpg"/>
+          <div class="info">
+            <h1>Super Smash Bros</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas tempora ex, praesentium saepe magni velit.</p>
+            <a target="_blank" href="https://discord.com/channels/931296210973769729/1003283903131418716" id="buttonE">Voir Plus</a target="_blank" href="#">
+          </div>
+        </div>
+      </div>
+
+        <table class="NumPage"><tbody><tr>
+          <td></td>
+          <td class="NumPageSelect">1</td>
+          <td class="NumPageNonSelect">2</td>
+          <td class="NumPageNonSelect">3</td>
+          <td>»</td>
+      </tr></tbody></table>  
+
+    </main>
+    <div class="sep"><br></div>
+
+    <footer id="Barre">
+      <img alt="Logo" id="Tonyz" src="Tonyz_exe.png">
+      <a href="#">Toyzexe</a>
+      <span id="Slogan">Youtubeur et créateur de lore</span>    
+      <div id="Resaux">
+          <a title="Facebook"  href="#"><img alt="Facebook"  class="SocialMedia round" src="Images/Icons/Facebook.png"></a>
+          <a title="Twitter"   href="#"><img alt="Twitter"   class="SocialMedia round" src="Images/Icons/Twitter.jpg"></a>
+          <a title="Instagram" href="#"><img alt="Instagram" class="SocialMedia round" src="Images/Icons/Instagram.png"></a>
+          <a title="WhatsApp"  href="#"><img alt="WhatsApp"  class="SocialMedia round" src="Images/Icons/WhatsApp.svg"></a>
+          <a title="YouTube" target="_blank" href="https://www.youtube.com/@Toniz_exe"><img alt="YouTube"   class="SocialMedia      " src="Images/Icons/YouTube.png"></a>
+          <a title="TikTok"    href="#"><img alt="TikTok"    class="SocialMedia round" src="Images/Icons/TikTok.png"></a>
+          <a title="Discord" target="_blank" href="https://discord.gg/P7yypppPha"><img alt="Discord" class="SocialMedia round" src="Images/Icons/Discord.png"></a>
+          <a title="Snapchat"  href="#"><img alt="Snapchat"  class="SocialMedia round" src="Images/Icons/Snapchat.png"></a>
+      </div>
+  </footer>
+  <footer id="FooterLinks">
+      <table id="TableauFooter">
+          <thead>
+              <tr>
+               <th>TOYZ_EXE</th>
+                  <th>EN SAVOIR PLUS</th>
+                  <th>NOS PARTENAIRES</th>
+              </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td title="C'est pas tes affaires ?">Nos dossiers</td>
+              <td title="Plante un Drapeau Breton sur le Kremlin et on va vite vouloir rentrer en contact avec toi. Si t'es encore vivant.">Nous contacter</td>
+              <td title="Breizh TV fonctionne si l'ARB n'a pas fait sauté l'antenne ce matin">Breizh TV</td>
+          </tr>
+          <tr>
+              <td title="C'est un journal pas une colonie de vacances">Événements</td>
+              <td title="Publicité pour le cidre gratuite">Devenir annonceur</td>
+              <td title="Radio Breizh, la seule radio qu'on capte nul part">Radio Breizh</td>
+          </tr>
+          <tr>
+              <td title="Ils se sont suicidés de 3 balles dans le dos">Partenaires</td>
+              <td title="T'es viré.">Recrutement</td>
+              <td title='Une abeille Bretonne elle fait "BBBBZZZZHHHHH"'>Empire Breton</td>
+          </tr>
+          <tr>
+              <td title="C'est juste pour rentabiliser">Giveaways</td>
+              <td title="Aucune idée si on est dans la légalité, on est Bretons.">Mentions légales</td>
+              <td title="Avec la Rue de la Soif et le Stade Rennais, on a 95% de l'économie de Rennes">Roazhon Buisness</td>
+          </tr>
+          <tr>
+              <td title="Comme la semaine dernière.">Gameplays</td>
+              <td title="Bah on les prend toutes vous croyez quoi ?">Données personnelles</td>
+              <td title="La crise économique à Douarnenez fait augmenter le prix du beurre.">Le Kouign-éco</td>
+          </tr>
+          <tr>
+              <td title="T'es pas sur PC ?">Applications mobiles</td>
+              <td title="C'est bon les cookies.">Cookies</td>
+              <td title="Libérée, délivrée ! Ma Bretagne n'est plus occupée !"><a style="color: inherit;text-decoration: none;" target="_blank" href="Interbreizh.html">Interbreizh</a></td>
+          </tr>
+          <tr>
+              <td title="Bah au Nord c'est le Titre et là t'es au Sud">Plan du site</td>
+              <td title="Les cookies des sites bretons">Kouign-amann</td>
+              <td title="BFMTV c'est plus ce que c'était">BZHTV</td>
+          </tr>
+      </tbody></table>
+  </footer>
+  <footer id="Copyright">
+      © Copyright 2006-<script>document.write(new Date().getFullYear())</script> toyz.exe • Tous droits réservés • Toute personne plagiant ce site s'expose à des tortures à base de visionage de FNAF et de musiques Minecraft en boucle dans la tête.
+  </footer>
+</body>
+</html>
