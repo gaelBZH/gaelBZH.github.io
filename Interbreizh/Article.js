@@ -9,4 +9,9 @@ function DarkMode()
     document.body.style.backgroundColor = noir;
     document.querySelector("#Sujets").style.color=blanc;
 }
+function changerCouleurOnglet(couleur) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', couleur);
+}
+
+changerCouleurOnglet('red');
 document.getElementById("year").innerHTML=(new Date().getFullYear());

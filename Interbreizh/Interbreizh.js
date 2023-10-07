@@ -16,21 +16,21 @@ function StopPub()
     document.getElementById('pub').style.display='none'
 }
 
-document.getElementById('close').addEventListener('click', StopPub); // Stop Pub
-document.getElementById("year").innerHTML=(new Date().getFullYear()); // Année
+function changerCouleurOnglet(couleur) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', couleur);
+}
+
+// Stop Pub
+document.getElementById('close').addEventListener('click', StopPub);
+
+// Année
+document.getElementById("year").innerHTML=(new Date().getFullYear());
 
 // Barre de Recherche
-const articles = document.querySelectorAll('.Article');
+document.getElementById('BarreDeRecherche').addEventListener('input', () => {document.querySelectorAll('.Article').forEach(article => {article.style.display = normalizeSearchTerms(document.getElementById('BarreDeRecherche').value).filter(term => normalizeText(article.querySelector('h3').textContent).includes(term)).length * 2 >= normalizeSearchTerms(document.getElementById('BarreDeRecherche').value).length ? 'block' : 'none';});});
 
-document.getElementById('BarreDeRecherche').addEventListener('input', () => {
-    const searchTerms = normalizeSearchTerms(document.getElementById('BarreDeRecherche').value);
-
-    articles.forEach(article => {
-        const title = normalizeText(article.querySelector('h3').textContent);
-        const matchingTerms = searchTerms.filter(term => title.includes(term));
-        article.style.display = matchingTerms.length * 2 >= searchTerms.length ? 'block' : 'none';
-    });
-});
+// Couleur Onglet
+changerCouleurOnglet('red');
 
 const normalizeText = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const normalizeSearchTerms = terms => terms.toLowerCase().split(/\s+/).map(normalizeText);
