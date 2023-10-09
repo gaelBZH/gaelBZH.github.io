@@ -13,5 +13,5 @@ function changerCouleurOnglet(couleur) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', couleur);
 }
 
-changerCouleurOnglet(document.documentElement.getPropertyValue('--bleuinterbreizhTEST'));
+changerCouleurOnglet(document.documentElement.getPropertyValue('--bleuinterbreizh'));
 document.getElementById("year").innerHTML=(new Date().getFullYear());
