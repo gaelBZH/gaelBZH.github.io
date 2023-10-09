@@ -30,7 +30,7 @@ document.getElementById("year").innerHTML=(new Date().getFullYear());
 document.getElementById('BarreDeRecherche').addEventListener('input', () => {document.querySelectorAll('.Article').forEach(article => {article.style.display = normalizeSearchTerms(document.getElementById('BarreDeRecherche').value).filter(term => normalizeText(article.querySelector('h3').textContent).includes(term)).length * 2 >= normalizeSearchTerms(document.getElementById('BarreDeRecherche').value).length ? 'block' : 'none';});});
 
 // Couleur Onglet
-changerCouleurOnglet('red');
+changerCouleurOnglet(getPropertyValue('--bleuinterbreizhTEST'));
 
 const normalizeText = text => text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const normalizeSearchTerms = terms => terms.toLowerCase().split(/\s+/).map(normalizeText);
