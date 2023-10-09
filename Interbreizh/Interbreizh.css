@@ -13,7 +13,7 @@ body{margin: 0;padding: 0;}
 ::-webkit-scrollbar-thumb{border: 1px solid rgb(241, 241, 241); background-color: var(--bleuinterbreizh);}	/* Image Barre de Scroll */
 :root{
     --bleuinterbreizh: #072d5b;
-	 --bleuinterbreizhTEST: #c926ab;
+    --bleuinterbreizhTEST: #d22e94;
     --bleuinterbreizhclair: #193f6c;
     --texte: #000000;
 }
