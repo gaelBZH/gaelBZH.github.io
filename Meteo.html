@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- HEY ! Demat jeune développeur ! Je vois que tu accèdes au Code du site de l'Empire Breton ! Saches que tu peux tout à fait utiliser des éléments de ce site à ton goût pour ton propre projet, à condition de ne pas recopier à la lettre pour recrééer exactement le même site. Si tu veux me contacter viens sur le Discord de l'Empire Breton ou contacte moi sur Discord @gaelBZH#0060 ou sur Twitter @gaelBZH42 ! Même pour me dire qu'au moins une personne aura lu ce Message xD. -->
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Meteo/Meteo.css"> <!--Feuille de Style CSS-->
+    <link rel="icon" href="Meteo/Logo.svg"> <!--Icône du Site-->
+    <title>Météo - Empire Breton</title>
+</head>
+<body>
+    <header>
+        <img alt="Nuage" src="Meteo/Nuage.png">
+        <a href="#">Météo</a>
+    </header>
+    <nav class="Themes">   
+        <a href="#" title="Prévisions">  Prévisions</a>
+        <a href="#" title="Plages">      Plages</a>
+        <a href="#" title="Marine">      Marine</a>
+        <a href="#" title="Forêts">      Forêts</a>
+        <a href="#" title="Climat">      Climat</a>
+        <a href="#" title="Températures">Températures</a>
+        <a href="#" title="Vent">        Vent</a>
+        <a href="#" title="Nuages">      Nuages</a>
+    </nav>
+
+    <main>
+        <figure id="News">
+            <a href="#"></a>
+        </figure>
+
+        <div id="Direct">
+            <span class="Heure">◼<time>10:35</time></span><span class="HeureEvent">Les nuages blancs au dessus de Rennes sont devenus noirs, formant un Gwenn-ha-du dans le ciel Rennais.</span><br>
+            <span class="Heure">◼<time>14:00</time></span><span class="HeureEvent">À Saint-Malo, un crachin breton sur des touristes a confirmé le fait qu'il ne pleut que sur les cons.</span><br>
+            <span class="Heure">◼<time>20:29</time></span><span class="HeureEvent">Dans le port de Brest à l’Arsouil, des rafales à 1912 km/h ont été enregistrées à l'Arsenal, dans la rade de Brest.</span><br>
+        </div>
+
+        <nav class="ListeVilles">
+            <div onclick="Select(this)">Rennes       </div>
+            <div onclick="Select(this)">Brest        </div>
+            <div onclick="Select(this)">Lorient      </div>
+            <div onclick="Select(this)">Nantes       </div>
+            <div onclick="Select(this)">Quimper      </div>
+            <div onclick="Select(this)">Saint-Brieuc </div>
+            <div onclick="Select(this)">Saint-Malo   </div>
+            <div onclick="Select(this)">Vannes       </div>
+            <div onclick="Select(this)">Fougères     </div>
+        </nav>
+        
+        <table class="NumPage"><tbody><tr>
+            <td></td>
+            <td class="NumPageSelect">1</td>
+            <td class="NumPageNonSelect">2</td>
+            <td class="NumPageNonSelect">3</td>
+            <td>»</td>
+        </tr></tbody></table>
+    </main>
+    
+    <div id="pub">
+        <button id="close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6L6.4 19Z"></svg></button></div>
+
+    <footer id="Barre">
+        <img alt="Nuage" id="Cloud" src="Meteo/Nuage.png">
+        <a href="#">Météo</a>
+        <span id="Slogan">Là où il ne pleut que sur les cons</span>    
+        <div id="Resaux">
+            <a title="Facebook"  href="#"><img alt="Facebook"  class="SocialMedia round" src="Images/Icons/Facebook.png"></a>
+            <a title="Twitter"   href="#"><img alt="Twitter"   class="SocialMedia round" src="Images/Icons/Twitter.jpg"></a>
+            <a title="Instagram" href="#"><img alt="Instagram" class="SocialMedia round" src="Images/Icons/Instagram.png"></a>
+            <a title="WhatsApp"  href="#"><img alt="WhatsApp"  class="SocialMedia round" src="Images/Icons/WhatsApp.svg"></a>
+            <a title="YouTube"   href="#"><img alt="YouTube"   class="SocialMedia      " src="Images/Icons/YouTube.png"></a>
+            <a title="TikTok"    href="#"><img alt="TikTok"    class="SocialMedia round" src="Images/Icons/TikTok.png"></a>
+            <a title="Pinterest" href="#"><img alt="Pinterest" class="SocialMedia round" src="Images/Icons/Pinterest.svg"></a>
+            <a title="Snapchat"  href="#"><img alt="Snapchat"  class="SocialMedia round" src="Images/Icons/Snapchat.png"></a>
+        </div>
+    </footer>
+    <footer id="FooterLinks">
+        <table id="TableauFooter">
+            <thead>
+                <tr>
+                 <th>MÉTÉO BREIZH</th>
+                    <th>EN SAVOIR PLUS</th>
+                    <th>NOS PARTENAIRES</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td title="C'est pas tes affaires ?">Nos dossiers</td>
+                <td title="Plante un Drapeau Breton sur le Kremlin et on va vite vouloir rentrer en contact avec toi. Si t'es encore vivant.">Nous contacter</td>
+                <td title="Breizh TV fonctionne si l'ARB n'a pas fait sauté l'antenne ce matin">Breizh TV</td>
+            </tr>
+            <tr>
+                <td title="C'est la météo pas une colonie de vacances">Événements</td>
+                <td title="Publicité pour le cidre gratuite">Devenir annonceur</td>
+                <td title="Radio Breizh, la seule radio qu'on capte nul part">Radio Breizh</td>
+            </tr>
+            <tr>
+                <td title="Ils se sont suicidés de 3 balles dans le dos">Partenaires</td>
+                <td title="T'es viré.">Recrutement</td>
+                <td title='Une abeille Bretonne elle fait "BBBBZZZZHHHHH"'>Maya la Breizh</td>
+            </tr>
+            <tr>
+                <td title="C'est juste pour rentabiliser">Jeux-Concours</td>
+                <td title="Aucune idée si on est dans la légalité, on est Bretons.">Mentions légales</td>
+                <td title="Avec la Rue de la Soif et le Stade Rennais, on a 95% de l'économie de Rennes">Roazhon Buisness</td>
+            </tr>
+            <tr>
+                <td title="Comme la semaine dernière.">Programme TV</td>
+                <td title="Bah on les prend toutes vous croyez quoi ?">Données personnelles</td>
+                <td title="La crise économique à Douarnenez fait augmenter le prix du beurre.">Le Kouign-éco</td>
+            </tr>
+            <tr>
+                <td title="T'es pas sur PC ?">Applications mobiles</td>
+                <td title="C'est bon les cookies.">Cookies</td>
+                <td title="Libérée, délivrée ! Ma Bretagne n'est plus occupée !">Radio Rennes des Neiges</td>
+            </tr>
+            <tr>
+                <td title="Bah au Nord c'est le Titre et là t'es au Sud">Plan du site</td>
+                <td title="Les cookies des sites bretons">Kouign-amann</td>
+                <td title="BFMTV c'est plus ce que c'était">BZHTV</td>
+            </tr>
+        </tbody></table>
+    </footer>
+    <footer id="Copyright">
+        © Copyright 2006-<span id="year">0000</span> breizhmeteo.bzh • Tous droits réservés • Toute personne plagiant ce site s'expose à des tortures à base de kouign-amann et de chansons bretonnes en boucle dans la tête.
+    </footer>
+    <script src="Interbreizh/Interbreizh.js"></script>
+</body>
+</html>
