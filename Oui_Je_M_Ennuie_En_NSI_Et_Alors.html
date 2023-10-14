@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Tu veux pas sortir avec moi ? UwU -->
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Oui j'ai rien à faire en NSI mais osef</title>
+    		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/f/f2/Liked.svg"> <!--Icône du Site-->
+		<script>
+			function Fonction(elt)
+			{let divs = document.getElementsByClassName("BoutonNon");
+			for (let i=0; i<divs.length; i++)
+			{
+				if (divs[i].style.margin=="0px 600px 20px")
+					{divs[i].style.margin="0";}
+				else
+					{divs[i].style.margin="0px 600px 20px";}
+			}}
+		</script>
+		<style>
+			.BoutonNon{margin: 0px 0px 0px;background-color:black;color:white;width: 10%;}
+			#BoutonOui{
+				background-color:rgb(229, 138, 197);
+				border: 3px solid rgb(229, 138, 197);
+				color:black;
+				width: 10%;}
+		</style>
+	</head>
+	<body>
+		<!-- Tu veux pas sortir avec moi ? UwU -->
+		<h1>Bonjour !</h1>
+		<h4>Faut tellement envoyer ça à ta crush pour lui demander si elle veut être ta valentine xD</h4>
+		<button id="BoutonOui" onclick='alert("YES ! Je t aime :3")'><strong>OUI</strong></button><br><br>
+		<button tabindex="-1" onclick='alert("Ah bah rip ;-; UwU")' class="BoutonNon" onMouseOver="Fonction(this)">NON</button>
+		<!-- Tu veux pas sortir avec moi ? UwU -->
+	</body>
+</html>
