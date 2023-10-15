@@ -1,82 +1,36 @@
-/* Fond de Page */
-body{
-	background-image: linear-gradient(
-		rgba(179, 206, 215, 0.9)	,
-		rgba(115, 167, 174, 0.9))	, url("");
-}
+/* MAIN */
+main{margin: 0 30px;display: none;}
 
-h1{
-	background-color: #0d535e;
-	color:rgb(230, 230, 230);
-}
-
-/* Sous-Titre Principal*/
-h2{
-	font-style: italic;
-	background-color:rgba(230, 230, 230,0.5);
-    color: #030219;
+main p{
+    color: var(--texte);
 }
 
 /* Styles des Grandes Parties */
 .Partie{
-	background-color: rgba(0, 0, 0, 0.1);
-	border: 5px solid #1b4c77;
+	background-color: var(--ssbnoir);
+	border: 5px solid var(--ssbrouge);
 	margin: 5px 5px 40px 5px;
+    padding: 0 10px;
 }
-
-/* Titres de Parties */
 .TitrePartie{font-weight: bold;font-size: 120%;}
 
-#PartieMotDePasse{
-	background-color: rgba(3, 4, 31, 0.25);
-	margin-right:1%;
-	width: 35%;
-	margin-left: 1%;
-	text-align: left;
-	padding: 1% 2% 0% 2%;
-	border: #030219 1px solid;
-}
-#Sommaire{
-	background-color: rgb(40, 42, 42,0.25);
-	margin-right: 1%;
-	margin-left: 35%;
-	width: 20%;
-	text-align: right;
-	padding: 0%;
-	border: #030219 1px solid;
-	display: none;
-}
-#Sommaire a, #Sommaire a:visited{color:#282a2a}
-#Sommaire a:hover{color:#ca0b0b}
-.box {
-	display: flex;
-	align-items: stretch;
-  }
-		
-#PartieVerrouillee{
-	display: none;
-}
-.Logo{width: 100%;text-align: right;}
-
-/* Style Image Armoiries */
-#Armoiries{
-	display: block;
-	width: 40%;
-	margin: auto;margin-bottom: 30px;
-	opacity: 95%;
-	background: radial-gradient(rgba(14, 14, 87, 0.16),rgba(14, 14, 87, 0.16),rgba(14, 14, 87, 0.16),  transparent,  transparent);}
+/* Partie 1 */
+#ListeMembres{display: flex;flex-wrap: wrap;color: var(--texte);text-align: center;}
+#ListeMembres .Name{font-weight: 600;}
+#ListeMembres .Small{font-size: small;}
+#ListeMembres .SSB{font-weight: 600;color: #7c0033;}
+#ListeMembres table:nth-child(1) .Serv{color:#ff200d}
+#ListeMembres table:nth-child(2) .Serv{color:#31f33a}
+#ListeMembres table:nth-child(3) .Serv{color:#ff0000}
+#ListeMembres table:nth-child(4) .Serv{color:#ff401b}
+#ListeMembres table:nth-child(5) .Serv{color:#31f399}
+#ListeMembres .Photo img{border-radius: 50%;width: 40%;}
+#ListeMembres table{width : calc(1400px/5);margin: 0 auto;}
+.loupe{transition: transform .2s}
+.loupe:hover{transform: scale(1.25)}
 
 
-/* Styles Tableaux */
-#ListeMembres table{margin-bottom: 30px}
-#ListeMembres td{width : calc(100%/6);text-align :center;color:#e0e1e5} /* Centrer Éléments */
-#ListeMembres td img{border-radius: 50%;width: 40%;}
-#ListeMembres table{background-color: rgba(72, 72, 72, 0.4);margin: 0 3%;}
-#ListeMembres .Logo{width: 30px;}
-#ListeMembres{margin-bottom: 15px;}
-#ListeMembres .Ancien{opacity: 35%;}
-
-#boutonacces:hover{cursor: pointer;}
+/* Partie 2 */
 iframe{height: 500px;width: auto ;display: block;
 	border-left: 7px solid silver;
 	border-bottom: 7px solid rgb(101, 101, 101);
@@ -87,6 +41,7 @@ iframe{height: 500px;width: auto ;display: block;
 .NumeroSalle{text-align: center;background-color: rgb(139, 51, 51);}
 #Salles a, #Salle a:hover, #Salle a:visited{color: rgb(227, 227, 227)}
 
+/* Partie 3 */
 #ListeNoire{border: rgb(218, 218, 218) 2px ridge;width: 90%;font-size: 90%;text-align: center;margin: auto auto 10px auto;  border-spacing:0}
 #ListeBlanche td, #ListeNoire td{padding: 30px 10px;border: #ffffff1b 1px solid;}
 #ListeNoire thead{height: 75px ;background-color: rgb(0, 0, 0);color: #e0e1e5;}
@@ -94,6 +49,7 @@ iframe{height: 500px;width: auto ;display: block;
 #ListeNoire tbody .Pair{background-color: rgba(10, 14, 63, 0.7) ;color: #e0e1e5;}
 #ListeNoire tbody .Impair{background-color: rgba(2, 6, 35, 0.7);color: #e0e1e5;}
 
+/* Partie 4 */
 #ListeBlanche{border: rgb(0, 0, 0) 2px ridge;width: 75%;font-size: 90%;text-align: center;margin: auto auto 10px auto;  border-spacing:0}
 #ListeBlanche thead{height: 60px ;background-color: rgb(84, 99, 156);color: #0f0f0f;}
 #ListeBlanche th{border: #ffffff1b 1px solid}
@@ -102,10 +58,12 @@ iframe{height: 500px;width: auto ;display: block;
 #ListeBlanche img{border-radius:50%;width: 100%;}
 #ListeBlanche .CaseAvatar{width: 10%;}
 
+/* Partie 5 */
 #ConseilSecurite td{width : 1%;text-align :center}
 #ConseilSecurite img{background: radial-gradient(rgba(14, 14, 87, 0.10), rgba(14, 14, 87, 0.10),rgba(14, 14, 87, 0.10),rgba(14, 14, 87, 0.10),  transparent, transparent,  transparent);}
  
 
+/* Partie 6 */
 .docapercu{
 	box-shadow: 0 10px 30px -15px rgba(30, 33, 36, 0.85);
 	height: 8rem;
@@ -123,3 +81,4 @@ a[download]:focus, a[download]:hover {color: #c84d4d;border-bottom: none;box-sha
 abbr[title]{cursor: help;text-decoration: none;border-bottom: 1px dotted currentColor;}
 .doc {display: flex; margin-bottom: 10px;}
 .doc img:hover{transform: rotate(0);transform: scale(1.25);transition: transform ease-in-out 500ms;}
+/* MAIN */

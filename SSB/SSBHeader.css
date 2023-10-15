@@ -1,0 +1,45 @@
+/* HEADER */
+header{
+    background-color: var(--ssbnoir);
+    text-align: center;
+    width: 100%;
+}
+header a{
+    font-family: Georgia, serif;
+    color: white;
+    text-decoration: none;
+    font-size: 120px;
+    font-weight: 600;
+}
+header img{width: 85px;
+    vertical-align: -15px;}
+
+.Themes{
+    display: flex;
+    flex-wrap: wrap;  
+    color:var(--texte);
+    width: 100%;
+    font-family: Arial,sans-serif;
+    background-color: var(--ssbnoirclair);
+    border-bottom: 1px solid var(--ssbnoir);
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center
+}
+
+.Themes a{
+    text-decoration: none;
+    color: var(--texte);
+    display: inline-block;
+    margin: 10px 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 4px solid transparent;
+    font-family: Pilat Narrow Bold,Pilat Narrow-fallback,sans-serif;
+    font-size: .875rem;
+    line-height: 1.45rem;
+    text-transform: uppercase;
+}
+.Themes a:hover {
+    border-bottom-color: var(--ssbrouge);
+}
+/* HEADER */

@@ -27,7 +27,7 @@ function verifiermdp()
     }
     else
     {
-      x.style.backgroundColor = "red";
+      x.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--ssbrouge').trim();
       y.disabled = true;
       return false
     }
@@ -36,10 +36,10 @@ function verifiermdp()
 function afficherpage(u){
     if (verifiermdp()||u==29)
     {
-        document.getElementById("PartieVerrouillee").style.display = "block";
-        document.getElementsByClassName("Logo")[0].src = "SSB/BlasonSSB2.png";
-        document.getElementById("TitrePrincipal").textContent = "Bureau du SSB"
-        document.getElementsByTagName("h2")[0].textContent="Meus honor vocatur fides";
+        document.querySelector("main").style.display = "block";
         document.getElementById("Sommaire").style.display="block";
+        document.getElementsByClassName("Logo")[0].src = "SSB/BlasonSSB2.png";
     }
 }
+
+document.getElementById("year").innerHTML=(new Date().getFullYear());
