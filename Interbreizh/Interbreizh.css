@@ -96,6 +96,7 @@ header img{width: 115px;
 #News:hover{
     transition: 0.5s;
     background-image: url(News2.png);
+    background: no-repeat center url(../ChvSourD.png);
 }
 
 

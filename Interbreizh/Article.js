@@ -13,5 +13,9 @@ function changerCouleurOnglet(couleur) {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', couleur);
 }
 
+
+var NumeroPage = window.location.pathname.split("/").pop().match(/\d+/)
+document.title = "Interbreizh - Article " + NumeroPage;
+
 changerCouleurOnglet(getComputedStyle(document.documentElement).getPropertyValue('--bleuinterbreizh').trim());
 document.getElementById("year").innerHTML=(new Date().getFullYear());
