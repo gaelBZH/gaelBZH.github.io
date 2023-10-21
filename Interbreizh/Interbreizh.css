@@ -276,7 +276,7 @@ header img{width: 115px;
 #close:active::before{
     display: none;
 }
-
+/* EVENT
 @keyframes fondu{
     0%      {background-image: url("Pub1.jpg");}
     12%   {background-image: url("Pub2.jpg");}
@@ -288,7 +288,7 @@ header img{width: 115px;
     87%  {background-image: url("Pub8.jpg");}  
     100%    {background-image: url("Pub9.jpg");}
 }
-
+*/
 /* MAIN */
 
 
@@ -440,12 +440,31 @@ footer{    background-color: var(--bleuinterbreizh);
 @media screen and (max-width: 1300px)
 {
     #News{display: none}
+
     @keyframes fondu{
         0%      {background-image: url("../ChvSourD.png");}
+        12%     {background-image: url("Pub2.jpg");}
         25%     {background-image: url("../ChvSourD.png");}
+        37%     {background-image: url("Pub4.jpg");}
         50%     {background-image: url("../ChvSourD.png");}
+        62%     {background-image: url("Pub6.jpg");}
         75%     {background-image: url("../ChvSourD.png");}
+        87%     {background-image: url("Pub8.jpg");}  
         100%    {background-image: url("../ChvSourD.png");}
-    }
-    
+    }            
+}
+@media (min-width: 1300px)
+{
+    #News{display: none}
+    @keyframes fondu{
+        0%      {background-image: url("Pub1.jpg");}
+        12%   {background-image: url("Pub2.jpg");}
+        25%     {background-image: url("Pub3.jpg");}
+        37%   {background-image: url("Pub4.jpg");}
+        50%     {background-image: url("Pub5.jpg");}
+        62%   {background-image: url("Pub6.jpg");}
+        75%     {background-image: url("Pub7.jpg");}
+        87%  {background-image: url("Pub8.jpg");}  
+        100%    {background-image: url("Pub9.jpg");}
+    }        
 }
