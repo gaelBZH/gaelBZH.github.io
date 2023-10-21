@@ -440,4 +440,12 @@ footer{    background-color: var(--bleuinterbreizh);
 @media screen and (max-width: 1300px)
 {
     #News{display: none}
+    @keyframes fondu{
+        0%      {background-image: url("../ChvSourD.png");}
+        25%     {background-image: url("../ChvSourD.png");}
+        50%     {background-image: url("../ChvSourD.png");}
+        75%     {background-image: url("../ChvSourD.png");}
+        100%    {background-image: url("../ChvSourD.png");}
+    }
+    
 }
