@@ -455,7 +455,6 @@ footer{    background-color: var(--bleuinterbreizh);
 }
 @media (min-width: 1300px)
 {
-    #News{display: none}
     @keyframes fondu{
         0%      {background-image: url("Pub1.jpg");}
         12%   {background-image: url("Pub2.jpg");}
