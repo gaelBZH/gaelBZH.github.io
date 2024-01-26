@@ -9,14 +9,16 @@
 
     <script>
         function lov(){
-            const Gars = ["Gaël", "Victor", "Noé", "Ronan", "Jean-Baptiste", "Lilian", "Mattéo", "Dorian"];
-            const Fille = ["Uliana", "Gabrièle", "Gwenaëlle", "Diane", "Amphitrite", "Clarisse", "Isabella", "Barbara"];
+            const Gars = ["Gaël", "Victor", "Noé", "Ronan", "Jean-Baptiste", "Lilian", "Mattéo", "Toni", "Teoman"];
+            const Fille = ["Gwenaëlle", "Gabrièle", "Uliana", "Diane", "Fleur"];
 
             var indiceAleatoireA = Math.floor(Math.random() * Gars.length);
             var indiceAleatoireB = Math.floor(Math.random() * Fille.length);
 
             var PrenomA = Gars[indiceAleatoireA];
             var PrenomB = Fille[indiceAleatoireB];
+            if (PrenomA == Gars[0] and PrenomB == Fille[2]){PrenomA = PrenomB[Math.floor(Math.random() * Fille.length-1)]}
+            
             document.getElementById("resultat").textContent = PrenomA;
             document.getElementById("resultat2").textContent = PrenomB;
             document.getElementById("resultat3").textContent = PrenomB.substring(0, Math.floor(PrenomB.length / 2)) + PrenomA.substring(Math.floor(PrenomA.length / 2));
