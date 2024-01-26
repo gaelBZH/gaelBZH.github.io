@@ -17,7 +17,12 @@
 
             var PrenomA = Gars[indiceAleatoireA];
             var PrenomB = Fille[indiceAleatoireB];
-            if (PrenomA == Gars[0] and PrenomB == Fille[2]){PrenomA = PrenomB[Math.floor(Math.random() * Fille.length)]}
+            
+            if (PrenomA == Gars[0] and PrenomB == Fille[2])
+            {
+                indiceAleatoireB = Math.floor(Math.random() * Fille[1:].length);
+                PrenomB = Fille[indiceAleatoireB];
+            }
             
             document.getElementById("resultat").textContent = PrenomA;
             document.getElementById("resultat2").textContent = PrenomB;
