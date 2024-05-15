@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Téléphone</title>
+    <link rel="icon" href="https://cdn-icons-png.freepik.com/256/724/724664.png?semt=ais_hybrid">
+    <meta name="theme-color" content="#cee3e9">
+    <style>
+        #IIRandomNumber{
+            font-weight: bold;
+        }
+        #INumber, #IINumber, #IIINumber{
+            color: blueviolet;
+            font-weight: bolder;
+        }
+        h1{
+            text-decoration: underline;
+        }
+        section{
+            padding: 2px;
+            background-color: #cee3e9;
+            border: 2px solid darkblue;
+            margin: 0 10px 50px;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>I - Entrer votre numéro de téléphone</h1>
+        <input type="number" name="" id="I0" min="0" max="9" value="0">
+        <input type="number" name="" id="I1" min="0" max="9" value="0">
+        <input type="number" name="" id="I2" min="0" max="9" value="0">
+        <input type="number" name="" id="I3" min="0" max="9" value="0">
+        <input type="number" name="" id="I4" min="0" max="9" value="0">
+        <input type="number" name="" id="I5" min="0" max="9" value="0">
+        <input type="number" name="" id="I6" min="0" max="9" value="0">
+        <input type="number" name="" id="I7" min="0" max="9" value="0">
+        <input type="number" name="" id="I8" min="0" max="9" value="0">
+        <input type="number" name="" id="I9" min="0" max="9" value="0">
+        <div>
+            <input type="button" value="Valider" onclick="f(1)">
+            <span>Votre numéro de téléphone est : <span id="INumber"></span></span>
+        </div>
+    </section>
+
+    <section>
+        <h1>II - Est-ce votre numéro de téléphone ?</h1>
+        <span id="IIRandomNumber"></span>
+        <div>
+            <input type="button" value="OUI" onclick="f(2, true)">
+            <input type="button" value="NON" onclick="f(2, false)">
+        </div>
+        <div>
+            <span>Votre numéro de téléphone est : <span id="IINumber"></span></span>
+        </div>
+    </section>
+
+    <section>
+        <h1>III - Cherchez votre numéro de téléphone</h1>
+        <input type="range" name="" id="IIIInput" min="0100000000" max="0999999999" value="0500000000">
+        <div>
+            <span>Votre numéro de téléphone est : <span id="IIINumber"></span></span>
+        </div>
+    </section>
+
+    <script>
+        
+        function tel(txt)
+        {
+            let Text = "";
+            for (let i = 0; i < txt.length; i += 2) {
+                Text += txt[i] + txt[i+1] + " ";
+            }
+            return Text.trim();
+        }
+
+        function f(x, y=NaN)
+        {
+            if (x==1)
+            {
+                document.querySelector('#INumber').innerHTML = tel(
+                document.querySelector("#I0").value+
+                document.querySelector("#I1").value+
+                document.querySelector("#I2").value+
+                document.querySelector("#I3").value+
+                document.querySelector("#I4").value+
+                document.querySelector("#I5").value+
+                document.querySelector("#I6").value+
+                document.querySelector("#I7").value+
+                document.querySelector("#I8").value+
+                document.querySelector("#I9").value)
+            }
+            
+            if (x==2){
+                if (y){
+                    document.querySelector('#IINumber').innerHTML =  document.querySelector("#IIRandomNumber").innerHTML
+                }
+                else{
+                    let randomNumber = Math.floor(Math.random() * 1000000000);
+                    if (randomNumber < 100000000) {
+                        randomNumber = "0" + randomNumber;
+                    }
+                    document.querySelector("#IIRandomNumber").innerHTML = tel('0' + randomNumber);
+                }
+            }
+
+            if (x==3){
+                document.querySelector('#IIINumber').innerHTML = tel('0' + document.querySelector("#IIIInput").value);
+            }
+        }
+    f(2, false) // random default value
+    f(3)
+    document.querySelector('#IIIInput').addEventListener('input', function() {
+        f(3);
+    });
+    </script>
+</body>
+</html>
