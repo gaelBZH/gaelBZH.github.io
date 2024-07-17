@@ -18,9 +18,10 @@
             var PrenomA = Gars[indiceAleatoireA];
             var PrenomB = Fille[indiceAleatoireB];
             
-            if (PrenomA == Gars[0] && PrenomB == Fille[2])
+            if (PrenomA == Gars[0] || PrenomB == Fille[0])
             {
-                PrenomA = Fille[2];
+                PrenomA = Gars[0];
+                PrenomB = Fille[0];
             }
             
             document.getElementById("resultat").textContent = PrenomA;
