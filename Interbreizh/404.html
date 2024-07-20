@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#072d5b">
+    <title>Interbreizh - Page Introuvable</title>
+    <meta name="theme-color" content="#072d5b">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+    <link rel="stylesheet" href="Article.css">
+    <style>
+        .Page404{
+            text-align: center;
+            padding:40px 0 0;
+            background:#fff;
+        }
+        
+        .Page404 img{width:100%;}
+        .QuatreCentQuatre{
+            background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+            height: 400px;
+            background-position: center;
+            background-repeat: no-repeat; 
+        }
+        .QuatreCentQuatre h1{
+            margin-top: 0;
+            font-size:80px;
+            color: var(--bleuinterbreizh);
+         }
+        .QuatreCentQuatre h3{
+            font-size:80px;
+        }
+        .Link404:hover{text-decoration: underline;transform: scale(1.05);}
+        .Link404{			
+            transition: 0.3s; 
+            color: #fff!important;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: var(--bleuinterbreizh);
+            margin: 20px 0;
+            display: inline-block;
+        }
+        .Perdu{margin-top:-50px;}
+    </style>
+</head>
+<body>
+    <header>
+        <img alt="Globe" src="Globe.svg">
+        <a href="index.html">Interbreizh</a>
+    </header>
+    <section class="Page404">
+        <div class="QuatreCentQuatre">
+            <h1 class="text-center ">404</h1>
+        </div>
+        <div class="Perdu">
+            <h3>Oups je crois que tu t'es perdu petit breton</h3>
+            <p>La page que tu cherches n'existe pas !</p>
+            <a href="index.html" class="Link404">Retourner au Menu</a>
+        </div>
+    </section>
+    <script>changerCouleurOnglet(getComputedStyle(document.documentElement).getPropertyValue('--bleuinterbreizh').trim());</script>
+</body>
+</html>
