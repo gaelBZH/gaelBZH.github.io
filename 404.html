@@ -1,51 +1,59 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚧 Maintenance en cours 🚧</title>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+    <script>if (window.location.pathname.startsWith("/Interbreizh/")) {
+        window.location.href = "/Interbreizh/404.html";
+      }
+      </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-        .container {
+        .Page404{
             text-align: center;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding:40px 0 0;
+            background:#fff;
+            font-family: 'Arvo', serif;
         }
-        h1 {
-            font-size: 2.5em;
-            color: #856404;
+        
+        .Page404 img{width:100%;}
+        .QuatreCentQuatre{
+            background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+            height: 400px;
+            background-position: center;
+            background-repeat: no-repeat; 
         }
-        p {
-            font-size: 1.2em;
-            color: #856404;
+        .QuatreCentQuatre h1{
+            margin-top: 0;
+            font-size:80px;
+         }
+        .QuatreCentQuatre h3{
+            font-size:80px;
         }
-        .emoji {
-            font-size: 3em;
+        .Link404:hover{text-decoration: underline;transform: scale(1.05);}
+        .Link404{			
+            transition: 0.3s; 
+            color: #fff!important;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #39ac31;
+            margin: 20px 0;
+            display: inline-block;
         }
+        .Perdu{margin-top:-50px;}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="emoji">🚧🛠️🚧</div>
-        <h1>Site en Maintenance</h1>
-        <p>Demat !</p>
-        <p>Le site de l'Empire Breton est actuellement en maintenance. Nous reviendrons bientôt !</p>
-        <p>Merci de votre patience et à très bientôt.</p>
-        <p>Kenavo !</p>
-        <div class="emoji">🚧🛠️🚧</div>
-    </div>
+    <section class="Page404">
+        <div class="QuatreCentQuatre">
+            <h1 class="text-center ">404</h1>
+        </div>
+        <div class="Perdu">
+            <h3>Oups je crois que tu t'es perdu petit breton</h3>
+            <p>La page que tu cherches n'existe pas !</p>
+            <a href="index.html" class="Link404">Retourner au Menu</a>
+        </div>
+    </section>
 </body>
 </html>
