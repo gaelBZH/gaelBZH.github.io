@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traducteur Star Wars</title>
+    <link rel="icon" href="https://cdn.icon-icons.com/icons2/1070/PNG/512/darth-vader_icon-icons.com_76959.png"> <!--Icône du Site-->
+    <style>
+        @font-face {
+            font-family: 'Aurebesh';
+            src: url('Aurebesh.ttf') format('truetype');
+        }
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(var(--imperialFour), #3b3e4a) no-repeat;
+            /* background-color: var(--imperialFour); */
+            color: var(--imperialTwo);
+            margin-bottom: 300px;
+        }
+
+        :root{
+            --imperialOne: hsl(351, 67%, 37%);
+            --imperialTwo: #1e1f22;
+            --imperialThree: silver;
+            --imperialFour : #313338;
+            --SWLongTimeAgo: #67d1d9;
+            --SWMain: #f8e410;
+        }
+
+        *{
+            max-width: 2000px;
+        }
+
+        h1{
+            width: calc(100%-10px);
+            background-color: var(--imperialOne);
+            padding: 10px;
+            text-align: center;
+            color: rgb(245, 245, 245);
+        }
+
+        .SW {
+            text-transform: lowercase;
+            font-family: 'Aurebesh', sans-serif;
+        }
+        #Traducteur{
+            margin: auto;
+            width: 97%;
+            border: 2px solid var(--imperialTwo);
+            font-size: 1.3em;
+            background-color: var(--imperialThree);
+        }
+        #Traducteur td{
+            width: 50%;
+            border: 1px solid grey
+        }
+        #Traducteur div{
+            min-height: 400px;
+            padding: 10px;
+        }
+        #Traducteur div:focus {
+            outline: 2px solid var(--imperialOne);
+        }
+        #Traducteur th{
+            border: 1px solid var(--imperialTwo);
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        #Credits{
+            color:var(--SWMain)
+        }
+
+        #LongTimeAgo{
+            font-size: 2em;
+            color:var(--SWLongTimeAgo);
+            font-weight: 600;
+        }
+
+        main{
+            margin: 20px 0;
+        }
+
+        #Description{
+            margin: 1.5%;
+            border: 4px double var(--imperialThree);
+            padding: 15px;
+        }
+
+        #Description #Credits p{
+            font-size: 1.2em;
+            text-align: justify;
+        }
+        #Description #Credits #auteur{
+            text-align: center;
+        }
+
+        #StickyFooter{
+            text-align: center;
+            padding: 8px;
+            width: 100%;
+            background-color: var(--imperialOne);
+            color: white;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span class="SW">{ </span>Traducteur Star Wars | <span class="SW">Traducteur Star Wars }</span></h1>
+    </header>
+
+    <main>
+        <table id="Traducteur">
+            <tbody>
+                <tr>
+                    <th>Alphabet</th>
+                    <th class="SW">Aurebesh</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="inputDiv" contenteditable="true"></div>
+                    </td>
+                    <td>
+                        <div id="outputDiv" contenteditable="true" class="SW"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
+    </main>
+
+    <section id="Description">
+        <section id="LongTimeAgo">
+            <p>Il y a bien longtemps, dans une galaxie lointaine, très lointaine....</p>
+        </section>
+        <section id="Credits">
+            <p>Un jeune étudiant en informatique à l'académie impériale a créé ce site web créé pour l'Empire Galactique dans le but d'apprendre aux citoyens l'alphabet Aurebesh, afin qu'ils puissent non seulement décrypter les messages impériaux, mais aussi naviguer avec aisance dans l'immensité de l'espace galactique. Imaginez-vous, citoyen dévoué, marchant fièrement à travers les halls imposants d'une station spatiale impériale, capable de lire les panneaux d'information en Aurebesh sans hésitation. Vous pourriez même vous retrouver à déchiffrer des communiqués top secrets ou à comprendre des inscriptions anciennes laissées par des civilisations disparues depuis des millénaires. Ce site, véritable bastion de savoir, est conçu pour vous offrir un apprentissage interactif et captivant. Chaque leçon vous rapprochera un peu plus du rang de maître de l'Aurebesh, un titre respecté dans tous les recoins de la galaxie. Que vous soyez un simple citoyen cherchant à impressionner lors des réunions de quartier, ou un officier en herbe souhaitant gravir les échelons de la hiérarchie impériale, ce site est votre passeport vers une nouvelle dimension de compréhension et de pouvoir. Que la Force de l'apprentissage soit avec vous, toujours !</p>
+            <p id="auteur">gaelBZH, <i>501ème légion de la Marine Impériale.</i></p>
+        </section>
+    </section>
+
+    <footer id="StickyFooter">
+        © <script>document.write(new Date().getFullYear())</script> Star Wars - Académie Impériale de <span title="C'est un Ewok">Cropilou</span>, Lune Forestière d'Endor | <span title="C'est faux">Tout droits réservés</span>
+    </footer>
+
+    <script>
+        const inputDiv = document.getElementById('inputDiv');
+        const outputDiv = document.getElementById('outputDiv');
+
+        inputDiv.addEventListener('input', function() {
+            outputDiv.textContent = inputDiv.textContent;
+        });
+        outputDiv.addEventListener('input', function() {
+            inputDiv.textContent = outputDiv.textContent;
+        });
+
+    </script>
+</body>
+</html>
