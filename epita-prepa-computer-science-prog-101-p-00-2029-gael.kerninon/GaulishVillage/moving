@@ -1,0 +1,4 @@
+mkdir druid_hut/village_square
+mkdir druid_hut/village_square/assurancetouris
+mv druid_hut/village_square .
+mv village_square/assurancetouris village_square/assurancetourix

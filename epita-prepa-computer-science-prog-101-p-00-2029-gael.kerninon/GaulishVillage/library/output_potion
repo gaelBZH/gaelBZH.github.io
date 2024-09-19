@@ -1,0 +1,2 @@
+ls *.potion | sort > all_potion
+ls --idefix 2> error_potion

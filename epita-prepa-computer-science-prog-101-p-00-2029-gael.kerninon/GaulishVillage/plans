@@ -1,0 +1,7 @@
+touch villager1
+touch villager2 villager3
+mkdir chief_hut druid_hut fishmonger_stall menhir_workshop
+touch chief_hut/abraracourcix chief_hut/bonemine
+touch druid_hut/asterix druid_hut/panoramix
+touch fishmonger_stall/ordralfabetix
+touch menhir_workshop/idefix menhir_workshop/obelix
