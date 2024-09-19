@@ -1,1 +1,0 @@
-cat strength_potion | grep "e" > pipe_potion

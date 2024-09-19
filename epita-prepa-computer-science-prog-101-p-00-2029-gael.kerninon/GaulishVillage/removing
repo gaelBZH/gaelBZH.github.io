@@ -1,6 +1,0 @@
-cp druid_hut chief_hut -r
-mv chief_hut/druid_hut asterix_hut
-cp druid_hut chief_hut -r
-mv chief_hut/druid_hut obelix_hut
-rm obelix_hut/asterix -r
-rm asterix_hut -r
