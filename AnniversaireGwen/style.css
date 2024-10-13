@@ -1,0 +1,133 @@
+/* Style de base */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e66465;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    background-color: #e66465;
+}
+
+header h1 {
+    font-size: 3em;
+    background-color: #d32f2f;
+    color: rgb(234, 234, 234);
+}
+
+header p {
+    font-size: 1.2em;
+    color: #ededed;
+}
+
+/* Section d'intro */
+.intro {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(#e66465, #9198e5);}
+
+.intro img {
+    width: 80%;
+    max-width: 550px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.intro p {
+    font-size: 1.5em;
+    color: #6a1b9a;
+}
+
+/* Détails de l'événement */
+.details {
+    padding: 30px;
+    background: linear-gradient(#9198e5, #79aa9f);
+    border-top: 2px solid #d34176;
+}
+
+.details h2 {
+    font-size: 2em;
+    color: #c2185b;
+    text-align: center;
+}
+
+.details ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.details li {
+    margin: 10px 0;
+}
+
+/* Message d'amour */
+.message {
+    padding: 30px;
+    background: linear-gradient(#79aa9f, #64ba62);
+    text-align: center;
+}
+
+.message h2 {
+    font-size: 2em;
+    color: #e91e63;
+}
+
+.message p {
+    font-size: 1.5em;
+    color: #880e4f;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* jeu */
+.jeu {
+    padding: 30px;
+    background: linear-gradient(#64ba62, #dd6969);
+    text-align: center;
+}
+
+.jeu h2 {
+    font-size: 2em;
+    color: #e91e63;
+}
+
+.jeu p {
+    font-size: 1.5em;
+    color: #880e4f;
+    margin-top: 15px;
+}
+
+
+/* Footer */
+footer {
+    margin-top: -37px;
+    margin-bottom: -24px;
+    background-color: #dd6969;
+    text-align: center;
+}
+
+footer p {
+    font-size: 2em;
+    font-weight: 600;
+    color: #ffe9f1;
+}
+
+.heart {
+    color: red;
+}
+
+a, a:visited, a:hover{
+    text-decoration: none;
+    color: inherit;
+}
+a:hover{
+    color: red;
+    transition: 1s;
+    font-size: 5em;
+}

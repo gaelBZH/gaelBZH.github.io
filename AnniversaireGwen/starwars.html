@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversaire 18 Ans - Star Wars</title>
+    <link rel="stylesheet" href="starwars.css">
+    <link rel="icon" href="Coeur.png">
+</head>
+<body>
+    <header>
+        <h1>MISSION 1 : Que la Force soit avec toi !</h1>
+    </header>
+
+    <section class="intro">
+        <h2>Bienvenue à la fête d'anniversaire intergalactique !</h2>
+        <p>Bien le bonjour Amirale Gwen. L'Empire Galactique organise une célébration dans une galaxie lointaine, très lointaine... Pour fêter un anniversaire inoubliable. Vous reçevez de ce fait l'ordre de vous y rendre. Pour celà, vous devrez retrouver les codes d'hyperdrive afin de passer en vitesse lumière et pouvoir rejoindre Coruscant à temps.</p>
+    </section>
+
+    <section class="details">
+        <h2>Détails de la mission</h2>
+        <ul>
+            <li><strong>Date :</strong> 26 Octobre 2024</li>
+            <li><strong>Heure :</strong> <span class="heure" id="heure">10:00</span></li>
+            <li><strong>Lieu :</strong> Destroyer Stellaire de Classe Le Saout, Hangar 12</li>
+        </ul>
+    </section>
+
+    <section class="mission">
+        <h2>Ta Mission</h2>
+        <p>Retrouve le code de l'hyperdrive de ton destroyer stellaire impérial !</p>
+    </section>
+
+    <section class="missionlettre">
+        <h2>Première Lettre</h2>
+        <p>Pour trouver la première lettre du code, suis les étapes ci-dessous.</p>
+        <ul>
+            <li>Pense à un nombre</li>
+            <li>Multiplie ce nombre par 2</li>
+            <li>Ajoutes 10 au résultat</li>
+            <li>Divises le tout par 2</li>
+            <li>Retire ton nombre de départ</li>
+            <li>Prend la lettre correspondante dans l'ordre alphabétique (1-A, 2-B, ...)</li>
+        </ul>
+    </section>
+
+    <section class="missionlettre">
+        <h2>Deuxième Lettre</h2>
+        <p>Pour trouver la seconde lettre du code, il va falloir trouver la seule lettre qui n'est pas présente dans la phrase ci-dessous.</p>
+        <p>« Dans un vaisseau, le Jedi Anakin explore des mondes lointains, affronte des Sith et découvre une zone où se trouvent des secrets bien plus agés que Maître Yoda. »</p>
+    </section>
+
+    <section class="missionlettre">
+        <h2>Troisème Lettre</h2>
+        <p>Pour trouver la troisième lettre du code, tu vas devoir utiliser la Force pour répondre à l'une des énigmes de Maître Yoda. À la première lettre de la réponse, la lettre que tu cherches, tu trouveras.</p>
+        <img width="100px" src="https://freepngimg.com/save/104665-master-star-wars-yoda-png-file-hd/860x894" alt="yoda">
+        <table><tbody>
+            <tr>
+                <td>« Maître Jedi sage, sur l'Empire, je veille,<br>
+                    Mon apprenti, un héros il était, mais aussi redoutable il est désormais.<br>
+                    La République, la sauver je n'ai pu,<br>
+                    Mais avec le temps, un nouvel espoir, émergera.<br>
+                    Qui suis-je ? »<br>
+                    _ _ _ - _ _ _</td>
+                    
+                    <td>« Un côté de la Force, sombre et puissant,<br>
+                        Avec des Sith je combats, toujours inconstant.<br>
+                        La peur mène à la colère, la colère mène à la haine<br>
+                        La haine mène à la souffrance. Tel est mon chemin.<br>
+                        Qui suis-je ? »<br>
+                        _ _ _ _ _ _
+                    </td>
+            </tr>            
+        </tbody></table>
+    </section>
+
+    <section class="missionlettre">
+        <h2>Quatrième Lettre</h2>
+        <p>Pour trouver la dernière lettre du code, nous allons nous aider d'un message impérial crypté. À l'intérieur de celui-ci se trouve le code de l'hyperdrive, mais la lettre que nous cherchons semble être écrite en morse. Décrypte la !</p>
+        <span style="font-size: 5em;">_ . _</span>
+    </section>
+
+    <section class="final">
+        <h2>Le Code Secret</h2>
+        <p>Maintenant que tu as le code, entres-le ici !</p>
+        <form onsubmit="event.preventDefault(); verifierTexte();">
+            <input type="text" id="texteInput" maxlength="4" required>
+            <button type="submit">Utilise la Force</button>
+        </form>
+        <br>
+        <span id="reponse"></span>
+        <div id="container">
+            <br>
+            <a href="ww2.html" class="star-wars-button">Que la Force soit avec toi</a>
+        </div>
+    </section>
+
+
+
+
+    <footer>
+        <p>Que la Force soit avec toi, jeune Padawan. Prépare-toi pour une aventure épique ! Je t'aime !</p>
+    </footer>
+</body>
+
+<script>
+function verifierTexte() {
+            // Récupérer la valeur du champ de texte
+            var input = document.getElementById("texteInput").value;
+
+            // Vérifier si la valeur est "EWOK" (insensible à la casse)
+            if (input.toUpperCase() === "EWOK") {
+                document.querySelector('#reponse').innerHTML = "Mais oui un Ewok bien sûr ! C'est lui qui avait volé le code ! Accède à la zone suivante pour continuer à fêter ton anniversaire !.";
+                document.querySelector('#container').style.display = 'block';
+            } else {
+                document.querySelector('#reponse').innerHTML = "Le code est incorrect."
+            }
+        }
+
+    // Fonction pour afficher l'heure au format HH:MM
+function afficherHeure() {
+    const dateActuelle = new Date(); // Obtenir la date actuelle
+    const heures = String(dateActuelle.getHours()).padStart(2, '0'); // Obtenir les heures et les formater
+    const minutes = String(dateActuelle.getMinutes()).padStart(2, '0'); // Obtenir les minutes et les formater
+    const heureFormattee = `${heures}:${minutes}`; // Créer la chaîne au format HH:MM
+    document.getElementById('heure').textContent = heureFormattee;
+}
+
+afficherHeure();
+setInterval(afficherHeure, 600);
+
+
+
+</script>
+</html>

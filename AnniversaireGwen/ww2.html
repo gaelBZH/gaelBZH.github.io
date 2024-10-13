@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversaire 18 Ans - WW2</title>
+    <link rel="stylesheet" href="ww2.css">
+    <link rel="icon" href="Coeur.png">
+</head>
+<body>
+    <div class="game-container">
+        <div class="sky">
+            <div class="plane"></div>
+            <div class="obstacle"></div>
+        </div>
+        <h1>MISSION 2 : La Baronne Rouge</h1>
+        <p>Nein ! L'hyperdrive t'as renvoyée dans le temps, tu es en pleine guerre mondiale ! Atteins 300 points pour te sortir de là !</p>
+        <a href="lotr.html" id="ww2button" class="ww2-button">Passer à la zone suivante</a>
+        <div class="score">Score: <span id="score">0</span></div>
+    </div>
+    <script>
+const plane = document.querySelector('.plane');
+const obstacle = document.querySelector('.obstacle');
+const scoreDisplay = document.getElementById('score');
+const ww2Button = document.getElementById('ww2button'); // Sélection du bouton
+
+let score = 0;
+let isJumping = false;
+
+function jump() {
+    if (isJumping) return; // Ne pas sauter si déjà en train de sauter
+    isJumping = true;
+    
+    plane.classList.add('jump'); // Ajouter la classe pour l'animation de saut
+
+    setTimeout(() => {
+        plane.classList.remove('jump'); // Retirer la classe après l'animation
+        isJumping = false; // Réinitialiser le statut de saut
+    }, 700); // Durée de l'animation
+}
+
+// Détection de collision
+const checkCollision = setInterval(() => {
+    const planeRect = plane.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
+
+    if (
+        planeRect.x < obstacleRect.x + obstacleRect.width &&
+        planeRect.x + planeRect.width > obstacleRect.x &&
+        planeRect.y < obstacleRect.y + obstacleRect.height &&
+        planeRect.height + planeRect.y > obstacleRect.y
+    ) {
+        alert('Jeu terminé ! Ton score est: ' + score);
+        clearInterval(checkCollision);
+        document.location.reload();
+    } else {
+        score++; // Augmente le score
+        scoreDisplay.textContent = score; // Met à jour l'affichage du score
+        
+        if (score > 75 && score < 150) {
+            plane.style.backgroundImage = 'url("plane.png")';
+        }
+
+
+        if (score >= 150) {
+            plane.style.backgroundImage = 'url("plane2.png")';
+        }
+
+        // Vérifie si le score dépasse 300 pour afficher le bouton
+        if (score >= 300) {
+            ww2Button.style.display = 'block'; // Affiche le bouton
+        }
+    }
+}, 100);
+
+// Écouteur d'événements pour les sauts
+document.addEventListener('keydown', jump);
+
+
+    </script>
+</body>
+</html>

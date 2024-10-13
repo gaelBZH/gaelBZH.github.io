@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification de l'âge</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+    </style>
+    <script>
+        function verifyAge() {
+            const age = document.querySelector('input[name="age"]:checked');
+            if (age && age.value === "oui") {
+                window.location.href = "index.html"; // Redirige vers index.html
+            } else {
+                // Ne rien faire
+                alert("Mais ! C'est ton anniversaire, t'as 18 ans maintenant !");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Vérification de l'âge 💖</h1>
+        <p>As-tu plus de 18 ans ?</p>
+        <label>
+            <input type="radio" name="age" value="oui"> Oui
+        </label>
+        <label>
+            <input type="radio" name="age" value="non"> Non
+        </label>
+        <br><br>
+        <button onclick="verifyAge()">Vérifier</button>
+    </div>
+</body>
+</html>

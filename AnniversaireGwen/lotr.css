@@ -1,0 +1,209 @@
+/* Style de base pour la page */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Section Hobbiton */
+.hobbiton {
+    height: 100vh;
+    background: fixed url('hobbit.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #ee900d;
+    text-align: center;
+    background-color: #6db56a;
+    background-size: cover;
+}
+
+.hobbiton img{
+    width: 1em;
+}
+
+.hobbiton .content p{
+    font-size: 2em;
+}
+
+.hobbiton h1 {
+    font-size: 3em;
+    margin: 0;
+    text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
+}
+
+.hobbiton h2 {
+    font-size: 2em;
+    margin: 0;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
+
+}
+
+.hobbiton p {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+/* Section Mordor */
+.mordor {
+    margin-top: -39px;
+    height: 100vh;
+    background: fixed url('mordor.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    background-color: #2e2e2e;
+}
+
+.mordor h1 {
+    font-size: 3em;
+    color: #ff4d4d;
+    text-shadow: 2px 2px 5px black;
+}
+
+.mordor p {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #ff8c00;
+}
+
+.mordor img {
+    margin-top: 20px;
+    width: 300px;
+    height: auto;
+    border: 2px solid #ff4500;
+}
+
+
+
+
+
+  .game-container {
+    background-color: #567a56b4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    color: #ffffff;
+    border-radius: 30px;
+    margin: auto;
+  }
+  
+  .game-container h3 {
+    text-decoration: underline;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .game-container p {
+    font-size: 18px;
+  }
+  
+  .game-container .buttons {
+    margin: 20px 0;
+  }
+  
+  .game-container button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 0 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .game-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .game-container #result {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .game-container #next-question {
+    margin-top: 20px;
+    display: none;
+    background-color: #008CBA;
+  }
+  
+  .game-container #next-question:hover {
+    background-color: #007bb5;
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+#mordor-container {
+    margin: 50px auto;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#mordor-container h1 {
+    color: #fb7869;
+}
+
+#mordor-texte {
+    margin: 20px 0;
+    font-size: 20px;
+    line-height: 1.6;
+    user-select: none;
+}
+
+#mordor-choix {
+    margin-top: 20px;
+}
+
+#mordor-choix button {
+    padding: 10px 20px;
+    background-color: #fb7869;
+    border: none;
+    color: #111;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+}
+
+#mordor-choix button:hover {
+    background-color: #ff4d4d;
+}
+
+#ring{
+  margin: auto;
+  user-select: none;
+}
+
+#end{
+  padding: 10px 20px;
+  background-color: #ff4632;
+  border: none;
+  color: #111;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  display: none;
+}
+#end:hover{
+  background-color: #ff4d4d;
+}

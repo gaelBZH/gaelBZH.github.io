@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+    color: #8B0000;
+    font-size: 3em;
+    font-weight: 600;
+}
+p{
+    text-align: center;
+    font-size: 1.4em;
+}
+
+body {
+    background: no-repeat center fixed url('https://img.freepik.com/photos-premium/fond-ciel-bleu-clair-nuages-soleil-brillant_887552-22520.jpg?w=1060');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Empêche le défilement */
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    overflow: hidden;
+}
+
+.plane {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: url('plane3.png'); /* Remplace par l'URL d'une image d'avion */
+    background-size: cover;
+    bottom: 20px;
+    left: 50px;
+}
+
+.plane.jump {
+    animation: jump-animation 0.75s forwards;
+}
+
+@keyframes jump-animation {
+    0% { bottom: 20px; }
+    50% { bottom: 200px; } /* Hauteur du saut augmentée */
+    100% { bottom: 20px; }
+}
+
+.obstacle {
+    position: absolute;
+    width: 50px;
+    height: 150px;
+    background-color: #8B0000;
+    right: -50px;
+    bottom: 0;
+    animation: moveObstacle 2s linear infinite;
+}
+
+@keyframes moveObstacle {
+    0% {
+        right: -50px;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+.score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+
+.ww2-button {
+    display: none;
+
+    font-family: 'Courier New', Courier, monospace; /* Police type machine à écrire */
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase; /* Tout en majuscules */
+    color: #ffffff; /* Texte blanc */
+    background-color: #4B5320; /* Vert kaki militaire */
+    border: 3px solid #2F4F2F; /* Bordure sombre, comme du métal ou du tissu usé */
+    padding: 10px 20px;
+    border-radius: 5px; /* Légèrement arrondi */
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Ombre pour effet de profondeur */
+    transition: all 0.3s ease; /* Transition douce pour l'effet hover */
+    letter-spacing: 2px; /* Espacement des lettres pour un effet militaire */
+    width: 30%;
+    margin: auto;
+}
+
+.ww2-button:hover {
+    background-color: #3B3F28; /* Changement de couleur à l'hover (plus sombre) */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7); /* Ombre plus prononcée à l'hover */
+    transform: translateY(-2px); /* Légère élévation pour l'effet de clic */
+}
+
+.ww2-button:active {
+    background-color: #2F4F2F; /* Changement de couleur lors du clic */
+    transform: translateY(2px); /* Revenir à sa place lors du clic */
+}

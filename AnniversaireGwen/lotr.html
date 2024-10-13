@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversaire 18 Ans - Seigneur des Anneaux</title>
+    <link rel="stylesheet" href="lotr.css">
+    <link rel="icon" href="Coeur.png">
+    </head>
+<body>
+    <!-- Section Hobbiton -->
+    <section class="hobbiton">
+        <div class="content">
+            <h1>MISSION 3 : L'Aventurière de la Terre du Milieu <img width="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/One_Ring_Blender_Render.png/1024px-One_Ring_Blender_Render.png" alt="L'Anneau Unique" /></h1>
+            <p>L'enchanteur de la Comté.</p>
+
+            <div class="game-container">
+                <h3>Vrai ou Faux - Hobbiton</h3>
+                <p id="question">1. La Comté est située au sud de la Terre du Milieu ?</p>
+                <div class="buttons">
+                  <button onclick="checkAnswer(true)">Vrai</button>
+                  <button onclick="checkAnswer(false)">Faux</button>
+                </div>
+                <p id="result"></p>
+                <button id="next-question" onclick="nextQuestion()">Question Suivante</button>
+              </div>            
+            
+        </div>
+        
+    </section>
+
+    <!-- Section Mordor -->
+    <section class="mordor">
+        <div class="content">
+            <h1>Le Mordor t'attend...</h1>
+            <p>Entre dans les ténèbres du Mordor, là où seul l'Anneau peut être détruit. Accomplis ta mission pour vaincre Sauron !</p>
+        </div>
+
+        <div id="mordor-container">
+            <h1>L'Aventure vers Mordor</h1>
+            <div id="mordor-texte"></div>
+            <img src="ring.jpg" id="ring"  width="100px" style="display: none;" alt="ring">
+            <div id="mordor-choix"></div>
+            <br>
+            <a id="end" href="bravo.html">Quitter le Mordor</a>
+        </div>
+
+    </section>
+
+    <script src="lotr.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

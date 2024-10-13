@@ -1,0 +1,217 @@
+/* Style de base */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    background: url('https://img.freepik.com/photos-premium/fond-noir-etoiles-bleues-mots-star-wars-dessus_916211-962.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Ajouter un fond étoilé */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    z-index: -1;
+}
+
+/* Header */
+header {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-bottom: 2px solid #ffd700;
+}
+
+header h1 {
+    font-size: 3em;
+    color: #ffd700;
+    text-transform: uppercase;
+}
+
+/* Section d'intro */
+.intro {
+    text-align: center;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 20px;
+    border-radius: 15px;
+}
+
+.intro h2 {
+    font-size: 2.5em;
+    color: #00ffcc;
+    margin-bottom: 20px;
+}
+
+.intro p {
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+/* Détails de la mission */
+.details {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 20px;
+    border-radius: 15px;
+}
+
+.details h2 {
+    font-size: 2.2em;
+    color: #ffcc00;
+    text-align: center;
+}
+
+.details ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+    color: #ffffff;
+    text-align: center;
+}
+
+.details li {
+    margin: 10px 0;
+}
+
+/* Mission */
+.mission {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.mission h2 {
+    font-size: 2.5em;
+    color: #00ffcc;
+}
+
+.mission p {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Mission Lettre */
+.missionlettre {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.missionlettre h2 {
+    font-size: 2.5em;
+    color: #ffcc00;
+}
+
+.missionlettre p {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.missionlettre ul{
+    width: 50%;
+    margin: auto;
+    text-align: left;
+}
+
+.missionlettre table{
+    width: 80%;
+    margin: auto;
+    border-spacing: 10px;
+}
+.missionlettre td{
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+/* Final */
+.final {
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.final h2 {
+    font-size: 2.5em;
+    color: #00ffcc;
+}
+
+.final p {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid #ffd700;
+}
+
+footer p {
+    font-size: 1.2em;
+    color: #ffd700;
+}
+
+
+#container {
+    text-align: center;
+    display: none;
+}
+
+.star-wars-button {
+    background-color: #333; /* Button background */
+    color: yellow; /* Button text color */
+    border: none; /* Remove default border */
+    padding: 15px 30px; /* Padding */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Font weight */
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; /* Position for glowing effect */
+    overflow: hidden; /* Hide overflow for pseudo-element */
+    transition: color 0.3s ease; /* Transition for color change */
+}
+
+.star-wars-button:before {
+    content: ''; /* Content for pseudo-element */
+    position: absolute; /* Position it absolutely */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    right: 0; /* Align to right */
+    bottom: 0; /* Align to bottom */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1)); /* Glowing effect */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Transition for opacity */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.star-wars-button:hover {
+    color: #ffcc00; /* Change text color on hover */
+}
+
+.star-wars-button:hover:before {
+    opacity: 1; /* Show glow effect on hover */
+}
