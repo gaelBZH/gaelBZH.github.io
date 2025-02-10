@@ -1,5 +1,9 @@
 classdef integrator < handle
   properties (Access = protected)
+
+
+
+
     % A character string. Can be 'left', 'right', 'middle', 'trapezes', 'gauss2'
     % or 'gauss3'
     method;
@@ -22,19 +26,51 @@ classdef integrator < handle
     %     integrator("method",value,"dx",value)
     %   Default value of method is "trapezes"
     %   Default value of dx is 0.1
-    function obj = integrator (varargin)
-      % Erase these lines and write your code
-      if (length(varargin) == 1)
-        obj.method = "trapezes";
-        obj.dx = 0.1;
-      else
-        obj.method = varargin{1};
-        obj.dx = varargin{3};
-      endif
 
-        obj.xk = [];
-        obj.wk = [];
+
+
+    % CONSTRUCTEUR
+    function obj = integrator (varargin)
+
+      obj.method = "trapezes";
+      obj.dx = 0.1;
+      n = nargin;
+      b = mod(n,2);
+      if b == 1
+        if (nargin == 1)
+          if (isa(varargin{1}, "integrator"))
+              obj.method = varargin{1}.method;
+              obj.dx = varargin{1}.dx;
+          else
+              error ("is not an integrator");
+          endif
+        else
+            error ("odd number of args");
+        endif
+      else
+         n = nargin;
+         i = 2;
+         obj.method = varargin{i};
+
+          while (i <= n)
+           if (strcmp(varargin{i-1}, "method"))
+                obj.method = varargin{i};
+            elseif (strcmp(varargin{i-1}, "dx"))
+                obj.dx = varargin{i}
+           endif
+              i = i + 2;
+         endwhile
+         obj.set("method", obj.method, "dx", obj.dx);
+      endif
     endfunction
+
+
+
+
+
+
+
+    % GETTER
 
     % Return the property value. Argument prop can be "method" or "dx".
     % The function is already coded, you don't need to change it.
@@ -47,6 +83,11 @@ classdef integrator < handle
       endswitch
     endfunction
 
+
+
+
+    % SETTER
+
     % Set the required properties to the required values. Arguments are a list
     % of pairs property,value
     % The properties can be "method" or "dx". You can call the method with, for
@@ -56,17 +97,30 @@ classdef integrator < handle
     %   or itg.set("dx",0.1)
     % If varargin is empty, nothing is done.
     function this = set (this, varargin)
-      if (length(varargin) == 2)
-         if (varargin{1} == "method")
-           this.method = varargin{2};
-         else
-           this.dx = varargin{2};
-         endif
-      elseif (length(varargin) == 4)
-         this.method = varargin{2};
-         this.dx = varargin{4};
-      endif
+      n = nargin;
+      i = 2;
+      while (i <= n)
+        if (strcmp(varargin{i-1}, "method"))
+            this.method = varargin{i};
+            %if (this.method == "left")
+            %elseif (this.method == "right")
+            %elseif (this.method == "middle")
+            %elseif (this.method == "trapezes")
+            %elseif (this.method == "gauss2")
+            %elseif (this.method == "gauss3")
+            %endif
+        elseif (strcmp(varargin{i-1}, "dx"))
+            this.dx = varargin{i};
+        endif
+          i = i + 2;
+      endwhile
     endfunction
+
+
+
+
+
+
 
     % This function displays the integrator properties.
     % No need to change it.
@@ -74,6 +128,11 @@ classdef integrator < handle
       printf("method: %s\n", this.method);
       printf("dx = %.2e\n", this.dx);
     endfunction
+
+
+
+
+
 
     % This function compute the integral of f between a and b, using the
     % quadrature formula specified by the property method.
@@ -89,27 +148,30 @@ classdef integrator < handle
     %   [ai,bi], etc
     % The function returns the integral approximation value (a scalar numerical).
     function I = integrate(this,f,a,b,n,hax)
+      I = 0;
+
+
 
       if (method == "left")
         largeur = b - a;
         hauteur = f(a);
         aire = largeur * hauteur;
         I = aire;
-      endif
+
 
       elseif (method == "right")
         largeur = b - a;
         hauteur = f(b);
         aire = largeur * hauteur;
         I = aire;
-      endif
+
 
       elseif (method == "middle")
         largeur = b - a;
         hauteur = (f(a) + f(b))/2;
         aire = largeur * hauteur;
         I = aire;
-      endif
+
 
       elseif (method == "trapezes")
           coefa = (f(b) - f(a)) / (b-a);
@@ -124,7 +186,7 @@ classdef integrator < handle
 
           aire = aireRec + aireTri;
           I = aire;
-        endif
+      endif
       endfunction
 
     % Computes the values of a primitive of f: the integral of f between from,
@@ -169,3 +231,4 @@ classdef integrator < handle
     endfunction
   endmethods
 endclassdef
+
