@@ -30,19 +30,38 @@ classdef integrator < handle
 
 
     % CONSTRUCTEUR
-    function obj = integrator(varargin)
-        obj.method = "trapezes";
-        obj.dx = 0.1;
-        obj.xk = [];
-        obj.wk = [];
+    function obj = integrator (varargin)
 
-        if nargin == 1 && isa(varargin{1}, "integrator")
-            obj.set("method", varargin{1}.method, "dx", varargin{1}.dx);
-        elseif mod(nargin, 2) == 0
-            obj.set(varargin{:});
-        elseif nargin > 0
-            error("Arguments invalides");
+      obj.method = "trapezes";
+      obj.dx = 0.1;
+      n = nargin;
+      b = mod(n,2);
+      if b == 1
+        if (nargin == 1)
+          if (isa(varargin{1}, "integrator"))
+              obj.method = varargin{1}.method;
+              obj.dx = varargin{1}.dx;
+          else
+              error ("is not an integrator");
+          endif
+        else
+            error ("odd number of args");
         endif
+      else
+         n = nargin;
+         i = 2;
+         obj.method = varargin{i};
+
+          while (i <= n)
+           if (strcmp(varargin{i-1}, "method"))
+                obj.method = varargin{i};
+            elseif (strcmp(varargin{i-1}, "dx"))
+                obj.dx = varargin{i}
+           endif
+              i = i + 2;
+         endwhile
+         obj.set("method", obj.method, "dx", obj.dx);
+      endif
     endfunction
 
 
@@ -77,55 +96,26 @@ classdef integrator < handle
     %   or itg.set("method","left")
     %   or itg.set("dx",0.1)
     % If varargin is empty, nothing is done.
-    function this = set(this, varargin)
-        if nargin < 2
-          return;
-        elseif mod(nargin-1, 2) ~= 0
-          error("Nombre impair d'arguments.");
-        else
-            valides = {"left", "right", "middle", "trapezes", "gauss2", "gauss3"};
-            for i = 1:2:length(varargin)
-                if strcmp(varargin{i}, "method")
-                  if any(strcmp(varargin{i+1}, valides))
-                    this.method = varargin{i+1};
-                    switch this.method
-                      case "left"
-                        this.xk = [0];
-                        this.wk = [1];
-                      case "right"
-                        this.xk = [1];
-                        this.wk = [1];
-                      case "middle"
-                        this.xk = [0.5];
-                        this.wk = [1];
-                      case "trapezes"
-                        this.xk = [0, 1];
-                        this.wk = [0.5, 0.5];
-                      case "simpson"
-                        this.xk = [0, 0.5, 1];
-                        this.wk = [1/6, 2/3, 1/6];
-                      case "gauss2"
-                        this.xk = [0.5 - 0.5/sqrt(3), 0.5 + 0.5/sqrt(3)];
-                        this.wk = [0.5, 0.5];
-                      case "gauss3"
-                        this.xk = [0.5 - 0.5*sqrt(3/5), 0.5, 0.5 + 0.5*sqrt(3/5)];
-                        this.wk = [5/18, 8/18, 5/18];
-                    endswitch
-                  else
-                    error("Propriété inconnue");
-                  endif
-                elseif strcmp(varargin{i}, "dx")
-                    if varargin{i+1} <= 0
-                      error("dx negatif");
-                    else
-                      this.dx = varargin{i+1};
-                    endif
-                else
-                  error("Propriété inconnue");
-                endif
-              endfor
+    function this = set (this, varargin)
+      n = nargin;
+      i = 2;
+      while (i <= n)
+        if (strcmp(varargin{i-1}, "method"))
+            this.method = varargin{i};
+            %if (this.method == "left")
+            %elseif (this.method == "right")
+            %elseif (this.method == "middle")
+            %elseif (this.method == "trapezes")
+            %elseif (this.method == "gauss2")
+            %elseif (this.method == "gauss3")
+            %endif
+        elseif (strcmp(varargin{i-1}, "dx"))
+            this.dx = varargin{i};
         endif
+          i = i + 2;
+      endwhile
     endfunction
+
 
 
 
@@ -157,52 +147,47 @@ classdef integrator < handle
     %   function to integrate, graph of the appromating polynomial on each interval
     %   [ai,bi], etc
     % The function returns the integral approximation value (a scalar numerical).
-    function I = integrate(this, f, a, b, n, hax)
-        if (a > b)
-          error("a est plus grand que b !");
-        endif
-        if (n == 0)
-          error("n negatif !");
-        endif
-        I = 0;
-        d = (b - a) / n;
-        xk = this.xk;
-        wk = this.wk;
-
-        for i = 0:n-1
-            ai = a + i * d;
-            bi = ai + d;
-            di = bi - ai;
-
-            somme = 0;
-            for k = 1:length(this.xk)
-              somme += this.wk(k) * f(ai + this.xk(k) * di);
-            endfor
-            I += di * somme;
-        endfor
-    endfunction
+    function I = integrate(this,f,a,b,n,hax)
+      I = 0;
 
 
 
+      if (method == "left")
+        largeur = b - a;
+        hauteur = f(a);
+        aire = largeur * hauteur;
+        I = aire;
 
 
+      elseif (method == "right")
+        largeur = b - a;
+        hauteur = f(b);
+        aire = largeur * hauteur;
+        I = aire;
 
 
+      elseif (method == "middle")
+        largeur = b - a;
+        hauteur = (f(a) + f(b))/2;
+        aire = largeur * hauteur;
+        I = aire;
 
 
+      elseif (method == "trapezes")
+          coefa = (f(b) - f(a)) / (b-a);
+          coefb = f(a) - coefa * a;
+          largeur = b - a;
 
+          hMax = max([f(a) f(b)]);
+          hMin = min([f(a) f(b)]);
 
+          aireRec = hmin * largeur;
+          aireTri = ((hMax - hMin) * largeur) / 2;
 
-
-
-
-
-
-
-
-
-
-
+          aire = aireRec + aireTri;
+          I = aire;
+      endif
+      endfunction
 
     % Computes the values of a primitive of f: the integral of f between from,
     % and x.
@@ -220,25 +205,9 @@ classdef integrator < handle
     % function) depends on the length x(i,j)-from and on this.dx. Take
     %   n = round( (x(i,j)-from) / this.dx ) (and set it to 1 if the latter
     % formula results in 0).
-    function y = primitive(this, f, from, x)
-        y = zeros(size(x));
-        for i = 1:numel(x)
-            n = round((x(i) - from) / this.dx);
-            if n == 0
-                n = 1; % au cazoù
-            endif
-            y(i) = this.integrate(f, from, x(i), n);
-        endfor
+    function y = primitive (this, f, from, x)
+      y = zeros(size(x)); % Erase this line and write your code
     endfunction
-
-
-
-
-
-
-
-
-
 
 
     % This function studies the integration error, and returns a model of the
@@ -258,7 +227,7 @@ classdef integrator < handle
     % Output is a 2-element vector [C,alpha] such that the error model
     % is C / n^alpha.
     function retval = integration_error (this, f, a, b, Ith, ns, hax)
-      retval = [0,0];
+      retval = [0,0]; % Erase this line and write your code
     endfunction
   endmethods
 endclassdef
