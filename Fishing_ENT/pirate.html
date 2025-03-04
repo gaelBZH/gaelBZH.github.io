@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color: rgb(28, 28, 28);
+        }
+        h1,h3{
+            color: aliceblue;
+            text-align: center;
+            margin: 15px 0;
+        }
+        p{
+            color:aliceblue;
+            text-align: justify;
+        }
+        h1{
+            font-size: 800%;
+        }
+
+        h3{
+            font-size: 400%;
+        }
+        #crane {
+            width: 350px;
+            display: block;
+            margin: auto;
+        }
+        .hackred{
+            color:red
+        }
+        #id{
+            background-color: grey;
+        }
+        #mdp{
+            background-color: grey;
+            color: grey;
+        }
+        #mdp:hover{
+            color: aliceblue;
+            cursor: default;
+        }
+    </style>
+
+    <img src="pirate.png" alt="Pirate" id="crane">
+    <h1><span class="hackred">HACKED</span></h1>
+    <h3>euh nan pardon <span class="hackred">GAIJINED</span></h3>
+    <p>Nan mais plus sérieusement là typiquement tu t'es fais hacké avec du <u>fishing</u>. Là je peux te donner ton identifiant <code><span id="id"></span></code> et ton mot de passe <code><span id="mdp"></span></code>. T'as de la chance que je sois pas mal intentionné et que ces informations ne soient pas enregistrées et envoyées à des personnes malveillantes, mais fais gaffe quand tu te connectes sur une page que c'est bien la vraie page avec l'url.</p>
+<p>PS : Supprime cette page de ton historique (<code>CTRL + H</code>) si tes identifiants ENT sont bien présents dans l'URL.</p>
+
+<script>
+
+function chiffreCesar(texte, decalage) {
+    let resultat = '';
+    for (let i = 0; i < texte.length; i++) {
+        let charCode = texte.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) { // Lettres majuscules
+            resultat += String.fromCharCode(((charCode - 65 + decalage) % 26) + 65);
+        } else if (charCode >= 97 && charCode <= 122) { // Lettres minuscules
+            resultat += String.fromCharCode(((charCode - 97 + decalage) % 26) + 97);
+        } else { // Caractères non alphabétiques
+            resultat += texte.charAt(i);
+        }
+    }
+    return resultat;
+}
+
+    var urlParams = new URLSearchParams(window.location.search);
+
+A = urlParams.has('username')
+B = urlParams.has('password')
+if (A && B){
+    document.getElementById("id").innerHTML = chiffreCesar(urlParams.get('username'),-7);
+    document.getElementById('mdp').innerHTML = chiffreCesar(urlParams.get('password'),-7);
+}
+
+    </script>
+</body>
+</html>
