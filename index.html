@@ -15,5 +15,20 @@
     <h3>Mais où est l'empire breton ?!?</h3>
     <p>Pas de panique, l'empire breton a simplement changé de site :</p>
     <p><a href="https://empirebreton.github.io">empirebreton.github.io</a></p>
+
+    <input type="button" id="papepouk" onclick="pap()">
+    <a href="p-removebg-preview.png" target="_blank"><img src="p-removebg-preview.png" style="background-color: darkblue;" id="papipouk" width="0"></a>
+
+    <script>
+        function pap(){
+            let text;
+            let input = prompt("Vous ne passerez pas... sans le mot de passe !");
+            if (input == "papetheque") {
+                document.getElementById('papipouk').width = 1000;
+            } else {
+                alert("Mot de passe incorrect!")
+            }
+}
+    </script>
 </body>
 </html>
