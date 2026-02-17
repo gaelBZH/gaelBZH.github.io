@@ -2,4 +2,4 @@ def hello(x):
     return x + 5
 
 def there(x):
-    return x + 1
+    return x + 2
