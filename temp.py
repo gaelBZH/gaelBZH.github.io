@@ -1,5 +1,5 @@
 def hello(x):
-    return x + 6
+    return x
 
 def there(x):
     return x
