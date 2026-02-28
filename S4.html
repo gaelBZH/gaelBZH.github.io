@@ -3,9 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Progression Semestre Cracovie</title>
+    <style>
+        /* Conteneur de la barre */
+        .progress-container {
+            width: 100%;
+            height: 30px;
+            background-color: #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        /* La partie qui se remplit */
+        #barre-interne {
+            height: 100%;
+            width: 0%; /* Sera modifié par JS */
+            transition: width 0.5s ease, background-color 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        #cracow{
+            width: 70%;
+            padding-top: 10px;
+            display: block;
+            margin: auto;
+            border-radius: 1em;
+        }
+    </style>
 </head>
 <body>
-    
+
+    <h3>Progression du Semestre à Cracovie</h3>
+    <div class="progress-container">
+        <div id="barre-interne">0%</div>
+    </div>
+    <img src="Cracow.jpg" alt="Cracovie" id="cracow">
+
+    <script>
+        function getProgressData() {
+            const maintenant = new Date();
+            const debutAnnee = new Date(maintenant.getFullYear(), 0, 0);
+            const difference = maintenant - debutAnnee;
+            const jourDeLAnnee = Math.floor(difference / (1000 * 60 * 60 * 24));
+            
+            const current = jourDeLAnnee - 50; 
+            const total = 132;
+            const pourcent = Math.min(Math.max((current / total) * 100, 0), 100); // Entre 0 et 100
+
+            return { current, total, pourcent };
+        }
+
+        function updateUI()
+        {
+            const data = getProgressData();
+            const barre = document.getElementById("barre-interne");
+            const texte = document.getElementById("details");
+
+            barre.style.width = data.pourcent.toFixed(2) + "%";
+            barre.textContent = Math.round(data.pourcent) + "%";
+            
+            let couleur = "black";
+
+            console.log("data.pourcent =", data.pourcent)
+            if (data.pourcent == 100) couleur = "blue"
+            else if (data.pourcent > 90) couleur = "green";
+            else if (data.pourcent > 75) couleur = "#BEF571"
+            else if (data.pourcent > 62) couleur = "#D8F571"
+            else if (data.pourcent > 50) couleur = "yellow"
+            else if (data.pourcent > 35) couleur = "orange";
+            else if (data.pourcent > 15) couleur = "orangered";
+            else if (data.pourcent > 10) couleur = "red";
+            else if (data.pourcent > 5)  couleur = "darkred";
+            else couleur = "black";
+
+            barre.style.backgroundColor = couleur;
+
+            // 3. Affichage des détails
+            texte.textContent = `Jour ${data.current} sur ${data.total} à Cracovie.`;
+        }
+
+        // Lancement
+        updateUI();
+    </script>
 </body>
 </html>
