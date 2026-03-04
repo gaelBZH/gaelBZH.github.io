@@ -48,22 +48,34 @@
     <script>
         function getProgressData() {
             const maintenant = new Date();
+            const dayprogress = getDayProgress();
             const debutAnnee = new Date(maintenant.getFullYear(), 0, 0);
             const difference = maintenant - debutAnnee;
             const jourDeLAnnee = Math.floor(difference / (1000 * 60 * 60 * 24));
             
             const current = jourDeLAnnee - 50; 
             const total = 132;
-            const pourcent = Math.min(Math.max((current / total) * 100, 0), 100); // Entre 0 et 100
-
+            const pourcent =Math.min(Math.max(((current+dayprogress) / total) * 100, 0), 100); // Entre 0 et 100
+            console.log("Progress semester without hours :", Math.min(Math.max((current / total) * 100, 0), 100));
+            console.log("Progress semester with hours :", pourcent);
             return { current, total, pourcent };
+        }
+
+        function getDayProgress()
+        {
+            const maintenant = new Date();
+            let seconds = maintenant.getHours() * 3600 + maintenant.getMinutes()*60+maintenant.getSeconds();
+            let progress = seconds / (60 * 60 * 24);
+            console.log("Jour actuel :", maintenant.getDay(), "/", maintenant.getMonth(), "/", maintenant.getFullYear());
+            console.log("Heure actuelle :", maintenant.getHours(), ":", maintenant.getMinutes(),":", maintenant.getSeconds());
+            console.log("Progression de la journée actuelle : ", 100*progress, "%");
+            return progress;
         }
 
         function updateUI()
         {
             const data = getProgressData();
             const barre = document.getElementById("barre-interne");
-            const texte = document.getElementById("details");
 
             barre.style.width = data.pourcent.toFixed(2) + "%";
             barre.textContent = Math.round(data.pourcent) + "%";
@@ -71,6 +83,8 @@
             let couleur = "black";
 
             console.log("data.pourcent =", data.pourcent)
+            console.log("Arrondi :", Math.round(data.pourcent) + "%")
+
             if (data.pourcent == 100) couleur = "blue"
             else if (data.pourcent > 90) couleur = "green";
             else if (data.pourcent > 75) couleur = "#BEF571"
@@ -83,9 +97,6 @@
             else couleur = "black";
 
             barre.style.backgroundColor = couleur;
-
-            // 3. Affichage des détails
-            texte.textContent = `Jour ${data.current} sur ${data.total} à Cracovie.`;
         }
 
         // Lancement
