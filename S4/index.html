@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progression Semestre Cracovie</title>
+    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/330px-Flag_of_Poland.svg.png">
     <style>
+
+        body{
+            background: #a9a9d4;
+            background:
+                linear-gradient(
+                    134deg,
+                    rgb(182, 182, 236) 0%,
+                    rgb(219, 231, 223) 50%,
+                    rgb(214, 164, 164) 100%
+                    )
+            no-repeat center fixed;
+        }
         /* Conteneur de la barre */
         .progress-container {
             width: 100%;
-            height: 30px;
+            height: 40px;
             background-color: #eee;
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #ccc;
+        }
+
+        h3{
+            text-align: center;
+            font-size: 30px;
         }
 
         /* La partie qui se remplit */
@@ -29,7 +47,7 @@
         }
 
         #cracow{
-            width: 70%;
+            width: 90%;
             padding-top: 10px;
             display: block;
             margin: auto;
@@ -84,18 +102,23 @@
 
             console.log("data.pourcent =", data.pourcent)
             console.log("Arrondi :", Math.round(data.pourcent) + "%")
-
-            if (data.pourcent == 100) couleur = "blue"
-            else if (data.pourcent > 90) couleur = "green";
-            else if (data.pourcent > 75) couleur = "#BEF571"
-            else if (data.pourcent > 62) couleur = "#D8F571"
-            else if (data.pourcent > 50) couleur = "yellow"
-            else if (data.pourcent > 35) couleur = "orange";
-            else if (data.pourcent > 15) couleur = "orangered";
-            else if (data.pourcent > 10) couleur = "red";
-            else if (data.pourcent > 5)  couleur = "darkred";
+            if (data.pourcent >= 100) couleur = "blue";
+            else if (data.pourcent >= 95) couleur = "#008040";
+            else if (data.pourcent >= 90) couleur = "green";
+            else if (data.pourcent >= 82) couleur = "#8EF571";
+            else if (data.pourcent >= 75) couleur = "#BEF571";
+            else if (data.pourcent >= 62) couleur = "#D8F571";
+            else if (data.pourcent >= 56) couleur = "#EAF571";
+            else if (data.pourcent >= 50) couleur = "yellow";
+            else if (data.pourcent >= 42) couleur = "#FFD700";
+            else if (data.pourcent >= 35) couleur = "orange";
+            else if (data.pourcent >= 25) couleur = "#FF6347";
+            else if (data.pourcent >= 15) couleur = "orangered";
+            else if (data.pourcent >= 10) couleur = "red";
+            else if (data.pourcent >= 7)  couleur = "#B22222";
+            else if (data.pourcent >= 5)  couleur = "darkred";
+            else if (data.pourcent >= 2)  couleur = "#4B0000";
             else couleur = "black";
-
             barre.style.backgroundColor = couleur;
         }
 
