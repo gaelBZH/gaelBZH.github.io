@@ -64,15 +64,20 @@
     <img src="Cracow.jpg" alt="Cracovie" id="cracow">
 
     <script>
-        function getProgressData() {
-            const maintenant = new Date();
+        function getProgressData()
+        {
+            const today = new Date();
             const dayprogress = getDayProgress();
-            const debutAnnee = new Date(maintenant.getFullYear(), 0, 0);
-            const difference = maintenant - debutAnnee;
+            const debutAnnee = new Date(today.getFullYear(), 0, 0);
+            const difference = today - debutAnnee;
             const jourDeLAnnee = Math.floor(difference / (1000 * 60 * 60 * 24));
-            
             const current = jourDeLAnnee - 50; 
-            const total = 132;
+
+            const date1 = new Date('2026-02-20');
+            const date2 = new Date('2026-07-01');
+            const total = (date2 - date1) / (1000 * 60 * 60 * 24);
+            console.log("Nombre de jours total à Cracovie : ", total);
+
             const pourcent =Math.min(Math.max(((current+dayprogress) / total) * 100, 0), 100); // Entre 0 et 100
             console.log("Progress semester without hours :", Math.min(Math.max((current / total) * 100, 0), 100));
             console.log("Progress semester with hours :", pourcent);
