@@ -90,7 +90,8 @@
             const date1 = new Date('2026-02-20');
             const date2 = new Date('2026-06-13');
             const total = (date2 - date1) / (1000 * 60 * 60 * 24);
-            console.log("Nombre de jours total à Cracovie : ", total);
+            const rest = Math.floor((date2 - today) / (1000 * 60 * 60 * 24));
+            console.log("Nombre de jours passés à Cracovie : ", Math.min(total, rest), "/", total);
 
             const pourcent =Math.min(Math.max(((current+dayprogress) / total) * 100, 0), 100); // Entre 0 et 100
             console.log("Progress semester without hours :", Math.min(Math.max((current / total) * 100, 0), 100));
@@ -103,7 +104,7 @@
             const maintenant = new Date();
             let seconds = maintenant.getHours() * 3600 + maintenant.getMinutes()*60+maintenant.getSeconds();
             let progress = seconds / (60 * 60 * 24);
-            console.log("Jour actuel :", maintenant.getDay(), "/", maintenant.getMonth(), "/", maintenant.getFullYear());
+            console.log("Jour actuel :", maintenant.getDate(), "/", maintenant.getMonth() + 1, "/", maintenant.getFullYear());          
             console.log("Heure actuelle :", maintenant.getHours(), ":", maintenant.getMinutes(),":", maintenant.getSeconds());
             console.log("Progression de la journée actuelle : ", 100*progress, "%");
             return progress;
