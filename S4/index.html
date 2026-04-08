@@ -90,8 +90,10 @@
             const date1 = new Date('2026-02-20');
             const date2 = new Date('2026-06-13');
             const total = (date2 - date1) / (1000 * 60 * 60 * 24);
-            const rest = Math.floor((date2 - today) / (1000 * 60 * 60 * 24));
-            console.log("Nombre de jours passés à Cracovie : ", Math.min(total, rest), "/", total);
+            const done = Math.round((today - date1) / (1000 * 60 * 60 * 24));
+            const rest = Math.round((date2 - today) / (1000 * 60 * 60 * 24));
+            console.log("Nombre de jours passés à Cracovie : ", Math.min(total, done), "/", total);
+            console.log("Nombre de jours restants :", Math.max(0, rest));
 
             const pourcent =Math.min(Math.max(((current+dayprogress) / total) * 100, 0), 100); // Entre 0 et 100
             console.log("Progress semester without hours :", Math.min(Math.max((current / total) * 100, 0), 100));
