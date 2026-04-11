@@ -1,0 +1,64 @@
+        body{
+            background: #a9a9d4;
+            background:
+                linear-gradient(
+                    134deg,
+                    rgb(182, 182, 236) 0%,
+                    rgb(219, 231, 223) 50%,
+                    rgb(214, 164, 164) 100%
+                    )
+            no-repeat center fixed;
+        }
+        /* Conteneur de la barre */
+        .progress-container {
+            width: 100%;
+            height: 40px;
+            background-color: #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        h3{
+            text-align: center;
+            font-size: 30px;
+        }
+
+        /* La partie qui se remplit */
+        #barre-interne {
+            height: 100%;
+            width: 0%; /* Sera modifié par JS */
+            transition: width 0.5s ease, background-color 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        #cracow{
+            width: 60%;
+            padding-top: 10px;
+            display: block;
+            margin: auto;
+            border-radius: 1em;
+        }
+
+        @media (min-width:500px) and (max-width: 800px)
+        {
+            #cracow{
+                width: 70%;
+            }
+        }
+
+        @media (max-width: 500px)
+        {
+            #cracow{
+                width: 90%;
+            }
+        }
+
+        footer{
+            color: transparent;
+        }
