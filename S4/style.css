@@ -48,14 +48,14 @@
         @media (min-width:500px) and (max-width: 800px)
         {
             #cracow{
-                width: 70%;
+                width: 90%;
             }
         }
 
         @media (max-width: 500px)
         {
             #cracow{
-                width: 90%;
+                width: 95%;
             }
         }
 
