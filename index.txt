@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>gaelBZH - Profil GitHub</title>
+    <style>
+        body{
+            background-color: #2b3137;
+            color: #fafbfc;
+        }
+
+        header, #contact, #closing{
+            background-color: #24292e;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenue sur ma page ! 💻</h1>
+        <a href="en.html" style="background: linear-gradient(90deg,rgba(42, 42, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(95, 200, 93, 1) 52%, rgba(191, 61, 61, 1) 100%); text-decoration: none; color: whitesmoke; padding: 3px; border-radius: 15px;">English Version</a>
+    </header>
+
+    <main>
+        <section id="about">
+            <p>Salut à tous !</p>
+            <p>
+                Je suis <code>gaelBZH</code>, étudiant à l'École d'Ingénieurs <strong>EPITA</strong>, à Paris (<strong>France</strong>).
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/960px-Flag_of_France.svg.png" alt="Drapeau France" width="20px">
+            </p>
+
+            <p>
+                Mes passions ? Les jeux vidéo, <em>Star Wars</em>, les <em>Lego</em>, <em>le Seigneur des Anneaux</em> et bien sûr la culture Celtique et la Bretagne.
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Flag_of_Brittany.svg/960px-Flag_of_Brittany.svg.png" alt="Drapeau Bretagne" width="20px">
+            </p>
+
+            <p>
+                Je suis actuellement en semestre Erasmus+ à l'<em>École Polytechnique de Cracovie</em> (<strong>Pologne</strong>).
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/330px-Flag_of_Poland.svg.png" alt="Drapeau Pologne" width="20px">
+            </p>
+        </section>
+
+        <hr>
+
+        <section id="languages">
+            <h2>Langages 🌍</h2>
+            <p>Au cours de ma scolarité, j'ai appris plusieurs langages, tels que :</p>
+            
+            <div class="logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png" alt="C" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/330px-ISO_C%2B%2B_Logo.svg.png" alt="C++" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Logo_C_sharp.svg/960px-Logo_C_sharp.svg.png" alt="C#" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/960px-Python-logo-notext.svg.png" alt="Python" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1280px-HTML5_logo_and_wordmark.svg.png" alt="HTML5" width="123px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/500px-CSS3_logo_and_wordmark.svg.png" alt="CSS3" width="87.5px" style="padding: 5px 20px 5px 0">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/500px-Unofficial_JavaScript_logo_2.svg.png" alt="JS" width="100px" style="padding: 5px 10px">
+                <img src="https://raw.githubusercontent.com/gaelBZH/gaelBZH/19d1ae1a7f1c463bd7580f4df8f112595644a870/OCaml.svg" alt="OCaml" width="115px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Kotlin_icon_%282021-present%29.svg/960px-Kotlin_icon_%282021-present%29.svg.png" alt="Kotlin" width="100px" style="padding: 5px 30px 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/960px-PHP-logo.svg.png" alt="PHP" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Gnu-octave-logo.svg/960px-Gnu-octave-logo.svg.png" alt="Octave" width="100px" style="padding: 5px 10px">
+            </div>
+
+            <p><em>C, C#, C++, Python, HTML, CSS, JavaScript, OCaml, Kotlin, MySQL, PHP, Octave, ...</em></p>
+        </section>
+
+        <section id="tools">
+            <h2>Outils 🔧</h2>
+            <p>Et aussi d'autres outils !</p>
+
+            <div class="logos">
+                <img src="https://cdn.worldvectorlogo.com/logos/git-bash.svg" alt="Git" width="100px" style="padding: 5px 10px">
+                <img src="https://raw.githubusercontent.com/gaelBZH/gaelBZH/19d1ae1a7f1c463bd7580f4df8f112595644a870/GitHub.svg" alt="GitHub" width="100px" style="padding: 5px 10px">
+                <img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/light/gemini-color.png" alt="Gemini" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/960px-Tux.svg.png" alt="Linux" width="100px" style="padding: 5px 10px">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/960px-Visual_Studio_Code_1.35_icon.svg.png" alt="VS Code" width="100px" style="padding: 5px 10px">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/rider-ide-icon.png" alt="Rider" width="100px" style="padding: 5px 10px">
+                <img src="https://support.microsoft.com/images/pl-pl/97ba5911-c733-45a1-a275-f2887f5a0ccb" alt="Copilot" width="100px" style="padding: 5px 10px">
+            </div>
+
+            <p><em>Git, GitHub, Google Gemini, Linux, VS Code, Rider, Microsoft 365, ...</em></p>
+        </section>
+
+        <hr>
+
+        <section id="contact">
+            <h2>Me contacter 👤</h2>
+            <ul>
+                <li>
+                    <strong>gael.kerninon@epita.fr</strong> 
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Microsoft_Outlook_Icon_%282025%E2%80%93present%29.svg/960px-Microsoft_Outlook_Icon_%282025%E2%80%93present%29.svg.png" alt="Outlook" width="16px">
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/gaelkerninon/"><strong>LinkedIn</strong></a> 
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/500px-LinkedIn_logo_initials.png" alt="LinkedIn" width="14px">
+                </li>
+                <li>
+                    <a href="https://twitter.com/gaelBZH29"><strong>𝕏 (ex-Twitter)</strong></a> 
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/960px-X_logo_2023.svg.png" alt="X" width="14px">
+                </li>
+            </ul>
+        </section>
+
+        <section id="closing">
+            <h2>À bientôt ! 👋</h2>
+            <h5>Python</h5>
+            <pre><code>print("Au revoir !")</code></pre>
+            
+            <h5>C / C++</h5>
+            <pre><code>int main()
+{
+    printf("et que la Force soit avec vous !\n");
+    return 0;
+}</code></pre>
+        </section>
+    </main>
+
+</body>
+</html>
