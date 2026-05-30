@@ -9,7 +9,14 @@
                     )
             no-repeat center fixed;
         }
-        /* Conteneur de la barre */
+
+
+        h3{
+            text-align: center;
+            font-size: 30px;
+        }
+
+/* Styles ajoutés pour les nouvelles barres */
         .progress-container {
             width: 100%;
             height: 40px;
@@ -17,17 +24,12 @@
             border-radius: 15px;
             overflow: hidden;
             border: 1px solid #ccc;
+            margin-bottom: 10px; /* Ajoute un espace entre les barres */
         }
 
-        h3{
-            text-align: center;
-            font-size: 30px;
-        }
-
-        /* La partie qui se remplit */
-        #barre-interne {
+        #barre-interne, #barre-interne-bis, #barre-interne-ter {
             height: 100%;
-            width: 0%; /* Sera modifié par JS */
+            width: 0%;
             transition: width 0.5s ease, background-color 0.5s ease;
             display: flex;
             align-items: center;
