@@ -5,26 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>King of The Ocean</title>
     <style>
-        body a{
-            background: linear-gradient(rgb(44, 44, 143), rgb(92, 71, 187));
+        /* Style global pour toute la page */
+        body {
+            background: linear-gradient(135deg, #1a1a40, #2c2c8f, #5c47bb);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* En-tête */
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section principale */
+        main {
+            margin: 20px 0;
+        }
+
+        main p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Le fameux bouton de téléchargement */
+        .btn-download {
+            display: inline-block;
+            background: #00d2ff;
+            background: linear-gradient(to right, #00d2ff, #0066ff);
             text-decoration: none;
             color: white;
-            padding: 5px;
-            border-radius: 5px;
+            padding: 12px 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 102, 255, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Effet au survol du bouton */
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 20px rgba(0, 102, 255, 0.6);
+        }
+
+        /* Effet quand on clique */
+        .btn-download:active {
+            transform: translateY(-1px);
+        }
+
+        /* Pied de page */
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>King of the Ocean</h1>
     </header>
 
-    <body>
+    <main>
         <p>Télécharger le jeu en cliquant sur ce bouton.</p>
-        <p><a href="Game.exe">Cliquer-Ici</a></p>
-    </body>
+        <p><a href="Game.exe" class="btn-download">Cliquer-Ici</a></p>
+    </main>
+
     <footer>
         gaelBZH 2026
     </footer>
+
 </body>
 </html>
