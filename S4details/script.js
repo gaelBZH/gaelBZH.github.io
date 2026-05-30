@@ -9,7 +9,7 @@ const clamp = (val) => Math.min(Math.max(val, 0), 100);
             const date1 = new Date('2026-02-20T07:00:00');
             const date2 = new Date('2026-06-13T12:30:00');
             const date1bis = new Date('2026-05-04T20:35:00');
-            const date1ter = new Date('2026-05-31T00:00:00');
+            const date1ter = new Date('2026-05-30T23:17:00');
 
             // On prépare les chaînes pour la date et l'heure
             const strDate = `Jour actuel : ${today.getDate()} / ${today.getMonth() + 1} / ${today.getFullYear()}`;
