@@ -1,0 +1,110 @@
+/* --- Arrière-plan global et Centrage --- */
+html {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dégradé sombre et élégant */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Effet Glassmorphism pour la carte principale --- */
+body {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 40px 50px;
+    border-radius: 20px;
+    max-width: 700px;
+    width: 100%;
+    color: white;
+    margin: 0;
+}
+
+/* --- Typographie --- */
+h1 {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+    margin-top: 0;
+    /* Effet de texte en dégradé brillant */
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 4px 15px rgba(79, 172, 254, 0.3);
+}
+
+h3 {
+    text-align: center;
+    color: #ff4b4b; /* Rouge doux pour souligner le "On est morts" */
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+h4 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid rgba(79, 172, 254, 0.5);
+    padding-bottom: 10px;
+    margin-top: 40px;
+    color: #e2e8f0;
+}
+
+/* --- Grille pour les Lectures --- */
+ol {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+li {
+    margin: 0;
+}
+
+/* --- Style des liens (Boutons) --- */
+a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Animations au survol */
+a:hover {
+    background: #4facfe;
+    color: #0f2027;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.4);
+    border-color: #4facfe;
+}
+
+/* --- Lien spécial pour le Guide Gemini --- */
+.special-link {
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    color: #1a1a1a;
+    font-size: 1.2rem;
+    padding: 20px;
+    margin-top: 20px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(161, 140, 209, 0.4);
+}
+
+.special-link:hover {
+    background: linear-gradient(135deg, #fbc2eb 0%, #a18cd1 100%);
+    color: #000;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(161, 140, 209, 0.6);
+}
