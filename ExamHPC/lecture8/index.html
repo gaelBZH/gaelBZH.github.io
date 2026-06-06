@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 8 : Parallélisation en Mémoire Partagée</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em;font-family:monospace}
+        pre{background:#f5f5f5;padding:1rem;border-radius:8px;overflow-x:auto;font-size:.88em;margin:.5rem 0}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 8 : Parallélisation en Mémoire Partagée</h1>
+        <p class="subtitle">High Performance Computing &mdash; Résumé complet en français</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Concurrence et problèmes associés</h2>
+        <p>Dans un modèle à mémoire partagée, plusieurs threads s'exécutent en parallèle et accèdent aux mêmes données. Cette situation engendre des problèmes de <strong>concurrence</strong> qu'il faut impérativement maîtriser.</p>
+
+        <h3>1.1 Condition de course (Race Condition)</h3>
+        <p>Une <em>condition de course</em> survient lorsque le résultat d'un calcul dépend de l'ordre d'exécution non déterministe des threads. Si deux threads lisent et modifient la même variable simultanément sans protection, le résultat final est imprévisible.</p>
+        <p>Exemple : si \( p \) threads incrémentent tous une variable partagée <code>x</code> de façon non protégée, au lieu d'obtenir \( x + p \), on peut obtenir n'importe quelle valeur entre \( x + 1 \) et \( x + p \).</p>
+
+        <h3>1.2 Synchronisation</h3>
+        <p>La synchronisation permet de coordonner l'exécution des threads. Elle peut être réalisée :</p>
+        <ul>
+            <li><strong>Au niveau matériel</strong> — via des instructions atomiques du processeur.</li>
+            <li><strong>Au niveau logiciel</strong> — via des <em>barrières</em>, des <em>sections critiques</em> et des <em>opérations atomiques</em>.</li>
+        </ul>
+
+        <h3>1.3 Exclusion mutuelle</h3>
+        <p>L'exclusion mutuelle garantit qu'un seul thread à la fois peut exécuter une portion de code sensible appelée <strong>section critique</strong>.</p>
+
+        <h3>1.4 Propriétés désirables et erreurs possibles</h3>
+        <p>Une bonne synchronisation doit satisfaire :</p>
+        <ul>
+            <li><strong>Vivacité (Liveness)</strong> — le système progresse toujours, aucun thread ne reste bloqué indéfiniment.</li>
+            <li><strong>Sûreté (Safety)</strong> — jamais deux threads dans la section critique simultanément.</li>
+            <li><strong>Intégrité (Integrity)</strong> — les données partagées restent dans un état cohérent.</li>
+        </ul>
+        <p>Les erreurs classiques à éviter sont :</p>
+        <ul>
+            <li><strong>Deadlock (interblocage)</strong> — deux threads ou plus s'attendent mutuellement, aucun ne peut avancer.</li>
+            <li><strong>Starvation (famine)</strong> — un thread est continuellement privé d'accès à la ressource dont il a besoin.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>2. OpenMP — Présentation générale</h2>
+        <p><strong>OpenMP</strong> (Open Multi-Processing) est une API standard pour la programmation parallèle en mémoire partagée. C'est l'outil de référence pour paralléliser des programmes C, C++ et Fortran sur des architectures multi-cœurs.</p>
+
+        <h3>2.1 Caractéristiques principales</h3>
+        <ul>
+            <li><strong>Portabilité</strong> — le code OpenMP peut être compilé sur la plupart des plateformes sans modification.</li>
+            <li><strong>Modèle SPMD</strong> (Single Program, Multiple Data) — un seul programme est écrit, mais il est exécuté par plusieurs threads qui travaillent chacun sur une partie des données.</li>
+            <li><strong>Intégré dans la plupart des compilateurs</strong> — il suffit d'activer un flag de compilation (par exemple <code>-fopenmp</code> avec GCC).</li>
+        </ul>
+
+        <h3>2.2 Composants d'OpenMP</h3>
+        <ol>
+            <li><strong>Directives de compilateur</strong> (<code>#pragma omp ...</code>) — instructions insérées dans le code source.</li>
+            <li><strong>Fonctions de bibliothèque</strong> — fonctions déclarées dans <code>omp.h</code>.</li>
+            <li><strong>Variables d'environnement</strong> — variables système qui configurent le comportement d'OpenMP (ex. <code>OMP_NUM_THREADS</code>).</li>
+        </ol>
+
+        <h3>2.3 Limites importantes</h3>
+        <p>La spécification OpenMP définit l'implémentation des directives et fonctions, mais <strong>ne garantit pas la correction des programmes</strong>. C'est à lui de s'assurer que la parallélisation est correcte.</p>
+        <p>Avantage : un programme OpenMP peut toujours être compilé et exécuté de façon <strong>séquentielle</strong> (en ignorant les directives), ce qui facilite le débogage.</p>
+    </div>
+
+    <div class="card">
+        <h2>3. Syntaxe des directives OpenMP</h2>
+
+        <h3>3.1 Format général</h3>
+        <p>Pour les langages C et C++, la syntaxe d'une directive OpenMP est :</p>
+        <pre>#pragma omp &lt;directive&gt; [liste de clauses]</pre>
+        <p>Les <strong>directives</strong> les plus importantes sont les <em>construits de partage de travail</em> (work-sharing constructs). Les <strong>clauses</strong> définissent le traitement des variables par les threads dans la région parallèle.</p>
+
+        <h3>3.2 Directive <code>parallel</code></h3>
+        <p>La directive fondamentale est <code>parallel</code>, qui crée une région parallèle :</p>
+        <pre>#pragma omp parallel [liste de clauses]
+{
+    /* région parallèle */
+}</pre>
+        <p>Les clauses possibles incluent :</p>
+        <ul>
+            <li><code>if(condition)</code> — la région n'est parallèle que si la condition est vraie.</li>
+            <li><code>num_threads(constante)</code> — fixe le nombre de threads.</li>
+            <li>Attributs de partage des données : <code>private</code>, <code>firstprivate</code>, <code>shared</code>, <code>reduction</code>.</li>
+            <li><code>schedule</code> — définit la politique d'ordonnancement des itérations.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>4. Contrôle du nombre de threads</h2>
+        <p>Le nombre de threads peut être spécifié de trois façons, par ordre de priorité décroissante :</p>
+        <table>
+            <thead>
+                <tr><th>Méthode</th><th>Exemple</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Clause <code>num_threads</code> dans la directive</td>
+                    <td><code>#pragma omp parallel num_threads(10)</code></td>
+                </tr>
+                <tr>
+                    <td>Appel à la fonction de bibliothèque</td>
+                    <td><code>omp_set_num_threads(10);</code></td>
+                </tr>
+                <tr>
+                    <td>Variable d'environnement</td>
+                    <td><code>$ set OMP_NUM_THREADS=10</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Exemple minimal</h3>
+        <pre>#include &lt;stdio.h&gt;
+#include &lt;omp.h&gt;
+
+int main()
+{
+    #pragma omp parallel
+    {
+        printf("I am thread %d\n", omp_get_thread_num());
+    }
+}</pre>
+        <p>Ce programme crée autant de threads que disponibles. Chaque thread imprime son identifiant, qui va de \(0\) à \(p-1\). L'ordre d'affichage est non déterministe.</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Fonctions de bibliothèque OpenMP</h2>
+        <p>Les fonctions OpenMP sont déclarées dans le fichier d'en-tête <code>omp.h</code>.</p>
+        <table>
+            <thead>
+                <tr><th>Fonction</th><th>Rôle</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>omp_set_num_threads(n)</code></td><td>Fixe le nombre de threads à utiliser</td></tr>
+                <tr><td><code>omp_get_num_threads()</code></td><td>Retourne le nombre de threads actifs</td></tr>
+                <tr><td><code>omp_get_num_procs()</code></td><td>Retourne le nombre de processeurs disponibles</td></tr>
+                <tr><td><code>omp_get_thread_num()</code></td><td>Retourne l'identifiant du thread courant (le maître a l'id 0)</td></tr>
+                <tr><td><code>omp_in_parallel()</code></td><td>Indique si l'exécution est parallèle (renvoie 1) ou non (renvoie 0)</td></tr>
+                <tr><td><code>omp_get_max_threads()</code></td><td>Retourne le nombre maximum de threads pouvant être créés</td></tr>
+                <tr><td><code>omp_set_dynamic()</code> / <code>omp_get_dynamic()</code></td><td>Active/consulte le mode d'ajustement dynamique du nombre de threads</td></tr>
+                <tr><td><code>omp_set_nested()</code> / <code>omp_get_nested()</code></td><td>Active/consulte le parallélisme imbriqué (nested)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>6. Construits de partage de travail (Work-sharing constructs)</h2>
+        <p>Les construits de partage de travail permettent de distribuer le travail entre les threads d'une équipe. Règles fondamentales :</p>
+        <ul>
+            <li>Tous les threads d'une équipe doivent rencontrer les mêmes directives de partage de travail.</li>
+            <li>Il n'y a <strong>pas de barrière implicite à l'entrée</strong> d'un construit de partage de travail.</li>
+        </ul>
+
+        <h3>6.1 Construit <code>for</code></h3>
+        <p>Le construit <code>for</code> distribue les itérations d'une boucle entre les threads :</p>
+        <pre>#pragma omp for [liste de clauses]
+for (...) { ... }   // boucle en forme canonique</pre>
+        <p>Les clauses disponibles pour <code>for</code> incluent :</p>
+        <ul>
+            <li><strong>Partage de données</strong> : <code>private</code>, <code>firstprivate</code>, <code>lastprivate</code></li>
+            <li><strong>Ordonnancement</strong> : <code>schedule(type, taille_de_bloc)</code> avec les types :
+                <ul>
+                    <li><code>static</code> — les itérations sont divisées en blocs de taille fixe et assignées de façon cyclique.</li>
+                    <li><code>dynamic</code> — les blocs sont assignés dynamiquement à la demande.</li>
+                    <li><code>guided</code> — blocs de taille décroissante assignés dynamiquement.</li>
+                    <li><code>runtime</code> — la politique est déterminée à l'exécution via <code>OMP_SCHEDULE</code>.</li>
+                </ul>
+            </li>
+            <li><code>reduction</code>, <code>nowait</code></li>
+        </ul>
+        <p>La combinaison fréquente <code>parallel for</code> fusionne les deux directives en une seule :</p>
+        <pre>#pragma omp parallel for [liste de clauses]
+for (...) { ... }</pre>
+
+        <h3>6.2 Autres directives importantes</h3>
+        <table>
+            <thead>
+                <tr><th>Directive</th><th>Syntaxe</th><th>Rôle</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>master</strong></td>
+                    <td><code>#pragma omp master { ... }</code></td>
+                    <td>Seul le thread maître (id=0) exécute le bloc</td>
+                </tr>
+                <tr>
+                    <td><strong>critical</strong></td>
+                    <td><code>#pragma omp critical { ... }</code></td>
+                    <td>Section critique : un seul thread à la fois peut exécuter ce bloc</td>
+                </tr>
+                <tr>
+                    <td><strong>barrier</strong></td>
+                    <td><code>#pragma omp barrier</code></td>
+                    <td>Point de synchronisation : tous les threads attendent ici</td>
+                </tr>
+                <tr>
+                    <td><strong>atomic</strong></td>
+                    <td><code>#pragma omp atomic</code></td>
+                    <td>L'instruction suivante est exécutée de façon atomique</td>
+                </tr>
+                <tr>
+                    <td><strong>flush</strong></td>
+                    <td><code>#pragma omp flush</code></td>
+                    <td>Force la cohérence de la mémoire visible par tous les threads</td>
+                </tr>
+                <tr>
+                    <td><strong>ordered</strong></td>
+                    <td><code>#pragma omp ordered</code></td>
+                    <td>Force l'exécution séquentielle d'un bloc dans une boucle parallèle</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>7. Clauses de partage des variables</h2>
+        <p>Le traitement des variables dans une région parallèle est contrôlé par des clauses de <em>data sharing</em>.</p>
+        <table>
+            <thead>
+                <tr><th>Clause</th><th>Signification</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>shared(var)</code></td>
+                    <td>La variable est partagée entre tous les threads — tous voient et modifient la même case mémoire.</td>
+                </tr>
+                <tr>
+                    <td><code>private(var)</code></td>
+                    <td>Chaque thread dispose d'une copie locale <strong>non initialisée</strong> de la variable.</td>
+                </tr>
+                <tr>
+                    <td><code>firstprivate(var)</code></td>
+                    <td>Chaque thread dispose d'une copie locale initialisée avec la valeur de la variable <strong>avant</strong> l'entrée dans la région parallèle.</td>
+                </tr>
+                <tr>
+                    <td><code>lastprivate(var)</code></td>
+                    <td>Variable locale à chaque thread, mais après la région parallèle, la valeur finale correspond à celle de la <strong>dernière itération séquentielle</strong>.</td>
+                </tr>
+                <tr>
+                    <td><code>reduction(op:var)</code></td>
+                    <td>Chaque thread calcule une valeur partielle avec l'opérateur <code>op</code>, et les résultats partiels sont combinés à la fin de la région.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Exemple illustratif (private / firstprivate / lastprivate)</h3>
+        <p>Avec <code>#define N 3</code> et les valeurs initiales <code>a=1, b=2, c=3, d=4</code> :</p>
+        <pre>#pragma omp parallel for private(b) firstprivate(c) lastprivate(d)
+for(i = 0; i &lt; N; i++)
+{
+    b += 2;
+    c += 2;
+    d = omp_get_thread_num();
+}</pre>
+        <ul>
+            <li><code>b</code> est <code>private</code> : chaque thread a une copie non initialisée (valeur indéfinie).</li>
+            <li><code>c</code> est <code>firstprivate</code> : chaque thread commence avec <code>c = 3</code>. Hors de la région, <code>c</code> conserve sa valeur originale <code>3</code>.</li>
+            <li><code>d</code> est <code>lastprivate</code> : après la région, <code>d</code> prend la valeur assignée lors de la dernière itération séquentielle (<code>d = N-1 = 2</code>).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>8. La clause <code>reduction</code></h2>
+        <p>La clause <code>reduction</code> est un mécanisme très puissant pour les opérations d'accumulation parallèle. Elle crée une copie locale pour chaque thread, puis combine toutes les copies à la fin via l'opérateur spécifié.</p>
+        <p>Syntaxe : <code>reduction(opérateur : variable)</code></p>
+        <p>Opérateurs supportés : <code>+</code>, <code>-</code>, <code>*</code>, <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>&amp;&amp;</code>, <code>||</code></p>
+
+        <h3>Exemple : somme parallèle</h3>
+        <p>On souhaite calculer \(\displaystyle S = \sum_{i=0}^{100} i\).</p>
+        <pre>#include &lt;omp.h&gt;
+#define NUM 100
+#define THR 4
+
+int main(int argc, char *argv[])
+{
+    int i, sum = 0;
+    #pragma omp parallel for reduction(+:sum) num_threads(THR)
+    for(i = 0; i &lt;= NUM; i++)
+    {
+        sum += i;
+    }
+}</pre>
+        <p>Chacun des 4 threads calcule une somme partielle, puis OpenMP additionne automatiquement les 4 sommes partielles. On attend \( S = \frac{100 \times 101}{2} = 5050 \).</p>
+        <p>Sans la clause <code>reduction</code>, l'incrémentation <code>sum += i</code> serait une condition de course.</p>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 — Identification des problèmes de concurrence</div>
+            <p>Considérez un programme où \(p = 4\) threads exécutent simultanément l'instruction <code>x = x + 1</code> sur une variable partagée <code>x</code> initialisée à 0. Expliquez pourquoi le résultat final peut être différent de 4. Quelles sont les valeurs possibles de <code>x</code> ? Proposez une correction en OpenMP.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    L'instruction <code>x = x + 1</code> se décompose en trois étapes (lecture, incrémentation, écriture). Si deux threads lisent la même valeur avant que l'un n'écrive, un incrément est perdu. Utilisez <code>#pragma omp atomic</code> ou <code>#pragma omp critical</code>.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 — Premier programme OpenMP</div>
+            <p>Écrivez un programme C utilisant OpenMP qui crée 8 threads. Chaque thread doit afficher son identifiant et le nombre total de threads. Vérifiez que l'ordre d'affichage n'est pas garanti. Quelle fonction OpenMP permet d'obtenir l'identifiant du thread maître ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Utilisez <code>omp_get_thread_num()</code> et <code>omp_get_num_threads()</code> dans une région <code>#pragma omp parallel num_threads(8)</code>. Le thread maître a toujours l'identifiant 0.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 — Différence entre private, firstprivate et lastprivate</div>
+            <p>Soit le code suivant avec <code>N = 4</code> et les valeurs initiales <code>a = 10, b = 20, c = 30</code> :</p>
+            <pre>#pragma omp parallel for private(a) firstprivate(b) lastprivate(c)
+for(int i = 0; i &lt; N; i++) {
+    a = i * 2;
+    b = b + i;
+    c = i;
+}</pre>
+            <p>(a) Quelle est la valeur de <code>a</code> après la région parallèle ?<br>
+               (b) Quelle est la valeur de <code>b</code> dans chaque thread, juste après l'entrée dans la région ?<br>
+               (c) Quelle est la valeur de <code>c</code> après la région parallèle ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) <code>a</code> est <code>private</code> donc non défini hors de la région. (b) <code>b</code> est <code>firstprivate</code> donc initialisé à 20 dans chaque thread. (c) <code>c</code> est <code>lastprivate</code> : sa valeur finale est celle de la dernière itération séquentielle, soit <code>i = N-1 = 3</code>, donc <code>c = 3</code>.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 — Calcul parallèle d'une somme avec reduction</div>
+            <p>Écrivez un programme OpenMP en C pour calculer le produit scalaire de deux vecteurs \(\mathbf{u}\) et \(\mathbf{v}\) de taille \(n = 1000\) :</p>
+            \[
+                \langle \mathbf{u}, \mathbf{v} \rangle = \sum_{i=0}^{n-1} u_i \cdot v_i
+            \]
+            <p>Utilisez la clause <code>reduction</code> avec 4 threads. Comparez avec une version utilisant <code>#pragma omp critical</code> : laquelle est plus efficace et pourquoi ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    La clause <code>reduction(+:dot)</code> évite les accès concurrents sans verrouillage explicite. Avec <code>critical</code>, les threads se mettent en file d'attente à chaque itération. La <code>reduction</code> est bien plus efficace car chaque thread accumule localement.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 — Politique d'ordonnancement (scheduling)</div>
+            <p>Expliquez la différence entre les politiques <code>static</code>, <code>dynamic</code> et <code>guided</code> pour la clause <code>schedule</code> d'OpenMP. En particulier, si une boucle de \(n = 120\) itérations est distribuée entre \(p = 4\) threads avec <code>schedule(static, 10)</code>, décrivez précisément quelles itérations sont assignées à chaque thread.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Avec <code>static</code> et un bloc de taille 10 : thread 0 reçoit les itérations 0–9 et 40–49 et 80–89, thread 1 reçoit 10–19 et 50–59 et 90–99, etc. (distribution cyclique par blocs). <code>dynamic</code> convient aux boucles à charge inégale ; <code>guided</code> démarre avec de grands blocs qui diminuent pour équilibrer la charge en fin de boucle.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 — Deadlock et section critique</div>
+            <p>Deux threads A et B exécutent le code suivant dans une région parallèle :</p>
+            <pre>// Thread A                    // Thread B
+#pragma omp critical(lock1)   #pragma omp critical(lock2)
+{                             {
+  #pragma omp critical(lock2)   #pragma omp critical(lock1)
+  { /* travail */ }             { /* travail */ }
+}                             }</pre>
+            <p>(a) Identifiez le problème. (b) Quelle propriété de la synchronisation est violée ? (c) Proposez une solution.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    C'est un deadlock : A détient <code>lock1</code> et attend <code>lock2</code>, pendant que B détient <code>lock2</code> et attend <code>lock1</code>. La propriété de vivacité (liveness) est violée. Solution : imposer un ordre global d'acquisition des verrous (toujours acquérir <code>lock1</code> avant <code>lock2</code>).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 — Parallélisation d'une multiplication matrice-vecteur</div>
+            <p>Soit une matrice \(A \in \mathbb{R}^{m \times n}\) et un vecteur \(\mathbf{x} \in \mathbb{R}^n\). On souhaite calculer \(\mathbf{y} = A\mathbf{x}\) où \(y_i = \sum_{j=0}^{n-1} A_{ij} \cdot x_j\).</p>
+            <p>Écrivez le code C+OpenMP en parallélisant la boucle externe sur \(i\) avec \(p\) threads. Quelles variables doivent être <code>shared</code> et quelles variables doivent être <code>private</code> ? Pourquoi n'a-t-on pas besoin de <code>reduction</code> ici ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    <code>A</code>, <code>x</code>, <code>y</code> sont <code>shared</code>. L'indice interne <code>j</code> est <code>private</code>. Pas besoin de <code>reduction</code> car chaque thread écrit dans une case <code>y[i]</code> différente — il n'y a pas de conflit d'écriture.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 — Analyse et correction d'un programme OpenMP</div>
+            <p>Analysez le programme suivant et identifiez tous les problèmes :</p>
+            <pre>#include &lt;omp.h&gt;
+int global_sum = 0;
+
+int main() {
+    int i;
+    #pragma omp parallel for shared(global_sum)
+    for(i = 0; i &lt; 1000; i++) {
+        global_sum += i;   // (1)
+    }
+
+    int x = 5;
+    #pragma omp parallel private(x)
+    {
+        x = omp_get_thread_num() * 10;
+    }
+    printf("%d\n", x);   // (2)
+}</pre>
+            <p>(a) L'instruction (1) est-elle correcte ? Proposez une correction.<br>
+               (b) Que va afficher l'instruction (2) et pourquoi est-ce un comportement indéfini ? Comment corriger cela ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) Non : <code>global_sum += i</code> est une condition de course. Correction : utiliser <code>reduction(+:global_sum)</code> ou entourer avec <code>#pragma omp atomic</code>. (b) <code>x</code> est <code>private</code>, donc hors de la région parallèle, <code>x</code> retrouve sa valeur initiale de 5 (la copie locale est détruite). Pour récupérer la valeur du thread maître, utiliser <code>lastprivate(x)</code> ou un bloc <code>#pragma omp master</code>.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours &middot; 2026</footer>
+</div>
+</body>
+</html>

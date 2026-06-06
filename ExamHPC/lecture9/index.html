@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 9 : Programmation GPU</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em;font-family:monospace}
+        pre{background:#f5f5f5;padding:1rem;border-radius:8px;overflow-x:auto;font-size:.88em;margin:.5rem 0}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 9 : Programmation GPU</h1>
+        <p class="subtitle">Résumé complet en français &mdash; High Performance Computing</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Histoire du GPGPU</h2>
+        <p>Le terme <strong>GPGPU</strong> (General Purpose computing on Graphics Processing Units) désigne l'utilisation des processeurs graphiques pour des calculs scientifiques généraux, au-delà du rendu 3D.</p>
+        <h3>Jalons historiques</h3>
+        <ul>
+            <li><strong>1999 &mdash; Nvidia GeForce 256 :</strong> premier GPU commercialisé. L'unité est entièrement câblée et dédiée au rendu graphique.</li>
+            <li><strong>ATI Radeon 256 :</strong> introduction d'un premier type de shader programmable.</li>
+            <li><strong>Nvidia GeForce 3 :</strong> généralisation des shaders programmables ; les développeurs peuvent écrire leurs propres programmes s'exécutant sur le GPU.</li>
+            <li><strong>G80 (GeForce 8800, 2006) :</strong> architecture unifiée avec des <em>multiprocesseurs de flux</em> (Streaming Multiprocessors, SM). C'est la base de CUDA. Le G80 introduit un modèle de programmation généraliste sur GPU.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>2. Architecture GPU moderne</h2>
+        <p>Un GPU moderne est organisé en une hiérarchie de niveaux matériels. L'architecture G80 d'Nvidia illustre bien ce principe :</p>
+        <ul>
+            <li>Le <strong>CPU hôte</strong> communique avec le GPU via un bridge et une interface hôte.</li>
+            <li>Un <strong>Input Assembler</strong> reçoit les données ; un module de rasterisation et clip gère la géométrie.</li>
+            <li>Le travail est distribué à des <strong>TPC</strong> (Texture Processing Clusters), chacun contenant plusieurs <strong>SM</strong> (Streaming Multiprocessors).</li>
+            <li>Chaque SM contient plusieurs <strong>Stream Processors</strong> (SP), une mémoire partagée, un cache d'instructions et un décodeur.</li>
+            <li>Un réseau d'interconnexion relie les SM à la mémoire globale (DRAM).</li>
+        </ul>
+
+        <h3>Évolution des architectures Nvidia</h3>
+        <table>
+            <thead>
+                <tr><th>Architecture</th><th>CUDA Cores / MP</th><th>Tensor Cores / MP</th><th>Particularité</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Lovelace (RTX 40)</td><td>64 FP32 + 64 INT32</td><td>4 (4e gen.)</td><td>Ray-tracing matériel avancé</td></tr>
+                <tr><td>Hopper (H100)</td><td>128 FP32 + 64 INT32 + 64 FP64</td><td>4 (4e gen.)</td><td>Orienté HPC/IA, pas de RT Core</td></tr>
+                <tr><td>Blackwell (RTX 50)</td><td>128 FP32/INT32</td><td>4 (5e gen.)</td><td>AI Management Processor (AMP)</td></tr>
+                <tr><td>Rubin (2026)</td><td>TBD</td><td>TBD</td><td>GPU + CPU intégré sur la même puce</td></tr>
+            </tbody>
+        </table>
+
+        <h3>AMD RDNA</h3>
+        <p>L'architecture AMD RDNA utilise des <strong>Compute Units</strong> contenant des unités vectorielles SIMD duales, des unités scalaires, des accélérateurs IA et des accélérateurs de ray-tracing. Les puces RDNA récentes adoptent une topologie multi-chiplets reliés par <strong>Infinity Cache</strong>.</p>
+
+        <h3>Intel Xe</h3>
+        <p>Intel Xe organise ses GPU en <strong>Render Slices</strong>, chacun composé de plusieurs <strong>Xe-cores</strong>. Un Xe-core intègre :</p>
+        <ul>
+            <li>16 <strong>Vector Engines</strong> (256 bits chacun) pour le calcul SIMD flottant</li>
+            <li>16 <strong>Matrix Engines XMX</strong> (1024 bits) pour l'inférence IA et les opérations tensorielles</li>
+            <li>Un cache L1/SLM (Shared Local Memory)</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>3. Comparaison de GPU récents (2025)</h2>
+        <table>
+            <thead>
+                <tr><th>Caractéristique</th><th>Radeon RX 9070 XT</th><th>GeForce RTX 5090</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Date de lancement</td><td>6 mars 2025</td><td>30 janvier 2025</td></tr>
+                <tr><td>Nombre total de cœurs</td><td>4 096</td><td>21 760</td></tr>
+                <tr><td>Multiprocesseurs</td><td>64</td><td>170</td></tr>
+                <tr><td>Cœurs / MP</td><td>64</td><td>128</td></tr>
+                <tr><td>Mémoire</td><td>DDR6 16 Go</td><td>DDR7 32 Go</td></tr>
+                <tr><td>Bande passante (Go/s)</td><td>640</td><td>1 792</td></tr>
+                <tr><td>Performance SP (GFLOPS)</td><td>48 700</td><td>104 800</td></tr>
+                <tr><td>Performance DP (GFLOPS)</td><td>760</td><td>1 637</td></tr>
+                <tr><td>Prix ($)</td><td>599</td><td>1 999</td></tr>
+                <tr><td>TDP (W)</td><td>304</td><td>575</td></tr>
+            </tbody>
+        </table>
+        <p>Le ratio performance/prix de la RX 9070 XT est nettement supérieur pour les applications grand public, tandis que la RTX 5090 offre des performances brutes bien plus élevées. La bande passante mémoire du 5090 est \(\approx \frac{1792}{640} \approx 2{,}8\) fois supérieure.</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Modèles de programmation pour accélérateurs GPU</h2>
+        <p>Plusieurs modèles permettent d'exploiter la puissance des GPU :</p>
+        <ul>
+            <li><strong>CUDA</strong> (Compute Unified Device Architecture) &mdash; exclusif aux GPU Nvidia. Modèle le plus répandu et le plus performant pour les GPU Nvidia ; offre un contrôle fin de la mémoire et du parallélisme.</li>
+            <li><strong>Offload</strong> &mdash; limité aux accélérateurs Intel Xeon Phi. Permet de déporter des régions de code sur le coprocesseur via des directives.</li>
+            <li><strong>OpenACC</strong> &mdash; modèle universel et portable, basé sur des directives similaires à OpenMP. Facile d'utilisation. Convient à une large gamme de matériel.</li>
+            <li><strong>OpenCL</strong> &mdash; standard ouvert, portable sur tous les GPU (Nvidia, AMD, Intel) et même sur CPU. Idéal pour la portabilité.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>5. Modèle de programmation GPU</h2>
+        <h3>Hiérarchie : threads &rarr; warps &rarr; blocs &rarr; grille</h3>
+        <ul>
+            <li><strong>Thread :</strong> unité d'exécution élémentaire. Chaque thread exécute le même code kernel mais sur des données différentes.</li>
+            <li><strong>Warp :</strong> groupe de 32 threads exécutés simultanément en SIMD sur un même SM (chez Nvidia). Tous les threads d'un warp exécutent la même instruction au même instant (SIMT &mdash; Single Instruction Multiple Threads).</li>
+            <li><strong>Bloc :</strong> ensemble de warps assigné à un même SM. Les threads d'un bloc partagent la mémoire partagée et peuvent se synchroniser.</li>
+            <li><strong>Grille (Grid) :</strong> ensemble de blocs lancés par un même appel de kernel. La grille peut être 1D, 2D ou 3D.</li>
+        </ul>
+
+        <h3>Différences entre threads GPU et threads CPU</h3>
+        <ul>
+            <li>Les threads GPU sont <strong>extrêmement légers</strong> : leur création prend un temps négligeable.</li>
+            <li>Un CPU multi-cœur fonctionne correctement avec quelques dizaines de threads ; un GPU a besoin de <strong>milliers de threads</strong> pour atteindre son plein potentiel (latence mémoire masquée par le changement de warp).</li>
+            <li>Le GPU est un <strong>coprocesseur</strong> : il n'exécute pas de code hôte, il reçoit ses instructions du CPU.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>6. CUDA &mdash; Compute Unified Device Architecture</h2>
+        <h3>Définition et principes</h3>
+        <p>CUDA est le modèle de programmation parallèle propriétaire de Nvidia. Il étend le langage C/C++ avec des constructions permettant d'exécuter des <strong>kernels</strong> (noyaux de calcul) sur le GPU.</p>
+        <ul>
+            <li>Le GPU est vu comme un <strong>coprocesseur massivement parallèle</strong> dédié aux calculs intensifs.</li>
+            <li>Le CPU (hôte) orchestre l'exécution : il transfère les données, lance les kernels et récupère les résultats.</li>
+            <li>Le GPU dispose de sa propre <strong>mémoire DRAM</strong> (device memory), distincte de la mémoire principale du CPU.</li>
+            <li>La gestion de la mémoire GPU est <strong>explicite</strong> : le programmeur contrôle les allocations et les transferts.</li>
+        </ul>
+
+        <h3>Flux d'exécution CUDA (Processing Flow)</h3>
+        <ol>
+            <li><strong>Copier</strong> les données de traitement depuis la mémoire principale vers la mémoire GPU.</li>
+            <li>Le <strong>CPU instruit</strong> le GPU de lancer le kernel de calcul.</li>
+            <li>Le GPU <strong>exécute le kernel en parallèle</strong> sur ses milliers de cœurs.</li>
+            <li><strong>Copier les résultats</strong> depuis la mémoire GPU vers la mémoire principale.</li>
+        </ol>
+
+        <h3>Modèle de code : code hôte et kernels</h3>
+        <pre>// Code série (host)
+KernelA&lt;&lt;&lt; nBlk, nTid &gt;&gt;&gt;(args);  // Lancement kernel A (device)
+// Code série (host)
+KernelB&lt;&lt;&lt; nBlk, nTid &gt;&gt;&gt;(args);  // Lancement kernel B (device)</pre>
+        <p>Les kernels sont asynchrones par défaut : le CPU continue son exécution pendant que le GPU traite. Une synchronisation explicite (<code>cudaDeviceSynchronize()</code>) est nécessaire pour bloquer le CPU jusqu'à la fin du kernel.</p>
+    </div>
+
+    <div class="card">
+        <h2>7. Mots-clés CUDA &mdash; Qualificateurs de fonctions</h2>
+        <p>CUDA ajoute trois qualificateurs de fonctions au C/C++ :</p>
+        <table>
+            <thead>
+                <tr><th>Qualificateur</th><th>Exécuté sur</th><th>Appelable depuis</th><th>Usage</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>__device__</code></td>
+                    <td>GPU (device)</td>
+                    <td>GPU (device) uniquement</td>
+                    <td>Fonctions auxiliaires appelées par un kernel</td>
+                </tr>
+                <tr>
+                    <td><code>__global__</code></td>
+                    <td>GPU (device)</td>
+                    <td>CPU (host) uniquement</td>
+                    <td>Kernels lancés depuis le CPU</td>
+                </tr>
+                <tr>
+                    <td><code>__host__</code></td>
+                    <td>CPU (host)</td>
+                    <td>CPU (host) uniquement</td>
+                    <td>Fonctions CPU classiques (comportement par défaut)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Exemple de déclaration d'un kernel :</p>
+        <pre>__global__ void KernelFunc(float* A, float* B, float* C, int N) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i &lt; N) C[i] = A[i] + B[i];
+}</pre>
+    </div>
+
+    <div class="card">
+        <h2>8. Identifiants de threads et hiérarchie de la grille</h2>
+        <p>Chaque thread possède un <strong>identifiant unique</strong> dans sa grille, accessible via des variables intégrées :</p>
+        <ul>
+            <li><code>threadIdx.x / .y / .z</code> &mdash; position du thread dans son bloc</li>
+            <li><code>blockIdx.x / .y</code> &mdash; position du bloc dans la grille</li>
+            <li><code>blockDim.x / .y / .z</code> &mdash; dimensions du bloc en nombre de threads</li>
+            <li><code>gridDim.x / .y</code> &mdash; dimensions de la grille en nombre de blocs</li>
+        </ul>
+        <p>Pour un tableau 1D de taille \(N\), l'index global d'un thread est :</p>
+        \[
+            i = \text{blockIdx.x} \times \text{blockDim.x} + \text{threadIdx.x}
+        \]
+        <p>Pour un tableau 2D de dimensions \(N_x \times N_y\), les indices globaux sont :</p>
+        \[
+            i = \text{blockIdx.x} \times \text{blockDim.x} + \text{threadIdx.x}
+        \]
+        \[
+            j = \text{blockIdx.y} \times \text{blockDim.y} + \text{threadIdx.y}
+        \]
+        <p>Un kernel produit exactement une grille. La grille contient \(N_{\text{blocs}}\) blocs, chaque bloc contient jusqu'à \(N_{\text{threads}}\) threads.</p>
+    </div>
+
+    <div class="card">
+        <h2>9. Modèle mémoire CUDA</h2>
+        <p>CUDA définit une hiérarchie de mémoires, chacune avec une portée et des performances différentes :</p>
+        <table>
+            <thead>
+                <tr><th>Type de mémoire</th><th>Portée</th><th>Durée de vie</th><th>Vitesse</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Registres</strong></td>
+                    <td>Un thread</td>
+                    <td>Durée du thread</td>
+                    <td>Très rapide (sur puce)</td>
+                </tr>
+                <tr>
+                    <td><strong>Mémoire partagée</strong></td>
+                    <td>Tous les threads d'un bloc</td>
+                    <td>Durée du bloc</td>
+                    <td>Rapide (on-chip, ~100x plus rapide que globale)</td>
+                </tr>
+                <tr>
+                    <td><strong>Mémoire globale</strong></td>
+                    <td>Tous les threads + hôte</td>
+                    <td>Durée de l'application</td>
+                    <td>Lente (DRAM, latence ~400&ndash;800 cycles)</td>
+                </tr>
+                <tr>
+                    <td><strong>Mémoire constante</strong></td>
+                    <td>Tous les threads (lecture seule)</td>
+                    <td>Durée de l'application</td>
+                    <td>Rapide si accès uniforme (cache dédié)</td>
+                </tr>
+                <tr>
+                    <td><strong>Mémoire de texture</strong></td>
+                    <td>Tous les threads (lecture seule)</td>
+                    <td>Durée de l'application</td>
+                    <td>Cache optimisé pour la localité 2D</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>10. Gestion de la mémoire GPU en CUDA</h2>
+
+        <h3>Allocation et libération : <code>cudaMalloc</code> / <code>cudaFree</code></h3>
+        <ul>
+            <li><code>cudaMalloc(void** ptr, size_t size)</code> &mdash; alloue <code>size</code> octets dans la <strong>mémoire globale du device</strong>.</li>
+            <li><code>cudaFree(void* ptr)</code> &mdash; libère la mémoire précédemment allouée sur le device.</li>
+        </ul>
+        <p>Exemple d'allocation d'une matrice \(64 \times 64\) de flottants simples précision :</p>
+        <pre>const int TILE_WIDTH = 64;
+float* Md;
+int size = TILE_WIDTH * TILE_WIDTH * sizeof(float);  // = 16384 octets
+
+cudaMalloc((void**)&amp;Md, size);
+// ... utilisation de Md dans les kernels ...
+cudaFree(Md);</pre>
+        <p>La taille totale allouée est \(\text{TILE\_WIDTH}^2 \times \text{sizeof(float)} = 64^2 \times 4 = 16\,384\) octets \(= 16\) Ko.</p>
+
+        <h3>Transfert de données : <code>cudaMemcpy</code></h3>
+        <p><code>cudaMemcpy(void* dst, void* src, size_t count, cudaMemcpyKind kind)</code> — copie <code>count</code> octets. Les quatre directions possibles :</p>
+        <ul>
+            <li><code>cudaMemcpyHostToHost</code> &mdash; CPU vers CPU</li>
+            <li><code>cudaMemcpyHostToDevice</code> &mdash; CPU vers GPU</li>
+            <li><code>cudaMemcpyDeviceToHost</code> &mdash; GPU vers CPU</li>
+            <li><code>cudaMemcpyDeviceToDevice</code> &mdash; GPU vers GPU</li>
+        </ul>
+        <pre>// Hôte vers Device
+cudaMemcpy(Md, M, size, cudaMemcpyHostToDevice);
+
+// Device vers Hôte
+cudaMemcpy(M, Md, size, cudaMemcpyDeviceToHost);</pre>
+
+        <h3>Mémoire unifiée : <code>cudaMallocManaged</code></h3>
+        <p>La <strong>Unified Memory</strong> permet au CPU et au GPU d'utiliser les <strong>mêmes pointeurs</strong>. Le système de migration de pages gère automatiquement les transferts :</p>
+        <pre>float *M, *N, *P;
+cudaMallocManaged(&amp;M, bytes);
+cudaMallocManaged(&amp;N, bytes);
+cudaMallocManaged(&amp;P, bytes);
+
+MatrixMulKernel&lt;&lt;&lt;dimGrid, dimBlock&gt;&gt;&gt;(M, N, P, W);
+cudaDeviceSynchronize();
+
+// P est directement lisible sur CPU (sans D2H explicite)
+cudaFree(M); cudaFree(N); cudaFree(P);</pre>
+    </div>
+
+    <div class="card">
+        <h2>11. Kernels et configuration d'exécution</h2>
+
+        <h3>Syntaxe de lancement d'un kernel</h3>
+        <p>Un kernel est lancé avec la syntaxe triple chevrons <code>&lt;&lt;&lt; ... &gt;&gt;&gt;</code> :</p>
+        <pre>__global__ void KernelFunc(...);
+
+dim3 DimGrid(100, 50);          // 100 * 50 = 5000 blocs de threads
+dim3 DimBlock(4, 8, 8);         // 4 * 8 * 8 = 256 threads par bloc
+size_t SharedMemBytes = 64;     // 64 octets de mémoire partagée dynamique
+
+KernelFunc&lt;&lt;&lt; DimGrid, DimBlock, SharedMemBytes &gt;&gt;&gt;(...);</pre>
+        <p>Le nombre total de threads lancés :</p>
+        \[
+            N_{\text{total}} = N_{\text{blocs}} \times N_{\text{threads/bloc}}
+            = (100 \times 50) \times (4 \times 8 \times 8)
+            = 5000 \times 256 = 1\,280\,000 \text{ threads}
+        \]
+
+        <h3>Le type <code>dim3</code></h3>
+        <p><code>dim3</code> est un type vecteur d'entiers non signés à 3 composantes \((x, y, z)\). Les composantes non spécifiées valent 1 par défaut.</p>
+
+        <h3>Asynchronisme des kernels</h3>
+        <p>Tout lancement de kernel est <strong>asynchrone</strong> : le CPU reprend immédiatement la main après l'appel. Pour attendre la fin d'exécution sur le GPU :</p>
+        <pre>cudaDeviceSynchronize();   // bloque le CPU jusqu'à ce que le GPU ait terminé</pre>
+    </div>
+
+    <div class="card">
+        <h2>12. Compilation CUDA avec NVCC</h2>
+        <p>Tout fichier source contenant des extensions CUDA (<code>.cu</code>) doit être compilé avec <strong>NVCC</strong> (Nvidia CUDA Compiler Driver).</p>
+        <h3>Fonctionnement de NVCC</h3>
+        <ul>
+            <li>NVCC est un <strong>driver de compilation</strong> : il orchestre plusieurs outils.</li>
+            <li>Le code GPU est compilé vers du <strong>PTX</strong> (assembleur virtuel Nvidia), puis vers du code binaire pour l'architecture cible.</li>
+            <li>Le code CPU est compilé par le compilateur hôte standard (g++, cl...).</li>
+        </ul>
+        <h3>Bibliothèques requises</h3>
+        <ul>
+            <li><strong>cudart</strong> &mdash; bibliothèque d'exécution CUDA : fonctions comme <code>cudaMalloc</code>, <code>cudaMemcpy</code>, etc.</li>
+            <li><strong>cuda</strong> &mdash; bibliothèque cœur CUDA : interface de bas niveau avec le driver GPU.</li>
+        </ul>
+        <pre>nvcc -o mon_programme mon_programme.cu -lcudart
+nvcc -arch=sm_90 -o mon_programme mon_programme.cu   # pour Hopper</pre>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 &mdash; Calcul du nombre de threads</div>
+            <p>Un kernel CUDA est lancé avec la configuration : <code>dim3 DimGrid(100, 50)</code> et <code>dim3 DimBlock(4, 8, 8)</code>.</p>
+            <ol>
+                <li>Calculez le nombre total de blocs dans la grille.</li>
+                <li>Calculez le nombre de threads par bloc.</li>
+                <li>Calculez le nombre total de threads lancés.</li>
+                <li>Combien de warps (de 32 threads) y a-t-il par bloc ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \[N_{\text{blocs}} = 100 \times 50 = 5000\]
+                    \[N_{\text{threads/bloc}} = 4 \times 8 \times 8 = 256\]
+                    \[N_{\text{total}} = 5000 \times 256 = 1\,280\,000\]
+                    \[N_{\text{warps/bloc}} = \frac{256}{32} = 8\]
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 &mdash; Index global d'un thread</div>
+            <p>Considérez un kernel 1D traitant un tableau de taille \(N = 1\,000\,000\). La configuration de lancement est : <code>DimBlock(256)</code>.</p>
+            <ol>
+                <li>Écrivez la formule de l'index global \(i\) d'un thread.</li>
+                <li>Quel est le nombre minimal de blocs nécessaires pour couvrir \(N = 1\,000\,000\) éléments ?</li>
+                <li>Pourquoi faut-il ajouter une vérification <code>if (i &lt; N)</code> dans le kernel ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \[i = \text{blockIdx.x} \times \text{blockDim.x} + \text{threadIdx.x}\]
+                    \[N_{\text{blocs}} = \left\lceil \frac{N}{\text{blockDim.x}} \right\rceil = \left\lceil \frac{1\,000\,000}{256} \right\rceil = 3907 \text{ blocs}\]
+                    Le dernier bloc contient des threads "en trop" (index &gt; N) qui ne doivent pas accéder à la mémoire.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 &mdash; Gestion mémoire CUDA explicite</div>
+            <p>Écrivez le code C/CUDA complet (sans le kernel) pour :</p>
+            <ol>
+                <li>Allouer sur le GPU un tableau de \(N = 512\) flottants simple précision.</li>
+                <li>Copier un tableau hôte <code>float h_A[512]</code> (déjà initialisé) vers le device.</li>
+                <li>Après exécution du kernel, copier le résultat du device vers <code>float h_B[512]</code>.</li>
+                <li>Libérer la mémoire GPU.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    <pre>float *d_A;
+int size = 512 * sizeof(float);
+cudaMalloc((void**)&amp;d_A, size);
+cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
+// ... kernel ...
+cudaMemcpy(h_B, d_A, size, cudaMemcpyDeviceToHost);
+cudaFree(d_A);</pre>
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 &mdash; Qualificateurs de fonctions CUDA</div>
+            <p>Pour chacune des fonctions suivantes, indiquez le qualificateur CUDA approprié et justifiez :</p>
+            <ol>
+                <li>Une fonction qui calcule \(\sqrt{x}\) et est appelée depuis un kernel uniquement.</li>
+                <li>Un kernel de multiplication de matrices lancé depuis le CPU.</li>
+                <li>Une fonction de lecture de fichier appelée depuis le programme principal sur CPU.</li>
+                <li>Une fonction d'addition de vecteurs exécutée sur le GPU et appelée depuis un autre kernel.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    1. <code>__device__</code> : exécutée et appelée depuis le device.<br>
+                    2. <code>__global__</code> : exécutée sur device, appelée depuis host.<br>
+                    3. <code>__host__</code> (par défaut) : exécutée et appelée depuis le host.<br>
+                    4. <code>__device__</code> : exécutée et appelée depuis le device.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 &mdash; Mémoire unifiée vs explicite</div>
+            <p>Comparez les deux approches de gestion mémoire en CUDA :</p>
+            <ol>
+                <li>Réécrivez le code de l'Exercice 3 en utilisant <code>cudaMallocManaged</code>. Que change-t-il ?</li>
+                <li>Après le lancement du kernel, pourquoi faut-il appeler <code>cudaDeviceSynchronize()</code> avant d'accéder au résultat sur CPU avec la mémoire unifiée ?</li>
+                <li>Citez un avantage et un inconvénient de la mémoire unifiée par rapport à la gestion explicite.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Avec <code>cudaMallocManaged</code>, on supprime les <code>cudaMemcpy</code> explicites. <code>cudaDeviceSynchronize()</code> garantit que le GPU a terminé avant que le CPU lise les résultats. Avantage : code plus simple. Inconvénient : migrations de pages potentiellement coûteuses.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 &mdash; Addition de vecteurs avec CUDA</div>
+            <p>On souhaite calculer \(\mathbf{C} = \mathbf{A} + \mathbf{B}\) pour deux vecteurs de taille \(N\).</p>
+            <ol>
+                <li>Écrivez le kernel CUDA <code>vecAdd</code> qui effectue \(C[i] = A[i] + B[i]\).</li>
+                <li>Proposez une configuration de lancement pour \(N = 100\,000\) avec des blocs de 256 threads. Combien de blocs ?</li>
+                <li>Avec \(B = 1792\) Go/s et 3 accès mémoire par élément (2 lectures + 1 écriture), calculez le débit maximal théorique pour \(N = 10^8\) éléments doubles (8 octets).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    <pre>__global__ void vecAdd(float* A, float* B, float* C, int N) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i &lt; N) C[i] = A[i] + B[i];
+}</pre>
+                    \[N_{\text{blocs}} = \left\lceil \frac{100\,000}{256} \right\rceil = 391 \text{ blocs}\]
+                    Données transférées : \(3 \times 10^8 \times 4 = 1{,}2\) Go.
+                    Temps minimal : \(t = \frac{1{,}2}{1792} \approx 0{,}67\) ms.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 &mdash; Comparaison GPU (analyse de données)</div>
+            <p>À partir des données de comparaison entre la Radeon RX 9070 XT et la GeForce RTX 5090 :</p>
+            <ol>
+                <li>Calculez le ratio performance/prix (GFLOPS/$) en simple précision (SP) pour chaque GPU.</li>
+                <li>Calculez le ratio performance/watt (GFLOPS/W) en SP pour chaque GPU.</li>
+                <li>Pour une opération <em>memory-bound</em> avec \(I = 0{,}25\) FLOP/octet, calculez \(P = I \times B\) pour chaque GPU. Comparez au GFLOPS SP réel.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    RX 9070 XT : \(\frac{48700}{599} \approx 81{,}3\) GFLOPS/$ ; \(\frac{48700}{304} \approx 160\) GFLOPS/W.<br>
+                    RTX 5090 : \(\frac{104800}{1999} \approx 52{,}4\) GFLOPS/$ ; \(\frac{104800}{575} \approx 182\) GFLOPS/W.<br>
+                    Performance limitée par la BW :
+                    \[P_{\text{RX}} = 0{,}25 \times 640 = 160 \text{ GFLOPS}\]
+                    \[P_{\text{RTX}} = 0{,}25 \times 1792 = 448 \text{ GFLOPS}\]
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 &mdash; Modèles de programmation : choix de technologie</div>
+            <p>Pour chacun des scénarios suivants, choisissez le modèle de programmation GPU le plus adapté (CUDA, OpenACC, OpenCL) et justifiez :</p>
+            <ol>
+                <li>Un laboratoire utilisant exclusivement des GPU Nvidia H100 pour simuler des écoulements fluides (CFD). La performance maximale est critique.</li>
+                <li>Un chercheur qui dispose d'un cluster hétérogène avec des GPU AMD et Nvidia et veut un seul code source portable.</li>
+                <li>Un ingénieur qui veut paralléliser rapidement un code Fortran existant avec un minimum de modifications, sur GPU Nvidia.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    1. <strong>CUDA</strong> : performances optimales sur Nvidia, contrôle fin de la mémoire et des kernels.<br>
+                    2. <strong>OpenCL</strong> : standard ouvert, portable sur AMD, Nvidia et Intel sans recompilation spécifique.<br>
+                    3. <strong>OpenACC</strong> : directives de compilation proches d'OpenMP, portage rapide de codes Fortran/C existants avec peu de modifications.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours &middot; 2026</footer>
+</div>
+</body>
+</html>

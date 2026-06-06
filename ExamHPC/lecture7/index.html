@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 7 : Optimisation</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em;font-family:monospace}
+        pre{background:#f5f5f5;padding:1rem;border-radius:8px;overflow-x:auto;font-size:.88em;margin:.5rem 0}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 7 : Optimisation</h1>
+        <p class="subtitle">Résumé complet en français &mdash; High Performance Computing</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Introduction à l'optimisation des programmes séquentiels</h2>
+        <p>
+            L'<strong>optimisation</strong> désigne l'ensemble des modifications apportées au code source, ou lors de la traduction du code source en langage machine, dans le but d'obtenir les caractéristiques souhaitées du programme résultant (vitesse d'exécution, taille en mémoire, consommation énergétique, etc.).
+        </p>
+        <h3>Deux facteurs principaux motivant l'optimisation</h3>
+        <ul>
+            <li><strong>La taille du code</strong> : réduire l'empreinte mémoire du binaire produit.</li>
+            <li><strong>La vitesse du code (performance)</strong> : accélérer le temps d'exécution.</li>
+        </ul>
+        <h3>Comment obtenir de meilleures performances ?</h3>
+        <p>L'amélioration des performances est le plus souvent atteinte par :</p>
+        <ul>
+            <li>La <strong>réduction du nombre d'opérations</strong> effectuées.</li>
+            <li>L'<strong>optimisation des accès mémoire</strong> (localité spatiale et temporelle).</li>
+            <li>L'<strong>exploitation efficace du pipeline</strong> du processeur, notamment par la suppression des dépendances entre instructions.</li>
+        </ul>
+        <h3>Méthodes d'optimisation disponibles</h3>
+        <ul>
+            <li>Manuellement, en appliquant des techniques classiques directement dans le code source.</li>
+            <li>Via les <strong>options d'optimisation du compilateur</strong> (par exemple les niveaux <code>-O1</code>, <code>-O2</code>, <code>-O3</code> de GCC).</li>
+            <li>En déléguant certaines parties du calcul à des <strong>bibliothèques optimisées</strong> (BLAS, LAPACK, Intel MKL, etc.).</li>
+        </ul>
+        <p>
+            Dans les cas favorables, l'optimisation d'un programme séquentiel peut réduire le temps d'exécution de <em>plusieurs ordres de grandeur</em>.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>2. Techniques d'optimisation sur les variables et les expressions</h2>
+        <p>Ces techniques classiques sont réalisables manuellement et sont également implémentées par les compilateurs optimisants.</p>
+
+        <h3>Évaluation des constantes (<em>Constant Folding</em>)</h3>
+        <p>Le compilateur calcule à la compilation les expressions dont toutes les opérandes sont des constantes connues.</p>
+        <pre>i = 320 * 200 * 32;   // calculé une seule fois à la compilation</pre>
+
+        <h3>Propagation de copies (<em>Copy Propagation</em>)</h3>
+        <p>Lorsqu'une variable est simplement une copie d'une autre, on substitue directement la variable d'origine :</p>
+        <pre>y = x;
+z = 3 + y;    =>    z = 3 + x;   // y est éliminée</pre>
+
+        <h3>Réduction de puissance (<em>Strength Reduction</em>)</h3>
+        <p>On remplace une opération coûteuse par une opération équivalente moins coûteuse :</p>
+        <pre>y = x * 3;    =>    y = x + x + x;</pre>
+        <p>Plus généralement, une multiplication par une puissance de 2 peut être remplacée par un décalage de bits : \( x \times 4 \;\equiv\; x \ll 2 \).</p>
+
+        <h3>Renommage de variables (<em>Variable Renaming</em>)</h3>
+        <p>Raccourcir le nom d'une variable très utilisée pour améliorer la lisibilité et parfois aider le compilateur :</p>
+        <pre>variable = 4;    =>    v = 4;</pre>
+
+        <h3>Élimination des sous-expressions communes (<em>Common Subexpression Elimination — CSE</em>)</h3>
+        <p>Lorsqu'une même sous-expression apparaît plusieurs fois, on la calcule une seule fois et on stocke le résultat dans une variable temporaire :</p>
+        <pre>a = b * c + g;          tmp = b * c;
+d = b * c * e;    =>    a = tmp + g;
+                        d = tmp * e;</pre>
+        <p>Ici, le produit \( b \times c \) n'est calculé qu'une seule fois au lieu de deux.</p>
+    </div>
+
+    <div class="card">
+        <h2>3. Techniques d'optimisation des boucles</h2>
+        <p>Les boucles sont le cœur des programmes intensifs en calcul. Leur optimisation a un impact majeur sur les performances globales.</p>
+
+        <h3>Simplification des variables d'induction (<em>Induction Variable Simplification</em>)</h3>
+        <p>À chaque itération d'une boucle, certaines variables évoluent de façon prévisible (linéaire). On peut simplifier leur mise à jour en évitant des recalculs inutiles.</p>
+
+        <h3>Sortie de code invariant de boucle (<em>Loop Invariant Code Motion</em>)</h3>
+        <p>Une expression dont la valeur ne change pas d'une itération à l'autre est calculée hors de la boucle :</p>
+        <pre>// Avant
+for (int i = 0; i &lt; n; i++) {
+    x = y + z;
+    a[i] = 6 * i + x * x;
+}
+
+// Après : x et x*x sont invariants
+x = y + z;
+t1 = x * x;
+for (int i = 0; i &lt; n; i++) {
+    a[i] = 6 * i + t1;
+}</pre>
+
+        <h3>Permutation de boucles (<em>Loop Interchange</em>)</h3>
+        <p>On échange l'ordre des boucles imbriquées pour améliorer la localité des accès mémoire :</p>
+        <pre>// Avant (accès colonnes)
+for i from 0 to 10
+  for j from 0 to 20
+    a[i,j] = i + j
+
+// Après (accès lignes, plus efficace)
+for j from 0 to 20
+  for i from 0 to 10
+    a[i,j] = i + j</pre>
+
+        <h3>Fusion de boucles (<em>Loop Fusion</em>)</h3>
+        <p>On regroupe plusieurs boucles ayant le même domaine d'itération en une seule :</p>
+        <pre>// Avant : deux boucles
+for (i = 0; i &lt; 100; i++) a[i] = 1;
+for (i = 0; i &lt; 100; i++) b[i] = 2;
+
+// Après : une seule boucle
+for (i = 0; i &lt; 100; i++) {
+    a[i] = 1;
+    b[i] = 2;
+}</pre>
+
+        <h3>Fission de boucle (<em>Loop Fission</em>)</h3>
+        <p>Inversement, on peut scinder une boucle en plusieurs boucles plus petites pour améliorer la localité des données ou faciliter la vectorisation.</p>
+
+        <h3>Déroulage de boucle (<em>Loop Unrolling</em>)</h3>
+        <p>On répète le corps de la boucle plusieurs fois par itération, réduisant le nombre de tests de condition et d'incréments :</p>
+        <pre>// Avant
+for (x = 0; x &lt; 100; x++) {
+    delete(x);
+}
+
+// Après (déroulage par 2)
+for (x = 0; x &lt; 100; x += 2) {
+    delete(x);
+    delete(x+1);
+}</pre>
+        <p>Si la boucle effectue \( N \) itérations et qu'on déroule par un facteur \( k \), le nombre de tests de condition passe de \( N \) à \(\frac{N}{k}\).</p>
+
+        <h3>Découpage en blocs (<em>Blocking / Tiling</em>)</h3>
+        <p>On divise l'espace d'itération en blocs de taille \( B \) pour que les données d'un bloc tiennent dans le cache :</p>
+        <pre>// Avant
+for (i = 0; i &lt; N; ++i) { ... }
+
+// Après (blocking avec taille de bloc B)
+for (j = 0; j &lt; N; j += B)
+  for (i = j; i &lt; min(N, j+B); ++i) { ... }</pre>
+        <p>Cette technique est particulièrement efficace pour les opérations sur des matrices, comme la multiplication matricielle.</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Optimisation au niveau des instructions</h2>
+
+        <h3>Suppression du code mort (<em>Dead Code Removal</em>)</h3>
+        <p>Le compilateur détecte et supprime les instructions dont le résultat n'est jamais utilisé, ainsi que le code inaccessible :</p>
+        <pre>int a = 24;
+int b = 25;   /* Affectation à une variable morte */
+int c;
+c = a &lt;&lt; 2;
+return c;
+b = 24;       /* Code inaccessible */
+return 0;</pre>
+        <p>Ici, <code>b = 25</code> est mort car <code>b</code> n'est jamais lu, et <code>b = 24; return 0;</code> est inaccessible après <code>return c;</code>.</p>
+
+        <h3>Élimination de la récursion terminale (<em>Tail-Recursion Elimination</em>)</h3>
+        <p>Lorsqu'un appel récursif est la dernière opération d'une fonction (<em>tail call</em>), on peut le remplacer par un saut simple :</p>
+        <pre>// Fonction avec appel terminal
+function foo(data) {
+    a(data);
+    return b(data);   // tail call -> transformé en saut
+}</pre>
+
+        <h3>Inlining de fonctions (<em>Function Inlining</em>)</h3>
+        <p>On remplace un appel de fonction par le corps de cette fonction, supprimant ainsi le coût du mécanisme d'appel :</p>
+        <pre>// Définition inline
+inline int max(int a, int b) {
+    return (a &gt; b) ? a : b;
+}
+a = max(x, y);    =>    a = (x &gt; y) ? x : y;</pre>
+
+        <h3>Préchargement logiciel (<em>Software Prefetching</em>)</h3>
+        <p>On insère des instructions de préchargement pour demander au processeur de charger des données en cache <em>avant</em> qu'elles soient nécessaires, masquant ainsi la latence mémoire :</p>
+        <pre>for (i = 0; i &lt; N; i++) {
+    fetch(&amp;a[i+1]);   // précharge a[i+1] pour l'itération suivante
+    fetch(&amp;b[i+1]);
+    sum += a[i] * b[i];
+}</pre>
+
+        <h3>Pipeline logiciel (<em>Software Pipelining</em>)</h3>
+        <p>Technique consistant à réordonner les instructions de plusieurs itérations de boucle pour que des instructions de différentes itérations s'exécutent en parallèle dans le pipeline du processeur, évitant les bulles de pipeline dues aux dépendances.</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Compilateurs optimisants</h2>
+        <p>L'optimisation par le compilateur se déroule à la compilation, généralement <strong>après l'analyse syntaxique (parsing)</strong> et <strong>avant la génération du code objet</strong>. Le compilateur opère sur une représentation intermédiaire du programme telle que des arbres syntaxiques, du code à trois adresses, etc.</p>
+
+        <h3>Analyse du programme par le compilateur</h3>
+        <p>Le parsing permet d'établir la structure du programme en analysant :</p>
+        <ul>
+            <li><strong>Le flot de contrôle</strong> (<em>control flow</em>) : la possibilité de transférer le contrôle d'un point du code à un autre (branchements, sauts).</li>
+            <li><strong>Le flot de données</strong> (<em>data flow</em>) : la détermination des endroits où une variable est définie et des endroits où cette valeur est utilisée.</li>
+        </ul>
+
+        <h3>Bloc de base (<em>Basic Block</em>)</h3>
+        <p>Un bloc de base est une séquence maximale d'instructions telle que :</p>
+        <ul>
+            <li>Si une instruction du bloc est exécutée, <strong>toutes les autres</strong> le sont aussi.</li>
+            <li>On <strong>ne peut pas sauter vers l'intérieur</strong> du bloc.</li>
+            <li>On <strong>ne peut pas sortir</strong> du milieu du bloc (une instruction de saut est la dernière).</li>
+        </ul>
+
+        <h3>Exemple de code intermédiaire</h3>
+        <pre>while (j &lt; n) {
+    k = k + 2j;
+    m = 2j;
+    j++;
+}</pre>
+        <p>traduit en code à trois adresses :</p>
+        <pre>A:
+  t1 := j
+  t2 := n
+  t3 := t1 &lt; t2
+  jmp (B) t3      // si j &lt; n, aller en B
+  jmp (C)
+B:
+  t4 := k
+  t5 := j
+  t6 := t5 * 2
+  t7 := t4 + t6
+  k  := t7        // k = k + 2j
+  t8 := j
+  t9 := t8 * 2
+  m  := t9        // m = 2j
+  jmp (A)</pre>
+
+        <h3>Options typiques du compilateur (GCC)</h3>
+        <table>
+            <thead>
+                <tr><th>Niveau / Option</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>-O0</code></td><td>Aucune optimisation (débogage facilité)</td></tr>
+                <tr><td><code>-O1</code></td><td>Optimisations de base</td></tr>
+                <tr><td><code>-O2</code></td><td>Optimisations avancées sans modification de structure</td></tr>
+                <tr><td><code>-O3</code></td><td>Optimisations agressives (vectorisation, inlining, etc.)</td></tr>
+                <tr><td><code>-fstrength-reduce</code></td><td>Réduction de puissance dans les boucles</td></tr>
+                <tr><td><code>-fcse-follow-jumps</code></td><td>Élimination des sous-expressions communes avec sauts</td></tr>
+                <tr><td><code>-ffast-math</code></td><td>Optimisations mathématiques rapides (peut réduire la précision)</td></tr>
+                <tr><td><code>-funroll-loops</code></td><td>Déroulage automatique des boucles</td></tr>
+                <tr><td><code>-finline-functions</code></td><td>Inlining automatique des fonctions</td></tr>
+                <tr><td><code>-fomit-frame-pointer</code></td><td>Suppression du pointeur de cadre (libère un registre)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>6. Assembleur x86-64 / AMD64</h2>
+        <p>L'assembleur est le niveau le plus bas de représentation du code. Comprendre les instructions assembleur est essentiel pour analyser et optimiser finement le code généré.</p>
+
+        <h3>Catégories d'instructions x86-64</h3>
+        <table>
+            <thead>
+                <tr><th>Catégorie</th><th>Instructions</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Transfert de données</td>
+                    <td><code>mov</code>, <code>push</code>, <code>pop</code>, <code>ld</code>, <code>st</code></td>
+                    <td>Déplacement de données entre registres et mémoire</td>
+                </tr>
+                <tr>
+                    <td>Arithmétique et logique</td>
+                    <td><code>add</code>, <code>sub</code>, <code>mul</code>, <code>inc</code>, <code>dec</code>, <code>xor</code>, <code>and</code>, <code>or</code></td>
+                    <td>Opérations standard sur les entiers et les bits</td>
+                </tr>
+                <tr>
+                    <td>Calcul d'adresse</td>
+                    <td><code>leal</code></td>
+                    <td>Calcul d'adresse effective sans transfert mémoire</td>
+                </tr>
+                <tr>
+                    <td>Comparaison</td>
+                    <td><code>cmp</code></td>
+                    <td>Évaluation d'une expression conditionnelle (positionne les flags)</td>
+                </tr>
+                <tr>
+                    <td>Contrôle de flot</td>
+                    <td><code>jmp</code>, <code>jge</code>, <code>je</code>, <code>jl</code>, <code>call</code>, <code>ret</code></td>
+                    <td>Sauts conditionnels/inconditionnels, appels de procédures</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Calcul d'adresse mémoire</h3>
+        <p>En x86-64, l'adresse effective d'un opérande mémoire est calculée selon la formule :</p>
+        \[
+            \text{adresse} = \text{base} + \text{index} \times \text{scale} + \text{disp}
+        \]
+        <ul>
+            <li><strong>base</strong> et <strong>index</strong> : contenus de registres 64 bits.</li>
+            <li><strong>scale</strong> : facteur multiplicatif, valeur parmi \(\{1, 2, 4, 8\}\).</li>
+            <li><strong>disp</strong> : déplacement immédiat (constante).</li>
+        </ul>
+        <p>Notation AT&amp;T : <code>disp(base, index, scale)</code></p>
+
+        <h3>Registres disponibles en x86-64</h3>
+        <table>
+            <thead>
+                <tr><th>Taille</th><th>Registres principaux</th><th>Rôle notable</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>64 bits</td><td><code>%rax</code>, <code>%rbx</code>, <code>%rcx</code>, …</td><td><code>%rbp</code> (frame pointer), <code>%rsp</code> (stack pointer)</td></tr>
+                <tr><td>32 bits</td><td><code>%eax</code>, <code>%ebx</code>, <code>%ecx</code>, …</td><td><code>%ebp</code>, <code>%esp</code></td></tr>
+                <tr><td>16 bits</td><td><code>%ax</code>, <code>%bx</code>, …</td><td>Moitié basse de <code>%eax</code>, etc.</td></tr>
+                <tr><td>8 bits</td><td><code>%ah</code>, <code>%al</code>, …</td><td>Octets haut/bas de <code>%ax</code></td></tr>
+                <tr><td>SSE (128 bits)</td><td><code>%xmm0</code> – <code>%xmm15</code></td><td>Opérations SIMD vectorielles</td></tr>
+                <tr><td>AVX (256 bits)</td><td><code>%ymm0</code> – <code>%ymm15</code></td><td>SIMD étendu (AVX/AVX2)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Syntaxe AT&amp;T (GNU Assembler)</h3>
+        <ul>
+            <li>Le nom de la commande contient en <strong>dernière lettre le type d'argument</strong> (ex. : <code>movl</code> pour 32 bits, <code>movq</code> pour 64 bits).</li>
+            <li>La <strong>source précède la destination</strong> : <code>movl $5, %eax</code> place 5 dans <code>%eax</code>.</li>
+            <li>Les arguments immédiats sont <strong>précédés du symbole <code>$</code></strong>.</li>
+            <li>Les noms de registres sont <strong>précédés du signe <code>%</code></strong>.</li>
+            <li>Les instructions du coprocesseur en virgule flottante <strong>commencent par la lettre <code>f</code></strong>.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>7. Synthèse : choisir la bonne technique</h2>
+        <table>
+            <thead>
+                <tr><th>Niveau</th><th>Techniques principales</th><th>Impact typique</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Variables &amp; expressions</td>
+                    <td>Constant folding, copy propagation, strength reduction, CSE</td>
+                    <td>Réduction du nombre d'opérations</td>
+                </tr>
+                <tr>
+                    <td>Boucles</td>
+                    <td>Invariant code motion, interchange, fusion, unrolling, blocking</td>
+                    <td>Amélioration de la localité cache et du pipeline</td>
+                </tr>
+                <tr>
+                    <td>Instructions</td>
+                    <td>Dead code removal, tail-recursion, inlining, prefetching, pipelining</td>
+                    <td>Réduction de la latence et du coût des appels</td>
+                </tr>
+                <tr>
+                    <td>Compilateur</td>
+                    <td>Niveaux -O1/-O2/-O3, vectorisation SIMD, parallélisation OpenMP</td>
+                    <td>Automatisation des techniques ci-dessus</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 &mdash; Constant Folding et Strength Reduction</div>
+            <p>Appliquez les techniques de <em>constant folding</em> et de <em>strength reduction</em> aux expressions suivantes :</p>
+            <ol>
+                <li><code>result = 1024 * 768 * 4;</code></li>
+                <li><code>y = x * 8;</code></li>
+                <li><code>z = x * 2 + x * 2;</code></li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Pour (1) : le compilateur peut calculer \( 1024 \times 768 \times 4 = 3\,145\,728 \) à la compilation. Pour (2) : multiplier par une puissance de 2 est équivalent à un décalage de bits : \( x \times 8 = x \ll 3 \). Pour (3) : utilisez d'abord la CSE puis la strength reduction.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 &mdash; Élimination des sous-expressions communes (CSE)</div>
+            <p>Appliquez la technique CSE au code suivant :</p>
+            <pre>a = x * y + z;
+b = x * y - z;
+c = (x * y) * (x * y);</pre>
+            <p>Combien de multiplications sont économisées après optimisation ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Introduisez <code>tmp = x * y;</code> avant les trois lignes. Après optimisation, \( x \times y \) est calculé une seule fois. On passe de 4 multiplications à 2.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 &mdash; Sortie du code invariant de boucle</div>
+            <p>Identifiez et sortez les expressions invariantes du code suivant :</p>
+            <pre>int n = 100;
+double r = 3.14159;
+for (int i = 0; i &lt; n; i++) {
+    double aire = r * r * 3.14159;
+    result[i] = aire * i;
+}</pre>
+            <p>Réécrivez la boucle optimisée et expliquez combien de multiplications sont économisées pour \( n = 100 \).</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    <code>aire</code> ne dépend pas de <code>i</code> : on calcule <code>aire = r * r * 3.14159;</code> une seule fois avant la boucle. On économise \( 2 \times (n - 1) = 198 \) multiplications pour \( n = 100 \).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 &mdash; Déroulage de boucle</div>
+            <p>Déroulez la boucle suivante par un facteur 4, puis calculez le nombre de tests de condition avant et après pour \( N = 1000 \) :</p>
+            <pre>for (int i = 0; i &lt; N; i++) {
+    somme += tableau[i];
+}</pre>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Avant déroulage : \( N \) tests. Après déroulage par \( k \) : \(\frac{N}{k}\) tests. Pour \( N = 1000 \) et \( k = 4 \) : on passe de 1000 à 250 tests.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 &mdash; Permutation de boucles et localité mémoire</div>
+            <p>Soit une matrice \( A \) de taille \( n \times n \) stockée en ordre ligne-majeur. Analysez les deux versions :</p>
+            <pre>// Version 1
+for (int i = 0; i &lt; n; i++)
+  for (int j = 0; j &lt; n; j++)
+    sum += A[i][j];
+
+// Version 2
+for (int j = 0; j &lt; n; j++)
+  for (int i = 0; i &lt; n; i++)
+    sum += A[i][j];</pre>
+            <p>Laquelle est plus efficace en termes d'accès cache ? Justifiez par la formule d'adressage : \(\text{base} + (i \times n + j) \times \text{sizeof(type)}\).</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    En version 1, <code>j</code> varie rapidement : les accès sont consécutifs en mémoire (localité spatiale excellente). En version 2, <code>i</code> varie rapidement : les accès sautent de \( n \times \text{sizeof(type)} \) octets, provoquant de nombreux cache misses. La version 1 est préférable.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 &mdash; Blocs de base et code intermédiaire</div>
+            <p>Soit le programme suivant :</p>
+            <pre>int i = 0;
+while (i &lt; 10) {
+    a[i] = i * 2;
+    i++;
+}</pre>
+            <ol>
+                <li>Traduisez ce code en code intermédiaire à trois adresses.</li>
+                <li>Identifiez les blocs de base dans le code intermédiaire obtenu.</li>
+                <li>Appliquez la simplification de variable d'induction pour éliminer la multiplication.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    La variable d'induction est <code>i</code> ; son double <code>t = i * 2</code> peut être maintenu par simple addition <code>t += 2</code> à chaque itération (strength reduction sur variable d'induction).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 &mdash; Inlining et élimination de code mort</div>
+            <p>Analysez le code suivant et appliquez successivement l'inlining puis l'élimination du code mort :</p>
+            <pre>inline int cube(int x) {
+    return x * x * x;
+}
+
+int calcul(int n) {
+    int a = 5;
+    int b = 10;   // jamais utilisé après
+    int r = cube(n);
+    int s = cube(2);   // constante
+    return r;
+    int t = a + r;     // code inaccessible
+}</pre>
+            <p>Écrivez la version optimisée finale de <code>calcul</code>.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Après inlining : <code>cube(n)</code> devient <code>n*n*n</code> et <code>cube(2)</code> devient <code>8</code>. Ensuite : <code>b</code> est mort, <code>s = 8</code> est mort, <code>t = a + r</code> est inaccessible. La version finale est : <code>int calcul(int n) { return n * n * n; }</code>
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 &mdash; Options du compilateur GCC</div>
+            <p>Pour chacune des situations suivantes, indiquez quelle option GCC est la plus appropriée :</p>
+            <ol>
+                <li>Vous souhaitez que le compilateur remplace automatiquement <code>y = x * 3</code> par <code>y = x + x + x</code> dans les boucles.</li>
+                <li>Vous avez une boucle <code>for</code> simple et souhaitez que le compilateur la déroule automatiquement.</li>
+                <li>Vous voulez que les petites fonctions soient intégrées directement à leurs sites d'appel.</li>
+                <li>Vous travaillez sur un programme de calcul scientifique et acceptez une légère perte de précision IEEE 754 pour gagner en vitesse.</li>
+                <li>Vous voulez activer la vectorisation automatique et la parallélisation (niveau d'optimisation le plus élevé).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (1) <code>-fstrength-reduce</code> ; (2) <code>-funroll-loops</code> ; (3) <code>-finline-functions</code> ; (4) <code>-ffast-math</code> ; (5) <code>-O3</code> (complétable avec <code>-fopenmp</code> pour le parallélisme).
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours &middot; 2026</footer>
+</div>
+</body>
+</html>

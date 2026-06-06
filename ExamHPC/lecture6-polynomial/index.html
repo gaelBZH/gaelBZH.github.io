@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 6b : Interpolation Polynomiale</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .theorem-box{background:#e8eaf6;border-left:4px solid var(--primary);border-radius:6px;padding:1rem 1.2rem;margin:1rem 0}
+        .theorem-box strong{color:var(--primary)}
+        .example-box{background:#f1f8e9;border-left:4px solid #558b2f;border-radius:6px;padding:1rem 1.2rem;margin:1rem 0}
+        .example-box strong{color:#33691e}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left;vertical-align:top}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em;font-family:monospace}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 6b : Interpolation Polynomiale</h1>
+        <p class="subtitle">Résumé complet en français — Mathématiques Numériques</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Théorème de Weierstrass et motivation</h2>
+        <div class="theorem-box">
+            <strong>Théorème 2.1 (Weierstrass, 1885)</strong>
+            <p>Pour toute fonction \(f \in \mathcal{C}([a,b])\) et tout \(\varepsilon > 0\), il existe un polynôme \(p\) tel que :</p>
+            \[
+                \max_{x \in [a,b]} |f(x) - p(x)| < \varepsilon
+            \]
+        </div>
+        <p>Ce théorème garantit qu'<strong>on peut approcher toute fonction continue par un polynôme</strong> avec une précision arbitraire. Cependant, il n'indique pas comment construire ce polynôme efficacement.</p>
+        <p>L'interpolation polynomiale propose une construction explicite : étant donné \(n+1\) paires \((x_i, f(x_i))\) avec \(x_0 < x_1 < \cdots < x_n\) (<strong>nœuds d'interpolation</strong>), on cherche un polynôme \(p_n \in \mathbb{P}_n\) tel que \(p_n(x_i) = f(x_i)\) pour tout \(i = 0, \ldots, n\).</p>
+    </div>
+
+    <div class="card">
+        <h2>2. Développement de Taylor et reste de Lagrange</h2>
+        <div class="theorem-box">
+            <strong>Théorème 2.2 (Formule de Taylor)</strong>
+            <p>Soit \(f \in \mathcal{C}^{n+1}([a,b])\) et \(x_0 \in [a,b]\). Alors pour tout \(x \in [a,b]\), il existe \(\xi\) entre \(x_0\) et \(x\) tel que :</p>
+            \[
+                f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \underbrace{\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}}_{\text{Reste de Lagrange } R_n(x)}
+            \]
+        </div>
+        <p>Le développement de Taylor autour de \(x_0\) fournit un polynôme d'interpolation <em>en un seul nœud</em>. L'erreur est bornée par le terme de reste.</p>
+        <div class="theorem-box">
+            <strong>Théorème de Rolle</strong>
+            <p>Si \(g \in \mathcal{C}^1([a,b])\) et \(g(a) = g(b) = 0\), alors il existe \(c \in (a,b)\) tel que \(g'(c) = 0\).</p>
+        </div>
+        <p>Ce théorème est utilisé de manière répétée pour établir l'existence du reste de Lagrange.</p>
+    </div>
+
+    <div class="card">
+        <h2>3. Existence et unicité du polynôme interpolateur</h2>
+        <p>Pour interpoler \(n+1\) points avec un polynôme de degré \(\leq n\), on cherche les coefficients \(a_0, \ldots, a_n\) de \(p_n(x) = a_0 + a_1 x + \cdots + a_n x^n\). Le système linéaire associé a pour matrice la <strong>matrice de Vandermonde</strong> :</p>
+        \[
+            V = \begin{pmatrix}
+                1 & x_0 & x_0^2 & \cdots & x_0^n \\
+                1 & x_1 & x_1^2 & \cdots & x_1^n \\
+                \vdots & \vdots & \vdots & & \vdots \\
+                1 & x_n & x_n^2 & \cdots & x_n^n
+            \end{pmatrix}
+        \]
+        <p>Son déterminant est :</p>
+        \[
+            \det(V) = \prod_{0 \leq i < j \leq n} (x_j - x_i)
+        \]
+        <div class="theorem-box">
+            <strong>Théorème 2.4 (Unicité)</strong>
+            <p>Si les nœuds \(x_0, x_1, \ldots, x_n\) sont <em>distincts</em>, il existe un <strong>unique</strong> polynôme \(p_n \in \mathbb{P}_n\) tel que \(p_n(x_i) = f(x_i)\) pour \(i = 0, \ldots, n\).</p>
+        </div>
+        <p>En pratique, la résolution du système de Vandermonde est <strong>numériquement instable</strong> pour \(n\) grand. On lui préfère les formes de Lagrange ou de Newton.</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Forme de Lagrange</h2>
+        <p>La <strong>forme de Lagrange</strong> exprime le polynôme interpolateur comme combinaison linéaire des <em>polynômes de base de Lagrange</em> :</p>
+        \[
+            p_n(x) = \sum_{k=0}^{n} f(x_k) \cdot \ell_k(x)
+        \]
+        <p>où le \(k\)-ième polynôme de base de Lagrange est :</p>
+        \[
+            \ell_k(x) = \prod_{\substack{j=0 \\ j \neq k}}^{n} \frac{x - x_j}{x_k - x_j}
+        \]
+        <p>Par construction : \(\ell_k(x_j) = \delta_{kj}\) (vaut 1 si \(k = j\), 0 sinon).</p>
+        <div class="example-box">
+            <strong>Exemple :</strong> Interpolation quadratique (\(n = 2\)) en \(x_0 = 0, x_1 = 1, x_2 = 2\) de \(f(x) = e^x\).
+            <p>\(\ell_0(x) = \frac{(x-1)(x-2)}{(0-1)(0-2)} = \frac{(x-1)(x-2)}{2}\)</p>
+            <p>\(\ell_1(x) = \frac{(x-0)(x-2)}{(1-0)(1-2)} = -x(x-2)\)</p>
+            <p>\(\ell_2(x) = \frac{(x-0)(x-1)}{(2-0)(2-1)} = \frac{x(x-1)}{2}\)</p>
+            <p>\(p_2(x) = 1 \cdot \frac{(x-1)(x-2)}{2} + e \cdot (-x(x-2)) + e^2 \cdot \frac{x(x-1)}{2}\)</p>
+        </div>
+        <p><strong>Avantage :</strong> formule explicite et élégante. <strong>Inconvénient :</strong> l'ajout d'un nœud nécessite de recalculer tous les \(\ell_k\).</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Forme de Newton et différences divisées</h2>
+        <p>La <strong>forme de Newton</strong> est plus commode pour l'ajout progressif de nœuds :</p>
+        \[
+            p_n(x) = \sum_{k=0}^{n} f[x_0, x_1, \ldots, x_k] \cdot \omega_k(x)
+        \]
+        <p>où \(\omega_0(x) = 1\) et \(\omega_k(x) = \prod_{j=0}^{k-1}(x - x_j)\).</p>
+        <p>Les <strong>différences divisées</strong> \(f[x_i, \ldots, x_{i+k}]\) sont définies récursivement :</p>
+        \[
+            f[x_i, \ldots, x_{i+k}] = \frac{f[x_{i+1}, \ldots, x_{i+k}] - f[x_i, \ldots, x_{i+k-1}]}{x_{i+k} - x_i}
+        \]
+        <p>avec \(f[x_i] = f(x_i)\) comme cas de base.</p>
+        <div class="theorem-box">
+            <strong>Théorème 2.5</strong>
+            <p>Le polynôme interpolateur de Newton est identique à celui de Lagrange : les deux représentent l'unique polynôme de degré \(\leq n\) interpolant les \(n+1\) nœuds.</p>
+        </div>
+        <div class="example-box">
+            <strong>Table des différences divisées</strong> pour \(f : x_0=1, f_0=1;\ x_1=2, f_1=3;\ x_2=4, f_2=3\) :
+            <table>
+                <thead><tr><th>\(x_i\)</th><th>\(f[x_i]\)</th><th>Ordre 1</th><th>Ordre 2</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>1</td><td></td><td></td></tr>
+                    <tr><td>2</td><td>3</td><td>\(\frac{3-1}{2-1}=2\)</td><td></td></tr>
+                    <tr><td>4</td><td>3</td><td>\(\frac{3-3}{4-2}=0\)</td><td>\(\frac{0-2}{4-1}=-\frac{2}{3}\)</td></tr>
+                </tbody>
+            </table>
+            <p>\(p_2(x) = 1 + 2(x-1) - \frac{2}{3}(x-1)(x-2)\)</p>
+        </div>
+        <p><strong>Avantage :</strong> ajouter un nœud coûte seulement le calcul d'une nouvelle colonne dans la table.</p>
+    </div>
+
+    <div class="card">
+        <h2>6. Erreur d'interpolation</h2>
+        <p>L'erreur commise en interpolant \(f \in \mathcal{C}^{n+1}([a,b])\) par \(p_n\) aux nœuds \(x_0, \ldots, x_n\) est :</p>
+        \[
+            f(x) - p_n(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \prod_{i=0}^{n}(x - x_i)
+        \]
+        <p>pour un certain \(\xi_x\) entre \(\min(x, x_0, \ldots, x_n)\) et \(\max(x, x_0, \ldots, x_n)\).</p>
+        <p>En posant \(M_{n+1} = \max_{x \in [a,b]} |f^{(n+1)}(x)|\), on obtient la borne d'erreur :</p>
+        \[
+            |f(x) - p_n(x)| \leq \frac{M_{n+1}}{(n+1)!} \left|\prod_{i=0}^{n}(x - x_i)\right|
+        \]
+        <h3>Phénomène de Runge</h3>
+        <p>Pour des nœuds équidistants et \(n\) grand, \(\left|\prod_{i=0}^{n}(x - x_i)\right|\) peut exploser aux bords de l'intervalle, rendant l'interpolation instable. Solution : utiliser les <strong>nœuds de Chebyshev</strong> :</p>
+        \[
+            x_k = \frac{a+b}{2} + \frac{b-a}{2} \cos\!\left(\frac{(2k+1)\pi}{2(n+1)}\right), \quad k = 0, \ldots, n
+        \]
+        <p>Ces nœuds minimisent \(\max_x \left|\prod_{i=0}^{n}(x - x_i)\right|\) sur \([a,b]\).</p>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 — Développement de Taylor</div>
+            <p>Calculez le développement de Taylor d'ordre 3 de \(f(x) = \cos(x)\) autour de \(x_0 = 0\) :</p>
+            <ol type="a">
+                <li>Donnez les coefficients \(\frac{f^{(k)}(0)}{k!}\) pour \(k = 0, 1, 2, 3\).</li>
+                <li>Écrivez le polynôme \(p_3(x)\).</li>
+                <li>Bornez l'erreur \(|f(x) - p_3(x)|\) pour \(x \in [-\pi/4, \pi/4]\).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(f^{(0)}(0) = 1\), \(f^{(1)}(0) = 0\), \(f^{(2)}(0) = -1\), \(f^{(3)}(0) = 0\). Donc \(p_3(x) = 1 - \frac{x^2}{2}\). Le reste est \(|R_3(x)| \leq \frac{M_4}{4!}|x|^4\) avec \(M_4 = 1\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 — Unicité et matrice de Vandermonde</div>
+            <p>Soit les nœuds \(x_0 = -1, x_1 = 0, x_2 = 1\).</p>
+            <ol type="a">
+                <li>Écrivez la matrice de Vandermonde \(V\).</li>
+                <li>Calculez \(\det(V)\) via la formule \(\prod_{i < j}(x_j - x_i)\).</li>
+                <li>Que se passerait-il si deux nœuds coïncidaient ? Quel impact sur l'unicité ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(\det(V) = (0-(-1))(1-(-1))(1-0) = 1 \times 2 \times 1 = 2 \neq 0\). Si deux nœuds coïncidaient, le déterminant serait nul et le système serait indéterminé (non-unicité).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 — Interpolation de Lagrange quadratique</div>
+            <p>Interpolez \(f(x) = \ln(x)\) aux nœuds \(x_0 = 1, x_1 = 2, x_2 = 4\).</p>
+            <ol type="a">
+                <li>Calculez les polynômes de base \(\ell_0(x)\), \(\ell_1(x)\), \(\ell_2(x)\).</li>
+                <li>Écrivez \(p_2(x)\).</li>
+                <li>Estimez \(p_2(3)\) et comparez à \(\ln(3) \approx 1{,}0986\).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(\ell_0 = \frac{(x-2)(x-4)}{(1-2)(1-4)} = \frac{(x-2)(x-4)}{3}\), \(\ell_1 = \frac{(x-1)(x-4)}{(2-1)(2-4)} = -\frac{(x-1)(x-4)}{2}\), \(\ell_2 = \frac{(x-1)(x-2)}{(4-1)(4-2)} = \frac{(x-1)(x-2)}{6}\).
+                    \(p_2(3) = 0 \cdot \frac{1}{3} + \ln(2)\cdot\frac{2}{2} + \ln(4)\cdot\frac{2}{6} \approx 1{,}1266\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 — Table des différences divisées</div>
+            <p>Construisez la table des différences divisées pour :</p>
+            <table>
+                <thead><tr><th>\(x_i\)</th><th>0</th><th>1</th><th>3</th><th>6</th></tr></thead>
+                <tbody><tr><td>\(f(x_i)\)</td><td>1</td><td>2</td><td>10</td><td>37</td></tr></tbody>
+            </table>
+            <ol type="a">
+                <li>Calculez toutes les différences divisées jusqu'à l'ordre 3.</li>
+                <li>Écrivez \(p_3(x)\) sous forme de Newton.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Ord. 1 : \(f[x_0,x_1] = 1\), \(f[x_1,x_2] = 4\), \(f[x_2,x_3] = 9\). Ord. 2 : \(f[x_0,x_1,x_2] = 1\), \(f[x_1,x_2,x_3] = 1\). Ord. 3 : \(f[x_0,\ldots,x_3] = 0\).
+                    \(p_3(x) = 1 + x + x(x-1) + 0 = 1 + x + x^2 - x = 1 + x^2\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 — Ajout d'un nœud (forme de Newton)</div>
+            <p>À partir de l'exercice 4, ajoutez le nœud \(x_4 = 10\) avec \(f(10) = 101\).</p>
+            <ol type="a">
+                <li>Mettez à jour la table des différences divisées (calculez uniquement la nouvelle colonne).</li>
+                <li>Écrivez \(p_4(x)\). Confirmez que \(p_4(10) = 101\).</li>
+                <li>Comparez l'effort de calcul avec la refactorisation complète en Lagrange.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Puisque le polynôme est \(1 + x^2\), on a \(f[x_0,\ldots,x_4] = 0\). \(p_4 = p_3 = 1 + x^2\), et \(p_4(10) = 1 + 100 = 101\). Avec Newton, seule une colonne est ajoutée ; Lagrange nécessite de recalculer tous les \(\ell_k\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 — Borne d'erreur d'interpolation</div>
+            <p>On interpole \(f(x) = e^x\) sur \([0,1]\) avec \(n+1 = 3\) nœuds équidistants \(x_0=0, x_1=\frac{1}{2}, x_2=1\).</p>
+            <ol type="a">
+                <li>Calculez \(M_3 = \max_{[0,1]}|f^{(3)}(x)|\).</li>
+                <li>Bornez \(\left|\prod_{i=0}^{2}(x - x_i)\right|\) pour \(x \in [0,1]\).</li>
+                <li>En déduire la borne d'erreur maximale \(\max_{x \in [0,1]}|f(x) - p_2(x)|\).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(M_3 = e^1 \approx 2{,}718\). Pour \(h = 1/2\) : \(|\omega_3(x)| \leq \frac{h^3}{4} = \frac{1}{32}\). Erreur \(\leq \frac{e}{3!} \cdot \frac{1}{32} = \frac{e}{192} \approx 0{,}0141\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 — Résolution du système de Vandermonde</div>
+            <p>Soit les nœuds \(x_0 = 0, x_1 = 1, x_2 = 2\) et les valeurs \(f(0) = 1, f(1) = 3, f(2) = 7\).</p>
+            <ol type="a">
+                <li>Écrivez et résolvez le système de Vandermonde pour trouver \(a_0, a_1, a_2\).</li>
+                <li>Vérifiez que \(p_2(x_i) = f(x_i)\) pour \(i = 0,1,2\).</li>
+                <li>Comparez avec le polynôme obtenu via Newton (différences divisées).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Système : \(a_0 = 1\), \(a_0 + a_1 + a_2 = 3\), \(a_0 + 2a_1 + 4a_2 = 7\). Solution : \(a_0=1, a_1=1, a_2=1\). Donc \(p_2(x) = 1 + x + x^2\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 — Nœuds équidistants vs nœuds de Chebyshev</div>
+            <p>Considérez l'interpolation de \(f(x) = \frac{1}{1+25x^2}\) (fonction de Runge) sur \([-1,1]\).</p>
+            <ol type="a">
+                <li>Pour \(n = 4\) (5 nœuds) équidistants, calculez \(\prod_{i=0}^{4}(x-x_i)\) en \(x = 0{,}9\).</li>
+                <li>Donnez les 5 nœuds de Chebyshev sur \([-1,1]\).</li>
+                <li>Expliquez qualitativement pourquoi les nœuds de Chebyshev réduisent le phénomène de Runge.</li>
+                <li>Quel lien y a-t-il entre les nœuds de Chebyshev et la minimisation de \(\max_x|\omega_{n+1}(x)|\) ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Nœuds Chebyshev pour \(n=4\) : \(x_k = \cos\!\left(\frac{(2k+1)\pi}{10}\right)\) pour \(k=0,\ldots,4\). Les nœuds de Chebyshev sont plus denses aux bords qu'au centre, contrebalançant la tendance des polynômes à osciller fortement près des extrémités.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours · 2026</footer>
+</div>
+</body>
+</html>
