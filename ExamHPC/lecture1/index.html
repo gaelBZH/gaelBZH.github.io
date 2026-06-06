@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 1 : Introduction au HPC</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .tag{display:inline-block;background:var(--border);color:var(--accent);border-radius:4px;padding:.1rem .5rem;font-size:.8rem;font-weight:600;margin-right:.4rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 1 : Introduction au HPC</h1>
+        <p class="subtitle">Calcul Haute Performance — Résumé complet en français</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Qu'est-ce que le Calcul Haute Performance (HPC) ?</h2>
+        <p>La <strong>performance</strong> est l'une des caractéristiques les plus importantes de tout logiciel, au même titre que la précision, la fiabilité, la sécurité, l'ergonomie et la facilité d'utilisation. Le domaine spécifique de l'informatique dédié à l'analyse et à l'atteinte de hautes performances est appelé <strong>High Performance Computing (HPC)</strong>.</p>
+        <p>L'objectif fondamental du HPC est de <strong>maximiser la vitesse de traitement</strong>, ce qui conduit à <strong>minimiser le temps de résolution</strong> d'un problème donné (le <em>time-to-solution</em>).</p>
+        <h3>Mesures de performance</h3>
+        <p>Selon le type de calcul, différentes métriques sont utilisées :</p>
+        <ul>
+            <li><strong>FLOPS</strong> (Floating-Point Operations Per Second) : la mesure la plus répandue en calcul scientifique.</li>
+            <li>Nombre d'instructions par seconde (IPS).</li>
+            <li>Nombre de transactions traitées par seconde.</li>
+            <li>Nombre de pixels affichés par seconde.</li>
+        </ul>
+        <table>
+            <thead><tr><th>Préfixe</th><th>Symbole</th><th>Valeur</th></tr></thead>
+            <tbody>
+                <tr><td>Mega</td><td>MFLOPS</td><td>\(10^6\) op/s</td></tr>
+                <tr><td>Giga</td><td>GFLOPS</td><td>\(10^9\) op/s</td></tr>
+                <tr><td>Tera</td><td>TFLOPS</td><td>\(10^{12}\) op/s</td></tr>
+                <tr><td>Peta</td><td>PFLOPS</td><td>\(10^{15}\) op/s</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>2. Axes d'optimisation en HPC</h2>
+        <p>Ce cours se concentre sur le langage <strong>C</strong>, langage de bas niveau proche du matériel, car les langages de haut niveau impliquent trop de complexité environnementale.</p>
+        <h3>Analyse des architectures matérielles</h3>
+        <ul>
+            <li>Processeurs : <strong>CPU</strong> (Central Processing Unit) et <strong>GPU</strong> (Graphics Processing Unit).</li>
+            <li>Système mémoire (hiérarchie de cache, mémoire principale).</li>
+            <li>Système de communication entre composants.</li>
+        </ul>
+        <h3>Optimisation des accès mémoire</h3>
+        <ul>
+            <li>Communication dans les systèmes à mémoire distribuée.</li>
+            <li>Accès à la mémoire partagée dans les systèmes multi-processeurs et multi-cœurs.</li>
+            <li>Fonctionnement de la hiérarchie mémoire (cache, mémoire locale, mémoire globale).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>3. Performance du matériel moderne</h2>
+        <h3>CPU (Processeurs)</h3>
+        <ul>
+            <li>Intel Core i9-13900K : ~1,11 TFLOPS</li>
+            <li>AMD Ryzen 9 7950X3D : ~1,3 TFLOPS</li>
+        </ul>
+        <h3>GPU (Cartes graphiques)</h3>
+        <ul>
+            <li>NVIDIA GeForce RTX 4090 : 82,58 TFLOPS (1,29 TFLOPS double précision)</li>
+            <li>NVIDIA GeForce RTX 3060 : 12,74 TFLOPS (199 GFLOPS DP)</li>
+            <li>AMD Radeon RX 7900 XTX : 61,42 TFLOPS (1 919 GFLOPS DP)</li>
+        </ul>
+        <h3>Consoles et smartphones</h3>
+        <ul>
+            <li>PS5 : 10,28 TFLOPS / PS5 Pro : 33,50 TFLOPS</li>
+            <li>Xbox Series X : 12 TFLOPS</li>
+            <li>iPhone 14 Pro Max : ~1 789 GFLOPS</li>
+            <li>Samsung Galaxy S23 Ultra : ~3 681 GFLOPS</li>
+        </ul>
+        <p><strong>Observation clé :</strong> les GPU modernes offrent une puissance de calcul (simple précision) entre <strong>10 et 80 fois supérieure</strong> à celle des CPU.</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Histoire du HPC</h2>
+        <h3>1964 — CDC 6600 : le premier supercalculateur</h3>
+        <p>Conçu par Seymour Cray, le <strong>CDC 6600</strong> est considéré comme le premier supercalculateur. Il se composait d'<strong>1 CPU principal</strong> et de <strong>10 processeurs périphériques</strong> dédiés aux entrées/sorties. Performance : <strong>3 MFLOPS</strong> (\(3 \times 10^6\) opérations/s).</p>
+        <p>L'évolution des supercalculateurs suit quatre grandes générations : ordinateurs matriciels (SIMD), vectoriels, massivement parallèles (MPP), et clusters.</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Ordinateurs Matriciels — Architecture SIMD</h2>
+        <p>Les ordinateurs matriciels reposent sur le paradigme <strong>SIMD</strong> (<em>Single Instruction, Multiple Data</em>) : une même instruction est appliquée simultanément à plusieurs données.</p>
+        <ul>
+            <li>Un <strong>processeur de contrôle séparé</strong> gère le séquencement des instructions.</li>
+            <li>Une <strong>matrice de processeurs élémentaires</strong> (PE) exécute les calculs en parallèle.</li>
+        </ul>
+        <p>Exemple historique : l'<strong>Illiac IV</strong> (1966–1976) — 64 processeurs élémentaires, ~100 MFLOPS.</p>
+        <h3>Applications contemporaines du SIMD</h3>
+        <ul>
+            <li>Instructions SIMD dans les processeurs modernes (SSE, AVX sur x86).</li>
+            <li>Traitement du signal numérique (DSP).</li>
+            <li><strong>GPU</strong> (modèle SPMD — Single Program, Multiple Data).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>6. Ordinateurs Vectoriels</h2>
+        <p>Les ordinateurs vectoriels introduisent des <strong>processeurs vectoriels</strong> capables d'opérer directement sur des tableaux de données (vecteurs) en une seule instruction.</p>
+        <h3>Types d'opérations vectorielles</h3>
+        <table>
+            <thead><tr><th>Notation</th><th>Description</th><th>Exemple</th></tr></thead>
+            <tbody>
+                <tr><td><code>op V → V</code></td><td>Opération unaire sur vecteur</td><td>\( a[i] := -b[i] \)</td></tr>
+                <tr><td><code>op V → S</code></td><td>Réduction (vecteur vers scalaire)</td><td>\( r := \max(b[i]) \)</td></tr>
+                <tr><td><code>V op V → V</code></td><td>Opération binaire vecteur–vecteur</td><td>\( a[i] := b[i] + c[i] \)</td></tr>
+                <tr><td><code>V op S → V</code></td><td>Opération vecteur–scalaire</td><td>\( a[i] := s \cdot b[i] \)</td></tr>
+            </tbody>
+        </table>
+        <p>Exemples historiques : <strong>Cray-1</strong> (1975) ~100 MFLOPS, <strong>Cray-2</strong> ~2 GFLOPS.</p>
+    </div>
+
+    <div class="card">
+        <h2>7. Pipeline et Architecture Superscalaire</h2>
+        <h3>Pipeline d'instructions</h3>
+        <p>Le pipeline permet d'exécuter plusieurs instructions en se chevauchant temporellement. Étapes classiques : IF (Instruction Fetch), ID (Decode), EX (Execute), MEM (Memory), WB (Write Back).</p>
+        <p>Avec un pipeline à \(k\) étages, pour \(n\) instructions :</p>
+        \[
+            \text{Accélération} = \frac{n \cdot k}{n + k - 1} \xrightarrow{n \to \infty} k
+        \]
+        <h3>Architecture Superscalaire</h3>
+        <p>L'architecture <strong>superscalaire</strong> lance <strong>plusieurs instructions simultanément</strong> à chaque cycle (degré \(d\)). Le débit maximal théorique est :</p>
+        \[
+            \text{Débit}_{max} = d \times f \quad \text{(instructions/seconde)}
+        \]
+    </div>
+
+    <div class="card">
+        <h2>8. Ordinateurs Massivement Parallèles (MPP)</h2>
+        <p>Les MPP (<em>Massively Parallel Processors</em>) regroupent des centaines à des milliers de processeurs indépendants avec leur propre mémoire locale, communiquant via un réseau d'interconnexion.</p>
+        <h3>IBM Blue Gene/L (2004–2007)</h3>
+        <table>
+            <thead><tr><th>Niveau</th><th>Composition</th><th>Performance</th></tr></thead>
+            <tbody>
+                <tr><td>Puce de calcul</td><td>2 processeurs, 4 MiB eDRAM</td><td>2,8 / 5,6 GF/s</td></tr>
+                <tr><td>Baie (Cabinet)</td><td>1 024 nœuds (2 048 CPUs)</td><td>2,9 / 5,7 TF/s</td></tr>
+                <tr><td>Système complet</td><td>65 536 nœuds (131 072 CPUs)</td><td>180 / 360 TF/s</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>9. Clusters</h2>
+        <p>Un <strong>cluster</strong> est un ensemble d'ordinateurs indépendants reliés par un réseau et intégrés par un logiciel spécialisé pour former un système de calcul unifié.</p>
+        <ul>
+            <li>Composé de <strong>milliers d'ordinateurs</strong> standard (PC ou serveurs).</li>
+            <li>Coût relativement faible : quelques milliers de dollars USD par nœud.</li>
+            <li>Architecture flexible et scalable.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>10. Le Classement TOP500</h2>
+        <p>Le <strong>TOP500</strong> classe les 500 systèmes les plus puissants au monde, publié deux fois par an depuis 1993. Basé sur le benchmark <strong>LINPACK</strong> (résolution d'un système linéaire par factorisation LU).</p>
+        <table>
+            <thead><tr><th>Rang</th><th>Système</th><th>\(R_{max}\) (PFlop/s)</th><th>Puissance (kW)</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td><strong>El Capitan</strong> — AMD EPYC 4e gén. + AMD Instinct MI300A (LLNL, USA)</td><td>1 809,00</td><td>29 685</td></tr>
+                <tr><td>2</td><td><strong>Frontier</strong> — AMD EPYC 3e gén. + AMD Instinct MI250X (Oak Ridge, USA)</td><td>1 353,00</td><td>24 607</td></tr>
+                <tr><td>3</td><td><strong>Aurora</strong> — Intel Xeon + Intel GPU Max (Argonne, USA)</td><td>1 012,00</td><td>38 698</td></tr>
+                <tr><td>4</td><td><strong>JUPITER Booster</strong> — NVIDIA GH200 (EuroHPC/FZJ, Allemagne)</td><td>1 000,00</td><td>15 794</td></tr>
+            </tbody>
+        </table>
+        <p><strong>Observation :</strong> El Capitan dépasse \(1{,}8 \times 10^{18}\) opérations/s — l'ère de l'<strong>informatique exascale</strong> est atteinte.</p>
+    </div>
+
+    <div class="card">
+        <h2>11. Synthèse — Évolution de la puissance de calcul</h2>
+        <table>
+            <thead><tr><th>Époque</th><th>Système</th><th>Performance</th><th>Technologie</th></tr></thead>
+            <tbody>
+                <tr><td>1964</td><td>CDC 6600</td><td>3 MFLOPS</td><td>1 CPU + 10 PP</td></tr>
+                <tr><td>1966–1976</td><td>Illiac IV</td><td>~100 MFLOPS</td><td>SIMD, 64 PE</td></tr>
+                <tr><td>1975</td><td>Cray-1</td><td>~100 MFLOPS</td><td>Vectoriel</td></tr>
+                <tr><td>1987</td><td>CM-2</td><td>~1 GFLOPS</td><td>MPP, 65 536 proc.</td></tr>
+                <tr><td>2004</td><td>IBM Blue Gene/L</td><td>280 TFLOPS</td><td>MPP, 65 536 nœuds</td></tr>
+                <tr><td>2024</td><td>El Capitan</td><td>1 809 PFLOPS</td><td>Cluster CPU+GPU</td></tr>
+            </tbody>
+        </table>
+        <p>En modélisant la croissance :</p>
+        \[
+            P(t) = P_0 \cdot 2^{\frac{t - t_0}{T_d}}
+        \]
+        <p>où \(T_d \approx 18\) mois est le temps de doublement. De 3 MFLOPS (1964) à 1 809 PFLOPS (2024), la performance a été multipliée par environ \(6 \times 10^{11}\).</p>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 — Conversion d'unités FLOPS</div>
+            <p>Un processeur effectue \(1{,}3 \times 10^{12}\) opérations en virgule flottante par seconde. Exprimez cette performance en GFLOPS, TFLOPS et PFLOPS. Combien de temps ce processeur mettrait-il à effectuer \(10^{15}\) opérations ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(1{,}3 \times 10^{12}\) FLOPS = 1 300 GFLOPS = 1,3 TFLOPS = 0,0013 PFLOPS. Temps = \(\frac{10^{15}}{1{,}3 \times 10^{12}} \approx 769\,\text{s} \approx 12{,}8\,\text{min}\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 — Accélération pipeline</div>
+            <p>Un processeur sans pipeline exécute chaque instruction en 5 cycles. Un pipeline à 5 étages est introduit.</p>
+            <ul>
+                <li>(a) Calculez l'accélération théorique pour \(n = 1\), \(n = 10\), et \(n = 1000\) instructions.</li>
+                <li>(b) Quelle est la limite de l'accélération quand \(n \to \infty\) ?</li>
+            </ul>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(S(n,k) = \frac{n \cdot k}{n + k - 1}\). Pour \(k=5\) : \(S(1) = \frac{5}{5} = 1\), \(S(10) = \frac{50}{14} \approx 3{,}57\), \(S(1000) = \frac{5000}{1004} \approx 4{,}98\). Limite : 5.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 — Opérations vectorielles</div>
+            <p>Soit \(\mathbf{b}, \mathbf{c} \in \mathbb{R}^n\) et \(s \in \mathbb{R}\). Identifiez le type de chaque opération :</p>
+            <ul>
+                <li>(a) \( a[i] := b[i] + c[i] \)</li>
+                <li>(b) \( a[i] := s \cdot b[i] \)</li>
+                <li>(c) \( r := \sum_{i=1}^{n} b[i] \)</li>
+                <li>(d) \( a[i] := b[i] + s \cdot c[i] \) (chaining)</li>
+            </ul>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) V op V → V, (b) V op S → V, (c) op V → S (réduction), (d) chaining de deux opérations.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 — SIMD vs Vectoriel</div>
+            <p>Comparez les architectures SIMD et vectorielles sur : (a) comment les données sont traitées en parallèle, (b) avantages des registres vectoriels, (c) exemple contemporain de chaque paradigme.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    SIMD : plusieurs PE en parallèle sur données différentes. Vectoriel : un PE avec registres longs via pipeline. Exemples modernes : SIMD → GPU/CUDA, Vectoriel → AVX-512 sur CPU.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 — Dimensionnement d'un cluster</div>
+            <p>On souhaite atteindre 1 PFLOPS avec des NVIDIA RTX 4090 (82,58 TFLOPS chacune). (a) Combien de nœuds au minimum (100 % d'efficacité) ? (b) Avec 75 % d'efficacité ? (c) Coût total si chaque nœud vaut 2 500 USD ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(N = \frac{P_{\text{cible}}}{\eta \cdot P_{\text{nœud}}}\). (a) \(\frac{1000}{82{,}58} \approx 13\) nœuds. (b) \(\frac{1000}{0{,}75 \times 82{,}58} \approx 17\) nœuds. (c) \(17 \times 2500 = 42\,500\) USD.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 — Croissance exponentielle</div>
+            <p>Avec \(P(t) = P_0 \cdot 2^{\frac{t-t_0}{T_d}}\), \(P_0 = 3\,\text{MFLOPS}\) en \(t_0 = 1964\), \(T_d = 18\,\text{mois}\) :</p>
+            <ul>
+                <li>(a) Calculez la performance prévue en 2004 et comparez à IBM Blue Gene/L (280 TFLOPS).</li>
+                <li>(b) Quel est le facteur de multiplication réel entre CDC 6600 (1964) et El Capitan (2024, 1 809 PFLOPS) ?</li>
+            </ul>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    1964→2004 = 480 mois = \(\frac{480}{18} \approx 26{,}7\) doublements → \(3 \times 10^6 \times 2^{26{,}7} \approx 2{,}6 \times 10^{14}\) FLOPS = 260 TFLOPS. Facteur réel : \(\frac{1{,}809 \times 10^{18}}{3 \times 10^6} = 6{,}03 \times 10^{11}\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 — Processeur superscalaire</div>
+            <p>Un processeur superscalaire de degré \(d = 4\) fonctionne à \(f = 3{,}5\,\text{GHz}\). (a) Débit maximal en GIPS ? (b) Si 30 % des instructions sont flottantes, estimez la puissance en GFLOPS. (c) Pourquoi le débit réel est-il inférieur au théorique ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) Débit max \(= 4 \times 3{,}5 = 14\,\text{GIPS}\). (b) \(14 \times 0{,}30 = 4{,}2\,\text{GFLOPS}\). (c) Aléas (hazards), défauts de cache, branchements mal prédits réduisent l'utilisation du pipeline.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 — GPU vs CPU</div>
+            <p>Comparez CPU Intel i9-13900K (1,11 TFLOPS) et GPU RTX 4090 (82,58 TFLOPS SP / 1,29 TFLOPS DP). (a) Facteur en simple précision ? (b) En double précision ? (c) Pour quel type d'application choisir le GPU / le CPU ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) \(\frac{82{,}58}{1{,}11} \approx 74\times\). (b) \(\frac{1{,}29}{1{,}11} \approx 1{,}16\times\) — quasi-égal en DP. GPU : ML, rendu, simulation physique massivement parallèle. CPU : code séquentiel, dépendances fortes, double précision critique.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours · 2026</footer>
+</div>
+</body>
+</html>

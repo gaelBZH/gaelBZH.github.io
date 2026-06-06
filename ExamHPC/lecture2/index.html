@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 2 : Processeurs</title>
+    <script>
+    MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #1a237e;
+            --accent: #1565c0;
+            --accent2: #0288d1;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --text: #212121;
+            --muted: #546e7a;
+            --border: #bbdefb;
+            --exercise-bg: #e3f2fd;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .container { max-width: 860px; margin: 0 auto; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--accent); text-decoration: none; font-weight: 600;
+            margin-bottom: 1.5rem; padding: 0.4rem 0.8rem;
+            border: 1.5px solid var(--accent); border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent); color: white; }
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--accent2));
+            color: white; border-radius: 16px; padding: 2.5rem 2rem;
+            margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(21,101,192,0.3);
+        }
+        .hero h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .hero .subtitle { opacity: 0.85; font-size: 1rem; }
+        .card {
+            background: var(--card-bg); border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 1.8rem 2rem; margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent);
+        }
+        .card h2 {
+            color: var(--primary); font-size: 1.2rem;
+            margin-bottom: 1rem; padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .card h3 { color: var(--accent); font-size: 1rem; margin: 1rem 0 0.5rem; }
+        .card p, .card li { margin-bottom: 0.6rem; }
+        .card ul, .card ol { padding-left: 1.5rem; }
+        .tag {
+            display: inline-block; background: var(--border);
+            color: var(--accent); border-radius: 4px;
+            padding: 0.1rem 0.5rem; font-size: 0.8rem;
+            font-weight: 600; margin-right: 0.4rem;
+        }
+        table {
+            width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.95rem;
+        }
+        th {
+            background: var(--accent); color: white;
+            padding: 0.6rem 1rem; text-align: left;
+        }
+        td {
+            padding: 0.55rem 1rem; border-bottom: 1px solid var(--border);
+        }
+        tr:nth-child(even) td { background: #f5f9ff; }
+        .pipeline-diagram {
+            font-family: monospace; font-size: 0.85rem;
+            background: #f8f9fa; border-radius: 8px;
+            padding: 1rem 1.2rem; overflow-x: auto;
+            margin: 0.8rem 0; border: 1px solid var(--border);
+            line-height: 1.9;
+        }
+        .pipeline-diagram .stage { display: inline-block; width: 52px; text-align: center; }
+        .exercises-section {
+            background: var(--exercise-bg); border-radius: 12px;
+            padding: 2rem; margin-top: 2rem;
+            border: 2px solid var(--border);
+        }
+        .exercises-section h2 {
+            color: var(--primary); font-size: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .exercise {
+            background: white; border-radius: 8px;
+            padding: 1.2rem 1.5rem; margin-bottom: 1rem;
+            border-left: 4px solid var(--accent2);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .exercise .num {
+            font-weight: 700; color: var(--accent);
+            font-size: 0.85rem; margin-bottom: 0.4rem;
+        }
+        details { margin-top: 0.8rem; }
+        summary {
+            cursor: pointer; color: var(--muted);
+            font-size: 0.9rem; font-weight: 600;
+        }
+        .hint { padding: 0.6rem 1rem; background: #fff8e1; border-radius: 6px; margin-top: 0.5rem; font-size: 0.9rem; }
+        footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        code {
+            background: #e8f0fe; color: #1a237e; padding: 0.1rem 0.4rem;
+            border-radius: 4px; font-size: 0.88rem; font-family: monospace;
+        }
+        pre.code-block {
+            background: #1e1e2e; color: #cdd6f4; border-radius: 8px;
+            padding: 1rem 1.2rem; overflow-x: auto; font-size: 0.82rem;
+            margin: 0.8rem 0; line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">&#8592; Retour à l'index</a>
+
+    <div class="hero">
+        <h1>Lecture 2 : Processeurs</h1>
+        <p class="subtitle">High Performance Computing &mdash; Résumé complet en français</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 1. Performance des ordinateurs                               -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>1. Performance des ordinateurs</h2>
+
+        <h3>Modèles de performance</h3>
+        <p>
+            Estimer le temps d'exécution d'une tâche nécessite un <em>modèle de performance</em>.
+            La performance se définit comme la vitesse d'exécution des tâches assignées au processeur.
+            Les deux métriques fondamentales sont :
+        </p>
+        <ul>
+            <li><strong>Nombre d'instructions par seconde</strong> (IPS) : débit global de traitement.</li>
+            <li>
+                <strong>CPI (Clocks Per Instruction)</strong> : nombre de cycles d'horloge nécessaires
+                à l'exécution d'une instruction. Son inverse est l'<strong>IPC (Instructions Per Cycle)</strong>,
+                qui mesure la « puissance » (patency) du processeur.
+            </li>
+        </ul>
+
+        <h3>Formule d'estimation du temps d'exécution</h3>
+        <p>Pour estimer le temps total d'exécution d'un programme, on doit connaître :</p>
+        <ol>
+            <li>Quelles instructions sont exécutées pour réaliser la tâche.</li>
+            <li>La durée de chaque instruction, exprimée en cycles (CPI de chaque instruction).</li>
+            <li>La fréquence d'horloge du processeur \( f \) (en Hz).</li>
+        </ol>
+        <p>Le temps d'exécution s'exprime formellement :</p>
+        \[
+            T = \frac{1}{f} \sum_{i} n_i \cdot \mathrm{CPI}_i
+        \]
+        <p>
+            où \( n_i \) est le nombre d'occurrences de l'instruction de type \( i \) et
+            \( \mathrm{CPI}_i \) est son coût en cycles.
+        </p>
+
+        <h3>Paramètres matériels de base</h3>
+        <ul>
+            <li><strong>Fréquence d'horloge</strong> \( f \) : cadence du processeur.</li>
+            <li>
+                <strong>IPC<sub>max</sub></strong> : nombre maximum d'instructions terminées par cycle
+                (peut être inférieur à 1 pour les processeurs scalaires simples).
+            </li>
+            <li><strong>Bande passante du bus mémoire-CPU</strong>.</li>
+        </ul>
+
+        <h3>Pourquoi les paramètres de base sont insuffisants ?</h3>
+        <p>
+            Les paramètres de base ne permettent pas à eux seuls d'estimer la performance réelle, en raison de :
+        </p>
+        <ul>
+            <li>La complexité de l'architecture du processeur (pipeline, out-of-order, etc.).</li>
+            <li>La complexité du système mémoire (hiérarchie de caches, TLB, accès DRAM).</li>
+            <li>
+                La coopération entre le matériel, le système d'exploitation, les compilateurs,
+                les interpréteurs et les machines virtuelles.
+            </li>
+        </ul>
+        <p>
+            Le temps réel d'exécution d'une instruction peut varier d'un facteur 10 ou plus selon le contexte
+            (présence en cache L1 vs. défaut de page).
+        </p>
+
+        <h3>Performance théorique maximale du CPU</h3>
+        \[
+            \text{Performance}_{\max} = \mathrm{IPC}_{\max} \times f
+        \]
+        <p>Cette valeur constitue un plafond théorique, rarement atteint en pratique.</p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 2. Architecture de Von Neumann                               -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>2. Architecture de Von Neumann</h2>
+        <p>
+            L'architecture de Von Neumann est le modèle fondamental sur lequel reposent presque tous les
+            processeurs modernes. Ses composants principaux sont :
+        </p>
+        <ul>
+            <li>
+                <strong>Unité de contrôle (Control Unit)</strong> avec le compteur de programme (PC) :
+                gère le séquençage des instructions (instruction fetch).
+            </li>
+            <li>
+                <strong>UAL de données (Data ALU)</strong> : effectue les opérations arithmétiques et logiques
+                sur les données.
+            </li>
+            <li>
+                <strong>UAL d'adresses (Address ALU)</strong> : calcule les adresses mémoire.
+            </li>
+            <li>
+                <strong>Banc de registres (Register File) et Flags</strong> : stockage rapide de données
+                intermédiaires et d'indicateurs d'état.
+            </li>
+            <li>
+                <strong>Bus interne (Internal Bus)</strong> : interconnecte les composants internes du CPU.
+            </li>
+            <li>
+                <strong>Interface mémoire</strong> : expose un <em>bus d'adresses</em> (Address Bus)
+                et un <em>bus de données</em> (Data Bus) vers la mémoire externe.
+            </li>
+        </ul>
+        <p>
+            Le flux d'exécution est simple : la Control Unit lit l'instruction pointée par le PC depuis la mémoire
+            (instruction fetch), la décode, puis ordonne aux UAL d'effectuer l'opération correspondante,
+            avant de passer à l'instruction suivante.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 3. Loi de Moore                                              -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>3. Loi de Moore et évolution des transistors</h2>
+        <p>
+            La <strong>loi de Moore</strong> décrit une régularité empirique observée depuis 1971 :
+            le nombre de transistors sur un circuit intégré <strong>double approximativement tous les deux ans</strong>.
+        </p>
+        <p>
+            Entre 1971 (Intel 4004 : ~2 300 transistors) et 2016 (IBM z13 Storage Controller :
+            plus de 10 milliards de transistors), la progression suit une courbe exponentielle sur plusieurs
+            décennies. Cette loi implique une augmentation corrélée de la vitesse de traitement et une
+            diminution du coût des composants électroniques.
+        </p>
+        <p>
+            L'augmentation continue de la densité de transistors a permis l'introduction de techniques
+            d'optimisation matérielles de plus en plus sophistiquées : pipeline, superscalaire, out-of-order,
+            multithreading, etc.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 4. Pipeline                                                   -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>4. Le pipeline d'exécution</h2>
+
+        <h3>Principe</h3>
+        <p>
+            Apparu dès les années 1960, le pipeline consiste à reconnaître les différentes
+            <em>unités fonctionnelles</em> d'un processeur et à <strong>diviser l'exécution d'une instruction
+            en plusieurs étapes</strong>, de sorte que plusieurs instructions puissent être traitées
+            simultanément, chacune à une étape différente.
+        </p>
+
+        <h3>Étapes typiques d'un pipeline 5 étages</h3>
+        <ul>
+            <li><strong>IF (Instruction Fetch)</strong> : chargement de l'instruction depuis la mémoire.</li>
+            <li><strong>ID (Instruction Decode)</strong> : décodage de l'instruction et lecture des registres.</li>
+            <li><strong>OF / EX (Operand Fetch / Execute)</strong> : calcul de l'adresse des opérandes, chargement des arguments, exécution de l'opération par l'UAL.</li>
+            <li><strong>MEM (Memory Access)</strong> : accès mémoire pour les instructions de chargement/stockage.</li>
+            <li><strong>WB (Write Back)</strong> : écriture du résultat dans le registre destination.</li>
+        </ul>
+
+        <h3>Diagramme espace-temps du pipeline</h3>
+        <div class="pipeline-diagram">
+            <table style="border-collapse:collapse; font-family:monospace; font-size:0.82rem; width:auto;">
+                <thead>
+                    <tr>
+                        <th style="padding:3px 8px; color:#1a237e; background:white; text-align:left;">Instr. \( i \) ↓ &nbsp; Cycle →</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">1</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">2</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">3</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">4</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">5</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">6</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">7</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">8</th>
+                        <th style="padding:3px 8px; background:#e8f0fe;">9</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding:3px 8px;">1</td><td style="padding:3px 8px; background:#c8e6c9;">IF</td><td style="padding:3px 8px; background:#c8e6c9;">ID</td><td style="padding:3px 8px; background:#c8e6c9;">EX</td><td style="padding:3px 8px; background:#c8e6c9;">MEM</td><td style="padding:3px 8px; background:#4caf50; color:white;">WB</td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="padding:3px 8px;">2</td><td></td><td style="padding:3px 8px; background:#c8e6c9;">IF</td><td style="padding:3px 8px; background:#c8e6c9;">ID</td><td style="padding:3px 8px; background:#c8e6c9;">EX</td><td style="padding:3px 8px; background:#4caf50; color:white;">MEM</td><td style="padding:3px 8px; background:#c8e6c9;">WB</td><td></td><td></td><td></td></tr>
+                    <tr><td style="padding:3px 8px;">3</td><td></td><td></td><td style="padding:3px 8px; background:#c8e6c9;">IF</td><td style="padding:3px 8px; background:#c8e6c9;">ID</td><td style="padding:3px 8px; background:#4caf50; color:white;">EX</td><td style="padding:3px 8px; background:#c8e6c9;">MEM</td><td style="padding:3px 8px; background:#c8e6c9;">WB</td><td></td><td></td></tr>
+                    <tr><td style="padding:3px 8px;">4</td><td></td><td></td><td></td><td style="padding:3px 8px; background:#c8e6c9;">IF</td><td style="padding:3px 8px; background:#4caf50; color:white;">ID</td><td style="padding:3px 8px; background:#c8e6c9;">EX</td><td style="padding:3px 8px; background:#c8e6c9;">MEM</td><td style="padding:3px 8px; background:#c8e6c9;">WB</td><td></td></tr>
+                    <tr><td style="padding:3px 8px;">5</td><td></td><td></td><td></td><td></td><td style="padding:3px 8px; background:#4caf50; color:white;">IF</td><td style="padding:3px 8px; background:#c8e6c9;">ID</td><td style="padding:3px 8px; background:#c8e6c9;">EX</td><td style="padding:3px 8px; background:#c8e6c9;">MEM</td><td style="padding:3px 8px; background:#c8e6c9;">WB</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            À chaque cycle, une nouvelle instruction entre dans le pipeline. En régime établi, on complète
+            une instruction par cycle (CPI idéal = 1).
+        </p>
+
+        <h3>Gain théorique du pipeline</h3>
+        <p>
+            Pour un pipeline à \( k \) étages et une séquence suffisamment longue d'instructions,
+            l'accélération théorique est :
+        </p>
+        \[
+            \text{Accélération} \approx k
+        \]
+        <p>
+            En pratique, ce gain est limité par les <em>aléas</em> (hazards) du pipeline.
+        </p>
+
+        <h3>Architecture physique du pipeline 5 étages (MIPS-like)</h3>
+        <p>
+            Les étages sont séparés par des <strong>registres de pipeline</strong> (barrières vertes)
+            qui sauvegardent l'état entre deux cycles :
+        </p>
+        <ul>
+            <li><strong>IF/ID</strong> : registre entre Instruction Fetch et Instruction Decode.</li>
+            <li><strong>ID/EX</strong> : registre entre décodage et exécution (contient les valeurs des registres RS1, RS2 et l'immédiat signé-étendu).</li>
+            <li><strong>EX/MEM</strong> : registre entre exécution et accès mémoire (résultat de l'UAL, adresse).</li>
+            <li><strong>MEM/WB</strong> : registre entre accès mémoire et écriture (donnée lue ou résultat UAL).</li>
+        </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. Aléas du pipeline (Hazards)                              -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>5. Aléas du pipeline (Hazards)</h2>
+        <p>
+            Un <strong>aléa</strong> (<em>hazard</em>) est une situation qui empêche l'exécution
+            idéale du pipeline, forçant l'insertion de bulles (cycles vides) ou des mécanismes
+            de contournement. On distingue trois catégories :
+        </p>
+
+        <h3>a) Aléas de ressources (Resource Hazards)</h3>
+        <p>
+            Deux instructions simultanément actives dans le pipeline ont besoin de la
+            <strong>même ressource matérielle au même cycle</strong> (ex. : un seul port d'accès
+            mémoire pour IF et MEM). La solution classique est la duplication de l'unité (mémoire
+            d'instructions séparée de la mémoire de données, caches distincts).
+        </p>
+
+        <h3>b) Aléas de contrôle / branchement (Steering / Control Hazards)</h3>
+        <p>
+            Les <strong>sauts (jumps)</strong> représentent plus de 20 % des instructions dans un programme
+            typique. Lorsqu'une instruction de branchement est détectée, les instructions chargées
+            après elle dans le pipeline peuvent être incorrectes.
+        </p>
+        <ul>
+            <li>
+                <strong>Sauts inconditionnels</strong> : résolus par le <em>prefetch</em> (pré-chargement
+                de l'instruction cible dès que l'adresse est connue).
+            </li>
+            <li>
+                <strong>Sauts conditionnels</strong> : plus difficiles à gérer. Techniques employées :
+                <ul>
+                    <li><em>Branch delay slot</em> : l'instruction immédiatement après le saut est toujours exécutée (le compilateur y place une instruction utile).</li>
+                    <li><em>Prédiction statique</em> : hypothèse fixe (saut jamais pris, toujours pris, ou en fonction de la direction du saut).</li>
+                    <li><em>Prédiction dynamique</em> : décision basée sur l'historique des sauts précédents (tables de prédiction, compteurs saturants, etc.).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>c) Aléas de données (Data Hazards)</h3>
+        <p>
+            Surviennent lorsqu'une instruction dépend du résultat d'une instruction précédente
+            encore en cours d'exécution dans le pipeline.
+        </p>
+        <ul>
+            <li>
+                <strong>Renommage de registres</strong> : le compilateur ou le matériel utilise
+                des registres temporaires pour éviter les fausses dépendances (WAR, WAW).
+            </li>
+            <li>
+                <strong>Forwarding (transfert anticipé)</strong> : le résultat de l'UAL est
+                renvoyé directement à l'entrée de l'étage EX suivant sans attendre l'écriture
+                en WB, éliminant ainsi les bulles pour les dépendances RAW.
+            </li>
+        </ul>
+
+        <h3>Graphe de flot de contrôle (Control Flow Graph)</h3>
+        <p>
+            Le compilateur représente un programme comme un <strong>graphe de flot de contrôle (CFG)</strong> :
+            les nœuds sont des <em>blocs de base</em> (séquences d'instructions sans saut interne)
+            et les arcs représentent les liens entre blocs (branchements possibles).
+            Cette structure est utilisée pour les optimisations de prédiction de branchement et
+            de réordonnancement d'instructions.
+        </p>
+
+        <h3>Front de domination</h3>
+        <p>
+            Dans un CFG, un nœud \( A \) <strong>domine</strong> un nœud \( B \) si tout chemin
+            de l'entrée du graphe vers \( B \) passe par \( A \).
+            Le <strong>front de domination</strong> de \( A \) est l'ensemble des nœuds \( B \) tels que
+            \( A \) domine un prédécesseur de \( B \) mais ne domine pas strictement \( B \) lui-même.
+            Cette notion est fondamentale pour la construction de la forme SSA (Static Single Assignment)
+            utilisée par les compilateurs optimisants.
+        </p>
+        <p>
+            Exemple : dans le graphe \( 1 \to 2 \to \{3, 4, 6\},\; 2 \leftrightarrow 4,\;
+            \{3,4\} \to 5 \), le nœud 2 domine les nœuds 3, 4, 5, 6. Son front de domination
+            inclut 2 lui-même (car il existe un arc de retour de 4 vers 2).
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 6. Exemple : PowerXCell                                      -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>6. Exemple concret : processeur PowerXCell</h2>
+        <p>
+            Le <strong>PowerXCell</strong> (utilisé dans la PlayStation 3 et dans des supercalculateurs)
+            est un exemple de processeur hétérogène conçu pour le HPC. Il comprend :
+        </p>
+        <ul>
+            <li>Un <strong>Power Processor Element (PPE)</strong> : cœur principal de type POWER.</li>
+            <li>
+                Plusieurs <strong>Synergistic Processor Elements (SPE)</strong> disposés sur une
+                puce unique, reliés par un <em>Element Interconnect Bus</em>.
+            </li>
+            <li>
+                Chaque SPE dispose d'un pipeline pair (Floating Point Unit + Fixed Point Unit)
+                et d'un pipeline impair (Permute, Local Store, Channel, Branch).
+            </li>
+            <li>Un <strong>Local Store de 256 Ko</strong> par SPE, accessible en lecture (128 B) et en écriture (128 B) par cycle.</li>
+            <li>Un <strong>Memory Flow Controller (MFC)</strong> qui gère les transferts DMA entre le Local Store et la mémoire principale.</li>
+            <li>Un cache L2 partagé de 512 Ko.</li>
+        </ul>
+
+        <h3>Code optimisé vs. code sous-optimal</h3>
+        <p>
+            Le cours illustre avec deux exemples SPE la différence de qualité de code :
+        </p>
+        <ul>
+            <li>
+                <strong>Code efficace</strong> : les instructions <code>fma</code> (fused multiply-add)
+                et <code>lqd</code> (load quadword) s'entrelacent parfaitement sur les deux pipelines
+                (pair et impair), maximisant le débit à chaque cycle d'adresse.
+            </li>
+            <li>
+                <strong>Code sous-optimal</strong> : dépendances non résolues, instructions longues
+                (opérateurs occupant plusieurs cycles), branchements conditionnels (<code>brz</code>),
+                et instructions hors pipeline (comme <code>dfm</code>, <code>fscrrd</code>, <code>selb</code>)
+                qui créent des bulles et des conflits de ressources.
+            </li>
+        </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 7. CISC vs RISC                                              -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>7. Architectures CISC et RISC</h2>
+        <p>
+            Le souhait d'optimiser le traitement en pipeline a conduit à une évolution majeure
+            dans la conception des processeurs : la transition des architectures
+            <strong>CISC</strong> vers les architectures <strong>RISC</strong>.
+        </p>
+
+        <h3>CISC &mdash; Complex Instruction Set Computer</h3>
+        <p>
+            Architecture classique des années 1960-1970 (ex. : x86, VAX). Caractéristiques :
+        </p>
+        <ul>
+            <li>Jeu d'instructions très riche (des centaines d'instructions).</li>
+            <li>Modes d'adressage multiples et complexes.</li>
+            <li>Instructions de longueur variable et temps d'exécution très hétérogènes.</li>
+            <li>Chargement/décodage complexes depuis la mémoire.</li>
+            <li>
+                Une seule instruction complexe peut : récupérer deux opérandes en mémoire
+                via des modes d'adressage élaborés, effectuer l'opération, et stocker le résultat
+                à une adresse calculée de façon complexe.
+            </li>
+            <li>
+                <strong>Mode d'adressage complexe</strong> :
+                \[
+                    \text{Adresse} = \text{base} + \text{offset} + \text{index} \times \text{scale}
+                \]
+            </li>
+        </ul>
+        <p><strong>Avantages CISC :</strong></p>
+        <ul>
+            <li>Facilite la programmation en assembleur.</li>
+            <li>Réduit le nombre d'instructions dans le code compilé (moins de bande passante nécessaire pour le cache).</li>
+        </ul>
+        <p><strong>Inconvénients CISC :</strong></p>
+        <ul>
+            <li>Difficile à optimiser par les compilateurs.</li>
+            <li>Décodage d'instructions complexe.</li>
+            <li>Implémentation du pipeline très difficile.</li>
+        </ul>
+
+        <h3>RISC &mdash; Reduced Instruction Set Computer</h3>
+        <p>
+            La révolution RISC des années 1980 (MIPS, SPARC, ARM, POWER). Principes :
+        </p>
+        <ul>
+            <li>Jeu d'instructions réduit (quelques dizaines d'instructions).</li>
+            <li>Peu de formats d'instruction (quelques-uns seulement).</li>
+            <li>Instructions simples et modes d'adressage simples.</li>
+            <li>
+                <strong>Architecture load/store</strong> : seules les instructions de chargement (<code>LOAD</code>)
+                et de stockage (<code>STORE</code>) accèdent à la mémoire ; toutes les autres opèrent
+                exclusivement sur des registres.
+            </li>
+            <li>Nombre élevé de registres (généralement 32 ou plus).</li>
+            <li>Instructions de longueur fixe (facilite le décodage).</li>
+        </ul>
+        <p><strong>Avantages RISC :</strong></p>
+        <ul>
+            <li>Décodage d'instructions rapide (instructions simples, longueur fixe).</li>
+            <li>Pipeline simplifié et plus facile à implémenter.</li>
+            <li>Possibilité d'augmenter la fréquence d'horloge.</li>
+            <li>Facilite le travail des compilateurs optimisants.</li>
+        </ul>
+        <p><strong>Inconvénients RISC :</strong></p>
+        <ul>
+            <li>Plus d'instructions dans le code compilé.</li>
+            <li>Nécessite un débit mémoire élevé pour charger les instructions (motivation principale du développement des caches).</li>
+        </ul>
+
+        <h3>Tableau comparatif CISC / RISC</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Paramètre</th>
+                    <th>CISC</th>
+                    <th>RISC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Nombre d'instructions</td><td>Des centaines</td><td>Quelques dizaines</td></tr>
+                <tr><td>Longueur max. d'une instruction</td><td>Dizaines d'octets</td><td>Quelques octets (fixe)</td></tr>
+                <tr><td>Nombre de formats d'instruction</td><td>Des dizaines</td><td>Quelques-uns</td></tr>
+                <tr><td>Modes d'adressage</td><td>Des dizaines</td><td>Quelques-uns</td></tr>
+                <tr><td>Adressage indirect</td><td>Oui</td><td>Non</td></tr>
+                <tr><td>Nombre max. d'opérandes</td><td>Plusieurs</td><td>Un seul (mémoire)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 8. Processeurs modernes                                      -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>8. Processeurs modernes : techniques avancées</h2>
+        <p>
+            L'augmentation de la densité de transistors (loi de Moore) permet d'intégrer des mécanismes
+            matériels de plus en plus sophistiqués. Les principales techniques sont :
+        </p>
+
+        <h3>a) Superscalaire</h3>
+        <p>
+            Insertion de <strong>plusieurs unités fonctionnelles identiques</strong> implémentant la même
+            étape du pipeline. Plusieurs instructions peuvent être lancées simultanément à chaque cycle.
+            Un processeur superscalaire à \( n \) voies peut théoriquement compléter \( n \) instructions
+            par cycle (\( \mathrm{IPC}_{\max} = n \)).
+        </p>
+        <p>Exemple de diagramme superscalaire 2 voies :</p>
+        <div class="pipeline-diagram">
+            <table style="border-collapse:collapse; font-family:monospace; font-size:0.82rem; width:auto;">
+                <tbody>
+                    <tr><td style="padding:2px 6px;">i=1</td><td style="padding:2px 6px; background:#c8e6c9;">IF</td><td style="padding:2px 6px; background:#c8e6c9;">ID</td><td style="padding:2px 6px; background:#c8e6c9;">EX</td><td style="padding:2px 6px; background:#4caf50;color:white;">MEM</td><td style="padding:2px 6px; background:#c8e6c9;">WB</td></tr>
+                    <tr><td style="padding:2px 6px;">i=2</td><td style="padding:2px 6px; background:#c8e6c9;">IF</td><td style="padding:2px 6px; background:#c8e6c9;">ID</td><td style="padding:2px 6px; background:#c8e6c9;">EX</td><td style="padding:2px 6px; background:#4caf50;color:white;">MEM</td><td style="padding:2px 6px; background:#c8e6c9;">WB</td></tr>
+                    <tr><td style="padding:2px 6px;">i=3</td><td></td><td style="padding:2px 6px; background:#c8e6c9;">IF</td><td style="padding:2px 6px; background:#c8e6c9;">ID</td><td style="padding:2px 6px; background:#4caf50;color:white;">EX</td><td style="padding:2px 6px; background:#c8e6c9;">MEM</td><td style="padding:2px 6px; background:#c8e6c9;">WB</td></tr>
+                    <tr><td style="padding:2px 6px;">i=4</td><td></td><td style="padding:2px 6px; background:#c8e6c9;">IF</td><td style="padding:2px 6px; background:#c8e6c9;">ID</td><td style="padding:2px 6px; background:#4caf50;color:white;">EX</td><td style="padding:2px 6px; background:#c8e6c9;">MEM</td><td style="padding:2px 6px; background:#c8e6c9;">WB</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>b) Super-pipelining</h3>
+        <p>
+            Augmentation du nombre d'étages du pipeline. Chaque étage est plus court, ce qui permet
+            une fréquence d'horloge plus élevée. Contrepartie : les aléas ont un coût plus élevé
+            (plus de cycles perdus en cas de bulle).
+        </p>
+
+        <h3>c) Exécution hors-ordre (Out-of-Order Execution)</h3>
+        <p>
+            Le processeur peut exécuter les instructions dans un <strong>ordre différent</strong>
+            de l'ordre du programme, en exploitant le parallélisme au niveau des données (Data Flow Graph).
+            Le résultat est toujours validé dans l'ordre (via un <em>Re-Order Buffer</em>).
+        </p>
+        <p>Exemple illustratif du cours :</p>
+        <pre class="code-block">(1) r1 ← r4 / r7    /* division : 20 cycles */
+(2) r8 ← r1 + r2    /* dépend de (1) */
+(3) r5 ← r5 + 1     /* indépendant */
+(4) r6 ← r6 - r3    /* indépendant */
+(5) r4 ← r5 + r6    /* dépend de (3) et (4) */
+(6) r7 ← r8 * r4    /* dépend de (2) et (5) */</pre>
+        <p>
+            En exécution séquentielle : toutes les instructions attendent la division de (1).
+            En superscalaire 2 voies in-order : (1)+(3) en parallèle, puis (2)+(4), etc.
+            En <strong>out-of-order</strong> : (3), (4), (5) s'exécutent pendant que (1) est en cours,
+            réduisant considérablement le temps total.
+        </p>
+
+        <h3>d) Prefetching</h3>
+        <p>
+            Chargement anticipé des instructions ou des données en mémoire cache avant qu'elles ne
+            soient nécessaires, masquant ainsi la latence mémoire.
+        </p>
+
+        <h3>e) Prédiction de branchement</h3>
+        <p>
+            Systèmes de prédiction dynamique basés sur l'historique (Branch Target Buffer, compteurs
+            saturants à 2 bits, prédicteurs corrélés, etc.) pour éviter les bulles dues aux sauts conditionnels.
+        </p>
+
+        <h3>f) Instructions vectorielles / SIMD</h3>
+        <p>
+            Des registres spéciaux <strong>vectoriels</strong> permettent d'appliquer la
+            <strong>même opération à plusieurs données simultanément</strong> (Single Instruction,
+            Multiple Data). Exemples par architecture :
+        </p>
+        <table>
+            <thead>
+                <tr><th>Architecture</th><th>Extension vectorielle</th><th>Largeur</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>x86</td><td>SSE</td><td>128 bits</td></tr>
+                <tr><td>x86</td><td>AVX / AVX2</td><td>256 bits</td></tr>
+                <tr><td>x86</td><td>AVX-512</td><td>512 bits</td></tr>
+                <tr><td>ARM</td><td>NEON</td><td>128 bits</td></tr>
+                <tr><td>POWER</td><td>AltiVec / VMX / VSX</td><td>128 bits</td></tr>
+                <tr><td>POWER</td><td>QPX</td><td>256 bits</td></tr>
+                <tr><td>SPARC</td><td>HPC-ACE</td><td>128 bits</td></tr>
+                <tr><td>SPARC</td><td>HPC-ACE2</td><td>256 bits</td></tr>
+            </tbody>
+        </table>
+        <p>
+            Un registre AVX-512 de 512 bits peut contenir 8 doubles précision (64 bits chacun) ou
+            16 simples précision (32 bits chacun), multipliant d'autant le débit de calcul.
+        </p>
+
+        <h3>g) Support matériel du multithreading</h3>
+        <p>
+            Le processeur peut entretenir l'état de plusieurs <em>threads</em> simultanément
+            et alterner entre eux pour masquer les latences (accès mémoire, aléas).
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 9. Multicoeur et multiprocesseurs                            -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>9. Processeurs multi-cœurs et multiprocesseurs</h2>
+
+        <h3>Processeurs multi-cœurs (Multicore)</h3>
+        <p>
+            Un processeur multi-cœurs intègre <strong>plusieurs cœurs indépendants sur une même puce</strong>.
+            Chaque cœur possède sa propre mémoire cache individuelle (L1, parfois L2), tandis qu'un
+            cache partagé (L2 ou L3) et une interface bus commune relient les cœurs à la mémoire principale.
+        </p>
+        <ul>
+            <li>
+                <strong>Exemple POWER4</strong> : 2 cœurs sur puce, chacun avec unités I-Fetch / Load / Store,
+                reliés via une Core Interface Unit à 3 caches L2 de 470 Ko partagés, un Fabric Controller,
+                et un L3/Memory Controller.
+            </li>
+            <li>
+                <strong>Pentium EE (Extreme Edition)</strong> : dual-core avec hyper-threading (HT),
+                supportant plusieurs threads entiers et flottants par cœur.
+            </li>
+        </ul>
+
+        <h3>Multiprocesseurs (Multi-socket)</h3>
+        <p>
+            Plusieurs processeurs physiques distincts, chacun avec son cœur, ses caches L1 et L2,
+            reliés à une RAM partagée via un bus système. Chaque processeur est un circuit intégré séparé.
+        </p>
+
+        <h3>Multithreading matériel</h3>
+        <p>
+            Le multithreading au niveau matériel permet à un seul cœur physique de gérer plusieurs
+            flux d'instructions (<em>threads</em>) :
+        </p>
+        <ul>
+            <li>
+                <strong>Temporal multithreading (TMT)</strong> : le processeur commute entre threads
+                à chaque cycle ou à chaque aléa pour masquer les latences.
+            </li>
+            <li>
+                <strong>Simultaneous Multithreading (SMT) / Hyper-Threading</strong> : plusieurs threads
+                s'exécutent vraiment en parallèle dans le même pipeline, partageant les unités d'exécution.
+                Le Pentium 4 avec HT présente un seul cœur physique vu comme deux processeurs logiques
+                par le système d'exploitation.
+            </li>
+        </ul>
+        <p>
+            Exemple UltraSparc T1 : pipeline unique avec 4 files d'instructions (une par thread),
+            un multiplexeur de sélection de thread, et des structures répliquées × 4
+            (Register File × 4, PC logic × 4, caches de données avec 4 buffers de stockage).
+        </p>
+
+        <h3>Intel Core (architecture moderne)</h3>
+        <p>
+            L'Intel Core illustre l'intégration de toutes ces techniques :
+        </p>
+        <ul>
+            <li>Instruction Fetch avec pré-décodage, puis file d'instructions.</li>
+            <li>
+                Décodage avec ROM de microcode (traduction CISC→micro-ops RISC interne),
+                puis renommage de registres (<em>Rename/Alloc</em>).
+            </li>
+            <li>Re-Order Buffer (<em>Retirement Unit</em>) pour valider les instructions dans l'ordre.</li>
+            <li>Planificateur unifié distribuant les micro-ops vers les ports d'exécution.</li>
+            <li>Ports spécialisés : ALU/Branch, FAdd/SSE, FMul/SSE, Load, Store.</li>
+            <li>Cache L1 de données (L1D) + DTLB, cache L2 partagé (jusqu'à 10,7 Go/s FSB).</li>
+        </ul>
+
+        <h3>Sandy Bridge vs. Haswell</h3>
+        <p>
+            La comparaison des microarchitectures Intel montre l'évolution entre générations :
+        </p>
+        <table>
+            <thead><tr><th>Paramètre</th><th>Sandy Bridge</th><th>Haswell</th></tr></thead>
+            <tbody>
+                <tr><td>Re-Order Buffer (ROB)</td><td>168 entrées</td><td>192 entrées</td></tr>
+                <tr><td>File de décodage (Decode Queue)</td><td>2×28 micro-ops</td><td>56 micro-ops</td></tr>
+                <tr><td>Registres entiers</td><td>160</td><td>168</td></tr>
+                <tr><td>Registres AVX</td><td>144</td><td>168</td></tr>
+                <tr><td>Branch Order Buffer</td><td>48 entrées</td><td>72 entrées</td></tr>
+                <tr><td>Load Buffer</td><td>64 entrées</td><td>72 entrées</td></tr>
+                <tr><td>Store Buffer</td><td>36 entrées</td><td>42 entrées</td></tr>
+                <tr><td>Planificateur</td><td>54 entrées, 6 ports</td><td>60 entrées, 8 ports</td></tr>
+            </tbody>
+        </table>
+        <p>
+            Haswell introduit notamment des instructions FMA (Fused Multiply-Add) sur des registres
+            256 bits sur ports dédiés, doublant le débit de calcul flottant par rapport à Sandy Bridge.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 10. Estimation réaliste de la performance                    -->
+    <!-- ============================================================ -->
+    <div class="card">
+        <h2>10. Estimation réaliste de la performance</h2>
+        <p>
+            Estimer la performance réelle d'un programme est difficile car la durée effective
+            d'une instruction dépend de nombreux facteurs :
+        </p>
+        <ul>
+            <li>
+                <strong>Compilateur utilisé</strong> : différents compilateurs génèrent des séquences
+                d'instructions différentes pour le même programme source.
+            </li>
+            <li>
+                <strong>Présence en cache</strong> : une instruction récemment utilisée est déjà décodée
+                en L1 (coût minimal) ; ses opérandes peuvent être en L1, L2, L3 ou en RAM (coût
+                croissant avec la distance).
+            </li>
+            <li>
+                <strong>TLB (Translation Lookaside Buffer)</strong> : si l'adresse mémoire d'une
+                donnée n'est pas dans le TLB, un accès supplémentaire à la table des pages est nécessaire.
+            </li>
+            <li>
+                <strong>Aléas (hazards)</strong> : d'autres instructions exécutées en parallèle
+                peuvent créer des conflits de ressources ou des dépendances de données.
+            </li>
+            <li>
+                <strong>Défauts de page</strong> : dans le pire cas, un défaut de page force un accès
+                au disque, augmentant la latence d'un facteur 10 ou davantage.
+            </li>
+        </ul>
+        <p>
+            C'est pourquoi le profilage (<em>profiling</em>) et les benchmarks restent indispensables
+            pour évaluer la performance réelle d'une application HPC.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- EXERCISES SECTION                                            -->
+    <!-- ============================================================ -->
+    <div class="exercises-section">
+        <h2>&#127891; Exercices de consolidation</h2>
+
+        <!-- Ex 1 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 1 &mdash; Formule de performance</div>
+            <p>
+                Un programme exécute \( 10^9 \) instructions. Les instructions se répartissent ainsi :
+            </p>
+            <ul>
+                <li>50 % d'instructions ALU avec CPI = 1</li>
+                <li>30 % d'instructions de chargement mémoire avec CPI = 4</li>
+                <li>20 % d'instructions de branchement avec CPI = 2</li>
+            </ul>
+            <p>
+                Le processeur fonctionne à \( f = 2 \) GHz.
+                Calculez le temps d'exécution total \( T \) du programme.
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Utilisez la formule
+                    \( T = \frac{1}{f} \sum_{i} n_i \cdot \mathrm{CPI}_i \).
+                    Calculez d'abord le nombre de cycles total :
+                    \( C = 0{,}5 \times 10^9 \times 1 + 0{,}3 \times 10^9 \times 4 + 0{,}2 \times 10^9 \times 2 \).
+                    Puis \( T = \frac{C}{f} \).
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 2 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 2 &mdash; Performance théorique maximale</div>
+            <p>
+                Un processeur superscalaire 4 voies a une fréquence d'horloge de 3,5 GHz et
+                un \( \mathrm{IPC}_{\max} = 4 \).
+                <br><br>
+                (a) Calculez la performance théorique maximale en Giga-instructions par seconde (GIPS).
+                <br>
+                (b) Si en pratique le CPI moyen mesuré est 2, quel est le taux d'utilisation
+                effectif du processeur par rapport à son maximum théorique ?
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) \( \text{Perf}_{\max} = \mathrm{IPC}_{\max} \times f \).
+                    (b) Le CPI effectif de 2 correspond à un IPC effectif de \( \frac{1}{2} \).
+                    Le taux d'utilisation est \( \frac{\mathrm{IPC}_{\text{eff}}}{\mathrm{IPC}_{\max}} \times 100\% \).
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 3 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 3 &mdash; Gain du pipeline</div>
+            <p>
+                Sans pipeline, chaque instruction prend 5 ns pour s'exécuter sur un processeur à cycle unique.
+                On introduit un pipeline à 5 étages (IF, ID, EX, MEM, WB), chaque étage prenant 1 ns.
+                <br><br>
+                (a) Quelle est la fréquence d'horloge du pipeline ?
+                <br>
+                (b) Combien de cycles faut-il pour exécuter 100 instructions sans pipeline ?
+                Avec le pipeline 5 étages ? (On néglige le remplissage initial du pipeline.)
+                <br>
+                (c) Quel est l'accélération (speedup) obtenue ?
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) La fréquence est \( f = \frac{1}{1\,\text{ns}} = 1\,\text{GHz} \).
+                    (b) Sans pipeline : \( 100 \times 5 = 500 \) cycles de 1 ns, soit 500 ns.
+                    Avec pipeline : \( 100 + (5-1) = 104 \) cycles, soit ≈ 104 ns.
+                    (c) Speedup \( \approx \frac{500}{104} \approx 4{,}8 \).
+                    En régime établi (grand \( N \)) : speedup \( \to k = 5 \).
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 4 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 4 &mdash; Aléas de données et forwarding</div>
+            <p>
+                Considérez la séquence d'instructions suivante dans un pipeline 5 étages sans forwarding :
+            </p>
+            <pre class="code-block">ADD  r1, r2, r3   ; r1 ← r2 + r3
+SUB  r4, r1, r5   ; r4 ← r1 - r5  (dépend de ADD)
+AND  r6, r1, r7   ; r6 ← r1 AND r7 (dépend de ADD)</pre>
+            <p>
+                (a) Combien de cycles de bulle (stalls) sont nécessaires entre l'instruction ADD
+                et SUB si aucune technique d'optimisation n'est utilisée ?
+                <br>
+                (b) Comment le forwarding (transfert anticipé) réduit-il ce nombre ?
+                <br>
+                (c) Le renommage de registres résoudrait-il l'aléa ici ? Justifiez.
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) Le résultat de ADD est disponible après WB (cycle 5 si ADD entre en IF au cycle 1).
+                    SUB a besoin de r1 à son étage EX (cycle 4 si pas de bulle, mais ADD n'a pas encore fini).
+                    Sans forwarding : 2 cycles de stall entre ADD et SUB.
+                    (b) Avec forwarding, le résultat de l'UAL de ADD est transmis directement à l'entrée
+                    de l'UAL de SUB dès qu'il est calculé (fin de EX de ADD = début de EX de SUB).
+                    Nombre de stalls réduit à 0 pour ce type de dépendance RAW.
+                    (c) Non — le renommage résout les dépendances WAR (Write After Read) et WAW (Write After Write),
+                    pas les vraies dépendances RAW (Read After Write) comme ici.
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 5 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 5 &mdash; CISC vs RISC et mode d'adressage</div>
+            <p>
+                Un processeur CISC dispose du mode d'adressage complexe suivant :
+                \[
+                    \text{Adresse effective} = \text{base} + \text{offset} + \text{index} \times \text{scale}
+                \]
+                Avec <code>base = 1000</code>, <code>offset = 16</code>, <code>index = 5</code>,
+                <code>scale = 4</code>.
+            </p>
+            <p>
+                (a) Calculez l'adresse effective.
+                <br>
+                (b) Un processeur RISC équivalent utilise l'architecture load/store avec seulement
+                le mode <code>base + offset</code>. Décrivez la séquence d'instructions RISC nécessaire
+                pour effectuer le même chargement mémoire.
+                <br>
+                (c) Expliquez pourquoi cette simplicité favorise le pipeline RISC par rapport au CISC.
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) \( \text{Adresse} = 1000 + 16 + 5 \times 4 = 1036 \).
+                    (b) En RISC : (1) <code>MUL r_tmp, r_index, #4</code>, (2) <code>ADD r_tmp, r_base, r_tmp</code>,
+                    (3) <code>ADD r_tmp, r_tmp, #offset</code>, (4) <code>LOAD r_dest, 0(r_tmp)</code>.
+                    (c) En CISC, le décodage d'une telle instruction nécessite plusieurs cycles et
+                    une logique de décodage complexe, rendant l'implémentation du pipeline difficile.
+                    En RISC, chaque instruction prend un temps fixe (1 cycle d'horloge par étage),
+                    ce qui régularise le pipeline.
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 6 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 6 &mdash; Exécution hors-ordre</div>
+            <p>
+                On dispose du programme suivant (la division prend 20 cycles) :
+            </p>
+            <pre class="code-block">(1) r1 ← r4 / r7    /* 20 cycles */
+(2) r8 ← r1 + r2    /* dépend de (1) */
+(3) r5 ← r5 + 1     /* indépendant */
+(4) r6 ← r6 - r3    /* indépendant */
+(5) r4 ← r5 + r6    /* dépend de (3) et (4) */
+(6) r7 ← r8 * r4    /* dépend de (2) et (5) */</pre>
+            <p>
+                (a) Dessinez le graphe de dépendances de données (Data Flow Graph) pour ces 6 instructions.
+                <br>
+                (b) En exécution in-order superscalaire 2 voies, quelles instructions peuvent être
+                lancées en parallèle ? Donnez l'ordonnancement cycle par cycle.
+                <br>
+                (c) En exécution out-of-order, quel est le chemin critique qui détermine le temps
+                d'exécution minimal ?
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) Arcs : (1)→(2), (3)→(5), (4)→(5), (2)→(6), (5)→(6).
+                    (b) Superscalaire 2 voies in-order : cycle 1 : {1, 3}, cycle 2 : {4} (2 bloqué par 1),
+                    cycle 3 : {5} (dépend 3 et 4), etc.
+                    (c) Chemin critique : (1) [20 cycles] → (2) [1 cycle] → (6) [1 cycle] = 22 cycles minimum.
+                    Les instructions (3), (4), (5) peuvent s'intercaler pendant les 20 cycles de division.
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 7 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 7 &mdash; Registres vectoriels et SIMD</div>
+            <p>
+                Un processeur dispose de registres AVX2 de 256 bits. On souhaite additionner deux
+                tableaux de nombres flottants en double précision (64 bits chacun).
+            </p>
+            <p>
+                (a) Combien d'éléments double précision peut contenir un registre AVX2 ?
+                <br>
+                (b) Si le tableau contient \( N = 1024 \) éléments, combien d'instructions vectorielles
+                sont nécessaires pour la boucle d'addition (en supposant que \( N \) est un multiple
+                de la largeur du vecteur) ?
+                <br>
+                (c) Comparez avec le nombre d'instructions scalaires équivalentes.
+                Quel est le facteur d'accélération théorique lié au SIMD seul ?
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) \( \frac{256}{64} = 4 \) doubles par registre AVX2.
+                    (b) \( \frac{1024}{4} = 256 \) instructions vectorielles (ADD + LOAD × 2 + STORE par itération,
+                    mais le rapport reste \( \frac{N}{4} \)).
+                    (c) Scalaire : 1024 additions. Vectoriel : 256 additions vectorielles.
+                    Accélération théorique SIMD : facteur 4 (= largeur du vecteur en éléments doubles).
+                </div>
+            </details>
+        </div>
+
+        <!-- Ex 8 -->
+        <div class="exercise">
+            <div class="num">EXERCICE 8 &mdash; Prédiction de branchement</div>
+            <p>
+                Une boucle <code>for</code> s'exécute 100 fois. Elle contient un saut conditionnel
+                en fin de boucle. Le pipeline a 10 étages ; en cas de mauvaise prédiction,
+                5 cycles sont perdus (flush du pipeline).
+            </p>
+            <p>
+                (a) Avec une stratégie "saut toujours pris" (<em>always taken</em>), combien de
+                mauvaises prédictions se produisent sur 100 itérations ? Calculez le surcoût total en cycles.
+                <br>
+                (b) Avec un prédicteur dynamique à compteur saturant 2 bits, initialisé sur "fortement pris",
+                combien de mauvaises prédictions se produisent ? (La boucle effectue 99 fois le saut et
+                1 fois ne le prend pas à la dernière itération.)
+                <br>
+                (c) Expliquez qualitativement pourquoi la prédiction dynamique est supérieure.
+            </p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    (a) "Always taken" : mauvaise prédiction uniquement à la dernière itération (le saut
+                    n'est pas pris). 1 mauvaise prédiction → 5 cycles perdus.
+                    (b) Avec le compteur saturant initialisé "fortement pris" : les 99 premières
+                    itérations sont bien prédites. À la 100e, le saut n'est pas pris → 1 mauvaise prédiction.
+                    En pratique identique ici, mais sur des patterns irréguliers le compteur saturant performe
+                    mieux.
+                    (c) La prédiction dynamique adapte sa décision à l'historique d'exécution, permettant
+                    d'atteindre des taux de prédiction supérieurs à 95 % sur les boucles régulières,
+                    contre 60-70 % pour des stratégies statiques sur du code général.
+                </div>
+            </details>
+        </div>
+
+    </div><!-- end exercises-section -->
+
+    <footer>Résumé généré à partir du cours "High Performance Computing &mdash; Processors" · 2026</footer>
+</div>
+</body>
+</html>

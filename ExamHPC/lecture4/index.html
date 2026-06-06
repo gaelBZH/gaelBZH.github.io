@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 4 : MPI</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em;font-family:monospace}
+        pre{background:#f5f5f5;padding:1rem;border-radius:8px;overflow-x:auto;font-size:.88em;margin:.5rem 0;font-family:monospace}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 4 : MPI</h1>
+        <p class="subtitle">Message Passing Interface — Résumé complet en français</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Introduction au calcul haute performance et à MPI</h2>
+        <p>MPI (<em>Message Passing Interface</em>) est une norme de communication standard utilisée en <strong>calcul haute performance (HPC)</strong>. Elle repose sur le paradigme <strong>envoi-réception</strong> : les processus parallèles s'échangent des données explicitement par des messages.</p>
+        <h3>Principes fondamentaux</h3>
+        <ul>
+            <li><strong>Envoi d'un message :</strong> <code>send(cible, id, données)</code></li>
+            <li><strong>Réception d'un message :</strong> <code>receive(source, id, données)</code></li>
+            <li><strong>Versatilité :</strong> applicable à des architectures très variées (clusters, grilles, supercalculateurs).</li>
+            <li>Support des programmes <strong>MPMD</strong> (Multiple Program, Multiple Data) et <strong>SPMD</strong> (Single Program, Multiple Data).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>2. Concepts de base de MPI</h2>
+        <h3>Communicateur</h3>
+        <p>Un <strong>communicateur</strong> regroupe un ensemble de processus pouvant communiquer. Le communicateur prédéfini <code>MPI_COMM_WORLD</code> regroupe <em>tous</em> les processus.</p>
+        <h3>Rang d'un processus</h3>
+        <p>Chaque processus possède un <strong>rang</strong> unique. Pour \(p\) processus :</p>
+        \[
+            0 \;\leq\; \text{rang} \;<\; p
+        \]
+        <h3>Procédures de base</h3>
+        <table>
+            <thead><tr><th>Fonction</th><th>Rôle</th></tr></thead>
+            <tbody>
+                <tr><td><code>MPI_Init(&amp;argc, &amp;argv)</code></td><td>Initialise l'environnement MPI</td></tr>
+                <tr><td><code>MPI_Comm_size(comm, &amp;size)</code></td><td>Retourne le nombre de processus</td></tr>
+                <tr><td><code>MPI_Comm_rank(comm, &amp;rank)</code></td><td>Retourne le rang du processus appelant</td></tr>
+                <tr><td><code>MPI_Finalize()</code></td><td>Finalise et libère les ressources MPI</td></tr>
+            </tbody>
+        </table>
+        <h3>Exemple minimal</h3>
+        <pre>#include "mpi.h"
+int main(int argc, char** argv) {
+    int rank, size;
+    MPI_Init(&amp;argc, &amp;argv);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;size);
+    printf("Mon numéro %d, dans un groupe de %d processus\n", rank, size);
+    MPI_Finalize();
+    return 0;
+}</pre>
+    </div>
+
+    <div class="card">
+        <h2>3. Communication point-à-point</h2>
+        <p>La communication <strong>point-à-point</strong> implique exactement deux processus : un émetteur et un récepteur.</p>
+        <h3>Garanties offertes par MPI</h3>
+        <ul>
+            <li><strong>Progression garantie</strong> après initialisation correcte d'une paire envoi-réception.</li>
+            <li><strong>Ordre de réception garanti</strong> pour messages de la même source avec le même tag.</li>
+            <li><strong>Équité non garantie</strong> pour messages de sources différentes.</li>
+        </ul>
+        <h3>Communications bloquantes</h3>
+        <ul>
+            <li><code>MPI_Send(buf, count, dtype, dest, tag, comm)</code></li>
+            <li><code>MPI_Recv(buf, count, dtype, src, tag, comm, &amp;status)</code></li>
+        </ul>
+        <p>Les constantes <code>MPI_ANY_SOURCE</code> et <code>MPI_ANY_TAG</code> permettent de recevoir de n'importe quelle source.</p>
+        <h3>Exemple : envoi des rangs vers le processus 0</h3>
+        <pre>if (rank != 0) {
+    MPI_Send(&amp;rank, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+} else {
+    for (int i = 1; i &lt; size; i++) {
+        MPI_Recv(&amp;ranksent, 1, MPI_INT, MPI_ANY_SOURCE,
+                 MPI_ANY_TAG, MPI_COMM_WORLD, &amp;status);
+        printf("Données du processus : %d (%d)\n",
+               ranksent, status.MPI_SOURCE);
+    }
+}</pre>
+        <h3>Communications non-bloquantes</h3>
+        <ul>
+            <li><code>MPI_Isend(buf, count, dtype, dest, tag, comm, &amp;req)</code></li>
+            <li><code>MPI_Irecv(buf, count, dtype, src, tag, comm, &amp;req)</code></li>
+        </ul>
+        <p>Rend la main immédiatement, permettant de recouvrir calculs et communications. Nécessite <code>MPI_Wait</code> ou <code>MPI_Test</code> pour vérifier la complétion.</p>
+        <table>
+            <thead><tr><th>Fonction</th><th>Rôle</th></tr></thead>
+            <tbody>
+                <tr><td><code>MPI_Wait(&amp;req, &amp;stat)</code></td><td>Attend la complétion de l'opération</td></tr>
+                <tr><td><code>MPI_Test(&amp;req, &amp;flag, &amp;stat)</code></td><td>Teste si l'opération est terminée</td></tr>
+                <tr><td><code>MPI_Waitall</code> / <code>MPI_Testall</code></td><td>Attend/teste toutes les opérations d'un tableau</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>4. Communications collectives (de groupe)</h2>
+        <p>Les <strong>opérations collectives</strong> impliquent plus de deux processus simultanément. Elles sont déclenchées en appelant la même procédure sur <em>tous</em> les processus. Toutes sont <strong>bloquantes</strong>.</p>
+
+        <h3>Barrière — <code>MPI_Barrier(comm)</code></h3>
+        <p>Bloque jusqu'à ce que tous les processus l'aient appelée.</p>
+
+        <h3>Diffusion — <code>MPI_Bcast</code></h3>
+        <p>Le processus <code>root</code> envoie ses données à <em>tous</em> : \( P_0 \xrightarrow{\text{broadcast}} P_0, P_1, \ldots, P_{p-1} \)</p>
+        <pre>MPI_Bcast(buff, count, datatype, root, comm)</pre>
+
+        <h3>Rassemblement — <code>MPI_Gather</code></h3>
+        <p>Chaque processus envoie ses données locales au processus <code>root</code>.</p>
+        <pre>MPI_Gather(sbuf, scount, sdtype, rbuf, rcount, rdtype, root, comm)</pre>
+
+        <h3>Dispersion — <code>MPI_Scatter</code></h3>
+        <p>Le processus <code>root</code> distribue des portions distinctes à chaque processus (inverse de Gather).</p>
+
+        <h3>Rassemblement global — <code>MPI_Allgather</code></h3>
+        <p>Chaque processus envoie ses données à <em>tous</em> les autres (Gather + Bcast intégré).</p>
+
+        <h3>Échange total — <code>MPI_Alltoall</code></h3>
+        <p>Chaque processus \(i\) envoie le \(j\)-ième élément au processus \(j\) pour tout \(j\).</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Opérations de réduction</h2>
+        <p>Combine les données de tous les processus via une opération et place le résultat chez <code>root</code> :</p>
+        <pre>MPI_Reduce(sbuf, rbuf, count, datatype, op, root, comm)</pre>
+        <p><code>MPI_Allreduce</code> diffuse le résultat à <em>tous</em> les processus (équivalent Reduce + Bcast) :</p>
+        <pre>MPI_Allreduce(sbuf, rbuf, count, datatype, op, comm)</pre>
+        <table>
+            <thead><tr><th>Constante</th><th>Opération</th><th>Exemple</th></tr></thead>
+            <tbody>
+                <tr><td><code>MPI_MAX</code></td><td>Maximum</td><td>\(\max(x_0, \ldots, x_{p-1})\)</td></tr>
+                <tr><td><code>MPI_MIN</code></td><td>Minimum</td><td>\(\min(x_0, \ldots, x_{p-1})\)</td></tr>
+                <tr><td><code>MPI_SUM</code></td><td>Somme</td><td>\(\sum_{i=0}^{p-1} x_i\)</td></tr>
+                <tr><td><code>MPI_PROD</code></td><td>Produit</td><td>\(\prod_{i=0}^{p-1} x_i\)</td></tr>
+                <tr><td><code>MPI_MAXLOC</code></td><td>Maximum + index</td><td>retourne valeur + rang</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>6. Exemple complet : intégration numérique parallèle</h2>
+        <p>Calcul de \(\displaystyle I = \int_a^b f(x)\,dx\) par la méthode des trapèzes avec \(N\) intervalles répartis sur \(p\) processus.</p>
+        \[
+            I \approx \sum_{i=0}^{N-1} \frac{f(x_i) + f(x_{i+1})}{2} \Delta x, \quad \Delta x = \frac{b-a}{N}
+        \]
+        <h3>Étapes</h3>
+        <ol>
+            <li>Processus 0 lit \(a\), \(b\), \(N\).</li>
+            <li>Diffusion via <code>MPI_Bcast</code>.</li>
+            <li>Chaque processus calcule sa contribution locale (\(n_{\text{loc}} = \lceil N/p \rceil\) intervalles).</li>
+            <li>Réduction avec <code>MPI_Reduce(..., MPI_SUM, ...)</code>.</li>
+        </ol>
+        <pre>n_loc = ceil(N / size);
+dx    = (b - a) / N;
+x1    = a + rank * n_loc * dx;
+if (rank == size - 1) n_loc = N - n_loc * (size - 1);
+c = 0;
+for (i = 0; i &lt; n_loc; i++) {
+    x2 = x1 + dx;
+    c += 0.5 * (f(x1) + f(x2)) * dx;
+    x1 = x2;
+}
+MPI_Reduce(&amp;c, &amp;integral, 1, MPI_DOUBLE, MPI_SUM, root, MPI_COMM_WORLD);</pre>
+    </div>
+
+    <div class="card">
+        <h2>7. Tableau récapitulatif des fonctions MPI essentielles</h2>
+        <table>
+            <thead><tr><th>Catégorie</th><th>Fonction</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td>Init/Fin</td><td><code>MPI_Init</code> / <code>MPI_Finalize</code></td><td>Initialise / termine MPI</td></tr>
+                <tr><td>Info</td><td><code>MPI_Comm_rank</code> / <code>MPI_Comm_size</code></td><td>Rang / nombre de processus</td></tr>
+                <tr><td>P2P bloquant</td><td><code>MPI_Send</code> / <code>MPI_Recv</code></td><td>Envoi / réception bloquants</td></tr>
+                <tr><td>P2P non-bloquant</td><td><code>MPI_Isend</code> / <code>MPI_Irecv</code></td><td>Envoi / réception non-bloquants</td></tr>
+                <tr><td>Synchro</td><td><code>MPI_Wait</code> / <code>MPI_Test</code></td><td>Attente / test de complétion</td></tr>
+                <tr><td>Collectif</td><td><code>MPI_Barrier</code></td><td>Barrière de synchronisation</td></tr>
+                <tr><td>Collectif</td><td><code>MPI_Bcast</code></td><td>Diffusion 1 → tous</td></tr>
+                <tr><td>Collectif</td><td><code>MPI_Scatter</code> / <code>MPI_Gather</code></td><td>Dispersion / rassemblement</td></tr>
+                <tr><td>Collectif</td><td><code>MPI_Allgather</code> / <code>MPI_Alltoall</code></td><td>Rassemblement/échange total</td></tr>
+                <tr><td>Réduction</td><td><code>MPI_Reduce</code> / <code>MPI_Allreduce</code></td><td>Réduction 1 ou tous</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 — Initialisation et identification</div>
+            <p>Écrivez un programme MPI en C qui fait afficher à chaque processus : <em>"Je suis le processus \(r\) parmi \(p\)"</em>. Quelles fonctions MPI sont indispensables ? Pour \(p = 8\), quels rangs sont possibles ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Utilisez <code>MPI_Init</code>, <code>MPI_Comm_rank</code>, <code>MPI_Comm_size</code>, <code>MPI_Finalize</code>. Les rangs vont de \(0\) à \(7\).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 — Communication point-à-point bloquante</div>
+            <p>Avec \(p\) processus, chaque processus \(r \neq 0\) envoie son rang au processus 0. Celui-ci affiche leur somme. Exprimez cette somme mathématiquement et vérifiez pour \(p = 5\).</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">\(S = \sum_{r=1}^{p-1} r = \frac{(p-1)p}{2}\). Pour \(p=5\) : \(S = 10\).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 — Diffusion et réduction : calcul de \(\pi\)</div>
+            <p>Approximez \(\pi\) en parallèle par la méthode des rectangles : \(\pi = \int_0^1 \frac{4}{1+x^2}\,dx\). Le processus 0 lit \(N\). Utilisez <code>MPI_Bcast</code> puis <code>MPI_Reduce</code> avec <code>MPI_SUM</code>.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Contribution locale du processus \(r\) : \(\displaystyle c = \sum_{i \,:\, i \bmod p = r} \frac{4}{1 + \left(\frac{i+0{,}5}{N}\right)^2} \cdot \frac{1}{N}\).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 — Communication non-bloquante</div>
+            <p>Reprenez l'exercice 2 en remplaçant <code>MPI_Send</code> par <code>MPI_Isend</code>. Expliquez pourquoi il faut appeler <code>MPI_Wait</code> après l'envoi non-bloquant.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Le buffer ne peut être réutilisé qu'après que <code>MPI_Wait</code> confirme la complétion — sinon les données peuvent être corrompues.</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 — Scatter et Gather : normalisation d'un vecteur</div>
+            <p>Le processus 0 dispose de \(\mathbf{v} \in \mathbb{R}^N\). Décrivez comment : (1) distribuer les \(\frac{N}{p}\) composantes via <code>MPI_Scatter</code>, (2) calculer \(\|\mathbf{v}\|^2\) via <code>MPI_Reduce</code>, (3) normaliser localement après <code>MPI_Bcast</code>, (4) rassembler via <code>MPI_Gather</code>.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">\(\|\mathbf{v}\| = \sqrt{\sum_r s_r}\) où \(s_r = \sum_i v_i^2\) est la contribution locale. Après normalisation : \(v_i \leftarrow \frac{v_i}{\|\mathbf{v}\|}\).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 — Allreduce : moyenne globale</div>
+            <p>Chaque processus \(r\) génère \(x_r\). Calculez \(\bar{x} = \frac{1}{p}\sum_{r=0}^{p-1} x_r\) en utilisant <code>MPI_Allreduce</code>. Expliquez l'avantage par rapport à <code>MPI_Reduce</code> + <code>MPI_Bcast</code>.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint"><code>MPI_Allreduce</code> combine les deux opérations en une seule, plus efficace car elle utilise un algorithme de réduction en arbre optimisé.</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 — Alltoall : transposition de matrice distribuée</div>
+            <p>Avec \(p\) processus, le processus \(r\) possède la ligne \(r\) d'une matrice \(p \times p\) : \([A_{r,0}, A_{r,1}, \ldots, A_{r,p-1}]\). Après <code>MPI_Alltoall</code>, que contient le buffer du processus \(r\) ? Reliez ce résultat à la transposition \(A^T\).</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Le processus \(r\) reçoit \(A_{i,r}\) pour tout \(i\) — c'est la colonne \(r\) de \(A\), soit la ligne \(r\) de \(A^T\).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 — Intégration numérique parallèle (d'après le cours)</div>
+            <p>Calculez \(\displaystyle I = \int_0^{\pi} \sin(x)\,dx\) par la méthode des trapèzes avec \(N = 1000\) et \(p = 4\).</p>
+            <ol>
+                <li>Valeur exacte de \(I\) ?</li>
+                <li>Nombre d'intervalles par processus (\(n_{\text{loc}} = \lceil N/p \rceil\)) ?</li>
+                <li>Formule de la contribution locale du processus \(r = 1\) ?</li>
+                <li>Quelle fonction MPI pour sommer les contributions vers le processus 0 ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(I = [-\cos x]_0^{\pi} = 2\). \(n_{\text{loc}} = 250\). Processus 1 : \(x_1^{(1)} = \frac{\pi}{4}\), contribution \(\displaystyle c_1 = \sum_{i=0}^{249} \frac{\sin(x_i)+\sin(x_i+\Delta x)}{2}\Delta x\). Utiliser <code>MPI_Reduce(..., MPI_SUM, 0, ...)</code>.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours · 2026</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 5 : Création de Programmes Parallèles</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em;font-family:monospace}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 5 : Création de Programmes Parallèles</h1>
+        <p class="subtitle">Résumé complet en français — Calcul Haute Performance</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Types de traitement parallèle</h2>
+        <p>Le parallélisme peut être exploité à différents niveaux de granularité. On distingue quatre niveaux principaux :</p>
+        <h3>Niveau instruction (ILP — Instruction Level Parallelism)</h3>
+        <p>L'exécution simultanée de plusieurs instructions élémentaires au sein d'un même processeur, réalisée via le <em>pipelining</em> ou les architectures <em>superscalaires</em>. Ce niveau est géré automatiquement par le concepteur du processeur.</p>
+        <h3>Niveau boucle (Loop Level Parallelism)</h3>
+        <p>Distribution des itérations de boucles entre plusieurs processeurs via l'utilisation de <strong>threads</strong>. Ce niveau relève du programmeur et des compilateurs parallélisants.</p>
+        <h3>Niveau tâche (Task Level Parallelism)</h3>
+        <p>Découpage d'une tâche de calcul en sous-tâches affectées à des processeurs individuels. Cette granularité est décidée par le programmeur et dépasse généralement les capacités des compilateurs automatiques. Elle fait appel à des <strong>threads</strong> ou des <strong>processus</strong>.</p>
+        <h3>Niveau programme (Job Level Parallelism)</h3>
+        <p>Exécution simultanée de programmes indépendants. La responsabilité incombe aux concepteurs du système d'exploitation.</p>
+    </div>
+
+    <div class="card">
+        <h2>2. Étapes essentielles de la création d'un programme parallèle</h2>
+        <p>La création d'un programme parallèle repose sur <strong>deux étapes fondamentales</strong> :</p>
+        <ol>
+            <li><strong>Détection de la concurrence disponible</strong> : identifier quelles parties peuvent s'exécuter simultanément. Cette étape est souvent la plus créative.</li>
+            <li><strong>Détermination de la synchronisation nécessaire</strong> ou de l'échange de messages entre les processus ou threads. Cette étape requiert la connaissance du modèle de programmation.</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>3. Méthodologie de programmation parallèle — PCAM</h2>
+        <p>Une méthodologie largement utilisée pour structurer la création de programmes parallèles est <strong>PCAM</strong> (Foster, 1985) :</p>
+        <table>
+            <thead>
+                <tr><th>Lettre</th><th>Étape</th><th>Description</th><th>Objectif</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>P</strong></td><td>Partition</td><td>Décomposition de la tâche en sous-tâches</td><td>Créer un programme correct</td></tr>
+                <tr><td><strong>C</strong></td><td>Communicate</td><td>Définition des communications nécessaires entre sous-tâches</td><td>Créer un programme correct</td></tr>
+                <tr><td><strong>A</strong></td><td>Agglomerate</td><td>Analyse des variantes de décomposition pour regrouper les tâches</td><td>Optimiser le programme</td></tr>
+                <tr><td><strong>M</strong></td><td>Map</td><td>Prise en compte de l'implémentation finale et du mapping matériel</td><td>Optimiser le programme</td></tr>
+            </tbody>
+        </table>
+        <p>Les deux premières étapes (<strong>P</strong> et <strong>C</strong>) visent à produire un programme correct ; les deux suivantes (<strong>A</strong> et <strong>M</strong>) visent à l'optimiser.</p>
+        <h3>Facteurs influençant la méthodologie</h3>
+        <ul>
+            <li>L'<strong>architecture matérielle cible</strong>.</li>
+            <li>La <strong>portée des tâches</strong> : parallélisation d'un code existant, d'un algorithme existant, ou développement d'un nouvel algorithme parallèle.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>4. Stratégies de décomposition des tâches</h2>
+        <h3>a) Décomposition fonctionnelle</h3>
+        <p>Division selon les <em>fonctions</em> (responsabilités) du programme. Applications typiques : applications complexes standard, problèmes d'optimisation complexes. Les tâches peuvent avoir des tailles très différentes.</p>
+        <h3>b) Décomposition de domaine</h3>
+        <p>Division selon l'espace du <em>problème</em> : l'ensemble de données est partitionné uniformément entre les tâches. Applications typiques : simulations physiques dans l'espace (division géométrique).</p>
+        <h3>c) Décomposition de structures de données</h3>
+        <p>Division selon les <em>structures de données</em> manipulées. Schémas de partitionnement pour une structure 2D :</p>
+        <ul>
+            <li><strong>1D :</strong> par blocs de lignes (<code>BLOCK</code>), ou cyclique par lignes (<code>CYCLIC</code>)</li>
+            <li><strong>2D :</strong> blocs de lignes (<code>BLOCK, *</code>), blocs de colonnes (<code>*, BLOCK</code>), blocs 2D (<code>BLOCK, BLOCK</code>), cyclique (<code>CYCLIC, CYCLIC</code>)</li>
+        </ul>
+        <h3>d) Décomposition mixte (pipeline)</h3>
+        <p>Combinaison fonctionnelle et données. Application typique : traitement en pipeline de séquences d'images vidéo.</p>
+    </div>
+
+    <div class="card">
+        <h2>5. Communication entre tâches</h2>
+        <h3>Problèmes "embarrassingly parallel" (parallélisme trivial)</h3>
+        <p>Certains problèmes ne présentent <strong>aucune dépendance</strong> entre sous-tâches. La communication est minimale ou nulle (exemple : simulation Monte-Carlo, rendu d'images indépendantes).</p>
+        <h3>Coûts de la communication</h3>
+        <ul>
+            <li>Tout échange introduit un <strong>délai (latence)</strong>.</li>
+            <li>Pendant la communication, les ressources machine sont utilisées pour l'<strong>emballage et la transmission des données</strong>.</li>
+            <li>La synchronisation forcée provoque une <strong>charge inégale</strong> sur les threads.</li>
+        </ul>
+        <h3>Latence et bande passante</h3>
+        <ul>
+            <li><strong>Latence (\(\lambda\))</strong> : délai incompressible de tout échange (temps pour envoyer 0 données).</li>
+            <li><strong>Bande passante (\(\beta\))</strong> : quantité de données transmise par unité de temps.</li>
+        </ul>
+        <p>Le temps de transmission d'un message de taille \(n\) octets :</p>
+        \[
+            T_{\text{comm}}(n) = \lambda + \frac{n}{\beta}
+        \]
+        <p><strong>Attention :</strong> envoyer beaucoup de petits messages amplifie considérablement la latence. Il vaut mieux regrouper les données en messages plus grands.</p>
+    </div>
+
+    <div class="card">
+        <h2>6. Synchronisation</h2>
+        <p>La synchronisation implique souvent la <em>sérialisation</em> de fragments du programme — certaines parties ne peuvent pas s'exécuter en parallèle.</p>
+        <h3>a) Barrière (Barrier)</h3>
+        <ul>
+            <li>S'applique typiquement à <strong>tous les threads</strong> d'un groupe.</li>
+            <li>Aucun thread ne peut dépasser le point de barrière tant que tous les autres ne l'ont pas atteint.</li>
+        </ul>
+        <h3>b) Verrous / Sémaphores (Locks / Semaphores)</h3>
+        <ul>
+            <li>Concernent des <strong>threads sélectionnés</strong>.</li>
+            <li>Peuvent être <strong>bloquants</strong> (le thread attend) ou <strong>non-bloquants</strong> (le thread continue si le verrou est occupé).</li>
+            <li>Utilisés pour protéger les sections critiques.</li>
+        </ul>
+        <h3>c) Opérations de communication synchrones</h3>
+        <ul>
+            <li>Concernent les threads <strong>impliqués dans une communication</strong>.</li>
+            <li>L'émetteur et le récepteur se synchronisent lors de l'échange (ex. : communications bloquantes MPI).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>7. Équilibrage de charge (Load Balancing)</h2>
+        <p>L'objectif est de <strong>minimiser le temps d'inactivité des threads</strong>. Le thread le plus lent détermine la performance globale :</p>
+        \[
+            T_{\text{total}} = \max_{i} \, T_i
+        \]
+        <h3>Stratégies d'équilibrage</h3>
+        <ul>
+            <li><strong>Équilibrage du partitionnement des données</strong> : distribuer les données de façon que chaque tâche reçoive une charge comparable.</li>
+            <li><strong>Équilibrage de la distribution des itérations de boucles</strong>.</li>
+            <li><strong>Équilibrage sur systèmes hétérogènes</strong> : tenir compte des différentes vitesses des processeurs.</li>
+            <li><strong>Pool de tâches (task pool)</strong> : les tâches sont stockées dans une file partagée ; chaque thread libre en prend une nouvelle. Adapte dynamiquement la charge en cas de tâches de durée variable.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>8. Granularité des calculs</h2>
+        <p>La granularité mesure le <strong>rapport entre le volume de calcul et le volume de communication</strong> :</p>
+        \[
+            G = \frac{\text{Travail de calcul entre deux communications}}{\text{Coût de la communication}}
+        \]
+        <h3>a) Parallélisme à grains fins (Fine-grained)</h3>
+        <ul>
+            <li>De <strong>petites quantités</strong> de calcul entre deux communications.</li>
+            <li>Facilite l'équilibrage de charge mais entraîne des <strong>coûts de communication élevés</strong>.</li>
+            <li><strong>Risque :</strong> si la granularité est trop fine, le surcoût dépasse le temps de calcul → parallélisation contre-productive.</li>
+        </ul>
+        <h3>b) Parallélisme à gros grains (Coarse-grained)</h3>
+        <ul>
+            <li>De <strong>grandes quantités</strong> de calcul entre deux communications.</li>
+            <li>Réduit les surcoûts de communication, mais peut rendre l'équilibrage de charge plus difficile.</li>
+        </ul>
+        <p>L'objectif est de maximiser :</p>
+        \[
+            \text{Efficacité} = \frac{T_{\text{séquentiel}}}{p \cdot T_{\text{parallèle}}}
+        \]
+        <p>où \(p\) est le nombre de processeurs.</p>
+    </div>
+
+    <div class="card">
+        <h2>9. Synthèse — Vue d'ensemble</h2>
+        <table>
+            <thead><tr><th>Concept</th><th>Question clé</th><th>Impact</th></tr></thead>
+            <tbody>
+                <tr><td>Niveau de parallélisme</td><td>À quel niveau paralléliser ?</td><td>Définit l'unité d'exécution concurrente</td></tr>
+                <tr><td>Décomposition (P)</td><td>Comment diviser le problème ?</td><td>Fonctionnelle, domaine, données, mixte</td></tr>
+                <tr><td>Communication (C)</td><td>Quelles données échanger ?</td><td>Latence, bande passante, surcoût</td></tr>
+                <tr><td>Agglomération (A)</td><td>Comment regrouper les tâches ?</td><td>Granularité optimale</td></tr>
+                <tr><td>Mapping (M)</td><td>Comment affecter les tâches aux processeurs ?</td><td>Équilibrage de charge, affinité</td></tr>
+                <tr><td>Synchronisation</td><td>Quand les threads se coordonnent-ils ?</td><td>Barrières, verrous, comm. synchrones</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 — Niveaux de parallélisme</div>
+            <p>Pour chacun des scénarios, identifiez le niveau de parallélisme approprié (ILP, boucle, tâche, programme) et justifiez :</p>
+            <ol type="a">
+                <li>Un serveur web traitant simultanément des requêtes HTTP indépendantes.</li>
+                <li>Le calcul de chaque pixel d'une image de rendu 3D (chacun indépendant).</li>
+                <li>Un compilateur exécutant en pipeline l'analyse lexicale, syntaxique et sémantique.</li>
+                <li>Un processeur superscalaire exécutant deux additions simultanément.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Pensez à qui contrôle chaque niveau : concepteur du processeur, compilateur/programmeur, ou système d'exploitation.</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 — Méthodologie PCAM</div>
+            <p>Parallélisez le calcul \(\mathbf{y} = A\mathbf{x}\) (\(A \in \mathbb{R}^{n \times n}\)) via PCAM :</p>
+            <ol type="a">
+                <li><strong>Partition :</strong> Quelle stratégie de décomposition ? Comment diviser la tâche ?</li>
+                <li><strong>Communication :</strong> Quelles données doivent être échangées ?</li>
+                <li><strong>Agglomération :</strong> Comment regrouper les tâches pour réduire la communication ?</li>
+                <li><strong>Mapping :</strong> Comment affecter les tâches aux \(p\) processeurs ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Décomposition par blocs de lignes (<code>BLOCK, *</code>). Chaque processeur calcule \(\frac{n}{p}\) lignes de \(\mathbf{y}\). Il faut le vecteur \(\mathbf{x}\) complet sur chaque processeur (broadcast).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 — Coût de communication et latence</div>
+            <p>Deux stratégies pour échanger 8 000 octets entre deux threads :</p>
+            <ul>
+                <li><strong>Stratégie A :</strong> 1 000 messages de 8 octets chacun.</li>
+                <li><strong>Stratégie B :</strong> 1 message de 8 000 octets.</li>
+            </ul>
+            <p>Avec \(\lambda = 10\,\mu s\) et \(\beta = 10^9\) octets/s, calculez \(T_{\text{comm}}\) pour chaque stratégie. Laquelle est la plus efficace ?</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Stratégie A : \(1000 \times (10^{-5} + \frac{8}{10^9}) \approx 10\,\text{ms}\).
+                    Stratégie B : \(10^{-5} + \frac{8000}{10^9} \approx 0{,}018\,\text{ms}\).
+                    La stratégie B est ~556× plus rapide.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 — Décomposition de données</div>
+            <p>Pour une matrice \(A \in \mathbb{R}^{8 \times 8}\) et 4 processeurs, décrivez la distribution pour chaque schéma et indiquez quelles lignes/colonnes vont au processeur \(P_2\) :</p>
+            <ol type="a">
+                <li>Distribution <code>BLOCK, *</code> (blocs de lignes contiguës)</li>
+                <li>Distribution <code>*, BLOCK</code> (blocs de colonnes contiguës)</li>
+                <li>Distribution <code>CYCLIC, *</code> (lignes cycliques)</li>
+                <li>Distribution <code>BLOCK, BLOCK</code> (blocs 2D)</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint"><code>BLOCK, *</code> : \(P_2\) reçoit les lignes 4–5. <code>CYCLIC, *</code> : \(P_2\) reçoit les lignes 2 et 6 (indice modulo 4 = 2).</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 — Équilibrage de charge</div>
+            <p>Un programme sur \(p = 4\) processeurs avec \(T_0 = 10\), \(T_1 = 15\), \(T_2 = 12\), \(T_3 = 8\) secondes :</p>
+            <ol type="a">
+                <li>Calculez \(T_{\text{total}} = \max_i T_i\).</li>
+                <li>Calculez l'efficacité \(\text{Efficacité} = \frac{T_{\text{seq}}}{p \cdot T_{\text{total}}}\) avec \(T_{\text{seq}} = \sum_i T_i\).</li>
+                <li>Quel thread est le goulot d'étranglement ? Quel serait le gain avec un équilibrage parfait ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(T_{\text{total}} = 15\,\text{s}\). \(T_{\text{seq}} = 45\,\text{s}\). Efficacité \(= \frac{45}{4 \times 15} = 75\%\). Avec équilibrage parfait : \(T_{\text{idéal}} = \frac{45}{4} = 11{,}25\,\text{s}\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 — Synchronisation par barrière</div>
+            <p>Un programme parallèle utilise une barrière pour synchroniser \(p\) threads :</p>
+            <ol type="a">
+                <li>Expliquez pourquoi la barrière peut créer un déséquilibre même si les tâches initiales sont équilibrées.</li>
+                <li>Différenciez les trois types de synchronisation (barrière, verrous, comm. synchrones) avec un exemple concret pour chacun.</li>
+                <li>Dans quel cas préférerait-on un verrou non-bloquant ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Les variations de charge dues au scheduling OS, aux cache miss, etc. peuvent désynchroniser des tâches initialement équilibrées. Un verrou non-bloquant est préférable quand le thread peut effectuer un travail alternatif pendant l'attente.</div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 — Granularité et choix de décomposition</div>
+            <p>On parallélise une DFT de \(N = 1024\) points sur \(p = 8\) processeurs avec \(t_c = 1\,\text{ns}\) par calcul et \(t_{\text{comm}} = 100\,\text{ns}\) par communication.</p>
+            <ol type="a">
+                <li>Calculez la granularité \(G\) pour \(n_{\text{loc}} = 128\) points par processeur (1 communication par tâche).</li>
+                <li>Grains fins ou grossiers ? Justifiez.</li>
+                <li>Si on réduit à 8 points par processeur (\(p = 128\)), comment évolue \(G\) ? Quelles conséquences ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(G = \frac{128 \times 1\,\text{ns}}{100\,\text{ns}} = 1{,}28\). Valeur proche de 1 → équilibre. Pour 8 points : \(G = \frac{8}{100} = 0{,}08\) → grains très fins, surcoût de communication dominant.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 — Pool de tâches et allocation dynamique</div>
+            <p>On traite \(N = 100\) images indépendantes (durées inconnues, entre 1 et 10 s) sur \(p = 4\) processeurs.</p>
+            <ol type="a">
+                <li>Pourquoi une décomposition statique (25 images/processeur) peut-elle être sous-optimale ?</li>
+                <li>Décrivez le fonctionnement d'un pool de tâches et expliquez pourquoi il résout ce problème.</li>
+                <li>Quels sont les inconvénients potentiels d'un pool de tâches ?</li>
+                <li>Ce problème est-il "embarrassingly parallel" ? Justifiez.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">Si les 25 images les plus longues tombent sur un seul processeur, les autres seront en attente. Le pool de tâches résout ce problème par allocation dynamique. Inconvénient : accès concurrent à la file partagée nécessite un verrou → surcoût si les tâches sont très petites.</div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours · 2026</footer>
+</div>
+</body>
+</html>

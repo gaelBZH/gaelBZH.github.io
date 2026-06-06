@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé - Lecture 3 : Mémoire</title>
+    <script>
+    MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root { --primary:#1a237e;--accent:#1565c0;--accent2:#0288d1;--bg:#f0f4f8;--card-bg:#fff;--text:#212121;--muted:#546e7a;--border:#bbdefb;--ex-bg:#e3f2fd; }
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem 1rem}
+        .container{max-width:860px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--accent);text-decoration:none;font-weight:600;margin-bottom:1.5rem;padding:.4rem .8rem;border:1.5px solid var(--accent);border-radius:6px;transition:all .2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        .hero{background:linear-gradient(135deg,var(--primary),var(--accent2));color:#fff;border-radius:16px;padding:2.5rem 2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(21,101,192,.3)}
+        .hero h1{font-size:1.8rem;margin-bottom:.5rem}
+        .hero .subtitle{opacity:.85;font-size:1rem}
+        .card{background:var(--card-bg);border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.07);padding:1.8rem 2rem;margin-bottom:1.5rem;border-left:5px solid var(--accent)}
+        .card h2{color:var(--primary);font-size:1.2rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+        .card h3{color:var(--accent);font-size:1rem;margin:1rem 0 .5rem}
+        .card p,.card li{margin-bottom:.6rem}
+        .card ul,.card ol{padding-left:1.5rem}
+        .exercises-section{background:var(--ex-bg);border-radius:12px;padding:2rem;margin-top:2rem;border:2px solid var(--border)}
+        .exercises-section h2{color:var(--primary);font-size:1.3rem;margin-bottom:1.2rem}
+        .exercise{background:#fff;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1rem;border-left:4px solid var(--accent2);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+        .exercise .num{font-weight:700;color:var(--accent);font-size:.85rem;margin-bottom:.4rem}
+        details{margin-top:.8rem}
+        summary{cursor:pointer;color:var(--muted);font-size:.9rem;font-weight:600}
+        .hint{padding:.6rem 1rem;background:#fff8e1;border-radius:6px;margin-top:.5rem;font-size:.9rem}
+        footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+        table{width:100%;border-collapse:collapse;margin:1rem 0}
+        th,td{padding:.6rem 1rem;border:1px solid var(--border);text-align:left}
+        th{background:var(--border);color:var(--primary);font-weight:600}
+        code{background:#f5f5f5;padding:.1rem .4rem;border-radius:4px;font-size:.9em}
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="back-link" href="../index.html">← Retour à l'index</a>
+    <div class="hero">
+        <h1>Lecture 3 : Mémoire</h1>
+        <p class="subtitle">Hiérarchie mémoire et optimisation — Résumé complet en français</p>
+    </div>
+
+    <div class="card">
+        <h2>1. Performance des calculs et le problème mémoire</h2>
+        <p>Pour de nombreux programmes, la performance globale des calculs peut se décomposer en deux composantes principales :</p>
+        <ul>
+            <li>La <strong>récupération des données depuis la mémoire</strong> (bande passante et latence mémoire)</li>
+            <li>Le <strong>traitement par le processeur</strong> (capacité de calcul en FLOPS)</li>
+        </ul>
+        <p>Il existe deux grandes catégories d'algorithmes :</p>
+        <ul>
+            <li><strong>Compute-bound</strong> : la performance est limitée par la puissance de calcul du processeur.</li>
+            <li><strong>Memory-bound</strong> : la performance est limitée par la vitesse d'accès aux données en mémoire. Cette situation est de plus en plus courante.</li>
+        </ul>
+        <h3>Le mur mémoire (Memory Wall)</h3>
+        <p>Sur les 20 dernières années (1996–2021), les FLOPS matériels ont été multipliés par <strong>90 000×</strong> (facteur 3,1× tous les 2 ans), tandis que la bande passante DRAM et la bande passante d'interconnexion n'ont été multipliées que par <strong>30×</strong> (facteur 1,4× tous les 2 ans). Ce fossé croissant entre puissance de calcul et débit mémoire est connu sous le nom de <em>memory wall</em>.</p>
+    </div>
+
+    <div class="card">
+        <h2>2. Estimation de la performance mémoire</h2>
+        <p>Pour les algorithmes dont la performance est limitée par la mémoire, le temps d'exécution est dominé par le temps d'accès mémoire. On l'estime par :</p>
+        \[
+            T_{\text{MEM}} = \text{nombre\_accès} \times \text{temps\_accès}
+        \]
+        <p>Le temps d'accès à une variable individuelle est un paramètre caractéristique de la mémoire. Pour la RAM principale, il est de l'ordre de plusieurs dizaines de nanosecondes.</p>
+        <h3>Exemple : multiplication matrice-vecteur (\(N \times N\))</h3>
+        <ul>
+            <li>Nombre d'accès mémoire : \(2n^2\)</li>
+            <li>Temps d'accès : \(100\,\text{ns}\)</li>
+            <li>Temps mémoire total : \(T_{\text{MEM}} = 200n^2 \times 10^{-9}\,\text{s}\)</li>
+        </ul>
+        <p>Pour comparaison, le temps de traitement par le processeur (processeur 4 voies à 2,5 GHz, soit \(4 \times 2{,}5 \times 10^9\) opérations/s) pour \(2n^2\) opérations donne :</p>
+        \[
+            T_{\text{proc}} = \frac{2n^2}{4 \times 2{,}5 \times 10^9} = 0{,}2n^2 \times 10^{-9}\,\text{s}
+        \]
+        <p>Le rapport est \(\frac{T_{\text{MEM}}}{T_{\text{proc}}} = \frac{200}{0{,}2} = 1000\). La mémoire peut donc ralentir l'exécution d'un facteur <strong>1 000</strong> par rapport au processeur seul.</p>
+    </div>
+
+    <div class="card">
+        <h2>3. Hiérarchie mémoire et mémoire cache</h2>
+        <p>La solution principale pour réduire le temps d'accès effectif est la <strong>mémoire cache</strong> : une mémoire rapide mais de petite taille, placée entre le processeur et la RAM.</p>
+        <h3>Niveaux de la hiérarchie mémoire</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Niveau</th>
+                    <th>Capacité typique</th>
+                    <th>Temps d'accès (ns)</th>
+                    <th>Temps d'accès (cycles)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Registres</td><td>quelques centaines de B</td><td>&lt; 1 ns</td><td>~1 cycle (1 kB)</td></tr>
+                <tr><td>Cache L1</td><td>quelques kB</td><td>~1 ns</td><td>~10 cycles (10 kB)</td></tr>
+                <tr><td>Cache L2</td><td>quelques MB</td><td>quelques ns</td><td>~100 cycles (1 MB)</td></tr>
+                <tr><td>Mémoire principale (DRAM)</td><td>quelques GB</td><td>dizaines de ns</td><td>~1 000 cycles (1 GB)</td></tr>
+                <tr><td>Mémoire virtuelle (disque)</td><td>centaines de GB</td><td>quelques ms</td><td>~1 000 000 cycles (1 TB)</td></tr>
+            </tbody>
+        </table>
+        <p>L'utilisation optimale du cache est <strong>cruciale</strong> pour la performance des programmes.</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Fonctionnement du cache</h2>
+        <p>Lorsque le processeur demande un accès mémoire, le mécanisme est le suivant :</p>
+        <ol>
+            <li>Le processeur émet une demande d'accès à une adresse mémoire.</li>
+            <li>La ligne de cache correspondante est vérifiée :
+                <ul>
+                    <li><strong>Hit (succès)</strong> : la donnée est présente dans le cache, elle est directement fournie au processeur.</li>
+                    <li><strong>Miss (défaut)</strong> : la donnée est absente du cache, toute la ligne mémoire contenant l'adresse est rechargée depuis la mémoire principale.</li>
+                </ul>
+            </li>
+            <li>La lecture ou l'écriture s'effectue depuis/vers le cache.</li>
+            <li>En cas d'écriture par le processeur, une <strong>stratégie de cohérence cache</strong> (write-through ou write-back) est nécessaire pour maintenir la cohérence avec la mémoire principale.</li>
+        </ol>
+        <h3>Organisation du cache</h3>
+        <ul>
+            <li>Le cache est divisé en <strong>lignes de cache</strong> (cache lines) de quelques mots, typiquement 64 ou 128 octets.</li>
+            <li>Des blocs de la mémoire principale sont associés à des lignes de cache selon différents schémas :
+                <ul>
+                    <li><strong>Direct mapped (statique)</strong> : chaque bloc est associé à une seule ligne de cache déterminée.</li>
+                    <li><strong>Pleinement associatif (fully associative)</strong> : un bloc peut être placé dans n'importe quelle ligne du cache.</li>
+                    <li><strong>Associatif par ensembles (set associative)</strong> : un bloc peut être placé dans n'importe quelle ligne d'un groupe donné.</li>
+                </ul>
+            </li>
+            <li><strong>Architecture Harvard</strong> : des caches séparés pour les données et pour le code (instructions).</li>
+        </ul>
+        <h3>Stratégies de remplacement de ligne</h3>
+        <ul>
+            <li><strong>Aléatoire</strong> : une ligne est choisie au hasard.</li>
+            <li><strong>FIFO</strong> (First In First Out) : la ligne la plus anciennement chargée est remplacée.</li>
+            <li><strong>LRU</strong> (Least Recently Used) : la ligne la moins récemment utilisée est remplacée.</li>
+            <li><strong>LFU</strong> (Least Frequently Used) : la ligne la moins fréquemment utilisée est remplacée.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>5. Localité des références</h2>
+        <p>L'efficacité du cache dépend du degré de <strong>localité des références</strong> aux données dans le programme :</p>
+        <ul>
+            <li><strong>Localité temporelle</strong> : une donnée utilisée sera probablement réutilisée dans un futur proche.</li>
+            <li><strong>Localité spatiale</strong> : si le programme utilise une donnée, il utilisera probablement les données voisines peu après.</li>
+        </ul>
+        <p>La mesure de la localité est le <strong>taux de succès (hit ratio)</strong> \(h\) : le rapport entre le nombre de hits et le nombre total d'accès mémoire. En pratique, pour des programmes bien écrits, \(h > 90\%\).</p>
+        <p>Pour améliorer la performance, le programmeur doit <strong>maximiser la localité des références</strong> en regroupant les accès aux mêmes données ou à des données voisines dans le code.</p>
+        <p>Une alternative intéressante est celle des <em>algorithmes cache-oblivious</em>, qui sont efficaces pour tous les niveaux de la hiérarchie mémoire sans connaissance explicite des paramètres du cache.</p>
+    </div>
+
+    <div class="card">
+        <h2>6. Calcul du temps d'accès moyen à la mémoire</h2>
+        <p>On définit les paramètres suivants :</p>
+        <ul>
+            <li>\(t_c\) : temps d'accès au cache (hit time)</li>
+            <li>\(t_m\) : temps d'accès à la mémoire principale (miss time)</li>
+            <li>\(h\) : taux de succès dans le cache (hit ratio)</li>
+            <li>\(T_{\text{av}}\) : temps d'accès moyen aux données pour un programme donné</li>
+        </ul>
+        <p>La formule du temps d'accès moyen pour un cache à un niveau est :</p>
+        \[
+            T_{\text{av}} = h \cdot t_c + (1 - h) \cdot t_m
+        \]
+        <h3>Cache multi-niveaux</h3>
+        <p>Pour un cache à plusieurs niveaux (L1, L2, L3), la formule se généralise. Pour un cache à 3 niveaux :</p>
+        \[
+            t_{\text{av}} = t_{c1} + m_1 \cdot \bigl(t_{c2} + m_2 \cdot (t_{c3} + m_3 \cdot T_{m3})\bigr)
+        \]
+        <p>où \(t_{ci}\) est le hit time au niveau \(i\), \(m_i\) le miss ratio au niveau \(i\), et \(T_{m3}\) le temps d'accès à la mémoire principale.</p>
+    </div>
+
+    <div class="card">
+        <h2>7. Optimisation de la performance du cache</h2>
+        <p>Les trois paramètres fondamentaux de la performance du cache sont :</p>
+        <ul>
+            <li><strong>Hit time</strong> : temps de traitement d'un accès réussi (hit).</li>
+            <li><strong>Hit rate / Miss rate</strong> : proportion de succès ou d'échecs.</li>
+            <li><strong>Miss penalty</strong> : temps de traitement d'un défaut de cache.</li>
+        </ul>
+        <h3>Ce que le programmeur doit faire</h3>
+        <ul>
+            <li><strong>Maximiser le hit ratio</strong> en structurant les accès aux données de façon à exploiter la localité.</li>
+            <li><strong>Réduire l'impact du miss penalty</strong> en utilisant le <em>prefetching logiciel</em> : précharger les données en mémoire cache avant qu'elles ne soient réellement nécessaires.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>8. Organisation mémoire des systèmes informatiques modernes</h2>
+        <h3>Monoprocesseur</h3>
+        <ul>
+            <li>Cache multi-niveaux (L1, L2, L3)</li>
+            <li>Mémoire virtuelle (extension de l'espace d'adressage via le disque)</li>
+        </ul>
+        <h3>Systèmes multiprocesseurs</h3>
+        <ul>
+            <li><strong>Mémoire partagée</strong> :
+                <ul>
+                    <li><strong>UMA</strong> (Uniform Memory Access) : tous les processeurs accèdent à la mémoire avec le même temps de latence.</li>
+                    <li><strong>NUMA</strong> (Non-Uniform Memory Access) : les processeurs accèdent à leur mémoire locale plus rapidement qu'à la mémoire des autres nœuds.</li>
+                    <li><strong>cc-NUMA</strong> (Cache Coherent NUMA) : NUMA avec cohérence de cache maintenue par le matériel.</li>
+                </ul>
+            </li>
+            <li><strong>Mémoire distribuée</strong> : chaque processeur possède sa propre mémoire locale, les échanges se font par messages (ex. : clusters MPI).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>9. Paramètres de performance mémoire</h2>
+        <p>Les paramètres mémoire utilisés dans les estimations de performance peuvent être :</p>
+        <ul>
+            <li><strong>Temps d'accès mémoire</strong> : temps de récupération d'une donnée individuelle.</li>
+            <li><strong>Bande passante théorique</strong> : dépend du bus, du contrôleur mémoire, et du type de mémoire.</li>
+            <li><strong>Débit mesuré</strong> : résultat de benchmarks du sous-système mémoire-processeur.</li>
+        </ul>
+        <h3>Règle importante : éviter les puissances de 2</h3>
+        <p>Les lignes de cache et le nombre de bancs RAM sont généralement des puissances de 2. Pour éviter les conflits d'accès mémoire (<em>memory contention</em>), il faut <strong>éviter les tableaux dont la taille est une puissance de 2</strong> (par exemple, préférer \(N = 1025\) à \(N = 1024\)).</p>
+    </div>
+
+    <div class="card">
+        <h2>10. Mémoire virtuelle</h2>
+        <p>La <strong>mémoire virtuelle</strong> est une extension de l'espace d'adressage logique au-delà de la mémoire physique (RAM), gérée par le système d'exploitation. Elle repose sur les mécanismes suivants :</p>
+        <ul>
+            <li>La mémoire principale ne contient à tout moment qu'une <strong>partie de l'espace d'adressage</strong> total.</li>
+            <li>La mémoire principale est divisée en <strong>cadres (frames)</strong>, qui contiennent des <strong>pages</strong> de la mémoire virtuelle.</li>
+            <li>Lorsque le processeur accède à une page absente, un <strong>défaut de page (page fault)</strong> survient : le système d'exploitation charge la page depuis le disque en remplaçant une page existante.</li>
+            <li>Les stratégies de remplacement de pages sont similaires à celles du cache (LRU, FIFO, etc.).</li>
+        </ul>
+        <p>Les accès à la mémoire virtuelle entraînent un coût très élevé (~\(10^6\) cycles), d'où l'importance de dimensionner correctement la mémoire physique pour les applications HPC.</p>
+    </div>
+
+    <div class="exercises-section">
+        <h2>Exercices</h2>
+
+        <div class="exercise">
+            <div class="num">Exercice 1 — Estimation du temps mémoire</div>
+            <p>Considérez un algorithme d'addition de deux vecteurs de taille \(n\). Chaque élément des deux vecteurs est lu une fois, et chaque élément du vecteur résultat est écrit une fois. Le temps d'accès mémoire est \(t_{\text{acc}} = 80\,\text{ns}\).</p>
+            <ol>
+                <li>Quel est le nombre total d'accès mémoire en fonction de \(n\) ?</li>
+                <li>Calculez \(T_{\text{MEM}}\) pour \(n = 10^6\).</li>
+                <li>Si le processeur calcule à \(3 \times 10^9\) opérations/s, quel est le temps processeur \(T_{\text{proc}}\) pour \(n\) additions ? Comparez avec \(T_{\text{MEM}}\).</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Nombre d'accès = \(3n\) (2 lectures + 1 écriture). \(T_{\text{MEM}} = 3n \times 80 \times 10^{-9}\,\text{s}\). Pour \(n = 10^6\) : \(T_{\text{MEM}} = 0{,}24\,\text{s}\). \(T_{\text{proc}} = \frac{n}{3 \times 10^9} \approx 3{,}3 \times 10^{-4}\,\text{s}\). La mémoire est ~730 fois plus lente.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 2 — Temps d'accès moyen avec cache à un niveau</div>
+            <p>Un processeur dispose d'un cache L1 avec \(t_c = 2\,\text{ns}\) (hit time) et \(t_m = 120\,\text{ns}\) (miss time). Calculez le temps d'accès moyen \(T_{\text{av}}\) pour \(h = 0{,}99\), \(h = 0{,}95\), \(h = 0{,}80\). Commentez les résultats.</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Utilisez \(T_{\text{av}} = h \cdot t_c + (1-h) \cdot t_m\).
+                    Pour \(h=0{,}99\) : \(T_{\text{av}} = 3{,}18\,\text{ns}\).
+                    Pour \(h=0{,}95\) : \(T_{\text{av}} = 7{,}90\,\text{ns}\).
+                    Pour \(h=0{,}80\) : \(T_{\text{av}} = 25{,}60\,\text{ns}\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 3 — Cache multi-niveaux</div>
+            <p>Un processeur possède un cache L1 (\(t_{c1} = 1\,\text{ns}\), \(m_1 = 0{,}05\)), L2 (\(t_{c2} = 5\,\text{ns}\), \(m_2 = 0{,}10\)) et accède à la RAM (\(T_{m3} = 100\,\text{ns}\)). Calculez le temps d'accès moyen \(t_{\text{av}}\).</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(t_{\text{av}} = t_{c1} + m_1 \cdot (t_{c2} + m_2 \cdot T_{m3}) = 1 + 0{,}05 \times (5 + 0{,}10 \times 100) = 1 + 0{,}75 = 1{,}75\,\text{ns}\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 4 — Multiplication matrice-vecteur et mémoire</div>
+            <p>Pour une multiplication matrice-vecteur \(y = Ax\) avec \(A\) de taille \(n \times n\), \(t_{\text{acc}} = 100\,\text{ns}\) et un processeur 4 voies à 2,5 GHz :</p>
+            <ol>
+                <li>Justifiez que le nombre d'accès mémoire est \(\approx 2n^2\).</li>
+                <li>Pour \(n = 1000\), calculez \(T_{\text{MEM}}\), \(T_{\text{proc}}\) et le ratio \(\frac{T_{\text{MEM}}}{T_{\text{proc}}}\).</li>
+                <li>L'algorithme est-il compute-bound ou memory-bound ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(T_{\text{MEM}} = 2 \times 10^6 \times 10^{-7} = 0{,}2\,\text{s}\). \(T_{\text{proc}} = \frac{2 \times 10^6}{10^{10}} = 2 \times 10^{-4}\,\text{s}\). Ratio = 1 000 : algorithme fortement memory-bound.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 5 — Localité des références</div>
+            <p>Considérez une matrice <code>A[N][N]</code> stockée en ordre ligne-majeur (row-major). Comparez ces deux boucles en termes de localité spatiale :</p>
+            <p><strong>Boucle A</strong> : <code>for(i=0;i&lt;N;i++) for(j=0;j&lt;N;j++) sum += A[i][j];</code></p>
+            <p><strong>Boucle B</strong> : <code>for(j=0;j&lt;N;j++) for(i=0;i&lt;N;i++) sum += A[i][j];</code></p>
+            <ol>
+                <li>Laquelle a la meilleure localité spatiale ? Pourquoi ?</li>
+                <li>Si une ligne de cache contient 8 doubles, quel est le nombre de défauts de cache pour chaque boucle sur une matrice \(N \times N\) ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    La boucle A accède aux éléments consécutifs en mémoire (localité spatiale optimale) : \(\frac{N^2}{8}\) défauts. La boucle B accède avec un pas de \(N\) éléments : \(N^2\) défauts.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 6 — Stratégies de remplacement LRU</div>
+            <p>Un cache dispose de <strong>3 lignes</strong> et utilise la politique LRU. Donnez la séquence des états du cache et comptez les défauts pour la séquence d'accès : \(1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5\).</p>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    1(miss), 2(miss), 3(miss) → {1,2,3}<br>
+                    4(miss, évince 1) → {2,3,4}<br>
+                    1(miss, évince 2) → {3,4,1}<br>
+                    2(miss, évince 3) → {4,1,2}<br>
+                    5(miss, évince 4) → {1,2,5}<br>
+                    1(hit), 2(hit), 3(miss) → {2,5,3} → {1,2,3}<br>
+                    4(miss) → {2,3,4}<br>
+                    5(miss) → {3,4,5}<br>
+                    Total : 10 misses sur 12 accès.
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 7 — Taux de succès requis</div>
+            <p>Un algorithme effectue \(10^8\) accès mémoire avec \(t_c = 2\,\text{ns}\) et \(t_m = 200\,\text{ns}\). On souhaite \(T_{\text{av}} \leq 4\,\text{ns}\).</p>
+            <ol>
+                <li>Exprimez \(T_{\text{av}}\) en fonction de \(h\).</li>
+                <li>Quelle valeur minimale de \(h\) faut-il atteindre ?</li>
+                <li>Quel est le temps total d'accès mémoire si \(h = 0{,}99\) ?</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    \(T_{\text{av}} = 200 - 198h \leq 4 \Rightarrow h \geq \frac{196}{198} \approx 0{,}9899\). Pour \(h = 0{,}99\) : \(T_{\text{av}} \approx 3{,}98\,\text{ns}\), \(T_{\text{MEM}} \approx 0{,}398\,\text{s}\).
+                </div>
+            </details>
+        </div>
+
+        <div class="exercise">
+            <div class="num">Exercice 8 — Mémoire virtuelle et page fault</div>
+            <p>Un programme accède à \(10^6\) pages avec un taux de défauts de page \(p = 0{,}001\). Le temps d'accès RAM est \(100\,\text{ns}\), le chargement depuis disque prend \(10\,\text{ms}\).</p>
+            <ol>
+                <li>Combien de défauts de page surviennent au total ?</li>
+                <li>Calculez le temps total passé à gérer les défauts de page.</li>
+                <li>Comparez ce temps au temps total d'accès en supposant toutes les données en RAM.</li>
+            </ol>
+            <details>
+                <summary>Indice</summary>
+                <div class="hint">
+                    Défauts de page : \(10^6 \times 0{,}001 = 1000\). Temps gestion : \(1000 \times 10\,\text{ms} = 10\,\text{s}\). Temps RAM seul : \(10^6 \times 100\,\text{ns} = 0{,}1\,\text{s}\). Les défauts de page représentent un coût 100× supérieur.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <footer>Résumé généré à partir du cours · 2026</footer>
+</div>
+</body>
+</html>
