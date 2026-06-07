@@ -34,10 +34,20 @@ const clamp = (val) => Math.min(Math.max(val, 0), 100);
             const totalJours = Math.round(totalMs / msPerDay);
             const doneJours = Math.round(doneMs / msPerDay);
             const restJours = Math.round((date2 - today) / msPerDay);
+            let strFrac;
+            if (pourcent < 100)
+            {
+                strFrac = `1/${Math.round(100/(100-pourcent))}`;
+            }
+            else
+            {
+                strFrac = `+∞`;
+            }
 
             const strPasses = `Jours passés : ${Math.min(totalJours, doneJours)} / ${totalJours}`;
             const strRestants = `Jours restants : ${Math.max(0, restJours)}`;
             const strProgExacte = `Progression (exacte)   : ${pourcent}%`;
+            const strFraction = `Il ne te reste que ${strFrac} du semestre à faire.`;
             const strProgArrondie = `Progression (arrondie) : ${Math.round(pourcent)}%`;
 
             console.log(strPasses);
@@ -52,6 +62,7 @@ const clamp = (val) => Math.min(Math.max(val, 0), 100);
                     ${strPasses}<br>
                     ${strRestants}<br>
                     ${strProgExacte}<br>
+                    ${strFraction}<br>
                     ${strProgArrondie}
                 `;
             }
